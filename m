@@ -2,100 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tr3XGXkvVWpGlAAAu9opvQ
+	id NqytF4DzVWoLwwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 20:33:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A3774E817
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 20:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 098E6752679
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=YmcOgP62;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="kRYOFmK/";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C984C10E40B;
-	Mon, 13 Jul 2026 18:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8039B10EC77;
+	Tue, 14 Jul 2026 08:29:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0589F10E40B
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 18:33:25 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-2cc827a68fbso9651055ad.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 11:33:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783967604; cv=none;
- d=google.com; s=arc-20260327;
- b=iSvuG/SNuxQP6qNWJkhVO+rT0Gbqr8tDTU8Zefedd1CPR9Lr6+vtqg00u9uGZzy/RY
- DgjtrNE3BUVCoyVOCj9B6Hbq5xu3L7ZV4U1F1ZLZG/pgWF1dLJkXyBV1Xk87m1GiqVPJ
- 8LzLHuW/+DbxZvgDCo7x8/KYuqdFltukeMxoqtvSL8yPjsiZDJlYIbfgCT44skkl/ftB
- QcGJgXSAn2bar0hAMJ+tPIBJsOgPqRLyix6/HLp6mXqkwlX/5puy8c74B+01+BgOztZ5
- nxHrMLAlHDAm4/9Mg2wcPqAeXGCWIch5umPnorfMjVU2KuY7AdC9NFBdvDy1kziITmlX
- lF6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=cGmCiBlaSELFoPdzH4UZt3xo0WPFnSE+PTX5QPBRd6c=;
- fh=/jXuF6kkEzGc76I89MWDwYajZhHhstOH8SMMdzCQivY=;
- b=ATRcdmkxSQPFazlvRTRwwh4L5tlU6WC8xjxAsxxKxvG7MnW7jtaA1MNezTT1gmvAOr
- tg7rd9r/gQsxdl51Pxj7/3/BSBRSk72o2CrafH1lexLAuI/LZs2MQguQhPLgIFmdR45n
- 4VI/hM+XbBuMeTUiodLZXBUlIAablJn1n0wlz5SDmxUAT28itApv0iNtpzmYwg5WqUvI
- u5K1zM6X/JZC2GFCbSdjJ13htCi9lNgFcF64YYR7tLzKOpFWfY6MfB+3oXLFye6JLfLh
- 6n7BZhdnOxNNS6Bz6zRgtuyNTfM4wVItNHelgay+rChfzM4OdmfsF1+eDg66pylGNcnv
- KxCA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3DF010E64E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 18:38:55 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-493f2e39e81so13573785e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 11:38:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783967604; x=1784572404; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=cGmCiBlaSELFoPdzH4UZt3xo0WPFnSE+PTX5QPBRd6c=;
- b=YmcOgP62yTe8tx5jgRfQjvtk/7ha4xwCEo5StpA7szxacc3AM77amnFunGcH7QkxaH
- 9f9S7vYiSbjsGU/DpF7dciEYELL2uxpOiAJvGBFZ4vwbVTTO1WrSPwW322/mJ6UJOuYG
- 85+48KBygEYYStgW360Io6RXqsTqnaf0/lAbOUAPk3xE4oQDGYpwW8CbPGgoYVB8++YT
- dFhzRHNKbmjeAMvBKYDlcyoiKV10e2X6HnItdftJw3DnsIy4lfNya7GRoXgHbFDb2hgj
- N9fZSvn+RVIYpYBbkoWtRWRSJh9aBhkLe6a6KUaiyxBGIv+AP8WCShbctWgWj60vT4vX
- NP9w==
+ d=gmail.com; s=20251104; t=1783967934; x=1784572734; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=6DtghhdTtGAGyMOfw++Q+YSFv47tiRopnFCf1YJmgL0=;
+ b=kRYOFmK/w00DA/N22XKG3BrjyFHIENc1RMKApJGXCTADdtzPiiS1iWaOSNV1ICX1no
+ 9G9dbJTnR3/ToubA3WPXIuzP5+XkGN+Q0pGESE3Ioa/4HyE4ANF6NhcUcXQt01m5KZTg
+ Tpw4aFb4bYp1QwDCwguVpYsvGIY8FtYgo24y+8TPn725WsJwipHcjVRdF9YeNGFRxxD6
+ Jt5C94XiJ2PMcqI07OPV0/ChcScfrKMXCjxEqESkB9gaboIguYJq4Aw1+pE/y83tj2LZ
+ Mci8a+xos2rJlRiI2P9ONtMjcyk5A5VhDswkZudqKBd2qgutnhZOqIcAR8eNsjp3xzYY
+ 8tcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783967604; x=1784572404;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=cGmCiBlaSELFoPdzH4UZt3xo0WPFnSE+PTX5QPBRd6c=;
- b=JVh53zKEGv4rXm0HxWWvTpzUp2PNi9nBHE2E7VuQgs2tvoi4aI+wGk97Hc6Y1qCwHB
- 9i77ToB5ZmX9GstU2z4RuBBYPbLEVhGaZ9z190XNhHgCJm+hfYSNFzuL5ko35IX1Bk51
- JpNUa1SNkl/5VtL1idwCL4dldldS5Rw+Q7SbIrGwzRKmG6u66ZbpZWkVxVQpFavCEXd2
- JdDCXGDZ7u9x18SqF9/r+494xmh5Kgwwk0qEbkj6mgx2DI52ttJh+9Q63h3vPvPfra3L
- hgLAt50hfHRB4W/llq7Xt4Ur1fyJgWvfANI6jNjG+K1Z8KKRW8/s6zZBh6jrKT5eIqlv
- YrsQ==
-X-Gm-Message-State: AOJu0YykbfVK8O2LegpJiYdGWLz/smU+8adfe3Bmi+calBaRWPYPuQsH
- 9iallapXi2tPRLJdlrM4o0dWGXFNTtaccwJnTZlECsPFT6hQmiZUAhZxRZlpsvrKDUUk4vHnyUW
- 24nkxVfAOEN6pexU/l4TDQtfTn4NFtO8=
-X-Gm-Gg: AfdE7ckmOWv/s3CrPwB9fkX30xco7O7vc5B+N0Ffjv+1p1NaAr1cb9v6WKaEza7qPyU
- OEgOwMzgzDRcgo/2chqMnlEX4p/t0Hkj4ULZmlNcxK1RZlFOLzoodJy5xEqyVGGUukSjTbujZAI
- DHOhLqh1/yJvojacZbBRI1ZxaUvLxwrjRzu1vn4GgwyugXeoEg8ic0TrMVpesJlNpFqZPwBzGi4
- AOVsE+Kk1lz5rsoxixmm1/eeWmLT1mT3TBGxU8+uIdywsc5gxTfco6FcOVX1vX+lih4uT08LH5O
- DKTZnLyk/XucNja0pj78WiW+ybLuazq0LyxNIEEMqex597JFkWJdWAhmBjt2c40hM+mLCw==
-X-Received: by 2002:a17:902:fc86:b0:2ca:d803:5c8f with SMTP id
- d9443c01a7336-2ce9e59ed95mr82735565ad.1.1783967604468; Mon, 13 Jul 2026
- 11:33:24 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1783967934; x=1784572734;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=6DtghhdTtGAGyMOfw++Q+YSFv47tiRopnFCf1YJmgL0=;
+ b=M6zE6/u7pQsfnfD7LC3HKRFlqKvHHjlsmXv9w8FyggaifjjQ3mGlv843pkzNbp47qA
+ RrnU8nXRvUShhvCLBq1pY+hGLVXvE+FQK+9HEaDhi1Enxwggr0jw3RAdAYjhZnSxkp5+
+ g0/ZjZw/GBdjyCBF04Fu2esKT+DUZIhKGqPK6M1/cw7N0i85YKJ7dho5pgcNr0EVZ4ET
+ nJ3VljM60pSsStTzlYpKPU5fulXRalDCNhtZlE25e1bluhzE79T6j7AiKD4iQgglzg0O
+ Tu+zSR5UCOsDFHcGq8wMBJ9Ktof5HKVQq8Biw50iVoMzGd0u+DR3hr8/v5wQiA4z0AdK
+ CLxQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rq5NBEnEtohiwgbnwtO2DttfiRf4PUxbP8PwHMs5YWsI02UoR9IAVOhxJmzi3TZIRyuQhfbDQwm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YybCghZ5Hwzbsa5CWzbepIx7ztTcTtrg58xjQoiuR/SjcJ0LiR8
+ kd/bph0jGtpy1LxXp+2WJo7Z/MpRuSJbtPh4pR8es/ByobGmujFYmMFP
+X-Gm-Gg: AfdE7cneBhb6l15onBverkyK6fAlbt26xzufNI3BJstPdgk8O5iDKBZy/+Xyi/obfea
+ JazWg/l8UcpmTbppDaja32en5jT+sFyS+SiCgVOearSjkwfrIbhkt7GRB0GdwufgWSuoAgCS5a8
+ IlSZFIcL0GPzIiY+qdCPG/SpMqGMx+6b2Vj+Jz+ghXYdM0qa+hFrPVKOseqontv6gTr9C4ULXTn
+ vJhypydyzr+E+yFTYFhV4v0pmwgi2JoZ8mHXH1tTsEU4TwfOtnvm6lDNe3yZGwIkblNtXj8OHq+
+ 8TcR6UCvpg4zXE77p9niASnxL5yRKMqmLrAW1UDah8VvmRpd0r/KJEp7mnPJJ1Q/PNbmlkOG8Wr
+ +2xX7tW779IY4TW6LTqABAiArvy5YsqrVHoEeKOvueKzalOyLQrfG9/xjKnSaRGnKNZqecuAqrw
+ aiFRBC6JmxdEpTBJcrq8pOUCCrF9P3zIeRsYbsWS4=
+X-Received: by 2002:a05:600c:3b0a:b0:493:f6f7:299e with SMTP id
+ 5b1f17b1804b1-493f88241d7mr105526565e9.20.1783967933785; 
+ Mon, 13 Jul 2026 11:38:53 -0700 (PDT)
+Received: from timo-z13.fritz.box ([193.30.163.202])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-49508727f7dsm14702455e9.4.2026.07.13.11.38.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Jul 2026 11:38:53 -0700 (PDT)
+From: =?UTF-8?q?Timo=20Pr=C3=B6mer?= <timo.proemer04@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?q?Timo=20Pr=C3=B6mer?= <timo.proemer04@gmail.com>
+Subject: [PATCH 0/2] drm/amd/display: Fix missing HF-EEODB blocks in EDID
+ copies
+Date: Mon, 13 Jul 2026 20:38:39 +0200
+Message-ID: <20260713183841.5921-1-timo.proemer04@gmail.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-References: <20260713172431.1599801-1-mario.limonciello@amd.com>
-In-Reply-To: <20260713172431.1599801-1-mario.limonciello@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 13 Jul 2026 14:33:12 -0400
-X-Gm-Features: AVVi8CdVoFL8WJsBt4nGbrBP_ruPvaaKGygbKZBJ33JvaZIlkI2ClViR4SFukLU
-Message-ID: <CADnq5_O6MSH0WFK1f011mJ+8DKsX7arGSbS+fFPmhkBmeEu7cg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Move dynamic PCIe switching quirks to
- X86_MATCH_* macros
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 14 Jul 2026 08:29:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,144 +101,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:timo.proemer04@gmail.com,m:timoproemer04@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[timoproemer04@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[igalia.com,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,gmail.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timoproemer04@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,lists.freedesktop.org:from_smtp,mail.gmail.com:mid,intel.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B4A3774E817
+X-Rspamd-Queue-Id: 098E6752679
 
-On Mon, Jul 13, 2026 at 2:04=E2=80=AFPM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
->
-> Use the X86_MATCH_VENDOR_FAM() and X86_MATCH_VENDOR_FAM_MODEL() macros
-> to make the quirks for dynamic speed switching more scalable.
+Fix an issue in amd/display where devices with HF-EEODB blocks would 
+be missing these additional blocks during EDID reads.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+The driver previously used `edid->extensions + 1` to calculate the 
+number of blocks to copy, but the base extension flag does not include 
+HF-EEODB blocks.
 
->
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 49 ++++++++++++----------
->  1 file changed, 28 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_device.c
-> index a4c8702fbf5a7..128a285e2bf4d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -1304,37 +1304,44 @@ bool amdgpu_device_seamless_boot_supported(struct=
- amdgpu_device *adev)
->         return amdgpu_ip_version(adev, DCE_HWIP, 0) >=3D IP_VERSION(3, 0,=
- 0);
->  }
->
-> -/*
-> - * Intel hosts such as Rocket Lake, Alder Lake, Raptor Lake and Sapphire=
- Rapids
-> - * don't support dynamic speed switching. Until we have confirmation fro=
-m Intel
-> - * that a specific host supports it, it's safer that we keep it disabled=
- for all.
-> - *
-> - * https://edc.intel.com/content/www/us/en/design/products/platforms/det=
-ails/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-of-2/=
-005/pci-express-support/
-> - * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
-> - */
-> -static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu=
-_device *adev)
-> -{
->  #if IS_ENABLED(CONFIG_X86)
-> -       struct cpuinfo_x86 *c =3D &cpu_data(0);
-> +static const struct x86_cpu_id amdgpu_pcie_dynamic_switching_quirks[] =
-=3D {
-> +       /*
-> +        * Intel hosts such as Rocket Lake, Alder Lake, Raptor Lake and S=
-apphire Rapids
-> +        * don't support dynamic speed switching. Until we have confirmat=
-ion from Intel
-> +        * that a specific host supports it, it's safer that we keep it d=
-isabled for all.
-> +        *
-> +        * https://edc.intel.com/content/www/us/en/design/products/platfo=
-rms/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-=
-1-of-2/005/pci-express-support/
-> +        * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
-> +        */
-> +       X86_MATCH_VENDOR_FAM(INTEL, X86_FAMILY_ANY, NULL),
-> +       /*
-> +        * AMD Ryzen Pinnacle Ridge (Zen+, family 0x17 model 0x08) CPUs d=
-on't
-> +        * support PCIe dynamic speed switching.
-> +        * https://gitlab.freedesktop.org/drm/amd/-/work_items/5436
-> +        */
-> +       X86_MATCH_VENDOR_FAM_MODEL(AMD, 0x17, 0x08, NULL),
-> +       {}
-> +};
->
-> +static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu=
-_device *adev)
-> +{
->         /* eGPU change speeds based on USB4 fabric conditions */
->         if (dev_is_removable(adev->dev))
->                 return true;
->
-> -       if (c->x86_vendor =3D=3D X86_VENDOR_INTEL)
-> +       /* Hosts have problems with dynamic speed switching */
-> +       if (x86_match_cpu(amdgpu_pcie_dynamic_switching_quirks))
->                 return false;
->
-> -       /*
-> -        * AMD Ryzen Pinnacle Ridge (Zen+, family 0x17 model 0x08) CPUs d=
-on't
-> -        * support PCIe dynamic speed switching.
-> -        * https://gitlab.freedesktop.org/drm/amd/-/work_items/5436
-> -        */
-> -       if (c->x86_vendor =3D=3D X86_VENDOR_AMD && c->x86 =3D=3D 0x17 &&
-> -           c->x86_model =3D=3D 0x08)
-> -               return false;
-> -#endif
->         return true;
->  }
-> +#else
-> +static inline bool amdgpu_device_pcie_dynamic_switching_supported(struct=
- amdgpu_device *adev)
-> +{
-> +       return true;
-> +}
-> +#endif
->
->  static bool amdgpu_device_aspm_support_quirk(struct amdgpu_device *adev)
->  {
-> --
-> 2.43.0
->
+Use drm_edid_block_count() directly to get the true number of blocks, 
+ensuring that HF-EEODB blocks are properly copied.
+
+Timo Prömer (2):
+  drm/edid: Export drm_edid_block_count()
+  drm/amd/display: Use drm_edid_block_count() instead of raw extensions
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 5 ++++-
+ drivers/gpu/drm/drm_edid.c                                | 3 ++-
+ include/drm/drm_edid.h                                    | 1 +
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+
+-- 
+2.55.0
+
