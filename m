@@ -2,104 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gBOmGmFWVWpGnAAAu9opvQ
+	id +h9KJoLzVWoOwwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 23:19:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:54 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97D674F38B
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 23:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB66752689
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="E30w/u0u";
+	dkim=pass header.d=squebb.ca header.s=fm3 header.b=ZOrtxssr;
+	dkim=pass header.d=messagingengine.com header.s=fm2 header.b="I Gj23SL";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=none) header.from=squebb.ca
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2137C10E67E;
-	Mon, 13 Jul 2026 21:19:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EB4B10EC7E;
+	Tue, 14 Jul 2026 08:29:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02FC010E67E
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 21:19:26 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-2ccae46de39so6860325ad.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 14:19:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783977565; cv=none;
- d=google.com; s=arc-20260327;
- b=FH7CYK2/FBqKoFzNhAsMQQgPiKT2l3JInFY09lx9pXRyxQniyXQOKQFa4boMzv37L3
- sRTwlBVWlzXnNt5/eHAuqD02D55xlTb5GxGHB8mhyyflByV86gyfBtwFcGq+Psx8yXR6
- 6/oQHPEA2QbGe88d7TVIhKIAgXn6S8p4ROuESzMfuE0/29KEa9aOwsf+ipc3dT0PwWg4
- 0s+9oY2vuvSNVWwQHopv2GviIAHxjvDrhTafDlGlcGZucKNhg7CAwqwOPkNcdiIZJmIj
- /oOMGAbQXT4xjbgbxANzs6Bth0vOHQdtIUvFR3XXTJGCFnGliJwdx8J+DOj6meWWy/pO
- g4bg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=33TaPqQmEjFsrm7H2HHTx5ta5j9OZEpDZHAN+VT+ZQc=;
- fh=yzBb+3Uy77011+KwgcQKRzDLInMnxr7dimZllKyVGMU=;
- b=AmGCBw4NoXIsS6GBfZLexvpGY1nMGMv+fsEnDxMgba6rCtQpD8Y483qZ9aAtLzA/ii
- AcPOXsHmN8AhdAee7XKWnUSo1vVI7PbsKtnFxsiIDkaZ9L4AfTxj/e9INH2f4pUa74Kw
- isROyRFG+LYngvfWSaTU62gLBohZx65VUwCU3UoawsxestfHCRAg/X9NVYGG67hKyFVr
- Qutpv6WZf2Vt5IPxMI+NrXSYUNx2R1+GF61fXnxEeL5VJFLDTDRB/FGfDHHZwALefKdV
- EmNsN4yPvc9/w7lEAl7JG9EzDx0b9uV+GYy9wRX02sQ6+2cpNlFZRVfA+PmF+MNs0pt8
- Pm4Q==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783977565; x=1784582365; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=33TaPqQmEjFsrm7H2HHTx5ta5j9OZEpDZHAN+VT+ZQc=;
- b=E30w/u0uD+Lpcf7NCFKU4v5UM/lrfTZnMq/uH0ChR6YBeNciJVOK/oSM8tfV+S2uyk
- 1+jioeMFtEcZNrL/jd6yq010FmPLOye56DtJh4wbx74Bj6WeSbhiNzaHx0cnxSxDKFFs
- Zv623LwA6qiK9OMTQo4+h6G6I5th1mTlR7dXusY1hHkAHXh+ZjUNABFrV1xpM8YJAic8
- johsrTcAgUzbMSI7NuWSTqEltVJbHs/MlnEejAu9FyvsyxZ2J4msWVrDoiqdiqI2N59A
- axiq3c4JpQZt5dAlg7dBV3/fdBLI8yqZEzo8nTUIuYoMtoinJnOqqXkhbpZfFr2zmC2b
- yRfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783977565; x=1784582365;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=33TaPqQmEjFsrm7H2HHTx5ta5j9OZEpDZHAN+VT+ZQc=;
- b=IHhFY44GnlStN98AmSGL4Mf51eJ9SF5jOBW7660fyUE1Tp533N1k61j466CLcEiSFB
- 1mrVtPQH4wY2TP01x5xgfUgaUe4zjduGZpgBppx3EYVdCJrb4qfHwuU0BOpikcdQwT9n
- f1y6foipB2WzsbzokqopviGUm6s1MsIwvCEXME96D7YW6th9ijgafk3UHv2DjvqILUJ8
- acPvJIdYofMnpyF2gJXpusDIf/1hTtn2uKK8yUHqaiUOoRwq7OFTUCycRkfxyOBKETlR
- 956Heun4/k3sH4XX2s3JUn3QRrG8PNZK+R811keCgOd3U+8RerpSxMeZONIzg8q4JlK/
- 1qbg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqebxXC25JCXBygX1O7eQZXv+toIjBc2TBVvii62KDj3Y32N/nT3B4ZOzevNRJqte53QcyEU6um@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwpJzKPcyjWxfLKzfScQ8b0w1t+ZZ5Mz+AKDoE0ORhVcNVaj4yv
- Qd9KdB+nG0pq6hNrLy1TJPXHlsdRmDnFvLSm/YegAFOXvcHL2yY9+eDTsXR4jp9cRjw99lEPaH9
- hosAjdR+mPx/QqHsd7HtjYvvcqkU50Po=
-X-Gm-Gg: AfdE7cmcA9A3HT3Md/LKdrDYOQz1Ph8U4zPBpELjX8/bCkTNmAXxQUGLyYSZTTHa5e+
- 3Gitd6/bAJ9J5ehn+ehTMdCTpUldCtaEJo2R2QV8fAXH1TWA2j6bzZI4e/lQMMb1SdIVtrOKdTX
- XvXTHP9/Gwac14gaSd8dNTjSPegBJfwJ7MK4Ab8GHt9ZXaqgmgm3Lu4wG/6RQNZ/TRWvTlPTq2Y
- yZN+mA7VqDYH6I7zm9GK+3g/9uzd/7u8V21j/UdeRvXQnBxXViICIM7xUSzfP7CLvbhk3oZaM4e
- G6L9NSv5OYOQ4wNAdw/ZHua/YOkwj0mCBi+wxG4ibLZe8yvyDOkKPP+ic6U=
-X-Received: by 2002:a17:90b:564c:b0:37f:eda5:516f with SMTP id
- 98e67ed59e1d1-38dc760604fmr7510028a91.0.1783977565391; Mon, 13 Jul 2026
- 14:19:25 -0700 (PDT)
+X-Greylist: delayed 518 seconds by postgrey-1.36 at gabe;
+ Mon, 13 Jul 2026 21:41:26 UTC
+Received: from fhigh-a2-smtp.messagingengine.com
+ (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D6010E179
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 21:41:26 +0000 (UTC)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id D4B8814000B8;
+ Mon, 13 Jul 2026 17:32:47 -0400 (EDT)
+Received: from phl-imap-08 ([10.202.2.84])
+ by phl-compute-02.internal (MEProxy); Mon, 13 Jul 2026 17:32:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1783978367;
+ x=1784064767; bh=YVO66dwtkD3NeXv09l5YFuW1pV0F3oSa91ho8hTgCMI=; b=
+ ZOrtxssrNRAQeS4x3vGLvQxIy3HtmkrTyWecyAkLolbkpgjwa7iWlXEQkusOsKZJ
+ fb0ftaU6Le0yhQJGrPLo4r9uuU8/n9cqk+3oG7SlllMfYCSbLnxM2htjuAfiJD/B
+ sU1i2O2G43nyZIIRhEQZ+mcxk/0UMw1leEog9yDyor/w6bXCzBHAqPIMKSSRiXJc
+ BxKBkVC+iKVMgSLQFYMpzInq9I9258VSTXCcAsXGp3RdgZxpmRpHfXVzFVIqDY/G
+ my3mLzt2N6Bm6Bkh6nphkmCPiVHmvY2PSqs/1VlbfltkLadbqMtpVMiPIqzW4jlh
+ bAso1YrOjRLaZkpnYB25WQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1783978367; x=
+ 1784064767; bh=YVO66dwtkD3NeXv09l5YFuW1pV0F3oSa91ho8hTgCMI=; b=I
+ Gj23SL7SJuT+DJP5714qJvOuXjXcUb4fZJNqtz6zYW91VKvMShjjWSgcqQONIUwY
+ UBhkvPLJmQ2gLbfWFavD66ODq0XcgeX6h0kD8YZNgYB3rU4OpBSST1sFiDfVx+HO
+ 6y6e1GhisXI2YtZV2Wqg1cR6Sl3YRwJIDZPKn5VFHbh2HylARmVyxPVcDAgYKq6m
+ nLkWmxPfxy3T/jP6OfmTOkqM0AX5C+CZ+LfhKkhmu3j+QiKBmVFYUHnY1WkOt7ln
+ CkG9F73SiyQdbqO3wFCiC325gTHY1KvMKAK0+L3e55dV4DJChGVhCYkyi8M4NnGL
+ 6RcZehzfriEN0BCf04wjw==
+X-ME-Sender: <xms:f1lVauz4pPVy_YJlhEjjaoJK3CQZ-eUnNAp8430A127p8Wf-IRRrjw>
+ <xme:f1lValHYAMwzuK5ltOqGrH-YnXodTQqjApiyLeG9e7vMvCFOXbCISOHKWwV5oTn3l
+ dEqazElEPvitRFg6gpRAA-T4eH6hgZLzvFipIfofHtnjN2ZQX0WxH3z>
+X-ME-Proxy-Cause: dmFkZTE0rk0j3tbkAwY1sHMHywWc+HsGZY4JGfo+NzNBq2hFUDqN6fJlBIsbk0laOsE2p+
+ PTDN+qfOKugSNVspnMApKwpMtyqAX7vg9B+sKnFIZcgZvnz81BwVDN+cUEE5Vq4ygZgATg
+ f/9L6w14ZN60n7YoATkQsTtNTFzmvhAuWxNVBRe1TDKMzCHpb0E8cXizCjFSqs01iXAc7Y
+ Ab/5zc/D6xkbgSiQHXzdBPyp701a2Lbo1y4zMga465xd7U3XWuLMHY49sYI76wtG/tzMbZ
+ QcXvZaqvknfRSh/C0gLA9BptchJflNBQac8hMf2xalDH0fJlIXKr998IsqgQcTN+mx07Qi
+ rsolYJ8dPGhdJHRIF8iGnuIe8jSKQ8UtgULGi9KKTdnnZqDS4ZESD0+QqC1IQuKSMkJSeQ
+ dFtT0doyFvdWJNvSi5Gr863K0tyQtzcKUWdBIkZi9Wbf6XTtEhG25EjhIbmxZqk2EqyHAy
+ oAThKwM6qGOf1wxykTT/ioiTz18kgcG96DRjwoEEP6u1eFCcAMJ8Yzb40N34LaPLQtPUg2
+ 33PthTZ3v3MMxmsLyn70BMhHyp9n+Nszo0rh+S1fiwrNpdjAVn++XaFhN2XLDDXyk+ByiR
+ +z0L1FNwTp2NgXjHxH+S0/5xfF2xwzXW1jQF8Hd8yBWonv9nl7tsV4uQT/Dg
+X-ME-Proxy: <xmx:f1lVatbdCvPG0NWkxyjFLcAESwndtwn4lU-zz9Ra39e7UADkTtGS6w>
+ <xmx:f1lVaiPGVi0oQUR0qVvr0vDbcnVOYvZxVElAblTgP_wrRnITIU__Vw>
+ <xmx:f1lVaqYEe_PC5OUmFbpAo8MUIxn0QK6YmRCX0hnCuVACtMybdLK5PA>
+ <xmx:f1lVao1sLL1MV2-HiaTFUroOpeRI1J3D7mDYTgfBKZ69O2a3zWJntQ>
+ <xmx:f1lVakOLK6ZtONS89IKtOHbaDq-qY8Y91F-v0NtrqZj1P6N4C_ij1WKM>
+Feedback-ID: ic2b14614:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id 4E4BF2CE03BD; Mon, 13 Jul 2026 17:32:47 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-References: <20260713164321.3350036-1-srinivasan.shanmugam@amd.com>
- <20260713164321.3350036-7-srinivasan.shanmugam@amd.com>
-In-Reply-To: <20260713164321.3350036-7-srinivasan.shanmugam@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 13 Jul 2026 17:19:13 -0400
-X-Gm-Features: AVVi8CcggNroJJND5UlZkDg3bvHCnqUk0cYHHqaUY_2ZkTPayFovTC6uu0dgBh8
-Message-ID: <CADnq5_PFOgExqt5BZkDkRGKZi+okxsnqxk-0GbNyZJXR3wFZuA@mail.gmail.com>
-Subject: Re: [PATCH v8 6/6] drm/amdgpu: Record QUEUE_RESET WAIT_EVENT
- notifications
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-ThreadId: APXOgOBcCE4N
+Date: Mon, 13 Jul 2026 17:32:27 -0400
+From: "Mark Pearson" <mpearson@squebb.ca>
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: "Aaron Ma" <aaron.ma@canonical.com>, mrh@frame.work
+Message-Id: <e3883839-e431-4ad1-aa01-b8b96c089e29@app.fastmail.com>
+In-Reply-To: <20260713195313.1739762-1-mario.limonciello@amd.com>
+References: <20260713195313.1739762-1-mario.limonciello@amd.com>
+Subject: Re: [PATCH] drm/amd: Create a device link between APU display and
+ XHCI devices
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 14 Jul 2026 08:29:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,105 +105,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.30 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[squebb.ca,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[squebb.ca:s=fm3,messagingengine.com:s=fm2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	XM_UA_NO_VERSION(0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[mpearson@squebb.ca,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:aaron.ma@canonical.com,m:mrh@frame.work,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[squebb.ca:+,messagingengine.com:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[mpearson@squebb.ca,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B97D674F38B
+X-Rspamd-Queue-Id: 6BB66752689
 
-On Mon, Jul 13, 2026 at 12:54=E2=80=AFPM Srinivasan Shanmugam
-<srinivasan.shanmugam@amd.com> wrote:
->
-> The queue reset path already resolves the affected queue directly from
-> the doorbell and funnels successful reset handling through
-> amdgpu_userq_handle_hung_queue(). Reuse that common handling point to
-> create the corresponding WAIT_EVENT record.
->
-> Keeping the notification in the common helper ensures that queue state
-> is updated before userspace is notified and that both EVENTFD and
-> WAIT_EVENT observe the same reset. It also avoids duplicating the
-> doorbell lookup or adding a queue scan in the MES reset path.
->
-> No MES or GFX interrupt changes are needed.
->
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Thanks Mario
 
-Patches 5, 6 are:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+On Mon, Jul 13, 2026, at 3:53 PM, Mario Limonciello wrote:
+> Some AMD APU multi-function devices expose an integrated USB xHCI
+> controller. In some circumstances (such as larger VRAM), the PM core
+> can resume can fail when the xHCI controller is resuming in parallel
+> with the GPU/display function.
 
+Minor: extra 'can' in there (before 'resume').
+
+>
+> On affected systems, the xHCI controller can complete pci_pm_resume
+> and start resuming USB devices while the GPU is still in its much
+> longer resume path. This race condition leads to USB device resume
+> failures followed by:
+>
+>   xhci_hcd ...: xHCI host not responding to stop endpoint command
+>   xhci_hcd ...: HC died; cleaning up
+>
+> Create a device link from any xHCI controller sharing the same PCIe
+> root port as the APU display function. The link uses DL_FLAG_STATELESS
+> and DL_FLAG_PM_RUNTIME to ensure the GPU completes its resume before
+> the xHCI controller begins resuming USB devices.
+>
+> This device link is done specifically in amdgpu so that if the
+> platform firmware has been modified such that this issue doesn't happen
+> the version can be detected and the workaround skipped.
+>
+> Suggested-by: Aaron Ma <aaron.ma@canonical.com>
+> Reported-by: mrh@frame.work
+> Closes: https://bugzilla.kernel.org/show_bug.cgi?id=221073
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 12 +++++
+>  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h | 11 +++++
+>  .../drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c  | 45 +++++++++++++++++++
+>  3 files changed, 68 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_userq.c
-> index 1abc05779192..8d081fda3e52 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -271,8 +271,8 @@ void amdgpu_userq_process_fence_irq(struct amdgpu_dev=
-ice *adev, u32 doorbell)
->   * @adev: AMDGPU device
->   * @queue: affected user queue
->   *
-> - * Mark the queue as hung, notify matching QUEUE_RESET EVENTFD
-> - * subscribers, force-complete its fences, and send the DRM wedged event=
-.
-> + * Mark the queue as hung, notify userspace of the queue reset,
-> + * force-complete its fences, and send the DRM wedged event.
->   *
->   * Return:
->   * true when the queue was handled, false for an invalid queue.
-> @@ -282,6 +282,7 @@ amdgpu_userq_handle_hung_queue(struct amdgpu_device *=
-adev,
->                                struct amdgpu_usermode_queue *queue)
->  {
->         struct amdgpu_eventfd_mgr *eventfd_mgr;
-> +       struct amdgpu_wait_event_mgr *wait_event_mgr;
->
->         if (!queue)
->                 return false;
-> @@ -293,6 +294,11 @@ amdgpu_userq_handle_hung_queue(struct amdgpu_device =
-*adev,
->                               DRM_AMDGPU_EVENT_TYPE_QUEUE_RESET,
->                               queue);
->
-> +       wait_event_mgr =3D amdgpu_userq_wait_event_mgr(queue->userq_mgr);
-> +       amdgpu_wait_event_add(wait_event_mgr,
-> +                             DRM_AMDGPU_EVENT_TYPE_QUEUE_RESET,
-> +                             queue);
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c 
+> b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> index 4314dff4ac996..c1ceec7a1986b 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> @@ -1366,6 +1366,14 @@ static void smu_feature_cap_init(struct 
+> smu_context *smu)
+>  	bitmap_zero(fea_cap->cap_map, SMU_FEATURE_CAP_ID__COUNT);
+>  }
+> 
+> +static int smu_set_power_dep(struct smu_context *smu, bool enable)
+> +{
+> +	if (!smu->ppt_funcs->set_power_dep)
+> +		return 0;
 > +
->         amdgpu_userq_fence_driver_force_completion(queue);
->
->         drm_dev_wedged_event(adev_to_drm(adev),
-> --
-> 2.34.1
->
+> +	return smu->ppt_funcs->set_power_dep(smu, enable);
+> +}
+> +
+>  static int smu_sw_init(struct amdgpu_ip_block *ip_block)
+>  {
+>  	struct amdgpu_device *adev = ip_block->adev;
+> @@ -1427,6 +1435,8 @@ static int smu_sw_init(struct amdgpu_ip_block *ip_block)
+>  	if (!smu->ppt_funcs->get_fan_control_mode)
+>  		smu->adev->pm.no_fan = true;
+> 
+> +	smu_set_power_dep(smu, true);
+> +
+>  	return 0;
+>  }
+> 
+> @@ -1449,6 +1459,8 @@ static int smu_sw_fini(struct amdgpu_ip_block *ip_block)
+> 
+>  	smu_fini_microcode(smu);
+> 
+> +	smu_set_power_dep(smu, false);
+> +
+>  	return 0;
+>  }
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h 
+> b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> index f8fd93999617d..7ea7c4a5279be 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> @@ -749,6 +749,9 @@ struct smu_context {
+>  	bool pm_enabled;
+>  	bool is_apu;
+> 
+> +	/* Power dependency link from an integrated xHCI controller to the GPU */
+> +	struct device_link		*usb_power_link;
+> +
+>  	uint32_t smc_driver_if_version;
+>  	uint32_t smc_fw_if_version;
+>  	uint32_t smc_fw_version;
+> @@ -1618,6 +1621,14 @@ struct pptable_funcs {
+>  	 */
+>  	int (*ras_send_msg)(struct smu_context *smu,
+>  			    enum smu_message_type msg, uint32_t param, uint32_t *read_arg);
+> +
+> +	/**
+> +	 * @set_power_dep: Create or destroy a power dependency link
+> +	 * from an integrated xHCI controller to the GPU so that the GPU is
+> +	 * resumed before the USB controller during PM resume. @enable is true
+> +	 * to create the link and false to tear it down.
+> +	 */
+> +	int (*set_power_dep)(struct smu_context *smu, bool enable);
+>  };
+> 
+>  typedef enum {
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c 
+> b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> index 2fe006de927a3..2abdfef8644e0 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> @@ -1701,6 +1701,50 @@ static int 
+> smu_v14_0_0_restore_user_od_settings(struct smu_context *smu)
+>  	return 0;
+>  }
+> 
+> +/*
+> + * Link any xHCI controller sharing the GPU's PCIe root port as a 
+> consumer
+> + * of the GPU so the GPU resumes first, avoiding an xHCI resume race.
+> + */
+> +static int smu_v14_0_0_set_power_dep(struct smu_context *smu, bool 
+> enable)
+> +{
+> +	struct amdgpu_device *adev = smu->adev;
+> +	struct pci_dev *gpu_pdev = adev->pdev;
+> +	struct pci_dev *root_port, *usb_pdev = NULL;
+> +	struct device_link *link;
+> +
+> +	if (!enable) {
+> +		if (smu->usb_power_link) {
+> +			device_link_del(smu->usb_power_link);
+> +			smu->usb_power_link = NULL;
+> +		}
+> +		return 0;
+> +	}
+> +
+> +	root_port = pcie_find_root_port(gpu_pdev);
+> +	while ((usb_pdev = pci_get_class(PCI_CLASS_SERIAL_USB_XHCI, 
+> usb_pdev))) {
+> +		struct pci_dev *usb_root;
+> +
+> +		usb_root = pcie_find_root_port(usb_pdev);
+> +		if (usb_root != root_port)
+> +			continue;
+> +
+> +		/* Create device link: USB (consumer) depends on GPU (supplier) */
+> +		link = device_link_add(&usb_pdev->dev, &gpu_pdev->dev,
+> +				       DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME);
+> +		if (link) {
+> +			smu->usb_power_link = link;
+> +			drm_info(adev_to_drm(adev), "USB controller %s D0 power state 
+> depends on %s\n",
+> +				 pci_name(usb_pdev), pci_name(gpu_pdev));
+> +			/* Only create one link for the first USB controller found */
+> +			break;
+> +		}
+> +	}
+> +
+> +	pci_dev_put(usb_pdev);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct pptable_funcs smu_v14_0_0_ppt_funcs = {
+>  	.check_fw_status = smu_v14_0_check_fw_status,
+>  	.check_fw_version = smu_cmn_check_fw_version,
+> @@ -1734,6 +1778,7 @@ static const struct pptable_funcs 
+> smu_v14_0_0_ppt_funcs = {
+>  	.dpm_set_umsch_mm_enable = smu_v14_0_0_set_umsch_mm_enable,
+>  	.get_dpm_clock_table = smu_v14_0_common_get_dpm_table,
+>  	.set_mall_enable = smu_v14_0_common_set_mall_enable,
+> +	.set_power_dep = smu_v14_0_0_set_power_dep,
+>  };
+> 
+>  static void smu_v14_0_0_init_msg_ctl(struct smu_context *smu)
+> -- 
+> 2.43.0
+
+Tested on my T14 G7 AMD platform and confirmed it fixes the issue (which I am able to easily reproduce otherwise).
+
+Tested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+
+Mark
