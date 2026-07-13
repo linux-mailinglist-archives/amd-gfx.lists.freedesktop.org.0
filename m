@@ -2,71 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y/T5ApDjVGokggAAu9opvQ
+	id qMA9CI6kVGrDogMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 15:09:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 10:40:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB1574B54C
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 15:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62890748D34
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 10:40:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=leemhuis.info header.s=key2 header.b=a8vMJjwc;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=dDwA86MQ;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F96C10E5D1;
-	Mon, 13 Jul 2026 13:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F385D89361;
+	Mon, 13 Jul 2026 08:40:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0BF10E5A7
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 08:28:31 +0000 (UTC)
-Received: from mors-relay-2501.netcup.net (localhost [127.0.0.1])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4gzFtx3BlZz6Bn6;
- Mon, 13 Jul 2026 10:28:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1783931289;
- bh=7D4uDNKGqj1S37fKW7uPr1KmefaB5RpbZIoAxZ8dCIQ=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=a8vMJjwcKHHAsY/SdSKkLMsP0YsdtUYvGko+D3zOvKzEKbvYP7BHOILBF0rqRL+7F
- CeNpV3ZNVnTB0naB1J/K5EOR0eYZ4kqedjQhiBM5RYVEvfiyy3J8Nrnav/qwJdu/0Z
- FArpZgGMHHl+9N2SDvrTH3hR0JYeEMFOpd6wEx6yBJw/euL9xYvc5YmWvF/A/QnCVb
- 0N30ipPKuIPDkJsdX0ng2jZHyJILMB9MKi8Tmn/mzjkcMH9/mqKsx7jYj8ZZ+r6bS8
- j6avEKyBmdUlSr6o9QlXiy3HdCNsFSfEqzVyymPVFl2cOm/m/daI7YrWRt5JcdY3xU
- wwSiLe/IgiXfw==
-Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4gzFtx2Tqfz4xlQ;
- Mon, 13 Jul 2026 10:28:09 +0200 (CEST)
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy02-mors.netcup.net (Postfix) with ESMTPS id 4gzFtw64NWz8sZw;
- Mon, 13 Jul 2026 10:28:08 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 45C4C60322;
- Mon, 13 Jul 2026 10:28:08 +0200 (CEST)
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <c2050464-7f95-4b6a-95db-698c637136df@leemhuis.info>
-Date: Mon, 13 Jul 2026 10:28:08 +0200
-MIME-Version: 1.0
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012035.outbound.protection.outlook.com [52.101.43.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3CF89361
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 08:40:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r23MJBawcHuhEH/rBvFr+79nzMqHET0Ynq6eoOCFRMmPEIIin2nA+QC171wjbj2Iqf2HD0WcO33FlMBSFQGQfIl4PxfT5u1pjNaT9+CC/tBJIlc8BnhBkDLdxKtN+CEj8DYfP60+LY1ffmZn80uYsp8OojMgfL2oqpSvMu3QgtQXU9Gb0nuow/h/2aCOXcAEB7Z0669rVTTLKPiAuPh3ozFhSoMbVNQANYnriBeoJB86kHxY0F9urYbYiMOKRETglGMHKcZ2i/p0p8bzDtp4O/1uIULIeTl1Ffg7sytqpBL+mrPZ83XiDqk3z2Jl77VID7AJ3PaTkkLoMU2r/fg68g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eZjsUM8thcrIeWqRGNMHESF99hLjhuooBqW4xIzlSBI=;
+ b=d153chSAJ1B5qiHXXVZ/3YV2u5QFlwqlHPOD8HBA7vpnjQ9RyHAQipXirjcqsdexX+62zikfkQPEWcVCTiCIfL8t0k2PR+4AUJLRmSKZWuw1uQjo1QnZpmbCwy91wmxYwvG1s7jqZ9M3Qo5WMCNad2iwOSHGlmTXVkUaWkfTm9iUQ8+SLwYIqJkFxGoiZFJ61L2D+56jKwOpH31Of94YNE2OaL9vhyVSJfiquo0iuBWL3rurCq0gN12lQe1S7nyk9aqdfb7FAINrTPSOqVuPEp5QNNLUtTKT8555tCL26uDHyQcMxru2OF9nOP/oFwig2Gmf2R7HmUJOoWwJLBN8Ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eZjsUM8thcrIeWqRGNMHESF99hLjhuooBqW4xIzlSBI=;
+ b=dDwA86MQtryjZKTN2cxvKfuTfsSRjYS/Fwj/aFrYqkmqWCvnCKpJ1P/PZjLmgRc0wqjL0RX4lmewC2R5fnPD7HbaXxB/W+b6DuPLpccJsLxVGmEQh+vRSE+KtL5K7EBQh4T/KwoDivhpKfT+iCx62VlPD/oBUBTIOh4F39YXvPc=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA0PR12MB7602.namprd12.prod.outlook.com (2603:10b6:208:43a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
+ 2026 08:40:39 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0202.014; Mon, 13 Jul 2026
+ 08:40:39 +0000
+Message-ID: <43c2ca71-c468-41f1-adbc-cc170109de14@amd.com>
+Date: Mon, 13 Jul 2026 10:40:34 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm/ci: Don't disable MCLK DPM on Bonaire 0x6658
- (R7 260X)
+Subject: Re: [PATCH 1/2] drm/amdgpu: Print vmid, pasid and more task info in
+ devcoredump
 To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
  amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Natalie Vock <natalie.vock@gmx.de>
-References: <20260713061443.32561-1-timur.kristof@gmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <20260713061443.32561-1-timur.kristof@gmail.com>
+ Tvrtko Ursulin <tursulin@ursulin.net>, pierre-eric.pelloux-prayer@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>
+References: <20260711112108.8980-1-timur.kristof@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260711112108.8980-1-timur.kristof@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <178393128856.3557734.5890177465793536379@mxe9fb.netcup.net>
-X-NC-CID: in0h5Rm4r7N/fFxrywM7I8XdZBQihv+23QdIwsCcwvict7eHmGY=
-X-Mailman-Approved-At: Mon, 13 Jul 2026 13:09:32 +0000
+X-ClientProxiedBy: FR2P281CA0091.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9b::10) To SJ0PR12MB5673.namprd12.prod.outlook.com
+ (2603:10b6:a03:42b::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB7602:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8eadc34-467c-49b4-2800-08dee0ba6a34
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|3023799007|18002099003|22082099003|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: CHWWtdTBsN+LQDOFmzvn7M3AUx5z3jMW962L5WoJahc2a0y1KFah0PO0McSsJjJaGXffGuhgGaIY+D/hvNMaomH9Rz0hNJdE3XG5vn3r4VyKpCSANoRt62Xyy5g1hC6saucAdlBgfBw8Zdrb8Z7DkZysSgQws3AOhEpHdQXGZ+RXSFq0r1oIIWveFubEBPkAtf+oU3sNgk5QKEdXvS2etH+OuB0JdhsiJTxI4pbibP8VEyUjLqQ9nmy45JKf78YaomWCgwnY++oepXcs/9QS+ZL+7F0Ix4JvffjEbQEBDhG2bJnLjADY04qKVB33pfYzzjcXbWU+htCpeHIj90jzG+mY1Zfsc/LUVQMy1s9ItxBF8itJhZEwXST1pAX31EqaSNJCn3FmQz/xGwT/3uJnwP937QdlfxSR3cBmpvvbKT30Ti9SApjoWJppeaQNP75LmtfVI5CTTH1qdpC9Hci9t25+9dxBxJr4IX0al8HpoDhPenTCYL75jmRSikBieKdg4GA4srkGyEjgLjHDI8Eb7/TH0ozQmxTcfW20xBkRv/mT7jwgv8n4cHwwgORfMlTP9oj1yOesndZrKr/P3RP6zg+D8m239KQvBawBAvF+MG6YgwY7SrYixCiCFQvOqGQDNzDCQcmJ8RCn0IiUtWNpsK0t+05wYjDCn8bEbnY96Xk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(3023799007)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmU1c3ZFSFJOaGhZbGpWbGx2U3RuZFBESEx4ZWRvcG9PRVVXQjBFMWRnNGlr?=
+ =?utf-8?B?L1FQVXRUYVdOV3RubmcvY2czVDh4TFA5S0t3S1o2amM2bmNPOGo3d1dSMWhR?=
+ =?utf-8?B?RC9ISUZQK243NVFlVU4rdmh5MTBaVEliNXNIT2hzRzlhS2RST2E1NWRibW1X?=
+ =?utf-8?B?Y0t5ejdFZ2xOTHZiT09ZbGt0QmxDWHVLVkpDbCtzaHE1dDhXTFY1Y2ZmNVcw?=
+ =?utf-8?B?T0N4R1Z1bGVyUWNjSFd4TTdTd3RjYkpycUJRMkZrMG5VK05VSmFXTmwxKzdG?=
+ =?utf-8?B?YlJLQUlodEJ1bm5vM1VwQUxtUTNKS1BLSmFHc040Y21DeVdNeGx6eVJSOTkw?=
+ =?utf-8?B?aElJdUF4V1pJOXNVaGpHUVNlYXp4RmJjakxDYUhiQUZsZXk0UExFNVZQaUJT?=
+ =?utf-8?B?Ykx1MlZCSjlZcEFFM3N3YVFXUXFraTBxZWJTUm1BWTVIUXNzejc5UC9NcU5v?=
+ =?utf-8?B?bE9kUkQwZ1RpVndGZ2VNZllTaEQ1NjBHWUVoa2NMUjkvS1BRSHQ5TXZOMm55?=
+ =?utf-8?B?OFhtT0ZBSVMrblpUaS92UnpheTJzOVkzZE5Zc0JZaTNiSzBwUVE1UDRFNFZI?=
+ =?utf-8?B?SnNEbnRudENvbTZzWENYdGs0dksyU0hWMGFvQldscVhERk5taDRZTGdIcExR?=
+ =?utf-8?B?TmFoa1piRVNsOUx3MWZ0VUVFZnUzcTdWWS9PdnpCVmgzWVpYMjlYSnNFVHk5?=
+ =?utf-8?B?ak9oNWpDTVFoM003K2huaCtrMmFSTVk1STV3WitMZDVMSW9uMjhvQnlzdlNY?=
+ =?utf-8?B?alpaR2k5TDc2U3phSXZQYU5qUS9vaHgrQ09iR29VckxtWlZFcnFqbUM5Um5W?=
+ =?utf-8?B?T2FmWXlwWkcvL3NJWVhCUG91YmxxQlYzU0VlOEVDQ3d3aDQvdlgyTHlMNDNs?=
+ =?utf-8?B?U255VlAzb1VKYStML1hWdUszMnkyeGlnU2pSTUdNOWJvenRZM2VGTzNNSTJR?=
+ =?utf-8?B?NkYyV0pWM3I5czVuN2EwOHRQN1pINU52Z1NmYTJlOWR6VG9qVHovSlVyc1Zp?=
+ =?utf-8?B?blBCZTB4ZVJwd0x0RllHUTU1UER2TytaRkVucDJnSXdoZGdTZWxQdklQUE5U?=
+ =?utf-8?B?Qy9KSFBqN1ovZVpsS2hxT24wcVBHa3NmVWxBRmhRL0ZVWmVNZUE4U1FKUXV5?=
+ =?utf-8?B?MEVMSWRPY3JVRnNUd2pJRnNQQVFRSlVEWUN3Z2tYTURpVW1CR2doZXNlRXVO?=
+ =?utf-8?B?dGJBQjhpR2RDbXdoT3lPZEZzWmxjSGxNZGY0NzBIZXFXQllGWnNqMmM4WHc0?=
+ =?utf-8?B?dFl3QjVnUEZ5T09ZeGVmRkR6L3kvdWZjTWtZSnFRWTFPalAyeEN2Vzd2VlN4?=
+ =?utf-8?B?Yis4KzdqR2ZDbkU4V3NPTDNrNi9LVFdOMnpxbkhaR1lvcklMY29GNUJEdU9Z?=
+ =?utf-8?B?UHJ1OUk0UnZ6ZXE3ZnByS3J6WVNUVmpwOUJaSGZncmN1VEErc3pVdjJjQmtV?=
+ =?utf-8?B?WEJ3eXYwTENiSnRUTTB4VG9sYmV6ZW1nQUdJVGt4aTkyQzdVTVV2bWY2SlFD?=
+ =?utf-8?B?OVlCN0NFR0FPWUJMT3BIcHYyYUg2NmlSTWhzbENTaW9XcWY2b01ITmFJRm1S?=
+ =?utf-8?B?Smxsb1hibHhHaFk3ZjlhOVc2NzY5b0FzU1BTOUdaUHZQNU9OM0lvbkNXR00z?=
+ =?utf-8?B?eTVydk9LWnI1SkVLVG5uQmJ5WDNIZzd4TUFLRUh3alZ4ZnAwRTloQXF5eVh6?=
+ =?utf-8?B?OUJlcXJZU2pQdFUwakQ3OUY4WktwYjZtMk9zS2hUZW9Va3UyZXJOaVh4N0xE?=
+ =?utf-8?B?ZXV1ellzL3JtUTNKcHpvdWs0REtVOWVlMC9sVEtCSnFhOE1CMGtDS1BPTEoy?=
+ =?utf-8?B?MEQ2TnFNdU9kY2ZYQjdyeEZOb0V2ZlppRnR1MDRFNFF5R1NrV1lJZTM4Q3lq?=
+ =?utf-8?B?b3l1bGdoU0g3Rjk3THF1eXNkaGRDQmRIK0M2bnZDS3dkT1MvZUV2K0tiY2pT?=
+ =?utf-8?B?U04wL1hWcWNhTFV5VHZBT0ZkeHl2U0RTUWdWdXZLSjZuSHoyMWE2Q2xxcXA1?=
+ =?utf-8?B?TDdpeGhEWTVjcjhnMStSa05yUk9qUnNUT1o3bURORURDeXkwVGtodHN6T0Jx?=
+ =?utf-8?B?TnJ2WEMyTzhRTWtVNTVDdnYwRW05dUpMbVZZbTY5TzJtR0FVWXZnSzFvOFgv?=
+ =?utf-8?B?K01laGhXbytrV0oyTUprUHZQTGFWcnVtUjhDb2FGaEV0aFlrbXpHa1JWemk0?=
+ =?utf-8?B?OGtmcGdnMEVQa2xLQUVwK1AvOWl0TmRuM21HUWRCa0tITzRJZkdzUUtyZ2w5?=
+ =?utf-8?B?RWVtTXA2NTBLeWhJRmJhaGpHMHlKU2lDQTljMTl1UWt4MzhUZkFzOWg2R0ZW?=
+ =?utf-8?Q?LYKio11j+C1pvd+DAA?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8eadc34-467c-49b4-2800-08dee0ba6a34
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5673.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 08:40:39.0734 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3ZSi03kNPF5/WR738X6fecMjLa1LD84fP5D7UWz1tfCCtDCCFgBxnIabWA6B/70Z
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7602
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,100 +141,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[leemhuis.info];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:tursulin@ursulin.net,m:natalie.vock@gmx.de,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,ursulin.net,gmx.de];
-	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:tursulin@ursulin.net,m:pierre-eric.pelloux-prayer@amd.com,m:natalie.vock@gmx.de,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,ursulin.net,gmx.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[6];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,leemhuis.info:from_mime,leemhuis.info:dkim,leemhuis.info:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5CB1574B54C
+X-Rspamd-Queue-Id: 62890748D34
 
-On 7/13/26 08:14, Timur Kristóf wrote:
-> The old radeon driver has a documented workaround in ci_dpm.c
-> which claims that Bonaire 0x6658 with old memory controller
-> firmware is unstable with MCLK DPM, so as a precaution I
-> disabled MCLK DPM on this ASIC in amdgpu.
+On 7/11/26 13:21, Timur Kristóf wrote:
+> These are in the dmesg logs but are missing from devcoredumps.
 > 
-> Note that the old MC firmware is not actually used with
-> amdgpu, but in theory it's possible that the VBIOS sets
-> up the ASIC with an old MC firmware that is already running
-> when amdgpu initializes (in which case amdgpu doesn't
-> load its own firmware).
-> 
-> What I expected to happen is that the GPU would simply use
-> its maximum memory clock, and indeed this is what seemed
-> to happen according to amdgpu_pm_info which reads the
-> current MCLK value from the SMU.
-> However, some users reported a huge perf regression
-
-Were those private reports? If not, please consider linking them in the
-trailers using Link: or Closes: tags, as explained in the patch
-submission guidelines (and mandated by Linus, see the quotes and links
-in
-https://www.kernel.org/doc/html/latest/process/handling-regressions.html#on-the-importance-of-pointing-to-bug-reports-using-link-closes-tags
-for details).
-
-Ciao, Thorsten
-
-> and upon a closer look it seems that the GPU seems to
-> not actually use the highest MCLK value, despite the SMU
-> reporting that it does.
-> 
-> Let's not disable MCLK DPM on Bonaire 0x6658 (R7 260X).
-> 
-> Keep MCLK DPM disabled on R9 M380 in the 2015 iMac
-> because that still hangs if we enable it.
-> 
-> Fixes: 9851f29cb06c ("drm/amd/pm/ci: Disable MCLK DPM on problematic CI ASICs")
 > Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+
+Reviewed-by: Christian König <christian.koenig@amd.com>
+
 > ---
->  drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 7 ++++++-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h | 1 +
+>  2 files changed, 7 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-> index 1d6e30269d56..4d553be56396 100644
-> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hwmgr.c
-> @@ -106,11 +106,8 @@ int hwmgr_early_init(struct pp_hwmgr *hwmgr)
->  		hwmgr->od_enabled = false;
->  		switch (hwmgr->chip_id) {
->  		case CHIP_BONAIRE:
-> -			/* R9 M380 in iMac 2015: SMU hangs when enabling MCLK DPM
-> -			 * R7 260X cards with old MC ucode: MCLK DPM is unstable
-> -			 */
-> -			if (adev->pdev->subsystem_vendor == 0x106B ||
-> -			    adev->pdev->device == 0x6658) {
-> +			/* R9 M380 in iMac 2015: SMU hangs when enabling MCLK DPM */
-> +			if (adev->pdev->subsystem_vendor == 0x106B) {
->  				dev_info(adev->dev, "disabling MCLK DPM on quirky ASIC");
->  				adev->pm.pp_feature &= ~PP_MCLK_DPM_MASK;
->  				hwmgr->feature_mask &= ~PP_MCLK_DPM_MASK;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> index 4fd0df3aa70d..aaf091b7f9d0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+> @@ -356,10 +356,14 @@ amdgpu_devcoredump_format(char *buffer, size_t count, struct amdgpu_coredump_inf
+>  	drm_printf(&p, "kernel: %s\n", init_utsname()->release);
+>  	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
+>  	drm_printf(&p, "time: %ptSp\n", &coredump->reset_time);
+> +	drm_printf(&p, "pasid: %u\n", coredump->pasid);
+> +	drm_printf(&p, "vmid: %u\n", coredump->vmid);
+>  
+>  	if (coredump->reset_task_info.task.pid)
+> -		drm_printf(&p, "process_name: %s PID: %d\n",
+> +		drm_printf(&p, "process_name: %s TGID: %d thread: %s PID: %d\n",
+>  			   coredump->reset_task_info.process_name,
+> +			   coredump->reset_task_info.tgid,
+> +			   coredump->reset_task_info.task.comm,
+>  			   coredump->reset_task_info.task.pid);
+>  
+>  	/* SOC Information */
+> @@ -563,6 +567,7 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+>  			amdgpu_vm_put_task_info(ti);
+>  		}
+>  		coredump->pasid = job->pasid;
+> +		coredump->vmid = job->vmid;
+>  		coredump->num_ibs = job->num_ibs;
+>  		for (i = 0; i < job->num_ibs; ++i) {
+>  			coredump->ibs[i].gpu_addr = job->ibs[i].gpu_addr;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> index 2371e20fc68b..63f27337c09a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.h
+> @@ -63,6 +63,7 @@ struct amdgpu_coredump_info {
+>  	char				*formatted;
+>  
+>  	unsigned int			pasid;
+> +	unsigned int			vmid;
+>  	int				num_ibs;
+>  	struct amdgpu_coredump_ib_info	ibs[] __counted_by(num_ibs);
+>  };
 
