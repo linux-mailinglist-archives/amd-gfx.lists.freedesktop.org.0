@@ -2,90 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o1ISLe0HVmoSyQAAu9opvQ
+	id WpB7I34IVmo0yQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 11:57:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 11:59:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBB4753217
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 11:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA2D75328B
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 11:59:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ursulin.net header.s=google header.b=QhXjzjUw;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=0W3oQC5O;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA80010E6B0;
-	Tue, 14 Jul 2026 09:56:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF2510EC9D;
+	Tue, 14 Jul 2026 09:59:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C85EC10E682
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2026 09:56:57 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-c029505b389so121543066b.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2026 02:56:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1784023016; x=1784627816; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:to:subject:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=IOEPumFcVz6G39rKfEM/ts7+86CRIean3XXbbcfEk1k=;
- b=QhXjzjUwTbN3GSsfNeUTatuUQZS1frEvXj7553FmG5M7MmMm/dTWHq8jiNd9GoeZsd
- H/k9sX8MOKPTDtlUsNnwrpqxkju+5GGuMIlAY3g5Pp1LBgXShM68ljospYXdEYHjXC5U
- 7t9eZs6jRKVonZStC/G/B65HLl1yB/ld0Q/5O/Kuoa/4nKOD2mrRPhZnCw8ffr7YM3vm
- MnSQ2Dk6l6ivflO7L+2LxL/e1KXOcibAk/36WgIUzmahsPkOk4GOX/WLMv0z1S8PnEET
- ujWI3joC2W1FcMJxhHgtnGjBrLnVNEydTS/AX2ByGoC5f0GrBxCGb9VrshzRKEj1d+IV
- A9Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784023016; x=1784627816;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:to:subject:user-agent:mime-version:date
- :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=IOEPumFcVz6G39rKfEM/ts7+86CRIean3XXbbcfEk1k=;
- b=AyVyqxGGNHaOTO/qRrN49HbyDucRknHBIuhgakwbqeUJhzq28Q7w167ZzB7WCpnOOe
- x7jLijlq/Aa9FXGeHgSuGEC2DxbYvPGqNLj/eLtJI86zRHcJDrWDf/i62yFIus+zdsXg
- jT0nbmh7MzSAVzMUGz/FEEkzLpOY+EQqNSstEijX21ULu8MJIS+MM5yIq2g/yzCupvaj
- iYdpvqutDztFbibaxjcxFDOTbAIVfemACzRrsWod+3ZkIg2wTJevBY3ioJEx8dqz43dJ
- bkZwTxTHv/I0v9an28meTbpfLfxtIcYeIQvpwxdI5HbS+ScCIiTjFKCJEZ9LrGnLmNZm
- vgOQ==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rptn3hnY04LsA2V4m2hcx5SDNRI6t9X0+McorZfz+qE66LDcNFBbGv0KCx59aTMzJmgi1mvDLPb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwMj4FcVSpdyoUVidMQXbymaUU+hkjrrFqgPjZ3IVXSfBDw806N
- ayEQfCKHF5myowz8udi0bTiYE8Izlro0219rSsVAPJHAW0zQrgOu3mlLKxy93C9HZ6w=
-X-Gm-Gg: AfdE7cmj2cUBFFjaJGISsMu0tC4Ek7DqAZNDXo/ob6KWFu4OxH/7bbj8zMiRhtYQ5xO
- 4eftIAhdh5z4sgSJ3Mton2ScmtEGu+MUBZ30cVdw06P9rAUjd45f4GLLmskGgidW7bqlmsI5Iag
- BRie1AvfywB76db4e5sZ15+nAX21Y7CO2G9HMSKLlRWPOUsKfvvisyY8q3dxxFvyEegVDLJJ7Ix
- UGfvEfWVUKpGsNA/2ug1BROTDwY3Fnzb9AkpSc+MxhIG+1cMV4GfeKXHYMbCr4oVhBSUD5FxP5L
- a0GGkTN0id3n42wayolgTVbRVQLaNbIF5k+yly0xdzr82qEDOLN55evfaUhDKIcsLGfoQQuu2M3
- 3MeMxGCtHIE6J077zaye24NoqYoCuSDIHyKzwfBp45mRTpJKnnJQbFprt4Wd2cI0+yaAoUbtoZm
- SahiRyh5HzGXGQICwPi7gd2Rjkt6FtXGxHQhNxsDPmubVeRC5y34DHn/M=
-X-Received: by 2002:a17:907:7247:b0:c15:a7b9:2ae1 with SMTP id
- a640c23a62f3a-c161e844fc3mr714094466b.6.1784023016128; 
- Tue, 14 Jul 2026 02:56:56 -0700 (PDT)
-Received: from [192.168.0.116] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c15ada057dasm1157122066b.50.2026.07.14.02.56.55
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 14 Jul 2026 02:56:55 -0700 (PDT)
-Message-ID: <de029dfd-e3ff-40f4-be57-458706fbefd8@ursulin.net>
-Date: Tue, 14 Jul 2026 10:56:55 +0100
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010060.outbound.protection.outlook.com [52.101.61.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD4610EC9D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2026 09:59:23 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PH9rYk3KCC8F7A0Ra3Izn2VKXQdL59oi5nlsWPOoySLNaQ1IFOzOuhJ6sfnHcqBexKKG3wV3F8j+upB2fffMkdWp3PawjXtF+HWDjdI6bh8dacWsT0V5fP3IyFTLjslZXZZvvar15LUuFw+p80sLOkfglgpMv4h6mCXbF5D0wBTttSi72mw5PMo9JyuEj9WWHI4c7uVdVILR5bV+2O4zZc29//F4akDkxPgm+G5KWJwwKtWISWqpnyTLPEtbCUDsLTIaLOcgAbqeO90SeiSZ81t29Afpsz+svecTC5D/GPOIOw6tRN4hcZjUybNnrQrujMN4w8DyfSisu3up8zF1mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LY9Y1fPzPqEhEQ394L0WH1Yvm9cBN1u3Lc6VHdwJors=;
+ b=rIKMi8yUQiPMsuWRiDKgoNeGm0I1pEumNPQ7NjVSqKDDQQYzdDphvAfFgbHsrV5HaB8cKSbEOjvW/efGM3FRJDQuMdteOMAgE1M6W8iUoeqpko/306ITbz/Vtla6H97w15IiFBwg0sx8wIjbPXjeKOaYXNLBLe0tW5vttyADsNbGz5aWibzbd2Kewt8LeGoCE6+RBsqBi68rksByn2xmWlbskjHimpNzKhcNASpwYW6JxstOodOv6jgCQnqNhK2gIFHc8BV8OF3p9wDDWJQTWmg0mIPzv2S7ZUgb6/eo1X3HbKFnwphHcKwIHptBEOvaEeXFqlhqHs1juzn/JQA4cg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LY9Y1fPzPqEhEQ394L0WH1Yvm9cBN1u3Lc6VHdwJors=;
+ b=0W3oQC5OSu0ediHCNHAkwW58/ByNqNWkE5Xehennp0BZxSDz4QqS2Q/0JEOcb+y3llgxt8dTiJgBBOppK7F0IGHqlwlWZkVQaCPKmKebLCTUYiw3l2rJqJJ9JHkzH2aZXEh9181pLk2tldsnShK7sEDBgmhh1KloUp4mi5srYBQ=
+Received: from PH7P221CA0026.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:32a::21)
+ by PH7PR12MB5927.namprd12.prod.outlook.com (2603:10b6:510:1da::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.22; Tue, 14 Jul
+ 2026 09:59:18 +0000
+Received: from CY4PEPF0000EDD2.namprd03.prod.outlook.com
+ (2603:10b6:510:32a:cafe::6e) by PH7P221CA0026.outlook.office365.com
+ (2603:10b6:510:32a::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.10 via Frontend Transport; Tue,
+ 14 Jul 2026 09:59:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD2.mail.protection.outlook.com (10.167.241.198) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 09:59:17 +0000
+Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 14 Jul
+ 2026 04:59:15 -0500
+From: Xiang Liu <xiang.liu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Tao.Zhou1@amd.com>, <Stanley.Yang@amd.com>,
+ <YiPeng.Chai@amd.com>, Xiang Liu <xiang.liu@amd.com>
+Subject: [PATCH] drm/amd/ras: initialize CPER after XGMI reset on init
+Date: Tue, 14 Jul 2026 17:58:32 +0800
+Message-ID: <20260714095832.52308-1-xiang.liu@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amd/display: Shorten name of FRL polling workqueue
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>, Melissa Wen <mwen@igalia.com>,
- mario.limonciello@amd.com, alex.hung@amd.com, harry.wentland@amd.com
-References: <20260711113009.26512-1-timur.kristof@gmail.com>
- <c1d30a27-0fa2-442c-b2be-aac23137a08e@ursulin.net>
- <aXo6J2_kQ_SXM08igon8Aw@gmail.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <aXo6J2_kQ_SXM08igon8Aw@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD2:EE_|PH7PR12MB5927:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93b06e05-d4d6-4228-1640-08dee18e9167
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|36860700016|1800799024|376014|82310400026|6133799003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: azCfNTZhJDSByvuLPaEkonmE+Hs/Vp/F0RCO3nyAfNJijbA9zimGl3NWPdMhaIKtOw55n16PTU+fDBec141RAP9B/MoaCck59n83UZJe0s46F0CV+qHqlQYen3a2mlI92iJvDxMeQroGrqxg7b3FLbEFeLlCRbqtNAlfZpOEm/LaD/DTnz82wfewEslVyAnK6TEr7eyL7ERoOkzf2aKs6qcF4YMswethc91wRmyooc2ssSF+DrkUYWP2+7V06vPyvp01UWAqc87NvTFWgNDz+B1WcKl7jf171wnGEEAOjKnTH5hynDMD2AqHFa3sePDwwkdSNossvy00Yh4hgxT2Bam9M1ODPXVKV0/Ot1hfneTzfAird7bR1fXinpd9TK6lfHZUSqVYQuVuGoYYecdH+XQ2e5UuM1UX8cui+FvxsTzcUg7p7ejcrPgmVqY+qtxRIyGvFt+g5jVLIrnewN+oXQ0DwZhom8ePvZ+zbPJsqgfDGUIT9onAxy4EUskXmYqumQO1VfxSnDX1G+meVKiuSXbjteBeihI4YBTG8AC++UFeEgNHbvXnXjo7r2DKX/oJDH2RYhy0VDV4NRytz46sC022Q1qZkVz3vLn2F0c/QzsJdV7X5V8oCler7/0h2Ad3DskvyW8H2OPtgTlsM7t7etLTF7Xwy2QkO2zk9gdnQmC43fNrobC5YQZd19LH14J8NwCHAJ9UZH7AQXCdayx+zw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(36860700016)(1800799024)(376014)(82310400026)(6133799003)(56012099006)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: go1CGlI1wgl1qa4bvrTEPsOTYaPwMO3P4ypsSDGSBH+pcSxvFpQBDwifrmTDFq/1bg6pOk1rNLTLj2h9bII7s+hJ73rmHw+teTxVw8CKCxwrcKxDhtNIZCQQYLSkp4sP1ayTCJMboct+Tt/t/tQxM3RtimRmkgUk8+GIlkZLZEzQ9p8+noT1NwwwaVY4VoGWaGTFFvBBOTm0GUfb9Sc13CWU1GRod2xq2fBHAuwVMohaVigNxoKKPNYQNYRMCqZZH0zZ/VyvLVT/bk5/GtKfsrMQojIr3JcMaUMuEIP66/c38r7kIFG0s1z5cSzBfkeXI2p8s+RXyYu+dffJfUE7S2REWNtCtLHX4MuKqXajC12/aQY4+I1h6JfTOApgLseRYaPW69A66OFQgcaJAIVohaKWd5me9MbgQWetsvd+fe81ceO7nPWVX2tRZ0F6jCwN
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 09:59:17.3365 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93b06e05-d4d6-4228-1640-08dee18e9167
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD2.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5927
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,116 +115,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[ursulin.net];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:natalie.vock@gmx.de,m:mwen@igalia.com,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:harry.wentland@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de,igalia.com];
-	FORGED_SENDER(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[xiang.liu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ursulin.net:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:mid,amd.com:email,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1FBB4753217
+X-Rspamd-Queue-Id: ECA2D75328B
 
+The XGMI reset-on-init path can run while the device is still at the
+minimal init level, such as during an NPS memory partition switch. In
+that flow the normal RAS IP block hw_init is skipped, so unified RAS
+is not enabled when the early CPER initialization is attempted.
 
-On 14/07/2026 09:51, Timur Kristóf wrote:
-> On Monday, July 13, 2026 12:15:13 PM Central European Summer Time Tvrtko
-> Ursulin wrote:
->> On 11/07/2026 12:30, Timur Kristóf wrote:
->>> The current name is too long and triggers a warning.
->>>
->>> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
->>> ---
->>>
->>>    drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 ++--
->>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c index
->>> b97ceabe6173..6299f0e384f1 100644
->>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> @@ -829,9 +829,9 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
->>>
->>>    	}
->>>    	if (adev->dm.dc->caps.max_links > 0) {
->>>    	
->>>    		adev->dm.hdmi_frl_status_polling_wq =
->>>
->>> -			
-> create_singlethread_workqueue("hdmi_frl_status_polling_workqueue");
->>> +			
-> create_singlethread_workqueue("hdmi_frl_status_polling_wq");
->>>
->>>    		if (!adev->dm.hdmi_frl_status_polling_wq)
->>>
->>> -			drm_err(adev_to_drm(adev), "failed to
-> initialize
->>> hdmi_frl_status_polling_workqueue\n"); +			
-> drm_err(adev_to_drm(adev),
->>> "failed to initialize hdmi_frl_status_polling_wq\n");>
->>>    	}
->>>    	if (dc_is_dmub_outbox_supported(adev->dm.dc)) {
->>>    	
->>>    		init_completion(&adev->dm.dmub_aux_transfer_done);
->>
->> This one does not require display knowledge so I feel okay to review it:
->>
->> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
->>
->> Two nitpicks would be that the _wq suffix is even redundant since for
->> the task name it will have the kworker/ prefix anyway.
-> 
-> Ok, what name do you suggest to use then?
+Resume RAS after the XGMI reset-on-init completes and retry CPER
+initialization for devices that still do not have CPER enabled. This
+lets the CPER ring come up once RAS is ready while keeping the path a
+no-op for devices where CPER was already initialized.
 
-Dropping the suffix. :)
+CPER may now be initialized after the normal debugfs setup has already
+walked the ring list, so register the CPER ring debugfs entry from the
+retry path when debugfs is available. Track CPER ring debugfs
+registration to avoid duplicate registration and clear that state when
+CPER is torn down.
 
->> Second one is
->> that while touching this it may make sense to replace the variable name
->> from the error message with a human readable name like "failed to
->> initialize HDMI FLR status polling".
-> 
-> Ok, can do.
+Signed-off-by: Xiang Liu <xiang.liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c    |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h    |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  5 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c    | 15 +++++++++++++++
+ 4 files changed, 22 insertions(+)
 
-You can leave it for follow up work. Perhaps to clarify things, when I 
-give r-b that implies it is acceptable as is. Otherwise I would have 
-said "with that fixed r-b".
-
->> In fact, is this even an error or
->> should be a warning given I do not see an immediate exit?
-> 
-> No idea, I just wanted to fix the warning that I saw.
-
-drm_warn or drm_notice I would say is appropriate for things which 
-failed, were expected to work, but do not prevent the driver to probe 
-and work. Btw, on a glance, the neighbouring code is already confused 
-with a mix or drm_err and drm_info for this class of issues.
-
-Regards,
-
-Tvrtko
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+index 6fb129025761..7513541e6eff 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.c
+@@ -504,6 +504,7 @@ int amdgpu_cper_fini(struct amdgpu_device *adev)
+ 		return 0;
+ 
+ 	adev->cper.enabled = false;
++	adev->cper.ring_debugfs_registered = false;
+ 
+ 	amdgpu_ring_fini(&(adev->cper.ring_buf));
+ 	adev->cper.count = 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
+index d12c98077d9d..76df176eab9f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cper.h
+@@ -51,6 +51,7 @@ enum amdgpu_cper_type {
+ 
+ struct amdgpu_cper {
+ 	bool enabled;
++	bool ring_debugfs_registered;
+ 
+ 	atomic_t unique_id;
+ 	struct mutex cper_lock;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 3d1ede5f8de2..78130f8565c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -2184,8 +2184,13 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
+ 
+ 		if (!ring)
+ 			continue;
++		if (ring == &adev->cper.ring_buf &&
++		    adev->cper.ring_debugfs_registered)
++			continue;
+ 
+ 		amdgpu_debugfs_ring_init(adev, ring);
++		if (ring == &adev->cper.ring_buf)
++			adev->cper.ring_debugfs_registered = true;
+ 	}
+ 
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index b265b68e0f37..4ec8e446d377 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -1400,6 +1400,21 @@ static void amdgpu_xgmi_reset_on_init_work(struct work_struct *work)
+ 		 * initialized, and for non-uniras devices.
+ 		 */
+ 		amdgpu_ras_resume_after_reset(tmp_adev);
++
++		if (!tmp_adev->cper.enabled) {
++			r = amdgpu_cper_init(tmp_adev);
++			if (r)
++				dev_err(tmp_adev->dev, "failed to initialize CPER after XGMI reset-on-init\n");
++#if defined(CONFIG_DEBUG_FS)
++			else if (tmp_adev->cper.enabled &&
++				 !tmp_adev->cper.ring_debugfs_registered &&
++				 adev_to_drm(tmp_adev)->primary->debugfs_root) {
++				amdgpu_debugfs_ring_init(tmp_adev,
++							 &tmp_adev->cper.ring_buf);
++				tmp_adev->cper.ring_debugfs_registered = true;
++			}
++#endif
++		}
+ 	}
+ }
+ 
+-- 
+2.34.1
 
