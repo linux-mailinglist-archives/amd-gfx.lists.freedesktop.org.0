@@ -2,104 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gOZyJTnjVWoeuwAAu9opvQ
+	id iE+DFIXzVWoQwwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 09:20:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DE0751C92
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 09:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3F475268F
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Jul 2026 10:29:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=CCvDYTXL;
+	dkim=none;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59C0210E00F;
-	Tue, 14 Jul 2026 07:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC27E10EC82;
+	Tue, 14 Jul 2026 08:29:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012032.outbound.protection.outlook.com [52.101.53.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED3A310E00F
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2026 07:20:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YRgujWikz8joRbYZ5UBMcK997xGdqGJWWYgEp449v0hGJWxlwEGdtakxzkvvFWUJ3PMwReM99Wtvid1kZRB5B/DiPlvAGZuPl3dY5DHYGGAuHYjPk/ZKreNWbCGGbUBPZLj0rx2RyYY4143/qv4Ujr4nbc7gal4WgDj7p5YZ18t5diC8NMDmCWH0A7fz/FwHuktZzFt0Coqb66M0+g7nokdjkQ8cTj5yVQEy1jxwGTZGSDt8jZOeq5leWp6Di2vEPyQhJ6YXIhZrTC2amxuqlEwI0eOHnWkXO6rkqxEsGRNZK7210raUinrNPuxI+4oqIO5F25mxFe2ZPdhrRCBrgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UdWcfl2tx4OnOpVtSPabY8bngNef+YVljGad5La7HxE=;
- b=wAbQfvRu6QYVD2v/hS4A8AcCB1/I9/3R8ShzytaNCSggEm3DbAMjckbdIRbe5+nvtuvJv9OBhut0476z/uRtl52XQUgfGICvLDrNxAtK3J1UjaMeTxlzbDNEufCxuiJjHfsYEs+T4TDAO2PnrJbb3KNkTlpsvgpCMsA4/h+YG+PZU/7fjk4gtKoEDg9w7gRWlUBLDvbRmkx1kdFI5huNOlggmKC0CH0kLMF9izwylYSr96QUUgUNikfYwtN2gzcy0e1379Q1Ih7iy9Nsa8uTo06hNXGbqhIWmvZlmpLXAhUGrofaRtE3aNxVamcGgHgInLMKeHPUraE2YkQcDStccA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UdWcfl2tx4OnOpVtSPabY8bngNef+YVljGad5La7HxE=;
- b=CCvDYTXLJR4ajQaK+rRa4HRQYexJPvrYYGwAV5KU6VUo643VNsWv2E/t+puKLsEoq1E1j5uqJ2HQEHQ0Nogc9xz2x9ZbpgqJNv7SP5fCRcsyukCVymNYxYUYlE52zuMEsOxI2PZioAwV9fCpDhOBmpyd/8wcNmRUKi4uaUx8UD8=
-Received: from MW4PR04CA0160.namprd04.prod.outlook.com (2603:10b6:303:85::15)
- by SA1PR12MB9514.namprd12.prod.outlook.com (2603:10b6:806:458::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.22; Tue, 14 Jul
- 2026 07:20:16 +0000
-Received: from MWH0EPF000C6184.namprd02.prod.outlook.com
- (2603:10b6:303:85:cafe::2) by MW4PR04CA0160.outlook.office365.com
- (2603:10b6:303:85::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.19 via Frontend Transport; Tue,
- 14 Jul 2026 07:20:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6184.mail.protection.outlook.com (10.167.249.116) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Tue, 14 Jul 2026 07:20:15 +0000
-Received: from suresh-X570-AORUS-ELITE-WIFI.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Tue, 14 Jul 2026 02:20:10 -0500
-From: Suresh Guttula <suresh.guttula@amd.com>
-To: <Alexander.Deucher@amd.com>, <amd-gfx@lists.freedesktop.org>
-CC: <suresh.guttula@amd.com>, McRae Geoffrey <Geoffrey.McRae@amd.com>
-Subject: [PATCH v2] drm/amd : Program MMHUB ECO SEC LVL for vcn5_3
-Date: Tue, 14 Jul 2026 12:49:51 +0530
-Message-ID: <20260714071951.3088212-1-suresh.guttula@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B25F10EC26;
+ Tue, 14 Jul 2026 07:35:19 +0000 (UTC)
+Received: from localhost (unknown [36.110.52.2])
+ by APP-05 (Coremail) with SMTP id zQCowAB30NO05lVqWIgpGA--.2678S2;
+ Tue, 14 Jul 2026 15:35:16 +0800 (CST)
+From: Chen Ni <nichen@iscas.ac.cn>
+To: harry.wentland@amd.com,
+	sunpeng.li@amd.com,
+	siqueira@igalia.com
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chen Ni <nichen@iscas.ac.cn>
+Subject: [PATCH] drm/amd/display: Remove unneeded semicolon
+Date: Tue, 14 Jul 2026 15:34:23 +0800
+Message-Id: <20260714073423.3646481-1-nichen@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6184:EE_|SA1PR12MB9514:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce81c4bd-7c8c-4147-df3a-08dee1785a45
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|23010399003|18002099003|56012099006|11063799006|3023799007;
-X-Microsoft-Antispam-Message-Info: WKzYKBdJxSrZbdlILZ278fyWtIH3+r/Dn+rUwcO2rFvCWQTO/3AoP4LzC+bgrDbOxlQsS2ZKVHM++3JASR9NCZY+oybYWPqwQRaQ5Y9bX4SWZdMCoAXzsnCL8ToaHzQ7Ez0IhbotDPTIa+UwCCEGdCu+FVwxSVUeiJWG010C+z9SbpG7DPTMpyrEGSGoITptoTcZZkay7q+sjBNC15F1WaoXLMaKQF2XM6PNTiypgot39C7I026+Xwqy/gxzMBfL0sO7aZqzP8ZvCQRgonmIF3XeHTPy0lLKFLfcTrCzTbehAAO41u7texKHWpgh+fmjdckI0pIepX3T71s0qX/h+Cz7l9c5GI61h4ou1ywEdyimbTnFSSAmU8W7ry+ym3ArZWNwHiWnnA77zc8NoXFKZDFftmM0sN06KFsStLRjPagC8tXnTs7IEU+cElREJ8Njb3xDSMs2Ztg5Z4VanWfoReZvL63/GSfW/AllIKBAdSsm0N7AiqoiDWhk1FbNE/OusqWaj7x8P7uGY3G6+ERlWqXo4pjR4P6zyiBEKIF7odwM5qIG8KMjVK1iOiQhJBqKreZFhrCy4hgtcCf6VvbgvNgzzJmld7U0u/pBJz3C+VUXSbmbYc1o5sqpRhHbb/XdaUnf4AE8bkZb2y48Wu5yPTtiW+CqI3XJy+J0RdOrqt08Fx2PeKvix0zVrI+FtK+WXkQ57IxSjigdELJ1fWpz0g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(23010399003)(18002099003)(56012099006)(11063799006)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: TmeNxBw5ZE0s3iOrYeg+ZT/A9ZZe8gyaUpMT9Xsgisq7OCQrhqVJI8fNfT5/+7wJuVk2s6ksVvZubquZnELFBQWcHnctmoLx3cmARNnZMeMgnLaUpjqzzRi977LheK+2q6l6rIWVq+f8NC5WKq0meRp3kAoSfp8odDT9kHjZ5VC0UfyAyJDe8gcV8aOzk8ORUpKmBGdG41wQfXJEbOGTfcXw3+xxPZo1CNHzUfvdgmJ8l+w4KGzEL6SSFTsDGxn4dNKa3WXAnuHJncTH9Ykbg1bVc93Z3jNyM7hlZs/r6E14WX7dv5s6q1QT140g+PS2kwoX5GHiOuRqhkOrcY2QAK9eAGR9YOCjn+47QB0+t1wSJe4KSoim8UlqcdRq2v6DVVrl+BbtNODrAwIIMOUStTvQ7nGtUClDRNCioI/KUmw0FbUqWU8KPM/pqcNsZ994
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2026 07:20:15.8704 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce81c4bd-7c8c-4147-df3a-08dee1785a45
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6184.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9514
+X-CM-TRANSID: zQCowAB30NO05lVqWIgpGA--.2678S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrZFWDuF4rXw4DXFWDJw15CFg_yoWDZrcEkF
+ 1vqr13Xr4UCFs0k3WIyFZ3ZrnIyanxuFZ7X3W8ta43try7Xa4ayrW7JFW5G34rAw13JF98
+ Cw1FgFy5CwsrGjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUb4kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+ 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+ jxv20xvE14v26r126r1DMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lc7CjxVAaw2AFwI0_
+ Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUrrWFUU
+ UUU
+X-Originating-IP: [36.110.52.2]
+X-CM-SenderInfo: xqlfxv3q6l2u1dvotugofq/
+X-Mailman-Approved-At: Tue, 14 Jul 2026 08:29:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,277 +71,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.89 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:suresh.guttula@amd.com,m:Geoffrey.McRae@amd.com,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[suresh.guttula@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[suresh.guttula@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nichen@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:mid,amd.com:email,amd.com:dkim]
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E0DE0751C92
+X-Rspamd-Queue-Id: 1C3F475268F
 
-This patch
- 1. Requests PSP to set UVD and JPEG SEC LVL reg incase of
-    fw_load_type is PSP_LOAD.
- 2. Set UVD and JPEG SEC LVL incase of backdoor loading and
-    non-secure-direct loading type.
- 3. To support this, PSP implementing new cmd id :
-    GFX_CMD_ID_SET_MMHUB_ECO_SEC_LEVEL, vcn/jpeg will call
-    this cmd to set sec lvl.
+Remove unnecessary semicolons reported by Coccinelle/coccicheck and the
+semantic patch at scripts/coccinelle/misc/semicolon.cocci.
 
-This will help to resolve jpeg/vcn ring/ib timeout while
-accessing mmhub.
-
-Signed-off-by: Suresh Guttula <suresh.guttula@amd.com>
-Reviewed-by: McRae Geoffrey<Geoffrey.McRae@amd.com>
+Signed-off-by: Chen Ni <nichen@iscas.ac.cn>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       | 27 ++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h       |  1 +
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c      | 29 +++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.h      |  2 ++
- drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h       |  1 +
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c       | 31 +++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.h       |  2 ++
- .../include/asic_reg/vcn/vcn_5_0_0_offset.h   |  2 ++
- .../include/asic_reg/vcn/vcn_5_3_0_offset.h   |  2 ++
- 9 files changed, 97 insertions(+)
+ drivers/gpu/drm/amd/display/dc/link/protocols/link_hdmi_frl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index a36cbfc1f6f1..64281553c6d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -1222,6 +1222,33 @@ int psp_memory_partition(struct psp_context *psp, int mode)
- 	return ret;
- }
- 
-+int psp_set_mmhub_eco_sec_level(struct amdgpu_device *adev)
-+{
-+	int ret;
-+	struct psp_context *psp = &adev->psp;
-+	struct psp_gfx_cmd_resp *cmd = acquire_psp_cmd_buf(psp);
-+
-+	cmd->cmd_id = GFX_CMD_ID_SET_MMHUB_ECO_SEC_LEVEL;
-+
-+	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
-+	if (ret) {
-+		dev_err(psp->adev->dev,
-+			"PSP request failed to set mmuhub eco sec level with ret=%d\n", ret);
-+		release_psp_cmd_buf(psp);
-+		return ret;
-+	}
-+
-+	if (cmd->resp.status) {
-+		dev_err(psp->adev->dev,
-+			"MMHUB ECO SEC LEVEL command 0x%x failed, PSP response status: 0x%X\n",
-+				cmd->cmd_id, cmd->resp.status);
-+		ret = -EIO;
-+	}
-+	release_psp_cmd_buf(psp);
-+
-+	return ret;
-+}
-+
- static int psp_ptl_fmt_verify(struct psp_context *psp, enum amdgpu_ptl_fmt fmt,
- 						 uint32_t *ptl_fmt)
- {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 2d838b1b2b11..3d7744d60fac 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -656,5 +656,6 @@ int amdgpu_psp_reg_program_no_ring(struct psp_context *psp, uint32_t val,
- void amdgpu_psp_debugfs_init(struct amdgpu_device *adev);
- int amdgpu_psp_get_fw_type(struct amdgpu_firmware_info *ucode,
- 			   enum psp_gfx_fw_type *type);
-+int psp_set_mmhub_eco_sec_level(struct amdgpu_device *adev);
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
-index 66d4c487eee5..9468b4541b5d 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c
-@@ -399,6 +399,30 @@ static void jpeg_v5_3_0_stop_dpg_mode(struct amdgpu_device *adev, int inst_idx)
- 	WREG32_SOC15(JPEG, inst_idx, regUVD_JPEG_POWER_STATUS, reg_data);
- }
- 
-+/**
-+ * jpeg_v5_3_0_set_mmhub_eco_sec_level - set jpeg sec lvl reg
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Set jpeg sec lvl based on load type
-+ */
-+static int jpeg_v5_3_0_set_mmhub_eco_sec_level(struct amdgpu_device *adev)
-+{
-+	int r = 0;
-+
-+	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-+		//Request to PSP to program JPEG secure lvl register
-+		r = psp_set_mmhub_eco_sec_level(adev);
-+	} else {
-+		//Program UVD_JMC_JPEG_SECURE_LVL register
-+		//During brinrup phase or backdoor loading case, updating register here
-+		//to avoid dependency on PSP
-+		WREG32_SOC15(JPEG, 0, regUVD_JMC_JPEG_SECURE_LVL, vcnipUVD_JMC_JPEG_SECURE_LVL);
-+	}
-+
-+	return r;
-+}
-+
- /**
-  * jpeg_v5_3_0_start - start JPEG block
-  *
-@@ -424,6 +448,11 @@ static int jpeg_v5_3_0_start(struct amdgpu_device *adev)
- 	if (r)
- 		return r;
- 
-+	/* program JPEG secure lvl register */
-+	r = jpeg_v5_3_0_set_mmhub_eco_sec_level(adev);
-+	if (r)
-+		return r;
-+
- 	/* JPEG disable CGC */
- 	jpeg_v5_3_0_disable_clock_gating(adev);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.h b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.h
-index c1e7537d0f18..ef6376f3a79b 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.h
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.h
-@@ -30,6 +30,8 @@
- #define vcnipUVD_NO_OP                                     0x0029
- #define vcnipJPEG_DEC_GFX10_ADDR_CONFIG                    0x404A
- 
-+#define vcnipUVD_JMC_JPEG_SECURE_LVL                       0x22
-+
- extern const struct amdgpu_ip_block_version jpeg_v5_3_0_ip_block;
- 
- #endif /* __JPEG_V5_0_0_H__ */
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-index ac34bac3c839..ad618b78685f 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
-@@ -110,6 +110,7 @@ enum psp_gfx_cmd_id
-     GFX_CMD_ID_PERF_HW            = 0x0000004C,   /* performance monitor */
-     GFX_CMD_ID_FB_FW_RESERV_ADDR  = 0x00000050,  /* Query FW reservation addr */
-     GFX_CMD_ID_FB_FW_RESERV_EXT_ADDR = 0x00000051,  /* Query FW reservation extended addr */
-+    GFX_CMD_ID_SET_MMHUB_ECO_SEC_LEVEL = 0x0000005D,  /* Set MMHUB ECO sec lvls on VCN block */
- };
- 
- /* PSP boot config sub-commands */
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-index 45580e9c4e0c..1318e731440b 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-@@ -795,6 +795,32 @@ static int vcn_v5_0_0_start_dpg_mode(struct amdgpu_vcn_inst *vinst,
- 	return 0;
- }
- 
-+/**
-+ * vcn_v5_0_0_set_mmhub_eco_sec_level - set vcn sec lvl reg
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Set vcn sec lvl based on load type
-+ */
-+static int vcn_v5_0_0_set_mmhub_eco_sec_level(struct amdgpu_device *adev)
-+{
-+	int r = 0;
-+
-+	if (amdgpu_ip_version(adev, VCN_HWIP, 0) == IP_VERSION(5, 3, 0)) {
-+		if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-+			//Request to PSP to program VCN secure lvl register
-+			r = psp_set_mmhub_eco_sec_level(adev);
-+		} else {
-+			//Program UVD_MC_VID_SECURE_LVL register
-+			//During brinrup phase or backdoor loading case, updating register here
-+			//to avoid dependency on PSP
-+			WREG32_SOC15(VCN, 0, regUVD_MC_VID_SECURE_LVL, UVD_MC_VID_SECURE_LVL);
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_hdmi_frl.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_hdmi_frl.c
+index c35074177a36..36fc8c23f044 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_hdmi_frl.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_hdmi_frl.c
+@@ -710,7 +710,7 @@ enum link_result hdmi_frl_perform_link_training_with_retries(
+ 				msleep(200);
+ 			status = hdmi_frl_perform_link_training(link->ddc,
+ 					&link->frl_link_settings);
+-		};
 +		}
-+	}
-+
-+	return r;
-+}
-+
- /**
-  * vcn_v5_0_0_start - VCN start
-  *
-@@ -819,6 +845,11 @@ static int vcn_v5_0_0_start(struct amdgpu_vcn_inst *vinst)
- 
- 	fw_shared = adev->vcn.inst[i].fw_shared.cpu_addr;
- 
-+	/* program VCN secure lvl register */
-+	r = vcn_v5_0_0_set_mmhub_eco_sec_level(adev);
-+	if (r)
-+		return r;
-+
- 	if (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)
- 		return vcn_v5_0_0_start_dpg_mode(vinst, adev->vcn.inst[i].indirect_sram);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.h b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.h
-index 51bbccd4360f..9ae2bed990be 100644
---- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.h
-+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.h
-@@ -32,6 +32,8 @@
- #define VCN_VID_IP_ADDRESS                         0x0
- #define VCN_AON_IP_ADDRESS                         0x30000
- 
-+#define UVD_MC_VID_SECURE_LVL                      0x22222222
-+
- extern const struct amdgpu_ip_block_version vcn_v5_0_0_ip_block;
- 
- #endif /* __VCN_V5_0_0_H__ */
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_0_0_offset.h
-index 72a118b2af69..a7e64e304ffa 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_0_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_0_0_offset.h
-@@ -1027,6 +1027,8 @@
- #define regCC_UVD_VCPU_ERR_INST_ADDR_LO_BASE_IDX                                                        1
- #define regCC_UVD_VCPU_ERR_INST_ADDR_HI                                                                 0x0035
- #define regCC_UVD_VCPU_ERR_INST_ADDR_HI_BASE_IDX                                                        1
-+#define regUVD_MC_VID_SECURE_LVL                                                                        0x0037
-+#define regUVD_MC_VID_SECURE_LVL_BASE_IDX                                                               1
- #define regUVD_LMI_MMSCH_NC_SPACE                                                                       0x003d
- #define regUVD_LMI_MMSCH_NC_SPACE_BASE_IDX                                                              1
- #define regUVD_LMI_ATOMIC_SPACE                                                                         0x003e
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_3_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_3_0_offset.h
-index 1051a788c9d7..da5acac08ae9 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_3_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/vcn/vcn_5_3_0_offset.h
-@@ -162,6 +162,8 @@
- #define regCC_UVD_VCPU_ERR_INST_ADDR_LO_BASE_IDX                                                        1
- #define regCC_UVD_VCPU_ERR_INST_ADDR_HI                                                                 0x0035
- #define regCC_UVD_VCPU_ERR_INST_ADDR_HI_BASE_IDX                                                        1
-+#define regUVD_JMC_JPEG_SECURE_LVL                                                                      0x0036
-+#define regUVD_JMC_JPEG_SECURE_LVL_BASE_IDX                                                             1
- #define regUVD_LMI_MMSCH_NC_SPACE                                                                       0x003d
- #define regUVD_LMI_MMSCH_NC_SPACE_BASE_IDX                                                              1
- #define regUVD_LMI_ATOMIC_SPACE                                                                         0x003e
+ 		retry_count++;
+ 		FRL_INFO("FRL LINK TRAINING: Retry count = %u out of %u\n", retry_count, max_retries);
+ 		if (retry_count > max_retries) {
 -- 
-2.43.0
+2.25.1
 
