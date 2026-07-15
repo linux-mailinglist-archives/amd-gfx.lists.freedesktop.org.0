@@ -2,108 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8NKpGTntVmo6DAEAu9opvQ
+	id /4b2Clr4VmogDwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 04:15:21 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 05:02:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35AC75A05C
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 04:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C7275A30A
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 05:02:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=PkLCRjfC;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=GHRSDbnY;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4822310EE91;
-	Wed, 15 Jul 2026 02:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC0D10E113;
+	Wed, 15 Jul 2026 03:02:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
- [209.85.210.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7843D10EE91
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 02:15:17 +0000 (UTC)
-Received: by mail-pf1-f180.google.com with SMTP id
- d2e1a72fcca58-8485ab7c382so757998b3a.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Jul 2026 19:15:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784081717; cv=none;
- d=google.com; s=arc-20260327;
- b=hLoAjp607LIeuvGUeZ7gCeCYFJFC7EG8hr1GRCkVwtubygSN0q42qDFvfMVu73ULaC
- mj4wujz2l+ULsUZkC7Byv95dBV/j5McJefxaQNjfdty7XoQUgD3YKQK+Iqt8SPEJ4LHC
- y3njfCJa3HbW5Nr2FxWgFohGZorPWg97XdUCkxtkc9BookpMzxQ1wOVJxC4DLM2oxXM3
- mEglvcAvlxDZ6r4ERDvwxA2ex1wLzJ1UtBS8fL3LxLi9gpwol6PUOVvHvzsEQk2o0gK0
- MM+mqoK2OwnxkqQIkvHEPJeCL2Hc8daluEv8390mVK/qHjHKifAXkzlaXcf2k8lDLbnw
- JuzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=OuizryxSZKRFUsSw4CQIMj48vXkwcx3MZKR1605+b/M=;
- fh=2Whg2RURqu8cyyl3X6bj7nVcK8VyxsZQrwvDK5RGFJk=;
- b=qDQwsQ5BaFrszKa2SSkQPYgVThVsTqHrC/ZQ2DKsJ2IyjsBsTzTPpCgN78Htvalp7K
- 4G3ql80T//H8/0Gjx4i8IZ+d44OqxQwE2gkQP/kgBhXvUB11R1uO51tcoTc8tJQl0La2
- Al6zZW39rJ/vuTv/qRX2PLgLAPsmriO+bVNOU4abNQPBkBjNRcm28sV6eV9c09qUwE/X
- GvPl0T6Yx7EGg9hPkR6WJ05R9K+nJ29l5gHmYwupaYWCjp7cIskMiHOuA2IshWYZFkTx
- 3AP3udj23OJfN+NBnv8JRo4u7/TIowqjvDvKm+RWfOljdRd5byurgFGZQJRMQoScJ88h
- HlZA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784081717; x=1784686517; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=OuizryxSZKRFUsSw4CQIMj48vXkwcx3MZKR1605+b/M=;
- b=PkLCRjfCvOoptjIcR/oK0xHR3qm685KRfLsOET5NESzZ2SRwkFcdY7S5sxgj5oIzzk
- 8H4OsOdNeqtelG9stI6OIk9LNxVkrpkob65+qQ0DS7g/Hl3WHbUUvr0ugFHtUuYyG++C
- WNJYiBV/f8WSYR/qdWg9Hsp/YMhxGIh2fa0DmaBmFT+9OGTa2Wr24SamkBLZ9lTMBP98
- DPqG5rNu0g/2zspIIhcpmxtyvshpYIC9TUF8AFrv0ELful6/yYPUtjCz96o9+exTwhVR
- QrvXrvPUAjHuCc6AGKXfdBRy0oy8VUS80TQ+8qznIld43wWKmCWL741f9ELcNnzjkxwL
- WWtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784081717; x=1784686517;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=OuizryxSZKRFUsSw4CQIMj48vXkwcx3MZKR1605+b/M=;
- b=G1AQ2Ouzqx1bga38/h6EY6Tb8dT3MoDYZ6blOgpbVmoMk5zJwMZG+F5BO+vw5tzYxH
- 6d9oeB3pTn87qf4XLYb8sfizPtvEOpWxbxITGdU6x4/yF2xq9h0gv4UGBmoyBFcrqiEq
- RdWCt5+VPM9YbWBMnZV5Ww0m5Gs4q1i5qXfNIli/jAoAy2442p7cz6o+REer4RIAYDXo
- 7UJnfwGUCK4WMZ33X4S6mMslmLYl0fgtPLOutB1jcRZss3NzG8344ZUIkObp23IAuQOa
- xHgqaDlPX3e4LqjfTWp7Hk0mrwXy87GEpmWRH+VXjVKSICyX/VoQGfQV2fDTCUZ9aqhb
- d3BA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpA5oAhbcK5MFlNpUb85HLiJ6o3MnzBgVFJZW1IzoVQYrETkxYlwVQxbpbEIySuHUXv/SUeQyvW@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxK80JRT7dftmy27H6VFcFOJDwlpSjEKOqBYfKS7jrfp4nI9GbH
- KiQhpVJnVf2YcIncCXVjPhg83Up7OYp9oePoYFSsFOOJhpdExLB8FYujryPL/VP0AvyXoeNiEI4
- o/kflooIue3s69V5QdlzCZLw58R62vFo=
-X-Gm-Gg: AfdE7cnkJP/j+XkiY7bjtQeTVlF+DZhbnzUshe4GcTnB8TOMa8kDsh+IyQHwUAc+sYS
- qQHRj6NrmCerOa4n2XJ8MIcN5UxjbRUt2urB3/n2+ziiBjfdtAYmKaIWBTkWNi1Fj4hUKq03TfX
- cbAY7k1KHWg8kT0rUJNmAQaAww+o69kHQKayQ8DRS3ctQ6dt6F1NvDdGJdvExpxemQ2E7Gy4FlF
- x6+rPFsXcN4sxMAChpbI7pWAtRi6Bkzg7Q+NWEgf1QTMIzVbzcLvxigz7wuyOJk8FdOkg9qiZlW
- h6diKX2Z2v9nUCPBOyjhXwIDX9AEnjkZq53BPErbEfT/6EdBtRikFT9771Vr4hs8aR+bZQ==
-X-Received: by 2002:a17:90b:2685:b0:381:28e0:6248 with SMTP id
- 98e67ed59e1d1-38dc781f3d7mr12400601a91.1.1784081716926; Tue, 14 Jul 2026
- 19:15:16 -0700 (PDT)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012009.outbound.protection.outlook.com [52.101.53.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25BF810E113
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 03:02:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZHGdu0eiky9Rb9+E3VDT9bS0G42VzXuzim7JCWlLpl8WGLp/yO/OfJ6XB4K7ycu+eQiGsBo41r4kkDC+ZYZSG+QLa3PUbJ58f38ott3sx2Uclds8bKuQkWXnfbbR6oOqkItgmV0LnPiUnRffT6WUPwZmCiJ4Z6PStHha+FyDH7rOOkQvqUsMbA4gYTRx+q0mwj69q9viFbwSdk7BYupAe+Jrw4y/PyoFzymkR5M90Q4w6FyGbZcABeOVeHwh69AuBBJHbWv/2u2mfM0MJR3x+uUTpX75BdZGiqKT2nGc+O744ZAVO5p5auunyAkZushzsPwMDWDiOAOUc4cQ/NpL9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kXi7e+ElT+uaSxZ/0A4nTMaJy4JUCpgGjF3d/b08rHU=;
+ b=kjjeWQrBhOUhIRbu52br76jkgkMWtpjNqfaGDK0OajeODTZ1KxgVxRgDG7vPy8GBLOD9buIYXs0dzYPvZmR1lnqqnM4iq0fNsf95AG44uO+QLLnmbDvbZWq+yVsmAuIZgtW4MGoI6ci4fKfSw2VEytPXUB08wUj4WjyMUJhb5N5UIGJzeNixrFCOBLCWG/VkcqJiyJrjeEPsI8O2UwU6Qo2MAdolxI1WjfZRGdfe4sYGfTMN0YCRSU92cFxIdNvpJLsKUqC9t06arJlIQPZThoducBmnA5oEwyrdxZYEnE1wRmE55RllA0RBuVWh3csSXiEqEvEc3yYUqMhackrfTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kXi7e+ElT+uaSxZ/0A4nTMaJy4JUCpgGjF3d/b08rHU=;
+ b=GHRSDbnYo6jPqBgsDv166qzDb78OPlVcnvkP6HlRcwuJjFYrEEA8kp1PToHLQUji6AOd985U7qEHggDPmdNeIb38RQPXOwa9QNzpfXBsRlsYM7a6Otpq7xwrVL0mld4EfEtOJLhFXI+KaLAgkEDa61JK9kA/fILsOYWWmr2IEjY=
+Received: from BN9PR03CA0284.namprd03.prod.outlook.com (2603:10b6:408:f5::19)
+ by PH0PR12MB7096.namprd12.prod.outlook.com (2603:10b6:510:21d::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Wed, 15 Jul
+ 2026 03:02:40 +0000
+Received: from BN2PEPF000055DF.namprd21.prod.outlook.com
+ (2603:10b6:408:f5:cafe::8) by BN9PR03CA0284.outlook.office365.com
+ (2603:10b6:408:f5::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.9 via Frontend Transport; Wed, 15
+ Jul 2026 03:02:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN2PEPF000055DF.mail.protection.outlook.com (10.167.245.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.245.3 via Frontend Transport; Wed, 15 Jul 2026 03:02:39 +0000
+Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 14 Jul
+ 2026 22:02:37 -0500
+From: Ce Sun <cesun102@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>,
+ <Stanley.Yang@amd.com>, Ce Sun <cesun102@amd.com>
+Subject: [PATCH] drm/amdgpu/ras: Add debug mask to disable CE logs for uniras
+Date: Wed, 15 Jul 2026 11:02:29 +0800
+Message-ID: <20260715030229.1050986-1-cesun102@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20260713203850.650426-1-alexander.deucher@amd.com>
- <DS7PR12MB600589F9C41083DA5506725BFBF92@DS7PR12MB6005.namprd12.prod.outlook.com>
- <DS7PR12MB6005FB0DF535C58EAA3DC93BFBF92@DS7PR12MB6005.namprd12.prod.outlook.com>
- <CADnq5_NtsmdSgmzJrFcv4dCaBdDwAoWEZ2RrRQgGdXqaXGOd_w@mail.gmail.com>
- <DS7PR12MB6005B10D8CB237EE1D0CC9C3FBF82@DS7PR12MB6005.namprd12.prod.outlook.com>
-In-Reply-To: <DS7PR12MB6005B10D8CB237EE1D0CC9C3FBF82@DS7PR12MB6005.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 14 Jul 2026 22:15:03 -0400
-X-Gm-Features: AUfX_mwyQr2Qr7VX-dAae9GOXdKH6r1ne4Fvdt_dJdA3eUkKw9hbDcCK7inR4WY
-Message-ID: <CADnq5_PAJAQKPvj=Pz4w1T5njH7KRu0N6TBj+fFChA+tzQAPYw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/userq: properly account for resets
-To: "Liang, Prike" <Prike.Liang@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>, "Khatri,
- Sunil" <Sunil.Khatri@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DF:EE_|PH0PR12MB7096:EE_
+X-MS-Office365-Filtering-Correlation-Id: e028307b-0db6-4cc8-2531-08dee21d8813
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: dIEh0kK03ctevFt6Hs50aZh4uKAJtSbwNcnCqDWQYpyINXGdbP/zIFB0cK+NGjyKAyA6ZWpAKNycb5f0XAroSlmM4P12Ch9jZ7vDQLWn7gnhhIR37fkU08caJXDLD8d23xRU9WAtXPPG8hGSNLjT1qu1Pp6EQBmsAk+eO8bX4a8tUN0mk3JhdI7b+unn58ogRvhv1liQqWEu8WgkkfF2Pcqh2WoQZuRgI0CAN0q+h0OFqEyTjE3201GL2+L4Y0Heqyh7V87gEpQ5liIeDtxFSl9u1LAMk6D8yEk7Fgz5tfqs2yQK1mHg4GSnMIcN73yldv3yyoYJV2ZDp/jNb0KEIO7+cxXoaDt31auJmvMS9qoDb7T+Z+DVyBw5zID+itCFuFOXH9sFb13awCMMm3/rhPZX0wbZ6OEL6Bnyfbol+6iPqdhYvHtJSTHDYrD79MGCwgy2b0kwBtlt5nxCq1fj0+cqoFNgAh7pvH+Gdk3yWOhPzoluCW/pOny6wVeXAyzG4zOp3whNExRDqo09FIM4/7GYSI6qJ2JQGIau++oIV0srZJz+PHesuDiHQ/XymPvurfRjp3x8CMFrvwnwOy05CeG0bv4kenRgHi48Gvjsdt29r3GxMTx/SL7pNXxC7XYT7yFfP+fAb3BBCyDlHFvt4BQyEprRwrxSzD9sMiVisiocvIOvTSxFEF7cfQ2OL2A8I+m6zA3eK3eEGjaCfhLqiQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: P4sk9y+CLzVjZzlCh84j/5B17BZng0pyjaGZDkw5BXyKC4ZLIUXoJRtLMkdlKk6Vg4s10IDK5biawCcjBFMDI9EbWCbMsPNUWwQ/eIC3hioBwp0Nv6I2ZZ46CMb5m4imhfpOcFvLqwoZ1h3xkd8x3DyWYv0LpjlEHN8qE4RLB/BDqABPgo8JGbDlAtKoH6ftayfLUJtNi6rSqegcV59D797owUSU3FjK70GgKVDLpiZjpWVP4jhRdhe8wmefctTktG0GPiIY4vgjTpMjn3Dv7DgtAD1DtBPzo0/5fffblsJvOxhRLfadDQuaMd67+zV3pfCGNZl+k2q4jog8agA6DU2qlMyhUU4cB0vAA/XZW761PQHxKvrNM7lY6lqfRSVUyJbJQH1HvpYEMcQyuN/w3gyyCzGg6rxQB0STOXblNiU+QNY28pyy0WjuqkVzsby7
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 03:02:39.7678 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e028307b-0db6-4cc8-2531-08dee21d8813
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055DF.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7096
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,178 +115,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:Prike.Liang@amd.com,m:Alexander.Deucher@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:Sunil.Khatri@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[cesun102@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:mid,amd.com:email,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B35AC75A05C
+X-Rspamd-Queue-Id: 84C7275A30A
 
-On Tue, Jul 14, 2026 at 10:02=E2=80=AFPM Liang, Prike <Prike.Liang@amd.com>=
- wrote:
->
-> AMD General
->
-> Regards,
->       Prike
->
-> > -----Original Message-----
-> > From: Alex Deucher <alexdeucher@gmail.com>
-> > Sent: Tuesday, July 14, 2026 9:52 PM
-> > To: Liang, Prike <Prike.Liang@amd.com>
-> > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-
-> > gfx@lists.freedesktop.org; SHANMUGAM, SRINIVASAN
-> > <SRINIVASAN.SHANMUGAM@amd.com>; Khatri, Sunil <Sunil.Khatri@amd.com>
-> > Subject: Re: [PATCH] drm/amdgpu/userq: properly account for resets
-> >
-> > On Tue, Jul 14, 2026 at 3:44=E2=80=AFAM Liang, Prike <Prike.Liang@amd.c=
-om> wrote:
-> > >
-> > > AMD General
-> > >
-> > > Regards,
-> > >       Prike
-> > >
-> > > > -----Original Message-----
-> > > > From: Liang, Prike
-> > > > Sent: Tuesday, July 14, 2026 10:49 AM
-> > > > To: 'Alex Deucher' <alexander.deucher@amd.com>;
-> > > > amd-gfx@lists.freedesktop.org
-> > > > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; SHANMUGAM,
-> > > > SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>; Khatri, Sunil
-> > > > <Sunil.Khatri@amd.com>
-> > > > Subject: RE: [PATCH] drm/amdgpu/userq: properly account for resets
-> > > >
-> > > >
-> > > >
-> > > > Regards,
-> > > >       Prike
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Alex Deucher <alexander.deucher@amd.com>
-> > > > > Sent: Tuesday, July 14, 2026 4:39 AM
-> > > > > To: amd-gfx@lists.freedesktop.org
-> > > > > Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; SHANMUGAM,
-> > > > > SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>; Liang, Prike
-> > > > > <Prike.Liang@amd.com>; Khatri, Sunil <Sunil.Khatri@amd.com>
-> > > > > Subject: [PATCH] drm/amdgpu/userq: properly account for resets
-> > > > >
-> > > > > We need to increment the reset counter, force fence completion,
-> > > > > and set the wedged event when a user queue is reset.
-> > > > >
-> > > > > mes_userq_reset_queue() handles this for collateral damage, but
-> > > > > the caller needs to handle this directly for the original guilty =
-queue.
-> > > > >
-> > > > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > > > > Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> > > > > Cc: Prike Liang <Prike.Liang@amd.com>
-> > > > > Cc: Sunil Khatri <sunil.khatri@amd.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 7 ++++++-
-> > > > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > > > > b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > > > > index 6aa75da27f912..5e1262636e1e9 100644
-> > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > > > > @@ -146,8 +146,13 @@ static void
-> > > > > amdgpu_userq_hang_detect_work(struct
-> > > > > work_struct *work)
-> > > > >                                                      queue, NULL,=
- NULL);
-> > > > >             else
-> > > > >                     r =3D userq_funcs->reset(queue);
-> > > > > -           if (r)
-> > > > > +           if (r) {
-> > > > >                     gpu_reset =3D true;
-> > > > > +           } else {
-> > > > > +                   atomic_inc(&adev->gpu_reset_counter);
-> > > > > +                   amdgpu_userq_fence_driver_force_completion(qu=
-eue);
-> > > > > +                   drm_dev_wedged_event(adev_to_drm(adev),
-> > > > > DRM_WEDGE_RECOVERY_NONE, NULL);
-> > > >
-> > > > If we do the userq reset post similar process here just like as
-> > > > mes_userq_reset_queue(), so do we need to clear the duplicate the
-> > > > code in the mes_userq_reset_queue()? Otherwise, the gpu reset count=
-er
-> > should be incorrect.
-> > > > Except that, we might input the wedge task info to report the guilt=
-y process info.
-> > >
-> > > As to the first question, I recheck the code and found out the guilty=
- user queue in
-> > the amdgpu_gfx_reset_mes_compute() was reset separately before
-> > mes_userq_reset_queue(), with this current reset sequence then this cha=
-nge it
-> > make sense to update reset counter and  force complete fence.
-> > >
-> > > But why need to reset the original guilty queue separately, should th=
-is guilty queue
-> > was found by the amdgpu_mes_detect_and_reset_hung_queues() in the MES
-> > firmware? If so, we may need to reset the guilty queue through
-> > mes_userq_reset_queue() rather than reset separately, then we don't nee=
-d to add
-> > this change anymore.
-> >
-> > We still need it for gfx and sdma queues.  Those don't get reset via
-> > amdgpu_gfx_reset_mes_compute(),
->
-> Yes, I will check whether the original guilty compute queue can be identi=
-fied by amdgpu_mes_detect_and_reset_hung_queues(). If so, the separate guil=
-ty queue reset via mes_userq_reset_queue() becomes redundant and can be rem=
-oved. The compute userq reset refcount and completed fence handling would t=
-hen be relocated into amdgpu_userq_hang_detect_work(), consolidating the re=
-set path into a single flow.
->
+Add debug mask to disable kernel logs of RAS correctable errors,
+including both ACA and CE error counter kernel messages.
 
-I don't think we need that; see V3 of the patch I sent out earlier today.
+Signed-off-by: Ce Sun <cesun102@amd.com>
+---
+ drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c | 12 ++++++++++++
+ drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h |  1 +
+ drivers/gpu/drm/amd/ras/rascore/ras.h            |  3 +++
+ drivers/gpu/drm/amd/ras/rascore/ras_aca.c        |  7 +++++++
+ drivers/gpu/drm/amd/ras/rascore/ras_aca_v1_0.h   |  4 ++++
+ drivers/gpu/drm/amd/ras/rascore/ras_core.c       | 10 ++++++++++
+ 6 files changed, 37 insertions(+)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
+index ea95e0f93d1c..2be008a9da6a 100644
+--- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
++++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
+@@ -437,6 +437,7 @@ static int amdgpu_ras_mgr_hw_init(struct amdgpu_ip_block *ip_block)
+ 	ras_mgr->ras_is_ready = true;
+ 
+ 	amdgpu_enable_uniras(adev, true);
++	amdgpu_set_ce_log_state(adev);
+ 
+ 	RAS_DEV_INFO(adev, "AMDGPU RAS Is Ready.\n");
+ 	return 0;
+@@ -510,6 +511,17 @@ const struct amdgpu_ip_block_version ras_v1_0_ip_block = {
+ 	.funcs = &ras_v1_0_ip_funcs,
+ };
+ 
++void amdgpu_set_ce_log_state(struct amdgpu_device *adev)
++{
++	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
++	bool disable_ce_log = !!adev->debug_disable_ce_logs;
++
++	if (!ras_mgr || !ras_mgr->ras_core)
++		return;
++
++	ras_core_set_ce_log_status(ras_mgr->ras_core, disable_ce_log);
++}
++
+ int amdgpu_enable_uniras(struct amdgpu_device *adev, bool enable)
+ {
+ 	struct amdgpu_ras_mgr *ras_mgr = amdgpu_ras_mgr_get_context(adev);
+diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
+index a20bb8fdce87..efbdb25241a3 100644
+--- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
++++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.h
+@@ -63,6 +63,7 @@ extern const struct amdgpu_ip_block_version ras_v1_0_ip_block;
+ struct amdgpu_ras_mgr *amdgpu_ras_mgr_get_context(
+ 			struct amdgpu_device *adev);
+ int amdgpu_enable_uniras(struct amdgpu_device *adev, bool enable);
++void amdgpu_set_ce_log_state(struct amdgpu_device *adev);
+ bool amdgpu_uniras_enabled(struct amdgpu_device *adev);
+ int amdgpu_ras_mgr_handle_fatal_interrupt(struct amdgpu_device *adev, void *data);
+ int amdgpu_ras_mgr_handle_controller_interrupt(struct amdgpu_device *adev, void *data);
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras.h b/drivers/gpu/drm/amd/ras/rascore/ras.h
+index 878dfdfcb18a..5911ce63f889 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras.h
++++ b/drivers/gpu/drm/amd/ras/rascore/ras.h
+@@ -346,6 +346,7 @@ struct ras_core_context {
+ 	spinlock_t seqno_lock;
+ 
+ 	bool ras_core_enabled;
++	bool ras_core_ce_log_disabled;
+ 
+ 	u64 ras_fw_features;
+ };
+@@ -403,4 +404,6 @@ int ras_core_convert_soc_pa_to_cur_nps_pages(struct ras_core_context *ras_core,
+ int ras_core_check_address_sanity(struct ras_core_context *ras_core, uint64_t addr);
+ 
+ int ras_core_set_debug_mode(struct ras_core_context *ras_core, bool enable);
++void ras_core_set_ce_log_status(struct ras_core_context *ras_core, bool disable);
++bool ras_core_get_ce_log_status(struct ras_core_context *ras_core);
+ #endif
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_aca.c b/drivers/gpu/drm/amd/ras/rascore/ras_aca.c
+index 67a35409ff0e..5a46a265e26d 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_aca.c
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_aca.c
+@@ -99,6 +99,8 @@ static void aca_report_ecc_info(struct ras_core_context *ras_core,
+ 	}
+ 
+ 	if (ecc_count.new_ce_count) {
++		if (ras_core_get_ce_log_status(ras_core))
++			return;
+ 		RAS_DEV_INFO(ras_core->dev,
+ 		"{%llu} socket: %d, die: %d, %u new correctable hardware errors detected in %s block\n",
+ 			seq_no, skt, aid, ecc_count.new_ce_count, blk_name(blk));
+@@ -114,6 +116,11 @@ static void aca_bank_log(struct ras_core_context *ras_core,
+ {
+ 	int i;
+ 
++	if(ras_core_get_ce_log_status(ras_core) &&
++	   bank->ecc_type == RAS_ERR_TYPE__CE &&
++	   !ACA_BANK_ERR_IS_DEFFERED(bank))
++		return;
++
+ 	RAS_DEV_INFO(ras_core->dev,
+ 		"{%llu}" RAS_HW_ERR "Accelerator Check Architecture events logged\n",
+ 		bank->seq_no);
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_aca_v1_0.h b/drivers/gpu/drm/amd/ras/rascore/ras_aca_v1_0.h
+index 40e5d94b037f..c42a47492d4a 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_aca_v1_0.h
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_aca_v1_0.h
+@@ -67,5 +67,9 @@
+ #define mmSMNXCD_XCD0_MCA_SMU 0x40430400	/* SMN XCD XCD0 */
+ #define mmSMNAID_AID0_MCA_SMU 0x03b30400	/* SMN AID AID0 */
+ 
++#define ACA_BANK_ERR_IS_DEFFERED(bank)                                \
++	(ACA_REG_STATUS_POISON((bank)->regs[ACA_REG_IDX__STATUS]) || \
++	 ACA_REG_STATUS_DEFERRED((bank)->regs[ACA_REG_IDX__STATUS]))
++
+ extern const struct ras_aca_ip_func ras_aca_func_v1_0;
+ #endif
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_core.c b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
+index 08e17a83ad5b..80974b8d6297 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_core.c
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
+@@ -545,6 +545,16 @@ bool ras_core_is_enabled(struct ras_core_context *ras_core)
+ 	return ras_core->ras_core_enabled;
+ }
+ 
++void ras_core_set_ce_log_status(struct ras_core_context *ras_core, bool disable)
++{
++	ras_core->ras_core_ce_log_disabled = disable;
++}
++
++bool ras_core_get_ce_log_status(struct ras_core_context *ras_core)
++{
++	return ras_core->ras_core_ce_log_disabled;
++}
++
+ uint64_t ras_core_get_utc_second_timestamp(struct ras_core_context *ras_core)
+ {
+ 	if (!ras_core)
+-- 
+2.34.1
 
->
-> Thanks,
-> Prike
->
-> > Alex
-> >
-> > >
-> > > >
-> > > > > +           }
-> > > > >     } else {
-> > > > >             gpu_reset =3D true;
-> > > > >     }
-> > > > > --
-> > > > > 2.55.0
-> > >
