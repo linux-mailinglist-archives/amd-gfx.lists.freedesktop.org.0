@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b3AcNiOPV2ryWwAAu9opvQ
+	id ZnItDiePV2r2WwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84A7E75EDD6
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B736B75EDE4
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=LhB4Qbqh;
+	dkim=pass header.d=amd.com header.s=selector1 header.b="w/OMRuzc";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 178EA10F07A;
-	Wed, 15 Jul 2026 13:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49DA610F080;
+	Wed, 15 Jul 2026 13:46:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011042.outbound.protection.outlook.com [52.101.57.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4636310F07A
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:46:08 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011046.outbound.protection.outlook.com
+ [40.93.194.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4B4410F07C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:46:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hVpV4mE6K5htihVho/6+y4cKzDg6Aab4/tHvaaMxWU1R6e9wh4fte1USy/0pSsuGZQ+JiGLnV/pBKL4x1xH8vKpMfqean30ytpihy1MFDnMFSLzCUDXY434RmT5qPX47ad25Iph+CwtbLDaEuZ5Dwd5XsNqe3SHYCUM9/m9p2MkpdmlbHr5JC6ZthaF8awV5vv/3ks2QjBSGsuyLRj5YANCrHI6zpAWyyWHAwtj6gPwPdnotVktzxNCTAawBOy9OXdxoP9FYzcqH5+C52fpJToWIZWp5bgYr4tkt4clgvVB8vNNPBUK26pT00qtyQuZK4SwEcC05J1Qdbs6+QEzDZQ==
+ b=f6CY9TceLCeussk9LgzNUufjSIfKCAjpcHc2LN0wXf3UaWXVZk1Rf/AMocpbM7PqqaP6gqJF0msdeuiIMrGZYM0t6T26GzPz9vPaESXPwPv9p4I4cW8KZ79h/kj/mhDXVbD8a6mLgsZBpRu1/yl1+ZImITWb/1jPDB0XBqsOqPVmbYN/z1hskc/l1wZAsyM8BVFy77brxMdGXY+sddZSxehT5zagaF9ZoxqJnoHPLfPOYu5gZ2t0thf1JVCe3aZlO9YsrE6NNCbJRFbMBfTW8Wrb0mK4AnOlSyFKjKWJZ2USaX0tuOXn4EqTCEOiBCuWnMF4opgpfDHSsWmkFL8Edg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h985n7AhhSnuG3hmhDD4eRybJ3KffUWaoWWbBP2gIiY=;
- b=wiUicIonZ8INdE7u/R9+0zrNDp3LhJbMbWuHn1t517cUwAil2sGPjVZ0psjgcHEtlDQww0sxniCuCNZsqiqO2jNiBAXyR+Z1zvWeO9kwg7dI1+2UjjSEb0At38upnaGqo/YCUJ/mu02S7qE1VsXRI9V59R6Db8WQ11I3a0Mo2zEj5uaUOjo4AedCYVJWkHDh0YjCk6+jX4mo3YZvAgKoMrs5shYjdryVc6sMmhf/gsPxYfNmHXkg/+HNUDlseo2wD+jCGWaY6RNmsgPD3Xu45re263OhkaEL2sKZiwl5/jH2zTxz0kqI7GWo5JZFDE/4WyVqSLXpbNzVos0ZMErTZg==
+ bh=NXyN1vEeGNGz9a6drXG5Z5AVth/Ehp/wIuPRthcbksk=;
+ b=CJGdT6mW6JVehHwHMdkqmbSwML1+4pkZP6WazCMXnR85GGqYp/Cmvd344KKS/JoY4BeXZweFVIF03h6+RMMe/0BC/PdTrCSIhb6ZCajgakFarYzHzoKJsA+f1AzcLSJpLnLKpkTkrIFm33I7CwKcNYfMHZHAW/Rbl8pxSa974zx453QxKTntUpfVz9ldrLKY3zaG6eaBy4u64W3e63QCjB1zPS4XS7X/ptcS67CkMZiBS+5EOFPK6uva7WYaAU3PyT6KImRULKwPlMLLNVx8tddPthHTyeld1fEuGZlT+111sETEHHen8P4sNr6sKHXPGdshcMaRKuLFq282W/acyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h985n7AhhSnuG3hmhDD4eRybJ3KffUWaoWWbBP2gIiY=;
- b=LhB4Qbqhqeij7Tlrp4ZFeNJIjZ3fEU2/0o5DzzsEDmxjdadnpIoeFffF0uACXBmvVoqifPDFqg/vvqNjZKaA1P4JvAcuOSJq0jCdIzVo97iJQt3HGAUwZZeIOi5bgU0w64SUGtkdZ3ceSBw1K/10rDxlidTfvmBIfmiXhXxFLD4=
-Received: from SJ0PR13CA0113.namprd13.prod.outlook.com (2603:10b6:a03:2c5::28)
- by MN2PR12MB4063.namprd12.prod.outlook.com (2603:10b6:208:1dc::8)
+ bh=NXyN1vEeGNGz9a6drXG5Z5AVth/Ehp/wIuPRthcbksk=;
+ b=w/OMRuzcqmcTZlNjfmzaDvTtIgClK7TlA03uGsuiQohjZJbSB0Y3yVkZOyq7eiPR7MEvIlpMUdXG8iMu4Z01uc8xHnqYQXg6mN59a2enJ/0kk8VtG3Bnx9aAPgFwxvef9c6PtbkXiRvOhw8YiOWDJgRgpr5NCZRfmON/jTVd5Zg=
+Received: from SJ2P220CA0008.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:5da::18)
+ by MW6PR12MB8757.namprd12.prod.outlook.com (2603:10b6:303:239::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
- 2026 13:46:03 +0000
-Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
- (2603:10b6:a03:2c5:cafe::d) by SJ0PR13CA0113.outlook.office365.com
- (2603:10b6:a03:2c5::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 13:46:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
+ 2026 13:46:07 +0000
+Received: from SJ5PEPF000001F0.namprd05.prod.outlook.com
+ (2603:10b6:a03:5da:cafe::a4) by SJ2P220CA0008.outlook.office365.com
+ (2603:10b6:a03:5da::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
+ 15 Jul 2026 13:46:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,20 +56,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
+ SJ5PEPF000001F0.mail.protection.outlook.com (10.167.242.68) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:46:03 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:46:06 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:45:50 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:45:54 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:45:50 -0500
+ 2026 06:45:54 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:45:47 -0500
+ Transport; Wed, 15 Jul 2026 08:45:50 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -78,10 +79,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 15/70] drm/amd/display: Replace amdgpu_dm_kunit_helpers.h with
- dm_helpers.h
-Date: Wed, 15 Jul 2026 21:37:25 +0800
-Message-ID: <20260715134432.1975118-16-Wayne.Lin@amd.com>
+Subject: [PATCH 16/70] drm/amd/display: Add stream creation tests for connector
+Date: Wed, 15 Jul 2026 21:37:26 +0800
+Message-ID: <20260715134432.1975118-17-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -90,29 +90,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|MN2PR12MB4063:EE_
-X-MS-Office365-Filtering-Correlation-Id: 473c7d0a-6211-4dee-aee9-08dee27769ba
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F0:EE_|MW6PR12MB8757:EE_
+X-MS-Office365-Filtering-Correlation-Id: d801ad66-e68e-48b1-c2ee-08dee2776b74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|23010399003|376014|36860700016|1800799024|6133799003|10067099003|56012099006|18002099003|22082099003|11063799006;
-X-Microsoft-Antispam-Message-Info: vAVuxIJ2wky08th0GHpu1NITzz05Do3fhtNggCXg4wSAi9v42V3oq5sHQxQcDmpns+BPUdEJq5vDj723sYE21pFvVc55z7qXZHlwUxmJuge0Rw1Kxh55SEeviR31jiFpqNz/NnC7Yu022O4F0rItpU8xnFDveCOrl6ZY98fl18+t8tTVtVTyieM8ebQDnTyicvIOZY83eZyTT9Oe8DRB6EgVIII9ww5o/2gw9xiWr2DXpuk7pGHEKOLRW+Lu5dTEmzJ5suCbW+U0zb6kfWVHMJTGiIp3RGVqYBMU7T0GlqJanjtLtM5HfrJwGUhbtqqZnEmsjc+Ve5ooAUfbc0GwKhCNcJ2NE9kbJiJNps6dj53beYqTEkR47k9zX2fF8iLHULIb3RWrOiIVZSsEoZGdu22LMXhkR2VJhNeYlWKYJJl+pTLs+bTArQCj+uE/aHgpibDllBGPz8XJDtWF1IArF+Va9qeD1yf5exSW2vaV4ySWGpD41kEIHWCH1bIKx24sb/Z0w0T+7qGv1M00YkRSo7yi5PjwK/lrIyXhXK4rGGNc2wIpuxkSMP0c1/m3URDvlZHZ5FajiBKRMQAQwYMpL5sE0DmS09E03adV1RJXbxez0dfPrxdTDSD29CDb/UokELPqCkh7FPFeY8INb8JHQEQ6YtU2z1ah/axst8jgJkaxH5pNECx9a0k3qkZNuqqu+Eu0psZBW6HrNO0YitWN6A==
+ ARA:13230040|376014|1800799024|82310400026|36860700016|23010399003|18002099003|22082099003|56012099006|11063799006|3023799007|10067099003|6133799003;
+X-Microsoft-Antispam-Message-Info: YGqFT4dOs1GIOLUaGqUbbyOxy0F9xbbidEWSHhLZanW9P4a4zc2eBDuTmHTpcBLLJ/ZCqi0w6dxC+jgEIcGmldixo0mXoARNwnErTug8hcb6uVCZyvZTENKqpnUJ7kBDui4XQ7o9KJWPuy+B8DYNIv7mK95SG3J6o7kBDrbwqReU0a7Q8MLqxB5J9ZwwCLYhtXzqaHPoMgt8xWug+7sIDRGLsVCVqdROsNT4KNZwiy9+8UCtVfI/AX7GFXwTr5kjI6LG/3FEFxNtFhrj+qHSoEwi6ssyNX+AOQLjBc+e+UrI4Er3vf7nkSWXc5QfgUODacVjk6yD0klD8IY9hBqgfq3EHht+CSjJQGMFlGk8itZOibBlfuHI5Pr9PaD1WWUg0yXVfYHK1ZDjFtDyFQrqWuNG7iXNJdsREvplWJdDKy1KgyREAiAZPktpUi+B7obVzvPOTpddD7RAj1uTC78aBjNo6KjXTxoconfam9Xse/2c+dclv89p1xJrl4RLpWoPZJtdSwt8eBNWKDL107UlnuDHVO/KwZaLhSUHoNfJG9hDr9uJvFMsavdA0kMFXbZDlxPIE12jTaClww8IidO68hEF6Lm2ulLlpM6+HQd/y5djUHlMlOevdVwcds0BbTBXIKqFhdFTevzYIcdcTICPxO3dE26ehF260indgq3zHwPuI2QmL0ssvcMH8zsV2hC+8yjMgEM7Ahz4aHKSkp70Hw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(1800799024)(6133799003)(10067099003)(56012099006)(18002099003)(22082099003)(11063799006);
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006)(3023799007)(10067099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: wIo9WKKav3wnFM147flxNOd8GeL9YwNQvBeqsShoVb20N4lKX40EKSYswvR33ZOMw/alDliQxueq8vWR8Fmx2c3XNuZDLQvWyYSvpWvmZflxCT2+m0eiIrAVYGUphOWRpm6WU9hUYGIO+eQd6H3xwmr/rOHbRTJaMqdQSNdmw7yKNDI94E6SrfAHWI7xbNmD45WTA/y6ZEHwiEh5/Uj9QiiDNjF4cC9KD6BuTiz8eylu8fuaN9D89JNw1sKHAXnOziYkp6O2AfTGfS7guRyTkSgL+c/SsBmpu6vU3xXYnfnRsSVBe86n9ZegVcza8skB6/Btvny2rpud1QKJsnUT5OamzXal8oTICw2h9GFvxcMGPz3ObPxSJAjz1cuJBh2uex+6hY/aM7kWA9bUm0lLMwhUvnxwpzE8cNNB8b+ZhdCwrjZB+bxaKyfx9B4ihF/z
+X-MS-Exchange-AntiSpam-MessageData-0: YqzrY3ROqtPv8RNvsDzInpdDVlfpISPZFBvbeZRjoLjDNt3fXrvjrALh3rD1DxNx8f6ERz3FUxkJbZfhLx7uZ6MTgSzmiARgaT1RgfLuF0Vt/5coJPDkvLNsmFWsRHq5KMWgg7l1x1KVw1hsoSOUsj4pT9GhVypux7wHXbwSnHt4MY7X2tF8jaKWm1gzG0oRYtgz7a+cCpaebcvGuOx6adrZxHefBmbhByYfartEqe1YTOKdkZQevdMisQv2LC6ucGTzWlKgWerGOg/SqpPu8BburSrrxrF1IwTqs1RAxEu1yRvCgsMp6jrjwncvoNO5YgDjVdwtrxesVkfYsy5tRs9vHFyIxhRrT/FayMjTBT1e29iAzyhikzt1QKVSq3Ri61cfPECU1TBZKqUrNXEP1JnKz3rRNpYGXkR+Tr8a4z3jx6RgzoSFc+zJaz93ke8h
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:46:03.4997 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 473c7d0a-6211-4dee-aee9-08dee27769ba
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:46:06.3722 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d801ad66-e68e-48b1-c2ee-08dee2776b74
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4063
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8757
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,383 +153,299 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 84A7E75EDD6
+X-Rspamd-Queue-Id: B736B75EDE4
 X-Rspamd-Action: no action
 
 From: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 
-Drop the amdgpu_dm_kunit_helpers.h include across the amdgpu_dm source
-files and use dm_helpers.h instead
+Add KUnit coverage for create_stream_for_sink(): fake sink success,
+dm context setup, virtual signal handling, scaling source, and reuse
+of an existing sink.
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  1 -
- .../amd/display/amdgpu_dm/amdgpu_dm_audio.c   |  2 +-
- .../display/amdgpu_dm/amdgpu_dm_backlight.c   |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  2 +-
- .../display/amdgpu_dm/amdgpu_dm_connector.c   |  1 -
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_dmub.c    |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  1 -
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  1 -
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |  2 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c |  2 +-
- .../amdgpu_dm/amdgpu_dm_kunit_helpers.h       | 20 -------------------
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  1 -
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |  2 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_quirks.c  |  2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_replay.c  |  2 +-
- .../display/amdgpu_dm/amdgpu_dm_services.c    |  2 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |  2 +-
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   | 11 ++++++++++
- drivers/gpu/drm/amd/display/dc/os_types.h     | 10 ++++++++++
- 24 files changed, 37 insertions(+), 41 deletions(-)
- delete mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
+ .../display/amdgpu_dm/amdgpu_dm_connector.c   |   3 +-
+ .../display/amdgpu_dm/amdgpu_dm_connector.h   |   6 +
+ .../tests/amdgpu_dm_connector_test.c          | 176 ++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/core/dc_sink.c |   2 +
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   2 +
+ 5 files changed, 188 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f3ac4307eb5a..cb10c5fa374e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -70,7 +70,6 @@
- #include "amdgpu_dm_audio.h"
- #include "amdgpu_dm_dmub.h"
- #include "amdgpu_dm_connector.h"
--#include "amdgpu_dm_kunit_helpers.h"
- 
- #include "ivsrcid/ivsrcid_vislands30.h"
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-index 7bba82ce2182..fb0ff9c9c823 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-@@ -26,7 +26,7 @@
- #include "amdgpu.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_audio.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "dc.h"
- 
- #include <linux/component.h>
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-index 373ef4d217f1..43bf6cccb9ac 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-@@ -47,7 +47,7 @@
- 
- #include "amdgpu_dm_trace.h"
- #include "amd_shared.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- void amdgpu_dm_update_backlight_caps(struct amdgpu_display_manager *dm,
- 				     int bl_idx)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 77e0480d469d..bcb2cee8c6e8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -33,7 +33,7 @@
- #include "amdgpu_dm_colorop.h"
- #include "dc.h"
- #include "modules/color/color_gamma.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- 
- /**
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-index 0301cb333770..eb4a4722d50f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c
-@@ -31,7 +31,7 @@
- 
- #include "amdgpu.h"
- #include "amdgpu_dm_colorop.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "dc.h"
- 
- const u64 amdgpu_dm_supported_degam_tfs =
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-index 56e3e32c184f..c7d8810958f6 100644
+index c7d8810958f6..5c3dd1eb7878 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-@@ -42,7 +42,6 @@
- #include "amdgpu_display.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_connector.h"
--#include "amdgpu_dm_kunit_helpers.h"
- #include "amdgpu_dm_plane.h"
- #include "amdgpu_dm_crtc.h"
- #include "amdgpu_dm_wb.h"
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-index 47fd849c58a1..1f9528364e53 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-@@ -33,7 +33,7 @@
- #include "amdgpu_securedisplay.h"
- #include "amdgpu_dm_psr.h"
- #include "amdgpu_dm_replay.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
+@@ -1345,7 +1345,7 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
+ }
+ #endif
  
- static const char *const pipe_crc_sources[] = {
- 	"none",
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 81574e447728..ec863b9f4466 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -34,7 +34,7 @@
- #include "amdgpu_dm_plane.h"
- #include "amdgpu_dm_trace.h"
- #include "amdgpu_dm_debugfs.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "modules/inc/mod_power.h"
+-static struct dc_stream_state *
++STATIC_IFN_KUNIT struct dc_stream_state *
+ create_stream_for_sink(struct drm_connector *connector,
+ 		       const struct drm_display_mode *drm_mode,
+ 		       const struct dm_connector_state *dm_state,
+@@ -1529,6 +1529,7 @@ create_stream_for_sink(struct drm_connector *connector,
  
- #define HPD_DETECTION_PERIOD_uS 2000000
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-index 21f6a01840ef..7a60b29e021c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-@@ -38,7 +38,7 @@
- #include "amdgpu_ucode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_dmub.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include <linux/component.h>
- #include <linux/firmware.h>
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-index 9a2d2706deb0..f25783bf1b48 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-@@ -31,7 +31,6 @@
- #include "dm_helpers.h"
- #include <drm/display/drm_hdcp_helper.h>
- #include "hdcp_psp.h"
--#include "amdgpu_dm_kunit_helpers.h"
- 
- /*
-  * If the SRM version being loaded is less than or equal to the
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index c59da4f447fc..c172bb76bcda 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -48,7 +48,6 @@
- #include "dm_helpers.h"
- #include "ddc_service_types.h"
- #include "clk_mgr.h"
--#include "amdgpu_dm_kunit_helpers.h"
- #include "amdgpu_dm_helpers.h"
- 
- #define MCCS_DEST_ADDR (0x6E >> 1)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-index 087401f7a8e4..e6e2b19e09e7 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-@@ -33,7 +33,7 @@
- #include "amdgpu_display.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_irq.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "amdgpu_dm_crtc.h"
- #include "amdgpu_dm_hdcp.h"
- #include "amdgpu_dm_mst_types.h"
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-index a9575bf25fc2..4e57572e12b6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-@@ -32,7 +32,7 @@
- #include "amdgpu_dm_ism.h"
- #include "amdgpu_dm_crtc.h"
- #include "amdgpu_dm_trace.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
+ 	return stream;
+ }
++EXPORT_IF_KUNIT(create_stream_for_sink);
  
  /**
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
-deleted file mode 100644
-index 1f910a6a00c0..000000000000
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
-+++ /dev/null
-@@ -1,20 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright 2026 Advanced Micro Devices, Inc.
-- */
--
--#ifndef AMDGPU_DM_KUNIT_HELPERS_H
--#define AMDGPU_DM_KUNIT_HELPERS_H
--
--#if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
--#define STATIC_IFN_KUNIT
--#define INLINE_IFN_KUNIT inline
--#define EXPORT_IF_KUNIT(symbol) EXPORT_SYMBOL(symbol)
--
--#else
--#define STATIC_IFN_KUNIT static
--#define INLINE_IFN_KUNIT
--#define EXPORT_IF_KUNIT(symbol)
--#endif
--
--#endif /* AMDGPU_DM_KUNIT_HELPERS_H */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index a7679675dd32..18ef0e875179 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -40,7 +40,6 @@
+  * amdgpu_dm_connector_poll - Poll a connector to see if it's connected to a display
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
+index ad277fff57de..51858c92f922 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
+@@ -158,6 +158,12 @@ void fill_stream_properties_from_drm_display_mode(
+ 	const struct drm_connector_state *connector_state,
+ 	const struct dc_stream_state *old_stream,
+ 	int requested_bpc);
++struct dc_stream_state *
++create_stream_for_sink(struct drm_connector *connector,
++		       const struct drm_display_mode *drm_mode,
++		       const struct dm_connector_state *dm_state,
++		       const struct dc_stream_state *old_stream,
++		       int requested_bpc);
+ enum display_content_type
+ get_output_content_type(const struct drm_connector_state *connector_state);
+ bool adjust_colour_depth_from_display_info(struct dc_crtc_timing *timing_out,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+index b3d16123402d..2d58021b48f3 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+@@ -3604,6 +3604,176 @@ static void dm_test_fill_stream_aspect_ratio(struct kunit *test)
+ 			(int)ASPECT_RATIO_16_9);
+ }
  
- #include "dc.h"
- #include "dm_helpers.h"
--#include "amdgpu_dm_kunit_helpers.h"
- 
- #include "ddc_service_types.h"
- #include "dpcd_defs.h"
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 4ffbe2dbdf97..c67d068b9a5d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -37,7 +37,7 @@
- #include "amdgpu_display.h"
- #include "amdgpu_dm_trace.h"
- #include "amdgpu_dm_plane.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "amdgpu_dm_colorop.h"
- #include "gc/gc_11_0_0_offset.h"
- #include "gc/gc_11_0_0_sh_mask.h"
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-index 0d2e5294d062..8431e164a0db 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-@@ -33,7 +33,7 @@
- #include "amdgpu_dm_irq.h"
- #include "amdgpu_pm.h"
- #include "dm_pp_smu.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "amdgpu_dm_pp_smu.h"
- 
- STATIC_IFN_KUNIT void build_pm_display_cfg(
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
-index f87de3d18ac0..dbad0a6d3a2b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c
-@@ -30,7 +30,7 @@
- #include "dc.h"
- #include "amdgpu_dm.h"
- #include "modules/power/power_helpers.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- STATIC_IFN_KUNIT
- bool link_supports_psrsu(struct dc_link *link)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_quirks.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_quirks.c
-index cf28d50c3b5e..0a7602ed70b2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_quirks.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_quirks.c
-@@ -28,7 +28,7 @@
- 
- #include "amdgpu.h"
- #include "amdgpu_dm.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- struct amdgpu_dm_quirks {
- 	bool aux_hpd_discon;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-index 42e17119461d..ee2e4754b089 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_replay.c
-@@ -31,7 +31,7 @@
- #include "modules/power/power_helpers.h"
- #include "dmub/inc/dmub_cmd.h"
- #include "dc/inc/link_service.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- 
- /*
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-index 6c0464754ed8..dbdda6ed12d4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
-@@ -36,7 +36,7 @@
- #include "amdgpu_dm_irq.h"
- #include "amdgpu_pm.h"
- #include "amdgpu_dm_trace.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- 
- 	unsigned long long
- 	dm_get_elapse_time_in_ns(struct dc_context *ctx,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
-index 9e7bad4d6ed0..a7594012a0b2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
-@@ -29,7 +29,7 @@
- #include "amdgpu.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_wb.h"
--#include "amdgpu_dm_kunit_helpers.h"
-+#include "dm_helpers.h"
- #include "amdgpu_display.h"
- #include "dc.h"
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_helpers.h b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-index 63704d21a0b5..f5252931ce35 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
-@@ -192,6 +192,17 @@ void dm_helpers_mccs_vcp_set(
- 		struct dc_link *link,
- 		struct dc_sink *sink);
- 
-+#if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
-+#define STATIC_IFN_KUNIT
-+#define INLINE_IFN_KUNIT inline
-+#define EXPORT_IF_KUNIT(symbol) EXPORT_SYMBOL(symbol)
-+
-+#else
-+#define STATIC_IFN_KUNIT static
-+#define INLINE_IFN_KUNIT
-+#define EXPORT_IF_KUNIT(symbol)
-+#endif
-+
- bool dm_helpers_dp_handle_test_pattern_request(
- 		struct dc_context *ctx,
- 		const struct dc_link *link,
-diff --git a/drivers/gpu/drm/amd/display/dc/os_types.h b/drivers/gpu/drm/amd/display/dc/os_types.h
-index 6af831710489..538d00105738 100644
---- a/drivers/gpu/drm/amd/display/dc/os_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/os_types.h
-@@ -57,6 +57,16 @@
- #include "amdgpu_dm/dc_fpu.h"
- #endif /* CONFIG_DRM_AMD_DC_FP */
- 
++/* Tests for create_stream_for_sink() */
 +
 +/*
-+ * On Linux this is provided by <linux/kconfig.h> and evaluates Kconfig
-+ * options for both built-in (=y) and module (=m) cases. Windows has no
-+ * Kconfig, so config options are never set here and this always yields 0.
++ * Build the inputs for create_stream_for_sink(). The connector is registered
++ * against a real kunit drm_device so that to_amdgpu_dm_connector() and the drm
++ * debug helpers resolve. The DC link carries a zeroed dc_context so that
++ * dc_create_stream_for_sink() can allocate and construct a stream.
++ *
++ * By default no dc_sink is attached, so create_stream_for_sink() builds a fake
++ * VIRTUAL sink. The VIRTUAL signal keeps the DSC, audio and DP/HDMI infoframe
++ * paths as no-ops, making the exercised behaviour deterministic.
 + */
-+#ifndef IS_ENABLED
-+#define IS_ENABLED(option) 0
-+#endif
++struct dm_test_stream_ctx {
++	struct drm_device *drm;
++	struct amdgpu_dm_connector *aconnector;
++	struct dc_context *dc_ctx;
++	struct dc_link *link;
++	struct dm_connector_state *dm_state;
++	struct drm_display_mode *mode;
++};
 +
- /*
-  *
-  * general debug capabilities
++static struct dm_test_stream_ctx *dm_test_stream_ctx_alloc(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx;
++	struct device *dev;
++
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
++
++	dev = drm_kunit_helper_alloc_device(test);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
++
++	ctx->drm = __drm_kunit_helper_alloc_drm_device(test, dev,
++						       sizeof(*ctx->drm), 0,
++						       DRIVER_MODESET);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx->drm);
++
++	ctx->aconnector = kunit_kzalloc(test, sizeof(*ctx->aconnector), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->aconnector);
++	KUNIT_ASSERT_EQ(test,
++		drmm_connector_init(ctx->drm, &ctx->aconnector->base,
++				    &dm_test_connector_funcs,
++				    DRM_MODE_CONNECTOR_DisplayPort, NULL), 0);
++
++	ctx->dc_ctx = kunit_kzalloc(test, sizeof(*ctx->dc_ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->dc_ctx);
++
++	ctx->link = kunit_kzalloc(test, sizeof(*ctx->link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->link);
++	ctx->link->ctx = ctx->dc_ctx;
++	ctx->link->connector_signal = SIGNAL_TYPE_DISPLAY_PORT;
++
++	ctx->aconnector->dc_link = ctx->link;
++	ctx->aconnector->dc_sink = NULL;
++
++	ctx->dm_state = kunit_kzalloc(test, sizeof(*ctx->dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->dm_state);
++	ctx->dm_state->scaling = RMX_OFF;
++
++	ctx->mode = kunit_kzalloc(test, sizeof(*ctx->mode), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->mode);
++	ctx->mode->hdisplay = 1920;
++	ctx->mode->vdisplay = 1080;
++	ctx->mode->clock = 148500;
++
++	return ctx;
++}
++
++/**
++ * dm_test_create_stream_fake_sink_success - Test a stream is built from a fake sink
++ * @test: The KUnit test context
++ */
++static void dm_test_create_stream_fake_sink_success(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx = dm_test_stream_ctx_alloc(test);
++	struct dc_stream_state *stream;
++
++	stream = create_stream_for_sink(&ctx->aconnector->base, ctx->mode,
++					ctx->dm_state, NULL, 8);
++
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++	dc_stream_release(stream);
++}
++
++/**
++ * dm_test_create_stream_sets_dm_context - Test dm_stream_context points to aconnector
++ * @test: The KUnit test context
++ */
++static void dm_test_create_stream_sets_dm_context(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx = dm_test_stream_ctx_alloc(test);
++	struct dc_stream_state *stream;
++
++	stream = create_stream_for_sink(&ctx->aconnector->base, ctx->mode,
++					ctx->dm_state, NULL, 8);
++
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++	KUNIT_EXPECT_PTR_EQ(test, stream->dm_stream_context, ctx->aconnector);
++	dc_stream_release(stream);
++}
++
++/**
++ * dm_test_create_stream_virtual_signal - Test the fake sink yields a VIRTUAL signal
++ * @test: The KUnit test context
++ */
++static void dm_test_create_stream_virtual_signal(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx = dm_test_stream_ctx_alloc(test);
++	struct dc_stream_state *stream;
++
++	stream = create_stream_for_sink(&ctx->aconnector->base, ctx->mode,
++					ctx->dm_state, NULL, 8);
++
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++	KUNIT_EXPECT_EQ(test, (int)stream->signal, (int)SIGNAL_TYPE_VIRTUAL);
++	dc_stream_release(stream);
++}
++
++/**
++ * dm_test_create_stream_scaling_src - Test the source rect follows the mode
++ * @test: The KUnit test context
++ *
++ * With scaling off the full-screen source viewport matches the requested mode.
++ */
++static void dm_test_create_stream_scaling_src(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx = dm_test_stream_ctx_alloc(test);
++	struct dc_stream_state *stream;
++
++	stream = create_stream_for_sink(&ctx->aconnector->base, ctx->mode,
++					ctx->dm_state, NULL, 8);
++
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++	KUNIT_EXPECT_EQ(test, (int)stream->src.width, 1920);
++	KUNIT_EXPECT_EQ(test, (int)stream->src.height, 1080);
++	dc_stream_release(stream);
++}
++
++/**
++ * dm_test_create_stream_existing_sink - Test the existing-sink retain path
++ * @test: The KUnit test context
++ *
++ * When the connector already has a dc_sink, create_stream_for_sink() reuses it
++ * instead of building a fake sink.
++ */
++static void dm_test_create_stream_existing_sink(struct kunit *test)
++{
++	struct dm_test_stream_ctx *ctx = dm_test_stream_ctx_alloc(test);
++	struct dc_sink_init_data sink_init = { 0 };
++	struct dc_stream_state *stream;
++	struct dc_sink *sink;
++
++	sink_init.link = ctx->link;
++	sink_init.sink_signal = SIGNAL_TYPE_VIRTUAL;
++	sink = dc_sink_create(&sink_init);
++	KUNIT_ASSERT_NOT_NULL(test, sink);
++	sink->sink_signal = SIGNAL_TYPE_VIRTUAL;
++
++	ctx->aconnector->dc_sink = sink;
++
++	stream = create_stream_for_sink(&ctx->aconnector->base, ctx->mode,
++					ctx->dm_state, NULL, 8);
++
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++	KUNIT_EXPECT_PTR_EQ(test, stream->sink, sink);
++
++	dc_stream_release(stream);
++	dc_sink_release(sink);
++}
++
+ static struct kunit_case amdgpu_dm_connector_tests[] = {
+ 	/* get_subconnector_type */
+ 	KUNIT_CASE(dm_test_subconnector_type_none),
+@@ -3798,6 +3968,12 @@ static struct kunit_case amdgpu_dm_connector_tests[] = {
+ 	KUNIT_CASE(dm_test_fill_stream_color_depth_requested_bpc),
+ 	KUNIT_CASE(dm_test_fill_stream_content_type),
+ 	KUNIT_CASE(dm_test_fill_stream_aspect_ratio),
++	/* create_stream_for_sink */
++	KUNIT_CASE(dm_test_create_stream_fake_sink_success),
++	KUNIT_CASE(dm_test_create_stream_sets_dm_context),
++	KUNIT_CASE(dm_test_create_stream_virtual_signal),
++	KUNIT_CASE(dm_test_create_stream_scaling_src),
++	KUNIT_CASE(dm_test_create_stream_existing_sink),
+ 	{}
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_sink.c b/drivers/gpu/drm/amd/display/dc/core/dc_sink.c
+index 455fa5dd1420..436d033361ab 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_sink.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_sink.c
+@@ -73,6 +73,7 @@ void dc_sink_release(struct dc_sink *sink)
+ {
+ 	kref_put(&sink->refcount, dc_sink_free);
+ }
++EXPORT_IF_KUNIT(dc_sink_release);
+ 
+ struct dc_sink *dc_sink_create(const struct dc_sink_init_data *init_params)
+ {
+@@ -94,6 +95,7 @@ struct dc_sink *dc_sink_create(const struct dc_sink_init_data *init_params)
+ alloc_fail:
+ 	return NULL;
+ }
++EXPORT_IF_KUNIT(dc_sink_create);
+ 
+ /*******************************************************************************
+  * Protected functions - visible only inside of DC (not visible in DM)
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index ce045ef6347c..a32b6eb796f7 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -24,6 +24,7 @@
+  */
+ 
+ #include "dm_services.h"
++#include "dm_helpers.h"
+ #include "basics/dc_common.h"
+ #include "dc.h"
+ #include "core_types.h"
+@@ -203,6 +204,7 @@ void dc_stream_release(struct dc_stream_state *stream)
+ 		kref_put(&stream->refcount, dc_stream_free);
+ 	}
+ }
++EXPORT_IF_KUNIT(dc_stream_release);
+ 
+ struct dc_stream_state *dc_create_stream_for_sink(
+ 		struct dc_sink *sink)
 -- 
 2.43.0
 
