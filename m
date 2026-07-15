@@ -2,73 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EpFoH+ePV2p6XAAAu9opvQ
+	id I1MVFOqPV2p7XAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F5F75EF84
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D20E475EF87
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=0DcmwM6A;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=TEwg48vx;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91EC710F0B5;
-	Wed, 15 Jul 2026 13:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FED910F0B7;
+	Wed, 15 Jul 2026 13:49:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011066.outbound.protection.outlook.com [52.101.52.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAC1310F0B5
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:49:24 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010069.outbound.protection.outlook.com [52.101.61.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9DE910F0B6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:49:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kaS3SmU09ulMwAY6b7lRY3ktMIZE/L9HKCD1aub42TG0fs7t5WG2HSpyYW28l2NJTJYFr2IPQlL+93BMuwHVEPpjSc6V0U4NGE3mbOkuXeqH4ClcZeFluBUfNDknc/EYJU2Dab2Nu2nRwRe82yWnXXjvM2GVYLaRMG0t/7PCdYp0lnRaRGyyPCKV6uvuCv902Ifx1+PSRr74tlW+MxltbbjdwXRb+1scrtAYO+uJ8aInSxxTi6lgguT2dn/XvB2gMQBXcNvpdi0dcGeBcbDsD/8V2sGOAxGMcnQhO5Bp9INKv1IFKdmbR6ijj4j6fVGYIPG1KO+WA/auUsJrqibx2w==
+ b=xsMcZhPTJXffazTHcHMPU/2f6GYaol9nhgCGwRTnLGZJsdtbtMfDSXLWK3jR3uKfWVQ11old0t0No+Rif87+8cDZXdduJYDdQmZGDcIAIjM42c7NzLZCv6PhJ9GQ8q3Mx0Yx36pgCfGYoDQrLTjBUvhWvzdF0n4c5KFiXceBr2yuuj4hvKQTBAynghPgbCuJTsNdAFaI8roxz2UrAd7olNtHlVx6ZI2PYEFmbRrvsiiwoYwukIUK8zZ3aPUpM2Oat7SderEliiqzXnh1dDLAFx1YB7J2DdvIO9zN4by6UnMHighgEeKUf/BUdxOsZRcGRP3jdf2wt29VCzn3XIwKtA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oY19Y4Xiy2HM0kmTb2AniqJTDfzV3YPXY3aSVZfw19o=;
- b=CRUsfyFIpqm87sgTt+QMUFyrQ/ZEBTNdwGUyN9thbXg7tcp5SulPVWFqelDyu/a4W9RMMpmft5nrzns38vA+S77GL9xhbuiPp5JJ+JME9IN6i1EMgHceewfoJfbRxYrs/4n+USaOVkGe06eZa+HjjYaCnLQc4TOueayjQD1RYaK38HBDCOr+nHjRYwTiIq4kgovUI1w7ys6qdUiU029+dLgmqQ0+DtdihcI4QiH6HTLgcvz1c7lDJH2ExmOwSUb2X+2eX3DcvU6ZSfO1E06iC59SJe2R/kI36zXsiaBY9Trm8cpaFrWXayRdGzDfZrKXgQbzKRLfcmxRSoUaESBk1Q==
+ bh=WomUek6dDXyw15Y4OGjYaJVd0JZAnhg0cBdGiLfby5o=;
+ b=JeP78d2tdA/8mGFb9Bw2NjGh+I74KaQWj/0oS5nYCmW2csqIfR4O7BTux6NL/OJuCUzdsmNf65c8mPsyIFRDUZCRCJT8T9xX4v0rwoOOVoSB41J+ZyEH8OqBbb/2DLA7q+/2/FwefS7a8rddEHDTR6jSUT8+xpQHat8TEnxsxi7uXMDaMpqYnCYRxF0zwnKbyfn5rAtm+L7w+pQ/HrpjfNBwJs2wZbIa5fXqK2dJurV3QWZ22ZH2VCL+bdxeMZTrdS43hf17evlr7Y6IxMElHX5MidguGCeMad3+y0+qwV9LWTEOJkM3mioH4kmlQLdcj2qvrTK2/l4VFoNAK4yvRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oY19Y4Xiy2HM0kmTb2AniqJTDfzV3YPXY3aSVZfw19o=;
- b=0DcmwM6AzabPZmkaneam3b4Xp0Zq0ISOc3x5dT5jjLCsJwuP0B1+ZVLyp+Ke6csCpSYZXwXZm7OkosuqyvGKzlx8gAHEeRPZ4+0kWtOyAZ5LqRPIqY808xvpGvfhLpr1LLh1OfhPKAN85S8iKdrF3IfCGwP1AslBeS8aOYFlS9k=
-Received: from SJ2PR07CA0013.namprd07.prod.outlook.com (2603:10b6:a03:505::15)
- by CY5PR12MB6622.namprd12.prod.outlook.com (2603:10b6:930:42::20)
+ bh=WomUek6dDXyw15Y4OGjYaJVd0JZAnhg0cBdGiLfby5o=;
+ b=TEwg48vxlC21mnbCRuJZ4dv0vmmCf9zJq1LSrBuwMlwhaAalTHL/GzBLOXR+A7l2FwXLA9EYQdJszP92FjJHgGc9ZZ1XyaFESsWM1OwgTshvbBAtnvDDR3lRh+VKy/afTD6u2lUsjCjE1sHPmlW8ktL0LaaptwYFjgeQE8zSNLw=
+Received: from MN2PR22CA0004.namprd22.prod.outlook.com (2603:10b6:208:238::9)
+ by PH0PR12MB7932.namprd12.prod.outlook.com (2603:10b6:510:280::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
- 2026 13:49:15 +0000
-Received: from SJ5PEPF00000203.namprd05.prod.outlook.com
- (2603:10b6:a03:505:cafe::43) by SJ2PR07CA0013.outlook.office365.com
- (2603:10b6:a03:505::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
- 15 Jul 2026 13:49:15 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
+ 2026 13:49:13 +0000
+Received: from BL6PEPF00020E5F.namprd04.prod.outlook.com
+ (2603:10b6:208:238:cafe::6e) by MN2PR22CA0004.outlook.office365.com
+ (2603:10b6:208:238::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
+ 15 Jul 2026 13:49:13 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000203.mail.protection.outlook.com (10.167.244.36) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BL6PEPF00020E5F.mail.protection.outlook.com (10.167.249.20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:49:15 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:49:13 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:49:08 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 08:49:12 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:49:08 -0500
+ 2026 06:49:12 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:49:05 -0500
+ Transport; Wed, 15 Jul 2026 08:49:09 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -77,11 +77,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 67/70] drm/amd/display: Fix missing dc_3dlut forward
- declaration
-Date: Wed, 15 Jul 2026 21:38:17 +0800
-Message-ID: <20260715134432.1975118-68-Wayne.Lin@amd.com>
+ <Chen-Yu.Chen@amd.com>, Geoffrey McRae <geoffrey.mcrae@amd.com>, "Bhawanpreet
+ Lakha" <bhawanpreet.lakha@amd.com>
+Subject: [PATCH 68/70] drm/amd/display: Flush IRQ workqueue in schedule-work
+ tests
+Date: Wed, 15 Jul 2026 21:38:18 +0800
+Message-ID: <20260715134432.1975118-69-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -90,29 +91,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000203:EE_|CY5PR12MB6622:EE_
-X-MS-Office365-Filtering-Correlation-Id: 219d1039-8fb9-4314-c8fd-08dee277dc3d
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E5F:EE_|PH0PR12MB7932:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ab72152-7ea1-4471-5aee-08dee277dabb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|23010399003|376014|36860700016|1800799024|6133799003|10067099003|56012099006|18002099003|22082099003|11063799006;
-X-Microsoft-Antispam-Message-Info: l7SRDs4xLMi1yNNx7TrRl8s957fKv8hP9pTSPwb0Y9u9ox8GQTUjigMO7GrKYxPzyV8eIgF0wSxt0h9M72THND8j1pzgmM001WL38v5ADgB+voCqknnGrll1qQmaN8LyIhv1IzM7LH9eXR4eB+w8wbBsPqNMHLzhh8loH891z/KZKJ6MszleN0fCIgd8zxcD3Na10MIAtWn9FoEfoDnDvkd29tkulxanat+Ocrk6qcv5Vpa3nfPu6QvinzvswaWItPepM51iHBI4CaUqjAY+nFz15NLj5tFUe9iL9fp5fihXsr5/nHP7ETwm9RL3RGPyoxdoDL1kxJAZvu3EJZXZBULxzAMvRHdrM70aODLIW+u5MKfQHON+/vXG5tM/TpFO0fguJmOyXhoAqUMBu48NQOSNSBM2KnKUQnHmFd59X6JtGglEhDxf2xQmJOdV+9aTPGvBm/BOk1qgDyN0EIuS71hOyoaapcaCxJuliGt+djF9VB9EFL5wFd/uNb528ElL4Y53Ei6kK1GBfKZrUM1Xe5kMMzcCn2qGbGPnQUidRlkoR7Qj40tNOZedSRL6iw5gD/A3mrAZVi8gd0P219EXzG+LTT6cAV+qfwoqSz6bSjRIqW2hxb9CplgUXmDcTMJlWRiLxNwi8iwogFEuTdb4wzlNKviF8qdous3v4meiZIiQxgExCvEjSrqO13hwiFfIhRSjzNsREd8x8I+YQJ8ATw==
+ ARA:13230040|23010399003|1800799024|82310400026|36860700016|376014|18002099003|22082099003|11063799006|56012099006|10067099003;
+X-Microsoft-Antispam-Message-Info: UmvbUzhfVu5m2otC8PgDFa+ffHOaCwUk+5V8Q2NcV18beQxgA0OTFRmTUP86fE1aiUgNC1u8tpvnd75QbvmIeunWvQloSECKip0IVloB7JA44cJIFVZWXRFrDjpqAeN452S5Us+nhr/aWMyGuLniQjyOj8r6m1sJh/AwQ9j8nN6ksk3QmCCe3Sx+6ZJ8sd5bLNWA/5JeP7rl9rioguJ4D0YUBPOOMHVtoMSLykms0/PV5iQ3TDDZdt8wu69H2MsAI7S64lFtiWKwwbSgDwfqhKveqM+UZSmShTgS8O+zDJGG57GYXYFMDGRoWYrzIu3MASwFzkyH9E9iFae6uMdVPv+RXkA6xGyInyaw53SXpv5IivsI6h0GcHduKh3cp9ffbGqHu4COcDiVEXosDczvh2N+fDs036b9EmIXOcp6MZjIwwhxfLFx1K/dY/KYLKqPWyPZ54bu3CEellKmHA/3Ihh1qg5pdhBtmtgKX2FltEeDJOqfnzoFralqqOmF7TnQv/oG8evjsWr2+NNA6jXXKy6O5E/CVckQCRwDSV2OI4CCmHKV+DMc9OsBrVzzakiTcCUAcCwICilZFhU8QrKwC5AObR4M5ukoIGNTJJN70152RjZz2UtbO8fB6mARXWeO2QVGAxCbk8Vbb5TcgllzTkm9RiN97tBrPvwQnC9TbiWFPK88ZFiRZBqIBSilNEUI6qKJ6qbbTcaIJcxdVGVsmw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(1800799024)(6133799003)(10067099003)(56012099006)(18002099003)(22082099003)(11063799006);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 5DoF/JjqsnfhBvi4lkZrVTpFRq5JSCeI91CRg4Nz3eWMkgPvkAP7wismcfEWViomR0KklXQiiDadBgmQ4LesaH5jqnE5yQYVIYckP0l1zT8Pt7YD5gePXfhRdAxKbaKrTL/icMjPi/PCq1OhF8RO94lWteOqcaPjtC4Uo4IXZxT8cjBCO3KtXJpJnEWu7NUOMcP9PxeNR62sQHnA+SRft7nFggwe8WHVZMB19OPIO8/HX6cRGRGE94f0M3/IhWxOARlRGb6AmtCyQ3KtwM6Nt1xDzhd2uBB7sBm8IqDsJcS2+wX9dZPq0ltAYPz3vuSqROEnl3qxu5KCxuM/YVUG08h0KfCj6Gth97qjn8gGWQZqV+BwDTwIPgEwj+34PzGFicqVsbb52wBmtQJgXHWG4F72WV61+e5WrWKgkfdN9Ik+ULFiW9dtp/uxbf2vCtvU
+X-MS-Exchange-AntiSpam-MessageData-0: AERD8vhX6ozYQ1FuDcNJ+HSmTPeDc5hqzdYqOQFhbSEb03mqME5GkKtxDgtSoZ/ndBiDnltarWlhNwvz26gzk+UIdvx0RaKdDyCFlTTVbP1tc7+4+2ZpuDO8o4duBmgyrRhRRDKnw15EV0cvKSEqLdN39cYZQbpW5rT/A35C/McNdyoUZ/5cUm0DsR9oEHPT2awf9910W4CXhtKxSloWrjWyDKoyw+e6bPo4T8dPQw3RrPAJ3X2mNbHw/cX23OCelDrq77dfluhe4NAvQlfoeLx36RO3CSSOmcAu5feLbvqV2Ma1Y/Hd/6L3qMaUObud6Ye6Twr1/sJYIYEr0S3unHjkihLAQuC1ecug6iV1HbFpKexpyM5V692CbJpEVP1Jrl6Xd/YKgAWIXdDzyEG8qWzqwkfH/+nReOLaS+bJT7FbSW5eLXnkht43MyP7dwFO
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:49:15.5953 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 219d1039-8fb9-4314-c8fd-08dee277dc3d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:49:13.1457 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ab72152-7ea1-4471-5aee-08dee277dabb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000203.namprd05.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E5F.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6622
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7932
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,7 +138,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -153,46 +154,105 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 06F5F75EF84
+X-Rspamd-Queue-Id: D20E475EF87
 X-Rspamd-Action: no action
 
 From: Alex Hung <alex.hung@amd.com>
 
-[WHY]
-The __set_colorop_3dlut() prototype in the KUnit-test section of
-amdgpu_dm_color.h references struct dc_3dlut, but no forward
-declaration for that struct exists in the header.
+[WHAT]
+The tests dm_test_irq_schedule_work_queues_handler,
+dm_test_irq_schedule_work_requeue_fallback, and
+dm_test_irq_handler_dispatches_work relied on amdgpu_dm_irq_fini()
+running each pending low-context work item before freeing the
+handlers, and only checked the handler counts afterwards.
 
-The forward declaration was originally present but was repurposed
-into struct dc_plane_cm when the adjacent amdgpu_dm_atomic_lut3d()
-prototype was updated, leaving __set_colorop_3dlut() without a
-declaration for struct dc_3dlut.
+amdgpu_dm_irq_fini() now cancels pending work with
+cancel_work_sync() instead of flushing it, so work that has not yet
+started never runs and the counts stay below the expected values,
+failing the tests.
 
-[HOW]
-Add back forward declaration of struct dc_3dlut alongside the other
-forward declarations at the top of the header.
+Flush the private DM IRQ workqueue (adev->dm.irq_wq) so the
+scheduled handlers complete, check the counts, then tear down.
+Flushing this driver-owned workqueue is allowed, unlike the
+system-wide workqueues.
 
-Fixes: 67b15f11ae60 ("drm/amd/display: Fix conflicting types for dc_plane_cm functions")
-Cc: Alex Hung <alex.hung@amd.com>
+Fixes: 258df8e4f860 ("drm/amd/display: Fix DM IRQ teardown races")
+Cc: Geoffrey McRae <geoffrey.mcrae@amd.com>
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.h | 1 +
- 1 file changed, 1 insertion(+)
+ .../amdgpu_dm/tests/amdgpu_dm_irq_test.c      | 31 +++++++++++++------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.h
-index 1a8b06bdaf44..cec23a020c3d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.h
-@@ -44,6 +44,7 @@ struct dc_plane_state;
- struct fixed31_32;
- struct tetrahedral_params;
- struct dc_transfer_func;
-+struct dc_3dlut;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
+index ed20e278742d..dc7ef0523b8f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
+@@ -1842,12 +1842,15 @@ static void dm_test_irq_schedule_work_queues_handler(struct kunit *test)
+ 	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
  
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
- /*
+ 	/*
+-	 * Low-context work runs asynchronously on system_highpri_wq.
+-	 * amdgpu_dm_irq_fini() flushes each pending work item before freeing
+-	 * the handlers, so the handler is guaranteed to have run afterwards.
++	 * Low-context work runs asynchronously on the DM IRQ workqueue.
++	 * Flush it so the handler completes before we check the count;
++	 * amdgpu_dm_irq_fini() cancels (rather than runs) any work that is
++	 * still pending, so the flush must happen first.
+ 	 */
+-	amdgpu_dm_irq_fini(adev);
++	flush_workqueue(adev->dm.irq_wq);
+ 	KUNIT_EXPECT_EQ(test, count, 1);
++
++	amdgpu_dm_irq_fini(adev);
+ }
+ 
+ /**
+@@ -1858,7 +1861,7 @@ static void dm_test_irq_schedule_work_queues_handler(struct kunit *test)
+  * schedule before the work has run makes queue_work() fail for the
+  * still-pending item, forcing amdgpu_dm_irq_schedule_work() into the fallback
+  * that allocates and queues a fresh handler copy. Both work items run when
+- * amdgpu_dm_irq_fini() flushes the queue, so the handler fires twice.
++ * the DM IRQ workqueue is flushed, so the handler fires twice.
+  */
+ static void dm_test_irq_schedule_work_requeue_fallback(struct kunit *test)
+ {
+@@ -1880,8 +1883,15 @@ static void dm_test_irq_schedule_work_requeue_fallback(struct kunit *test)
+ 	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
+ 	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
+ 
+-	amdgpu_dm_irq_fini(adev);
++	/*
++	 * Flush the DM IRQ workqueue so both work items run before we check
++	 * the count; amdgpu_dm_irq_fini() would cancel any still-pending work
++	 * instead of running it.
++	 */
++	flush_workqueue(adev->dm.irq_wq);
+ 	KUNIT_EXPECT_EQ(test, count, 2);
++
++	amdgpu_dm_irq_fini(adev);
+ }
+ 
+ /* Tests for amdgpu_dm_set_hpd_irq_state() */
+@@ -3855,11 +3865,14 @@ static void dm_test_irq_handler_dispatches_work(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, high_count, 1);
+ 
+ 	/*
+-	 * Low-context work runs asynchronously; amdgpu_dm_irq_fini() flushes
+-	 * each pending work item before freeing, so it has run afterwards.
++	 * Low-context work runs asynchronously; flush the DM IRQ workqueue so
++	 * it completes before we check the count. amdgpu_dm_irq_fini() cancels
++	 * any still-pending work rather than running it.
+ 	 */
+-	amdgpu_dm_irq_fini(adev);
++	flush_workqueue(adev->dm.irq_wq);
+ 	KUNIT_EXPECT_EQ(test, low_count, 1);
++
++	amdgpu_dm_irq_fini(adev);
+ }
+ 
+ /* Tests for dm_handle_vmin_vmax_update() */
 -- 
 2.43.0
 
