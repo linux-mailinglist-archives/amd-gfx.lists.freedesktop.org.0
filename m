@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tEMQE/eOV2rRWwAAu9opvQ
+	id 65Q0NgaPV2rfWwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF08B75ED84
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668EE75EDA2
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=EXjz9gcG;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=EZeUrimW;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B13510F069;
-	Wed, 15 Jul 2026 13:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F102810F06D;
+	Wed, 15 Jul 2026 13:45:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011040.outbound.protection.outlook.com [52.101.52.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDA2510F069
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:45:24 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010047.outbound.protection.outlook.com
+ [52.101.193.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 767EA10F06D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:45:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PdPQrqwZjAxPa5iUXcAM3rSsvpB14BOVx+9KVi3KiGC6VqwdiCc5Wqb1H4g/QYMX0Vx1KhIjs/s31DHIt0w8TfW56EL8XAVH5lRV6Pe6y5K2pDNELRhtjUA3gvhvSWaRvXb5OX6GXCtioYUnIFP86nECDoreIWWvkVfu5/SRUQ6hSxZGWN8XxL/MvU4rWGSY8O2ykO/pc5xR+yps3slSFRrDXcYOfVuYvxfi9e+xvekecGx5vb6dg+sq+KXkBSuHEV6fHu+YBJUVv9KtwzgVdVlfijQZssksP/wLuzrIFJiUYvRpCRpeKgnEGg9cr27DNAyVd3QJSREdmcq3mZJbmw==
+ b=wnVeIp8zNHIaufnk8GIlpUeRVQaN++LjMJ4dLHWm6iUCJo8EZ12ivY+VEwcmjee4tV9op+7K91zZboPoUFTWgzOQp/IMER8UnWfzImo5Nen7GZkxmvAtmi69A8adYZxWtD51daFxK3zD3ZdeyANaLf/V6lpxsZPvhbPXTFxexz8rslvnORfeABXhujtT/P9P9hrVV4pOXZQ63/Bg+DccCCveNw8up30yVIG6rIaTePmZbl9V180EoOMJzaKFLY7e17owL8U/tSyugDF+fRndulmQLrPz3r3kWHEtB1ny2FHyYEkBZrcgqSXBjZ5+Mvsba2/ygIbi8zPKm0PF56aHRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2KQ1CVW9Gf7RwNIQJVKEXe4KcH3GFoK7wIujQiI4YX8=;
- b=it0+N1tYi0P7l8uuBC0FAApoakF9mWCU/kh7TH5UxVMZhjepGkGAGQ9bPcVt0czcwBgLG4nsIgIYhrENm51uov/rEsy2VoypMa6CqaRS/2Iyjc1MMYPM7aJQngOMgk0fz177erw9xqS8+RmbUdoOHx/qOz8C+n9SA53XI+vsk5tjcCIoBeVYe2DlSRgTZqiq/YeowFwfQoAQG2Ew/eR4BCoeRC7+kgO6QTgf/A7ZR3nSG2HPgBpnZ9SQu2oUhfjzMLRp/wQeA0vIbJBCwQiH5/dgNxWbXSMRxz3HSMvA+EoPcze3HieeeFp0T9JsMFTsO333J3O6b4s0UH590daJAw==
+ bh=NNiGSzJfIBjRmxJqfzpgaBd5lGadmZ50dHcAutWZBMM=;
+ b=uEoWR2Vtta4wJwCZamBr3IKI+8owpheY79gmQuOGxr5n8YH0w29qUSSk7WciMPnjKGLPNOsjHYh7zya+G9QVprlhMNLBAulRyKRSlqaEmzSBOv78LZpcMfskUFVAIlRkBvXBpJuBenV2SDIQyBVgjjYsYI0Swg32lKodH0js1JbqN9cH9XOI11my64QLWykB4UcF0s3Znv8bge9gW34O00mk+nGdvQO39k1/lFdz586Z42a5n8/MwSrq3piQMSx6/jpfnF8/r2suJDcE3rQCt4dQ4pVJwsTTuc6s5dWsxcjSOCQ/YJG2gher94amsMXZ/uFAxIBkUD5I9I0s36VSYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2KQ1CVW9Gf7RwNIQJVKEXe4KcH3GFoK7wIujQiI4YX8=;
- b=EXjz9gcGcEetfy53vNIq3s0mNww1qOF6+vFF5UuOqewavPJrGAjrO3ehzW/R2TtQgG17NiQmpXdZt8z98hIuoa3pibdwZDkJH5WBXHt2j024a9YR5nlH7pVEVaC4dA8GBzZ2xQ61SrhPiJ6xI3qdxekXRJbV9E5DCq+u62i3u24=
-Received: from DS7P220CA0074.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:259::9) by
- SJ2PR12MB8650.namprd12.prod.outlook.com (2603:10b6:a03:544::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.11; Wed, 15 Jul
- 2026 13:45:21 +0000
-Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
- (2603:10b6:8:259:cafe::2b) by DS7P220CA0074.outlook.office365.com
- (2603:10b6:8:259::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 13:45:20 +0000
+ bh=NNiGSzJfIBjRmxJqfzpgaBd5lGadmZ50dHcAutWZBMM=;
+ b=EZeUrimWyOq1DVAOdFCArt6ce+iAkLHq6k5Qv4L34z5sPdaKJUfRLHFLbLQP96rKN3WEQHNB1tq4jgYXIW6mgULCu8rqxnKygMhlgwa0DT9Ydykg3Yzgd5eEDXsoHim98/OL4CBV/JvHMYlD6uW9amVcSycj2shoKFRZkIbok8g=
+Received: from SJ0PR03CA0278.namprd03.prod.outlook.com (2603:10b6:a03:39e::13)
+ by IA0PR12MB8983.namprd12.prod.outlook.com (2603:10b6:208:490::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
+ 2026 13:45:35 +0000
+Received: from SJ5PEPF000001F4.namprd05.prod.outlook.com
+ (2603:10b6:a03:39e:cafe::15) by SJ0PR03CA0278.outlook.office365.com
+ (2603:10b6:a03:39e::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
+ 15 Jul 2026 13:45:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,20 +56,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SJ5PEPF000001F4.mail.protection.outlook.com (10.167.242.72) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:45:20 +0000
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:45:34 +0000
 Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:45:16 -0500
+ 2026 08:45:19 -0500
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
  (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:45:15 -0500
+ 2026 08:45:19 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:45:12 -0500
+ Transport; Wed, 15 Jul 2026 08:45:16 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -78,9 +79,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 06/70] drm/amd/display: add dm_dmub_hw_resume KUnit coverage
-Date: Wed, 15 Jul 2026 21:37:16 +0800
-Message-ID: <20260715134432.1975118-7-Wayne.Lin@amd.com>
+Subject: [PATCH 07/70] drm/amd/display: add fused IO KUnit coverage
+Date: Wed, 15 Jul 2026 21:37:17 +0800
+Message-ID: <20260715134432.1975118-8-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -89,29 +90,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|SJ2PR12MB8650:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0351b9d0-9cfa-402c-2894-08dee2774ff4
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F4:EE_|IA0PR12MB8983:EE_
+X-MS-Office365-Filtering-Correlation-Id: f903f0c1-fe1a-4eac-566c-08dee2775879
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|6133799003|10067099003|56012099006|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: v9y+Hn42NZLtvtacp7rhjvOQY34Rh/a4g02QYHI5cK/FwflU0mC51sh6RsHFJ1EIF5qB3h9KwnZvWNphAFZ8QOIUXkMzzRvaNpFZSHYDbjvtqJaIHPEuAv7k3KqyAxo+1y750KjITp3wJo/itLJDP2GP5Be/FU5QwOz/NTLyu+Nf4DB8ub6buXFG/Yehice73A+/vCtRFiQymYkLB/yti0twMRDg8KdiPNhv2BNhH3oQPPU2Z5FJqvfXbuhUAh0KXlPsGAQXafcN4jwK5Zw+7WmAPmgaP/kWTgbsC9iuKPSAKTcAvzXGsUTa2YZtyaAMeeqUKaHo26DHz7UhWwtYnyQs4Xgdr62bPN3HkhxjVF76foELwgMBK28mesw78OZjk8WK98QrsY95yy/Ffl3AI6JphJkI+75gi333evK651TdjeA6VVXavgl527fcRSvMXykbk8FyrS60jSv+Oy2L29PefQNt8Ux5aPVpjcGmZb54I/FPtjmrrE7JYxYqr9nI2adx8vcsmw7ucM3lbtPdkSfNmRUwo1UbwxZjhwwcKQ+7E6LwwLHqRQEYFIgz1MQS85lePKngnPR7bBMy4ybb32NfjCZOtDxYwkCrw6glCklN8JLBZ7fs9cvH2t7hFvghHW6HgZOMeuWYyUgOldA8uzgqpUlthMniuYyBdGrA/uimOnuMAQCInDvRXk06P3cDgCgRjtkKDjDpEmSihTjzqA==
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|11063799006|6133799003|10067099003|22082099003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: 8rpa0Zi/heHYmsdiE0bepQnXdWiKDaMzyTrjfalK5QTTuNAdiw1zsWIuBDesfLYPa+DcspBw6I462DUqwGkLehfnPQgbopMjFc1gJEkjrjTT+th6LnWSnFvVb+VMwk7n8UUXqGmRjvhq4orIP0x8dD0+MWOl6IS1n9k+/3mJi1oJFqDpPUUf8M5vH3B9JjHle4+eYEyfWldQ4VDB59vGeP0ZhKeN/oRwv+dkmhiBy/9uQ8vVyUdrfrS6gSFeSdZu7m3Q4ID2u0/yt6aneFdw/hhs5d18pnyTTaMQJZHckol/hP45MoO4WqH+Uwboc1Ik5kFkOl+mOiQHTdYyXqq27XLec+tkB9X7ui6PBCzy6PjX+q2QV0mpWPJ9KbAl/LpRbVMVN1+GYmjIFS3En7P3J5Ff+Ebp2umjIZ5bcV5DyqY/VdWWbzEyNyLtvhr/lwZbJdW/JZzU0YDbJmuSQBGdlRzyGO3+vJU4nV44M/r0zx25R0igBvJ/8Nal9A07saDiZqXF8nKLjiujGiUByJ73t9s8kXW7db+E4hv3Ggt9RGh3DsUYCLaQ0xafZveTuleA/8e4DDmFNpEFqQ4PUC1WM5qwjONqjiAm+xO7lH3YEwyUMGBPZPSEWQnIonnkktUC1sn8ZKwxvjpE7q+NRIVxxNpXftKlmlFywBjCzWW44x24gYpcVJPE6T4dFs3PDxenq65zqnRKYO9W4ouhlELVCw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(11063799006)(6133799003)(10067099003)(22082099003)(18002099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /UGgk5s9oVZMWkdrFhqAPXeNVsQACNRzpyUDCze0Y4tLwkR8VReJXo6SyJh0P1rNkfibH/zocDLZH3PLPlYQjoqhBZWoP5IyEc++1WGqraiX437PQDdihWycbahSHWEUE047QOUJ/eI4Vs9UVYnhBY7vQaSgM5wuMiKZFNOxVbZZ8KuDQjCqLq8X7AzTAsmAW3HBSKrIsNrDXATjLJSgImOGgRo+y66PpX8m6aPhxNWRqvm+zeJAN/1MZdO29xeVNxg6slyVdolgtWl2uWdr8U698u09B7JpHsXphpH0yBZzXiCSy8mdht+3jSM3oId1Ce0IPrVMnlX8/s90zzMWB44VyFRwEIpaMpLwj3m3vOWguF8GGYAw7zIbhH/ZS7qk/TT9vTB/hO2nPsMJwQfHip/GoC0BCh1YpP2/I9/W33z1vsmxdiFlqG7T4+wLBW5h
+X-MS-Exchange-AntiSpam-MessageData-0: UUXXs+Nnr0c7/K06XMOucjXo83veie4xQct4PD8h0yUxesWS+MjjrBc5AkECWYTYzAzmaTeqhdPrIcTTA/gEVVZgXMhw6i7UTCSByyFRdYzsQCGPJ6MIlVbNaDpGTqffSkeSuWFFag0pZw+EbmgGJp56KgJYrQ36p//lyhmWg+Onq43/Rbg8eksZvecupRTgKrYuVpRLA8YDp9ekmO7SzebY5n7uhZNYeKj+AdqHo9XGJP3vOqLqZwNRg98wlpMWgH357xfbrH5wbz84WKGR/Syuv3zC7WnXEONc5PsUdhAFgRG2Jt7BWXcwSrBLXHfj5ifbzBsknAyWMUk5yOkllV9Iijsq8H1B5rzrM7006MUXgcoSfxtuHHVSxMRsInuv5LxR9YAnCCi3KykiPGlFaEZV/G5RysqJWCRZKs7kr/US6tvvp8Xw/8vM7GJ9QOJc
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:45:20.2706 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0351b9d0-9cfa-402c-2894-08dee2774ff4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:45:34.5265 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f903f0c1-fe1a-4eac-566c-08dee2775879
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F4.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8650
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8983
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,126 +147,154 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[Wayne.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
 	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF08B75ED84
+X-Rspamd-Queue-Id: 668EE75EDA2
 X-Rspamd-Action: no action
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Extend KUnit coverage for dm_dmub_hw_resume() using the fake-DMUB
-fixtures. New cases cover the already-initialized wait path, the full
-reinitialization path, a failed init-state query, and an auto-load
-timeout, none of which require real hardware.
+Add KUnit coverage for the DMUB fused IO helpers: the
+dm_dmub_aux_fused_io_callback() NULL-argument guard and the
+abort_fused_io() no-DMUB-service path.
 
 Assisted-by: Copilot:Claude-Opus-4.8 GPT-5.5
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- .../amdgpu_dm/tests/amdgpu_dm_dmub_test.c     | 77 +++++++++++++++++++
- 1 file changed, 77 insertions(+)
+ .../amd/display/amdgpu_dm/amdgpu_dm_dmub.c    |  3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_dmub.h    |  8 +++
+ .../amdgpu_dm/tests/amdgpu_dm_dmub_test.c     | 52 +++++++++++++++++++
+ 3 files changed, 62 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
+index d2148b62073d..b6f09a687969 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
+@@ -831,7 +831,7 @@ int amdgpu_dm_process_dmub_aux_transfer_sync(
+ 	return ret;
+ }
+ 
+-static void abort_fused_io(
++STATIC_IFN_KUNIT void abort_fused_io(
+ 		struct dc_context *ctx,
+ 		const struct dmub_cmd_fused_request *request
+ )
+@@ -845,6 +845,7 @@ static void abort_fused_io(
+ 	io->request = *request;
+ 	dm_execute_dmub_cmd(ctx, &command, DM_DMUB_WAIT_TYPE_NO_WAIT);
+ }
++EXPORT_IF_KUNIT(abort_fused_io);
+ 
+ static bool execute_fused_io(
+ 		struct amdgpu_device *dev,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.h
+index a4a03e40ec37..ba50e1af80c1 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.h
+@@ -65,4 +65,12 @@ int dm_init_microcode(struct amdgpu_device *adev);
+ #define FIRMWARE_RAVEN_DMCU		"amdgpu/raven_dmcu.bin"
+ #define FIRMWARE_NAVI12_DMCU		"amdgpu/navi12_dmcu.bin"
+ 
++#if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
++struct dc_context;
++struct dmub_cmd_fused_request;
++
++void abort_fused_io(struct dc_context *ctx,
++		    const struct dmub_cmd_fused_request *request);
++#endif
++
+ #endif /* AMDGPU_DM_AMDGPU_DM_DMUB_H_ */
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
-index 4c01f7919170..bae34436c89e 100644
+index bae34436c89e..c3bd93b15d0a 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
-@@ -801,6 +801,79 @@ static void dm_test_dmub_hw_resume_no_dmub_srv(struct kunit *test)
- 	dm_dmub_hw_resume(adev);
+@@ -396,6 +396,22 @@ static void dm_test_dmub_aux_fused_io_callback_max_ddc_line(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, reply_ddc_line, notify_ddc_line);
  }
  
 +/**
-+ * dm_test_dmub_hw_resume_initialized_dmub - Test resume waits for initialized DMUB
++ * dm_test_dmub_aux_fused_io_callback_null_args - Test the NULL-argument guard
 + * @test: The KUnit test context
 + *
-+ * When the fake DMUB service reports hardware already initialized, resume
-+ * should only wait for firmware readiness and skip full reinitialization.
++ * Passing a NULL device triggers the defensive guard (an ASSERT that maps to
++ * WARN_ON_ONCE in this build) and returns early without dereferencing the
++ * arguments. The call must not crash.
 + */
-+static void dm_test_dmub_hw_resume_initialized_dmub(struct kunit *test)
++static void dm_test_dmub_aux_fused_io_callback_null_args(struct kunit *test)
 +{
-+	struct amdgpu_device *adev = dm_test_alloc_adev_with_dc(test);
++	struct dmub_notification notify = {};
 +
-+	adev->dm.dmub_srv = dm_test_alloc_dmub_srv(test);
-+
-+	/* Must not crash. */
-+	dm_dmub_hw_resume(adev);
++	/* Must not crash; guard hits ASSERT (WARN_ON_ONCE) and returns. */
++	dm_dmub_aux_fused_io_callback(NULL, &notify);
 +}
 +
-+/**
-+ * dm_test_dmub_hw_resume_full_init - Test resume performs full init when uninitialized
-+ * @test: The KUnit test context
-+ *
-+ * When the fake DMUB service reports hardware not yet initialized, resume
-+ * should continue into a full dm_dmub_hw_init() and create the DC DMUB
-+ * server.
-+ */
-+static void dm_test_dmub_hw_resume_full_init(struct kunit *test)
-+{
-+	struct amdgpu_device *adev = dm_test_alloc_adev_with_dmub(test);
-+
-+	adev->dm.dmub_srv->hw_init = false;
-+
-+	dm_dmub_hw_resume(adev);
-+
-+	KUNIT_EXPECT_NOT_NULL(test, adev->dm.dc->ctx->dmub_srv);
-+}
-+
-+/**
-+ * dm_test_dmub_hw_resume_init_check_failed - Test resume handles a failed init check
-+ * @test: The KUnit test context
-+ *
-+ * When the DMUB service is not software-initialized, the init-state query
-+ * fails and resume continues into dm_dmub_hw_init(), which also fails; the
-+ * call must warn and return without crashing.
-+ */
-+static void dm_test_dmub_hw_resume_init_check_failed(struct kunit *test)
-+{
-+	struct amdgpu_device *adev = dm_test_alloc_adev_with_dmub(test);
-+
-+	adev->dm.dmub_srv->sw_init = false;
-+
-+	/* Must not crash. */
-+	dm_dmub_hw_resume(adev);
-+}
-+
-+/**
-+ * dm_test_dmub_hw_resume_auto_load_timeout - Test resume tolerates an auto-load timeout
-+ * @test: The KUnit test context
-+ *
-+ * When the DMUB reports hardware already initialized but the firmware never
-+ * signals ready, resume's auto-load wait times out and only warns; the call
-+ * must not crash.
-+ */
-+static void dm_test_dmub_hw_resume_auto_load_timeout(struct kunit *test)
-+{
-+	struct amdgpu_device *adev = dm_test_alloc_adev_with_dc(test);
-+
-+	adev->dm.dmub_srv = dm_test_alloc_dmub_srv(test);
-+	adev->dm.dmub_srv->hw_funcs.get_fw_status = dm_test_dmub_fw_not_ready;
-+
-+	/* Must not crash; auto-load times out and only warns. */
-+	dm_dmub_hw_resume(adev);
-+}
-+
- /* Tests for dm_dmub_sw_init() */
+ /* Tests for dm_get_default_ips_mode() */
  
  /**
-@@ -878,6 +951,10 @@ static struct kunit_case amdgpu_dm_dmub_tests[] = {
- 	KUNIT_CASE(dm_test_dmub_hw_init_dmcu_abm),
- 	/* dm_dmub_hw_resume() */
- 	KUNIT_CASE(dm_test_dmub_hw_resume_no_dmub_srv),
-+	KUNIT_CASE(dm_test_dmub_hw_resume_initialized_dmub),
-+	KUNIT_CASE(dm_test_dmub_hw_resume_full_init),
-+	KUNIT_CASE(dm_test_dmub_hw_resume_init_check_failed),
-+	KUNIT_CASE(dm_test_dmub_hw_resume_auto_load_timeout),
- 	/* dm_dmub_sw_init() */
+@@ -916,6 +932,39 @@ static void dm_test_init_microcode_unsupported_asic(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, dm_init_microcode(adev), 0);
+ }
+ 
++/* Tests for abort_fused_io() */
++
++/**
++ * dm_test_abort_fused_io_no_dmub_srv - Test fused IO abort is a safe no-op without DMUB service
++ * @test: The KUnit test context
++ *
++ * abort_fused_io() builds an abort command and submits it via
++ * dm_execute_dmub_cmd(); with no DC DMUB service the submission fails
++ * silently and the call must not crash.
++ */
++static void dm_test_abort_fused_io_no_dmub_srv(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc_context *ctx;
++	struct dmub_cmd_fused_request *req;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
++
++	req = kunit_kzalloc(test, sizeof(*req), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, req);
++
++	spin_lock_init(&adev->dm.dmub_lock);
++	ctx->driver_context = adev;
++	ctx->dmub_srv = NULL;
++
++	/* Must not crash. */
++	abort_fused_io(ctx, req);
++}
++
+ static struct kunit_case amdgpu_dm_dmub_tests[] = {
+ 	/* dm_register_dmub_notify_callback() */
+ 	KUNIT_CASE(dm_test_register_dmub_notify_callback_null_callback),
+@@ -930,6 +979,7 @@ static struct kunit_case amdgpu_dm_dmub_tests[] = {
+ 	/* dm_dmub_aux_fused_io_callback() */
+ 	KUNIT_CASE(dm_test_dmub_aux_fused_io_callback_copies_reply_and_completes),
+ 	KUNIT_CASE(dm_test_dmub_aux_fused_io_callback_max_ddc_line),
++	KUNIT_CASE(dm_test_dmub_aux_fused_io_callback_null_args),
+ 	/* dm_get_default_ips_mode() */
+ 	KUNIT_CASE(dm_test_get_default_ips_mode_dcn35),
+ 	KUNIT_CASE(dm_test_get_default_ips_mode_dcn351),
+@@ -959,6 +1009,8 @@ static struct kunit_case amdgpu_dm_dmub_tests[] = {
  	KUNIT_CASE(dm_test_dmub_sw_init_unsupported_asic),
  	/* dm_init_microcode() */
+ 	KUNIT_CASE(dm_test_init_microcode_unsupported_asic),
++	/* abort_fused_io() */
++	KUNIT_CASE(dm_test_abort_fused_io_no_dmub_srv),
+ 	{}
+ };
+ 
 -- 
 2.43.0
 
