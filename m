@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0+yyHb2PV2piXAAAu9opvQ
+	id Y3qLDr+PV2pkXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6D075EF34
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE8EC75EF3A
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=V+DPgz1t;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=QLgGaEd1;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DEEC10F0AA;
-	Wed, 15 Jul 2026 13:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3931410F0AB;
+	Wed, 15 Jul 2026 13:48:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010039.outbound.protection.outlook.com [52.101.46.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE9F10F0B9
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:42 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010040.outbound.protection.outlook.com [52.101.61.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29F3A10F0AC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M57ecNeDiTukFNnkSWNR/NdWdF7t3SpinD8kfqjJRntVBM8UyCKHFOFruzycU4FOE+1nEbw9gLCUsgIXzv3ftmJio5NYlXlHgNYZfYvTefHp46CXI9xECnbQi+O8U+o/FNNOTA5pWZv5lscDFGZXcngAtkD6Sp3HpppT03XYSffq7M0QeocrPWMEt4iMOqwkvZ5o6dii7nSl1GqPrKh4qV51OkzF7/YigdCdmhPHNytHyDe9MauP1md46nTERBm3ONfdv9bblFcq5wJMJrW05sv5p5IslV0RAi+k3JxsTj9Ynhw95uLQe6gyA8hIiA2cglVgE4qBUJ8+gMNzOau18w==
+ b=N9MYS82sK8uXlTlBg06H6ERvP3uwI1yPybq/zx6r/LyokrAwORk2iAXEIKlddVdFr7YKEcjfcoxaqUpw7FdT0ofsZ5YNxAvaGuxAOcOJ9/FiLMz+R8kQUoWYGjwfh+tlga6oeu1VIcLG4s2psNH7qrbOljhqN/2UeOThMHFeXLPfDj/O38A9GxBagWXzvuNr4GXMIrmdq6ttQBCm3rvh2Jkg+090Vj/dOmJ+OoZVS6dE0ZcnYShl56XKfVD7xf9a5x64uTRdd6OpJfjixgR3OvtakMNeS+32CQIIXN24QsWyF9V1KNXIotx9mNr5XWbMjy2G/9YKKV2bSEtjPktasQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kGESt3lFsWo/Q2DxSk64JITodyx4Ajn/bzMs+YzTNI0=;
- b=YRliqeVwOUgIEc6d1ok6/XfnPLH+TpjCTps8ngN92V5Uqws4II10vBokRbj3U/ytvIPiM9B8eXIFsuEtmpmrT66dToPGfCpgFfB/rUTi9PuvubO9UJbkymSLbeOYQN+2eog4o1ycrQ2AZgQsbi7NKz9Ji5F+xRLgzOKn/yCuRMBDgZf+bQg12+T/N872SIBtb2el+XPwxPSl1QsMr2IFo8Ofg6mvtIR30huD63rkmb4cBAriqWop3+lTigR89UufQydjRq9coKAeJFR5d/DOsNkhopHdrWx2zFzb1J5NftKhB2aJ/smRkPXQyJL3p8hcycKlm6b/V9x9uJBF32MQcA==
+ bh=rjhLdMbJ0O+XCkh1OhD+nh+d6RMzUuQFbPQNJDJ57BI=;
+ b=K8CsqT1EWqiw541d8ioK0p1aK5hk8jBc/qDqIHacr0TUmv9H3mNbj9naYUlpDhwXyrp0fNrwSlDOMRQNPrzV+TMLNfJFPgv5BZaxIcYmgL+bkN/+dGfnIOwerW0rN4gtA5bdb+ZDPuaApc1bkg4GHqggUaTg5L2pwp45PygpOc4FTFfeDMvX2y9j2M7xWJaw7chsOQa752X7Md6jTsAaMSqX0DzRWCW+caG/UM8puRG2hKWOUt9xSx74BpRtL501sWPQPL6Lp6H/YZ5EsBJcIilh+Ycg/lpBpM6HC6mw5WTHiO09WLEHOHlFv62WFFfRwMCwXTP9xZGP5cNrkNdCmw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kGESt3lFsWo/Q2DxSk64JITodyx4Ajn/bzMs+YzTNI0=;
- b=V+DPgz1tJARG/1Iqs/z8lILKKdUOT+RYFCMwq7ZVNbc3iBQADgxGATF2zCM6kle2KCZVbjRMCYqQ0b59VI25IMohrAdF1OMysaLKCQBbPKg0UFpEzHCeBQZ9D/ypARWRDJW7VPZVRXBqNxif3+4eD9bErGQEh2EesRzPRwcdDRI=
-Received: from BY5PR03CA0023.namprd03.prod.outlook.com (2603:10b6:a03:1e0::33)
- by PH8PR12MB6914.namprd12.prod.outlook.com (2603:10b6:510:1cb::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
- 2026 13:48:27 +0000
+ bh=rjhLdMbJ0O+XCkh1OhD+nh+d6RMzUuQFbPQNJDJ57BI=;
+ b=QLgGaEd1M4EMR1VSjeB8t6ZexqCAR4jpKrdOX3coaC4QxSLti6RBko1NaJWF2JkdAEDsnr9oPNiYxEECWHRsIZQ3RgX8Yck2ESfpnhF3qq267+vEC7HewNIQ9vMhgipCYMwUMPN7urN7nU80WP3yN6EmMZcj8TAinKEZnXw5nMs=
+Received: from BY5PR03CA0030.namprd03.prod.outlook.com (2603:10b6:a03:1e0::40)
+ by DM4PR12MB7576.namprd12.prod.outlook.com (2603:10b6:8:10c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
+ 2026 13:48:28 +0000
 Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
- (2603:10b6:a03:1e0:cafe::9e) by BY5PR03CA0023.outlook.office365.com
- (2603:10b6:a03:1e0::33) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:a03:1e0:cafe::99) by BY5PR03CA0030.outlook.office365.com
+ (2603:10b6:a03:1e0::40) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.10 via Frontend Transport; Wed,
- 15 Jul 2026 13:48:27 +0000
+ 15 Jul 2026 13:48:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,18 +57,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:48:26 +0000
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:48:28 +0000
 Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:48:21 -0500
+ 2026 08:48:25 -0500
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
  (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:48:20 -0500
+ 2026 08:48:24 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:48:17 -0500
+ Transport; Wed, 15 Jul 2026 08:48:21 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -79,10 +79,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Dominik Kaszewski
  <dominik.kaszewski@amd.com>
-Subject: [PATCH 55/70] drm/amd/display: Introduce program_perfmon hwss hook
- and BLS perfmon sequence
-Date: Wed, 15 Jul 2026 21:38:05 +0800
-Message-ID: <20260715134432.1975118-56-Wayne.Lin@amd.com>
+Subject: [PATCH 56/70] drm/amd/display: Wire probe commit path into
+ dc_update_state
+Date: Wed, 15 Jul 2026 21:38:06 +0800
+Message-ID: <20260715134432.1975118-57-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -91,29 +91,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|PH8PR12MB6914:EE_
-X-MS-Office365-Filtering-Correlation-Id: c8cf3096-e8ab-4152-c4b4-08dee277bf42
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|DM4PR12MB7576:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8fd358a2-6aee-4c44-57bf-08dee277bffc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|30052699003|1800799024|23010399003|36860700016|56012099006|5023799004|11063799006|10067099003|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: HG+F06+I5TIGY6nX+317NJunIMAQKUvpfp1+mDKcHXaco2FHgF1zQTmFJM14lFHimz6F9N9oS61i2/Z6A1TwlAcAPfrtozef0mqjkfEvnVXQGNoDi3IZQB/BPxjD5dKEDUGUx5sIjUsf/9r5JDoih9vPhYdKwQ1R5MuEENF7xVyZQm0D5hMU1yeAaEAtHVxcgU5oBEbCJg2D7TYMH9fJLO2jFrhhkAsS1vxf0pz6KLWpNoCXupwhNrjyxKBfccCQtp03vi5veeNWNgoEXJCBJhRR3m7ujtkVNFwTeB1YBDsnneSB9GJKp6VOPq3pvZM1cSDndaaYIwXKo6KsQ3lu89Za4Q5735xmAFUoAGJ1MjIJcf1zKtjgFPjjF+ljK7ptDqhLiN0Z5+/lHbuFwvXNZZpTQVUE7K9nV27xWns+yOdTv+QGEQaaILNx6rtd2BgIEAJeEDvP0lnB6YMQ9eorm7XqISI3Cl6y+GMR8VMSmdgdPPuXMPr1AsZ09OotoYYVrzNO3tCO/HE7zC47RY620ag30Yyydsv/88Uasbcpwh0rHCzCWzVQ3yZYOL2SqgrOJdwzd19y+T85usF8U2NkPEZT9HOc82esWd9BoRtSPBYbXVRAtNKx7VqjHR1o1UUAHJO/OI3FgcvKIqgmf78MtNCUahXcAffryEt+G6f+2NAAlWuYubKKItQ3Tbdty+hR0XLRYIHhooLzmmvLtIkvKw==
+ ARA:13230040|23010399003|36860700016|376014|1800799024|82310400026|6133799003|56012099006|5023799004|11063799006|18002099003|22082099003|10067099003|3023799007;
+X-Microsoft-Antispam-Message-Info: qjMMGsJBHJnklw0BxQQKSQGq118/DN3NvJCqpeXbXw8IC0WtBRf+IK/QbI03Pz2uiq2ljgk8bYLz2p4MmrnsjESURLukCct1tAKm6BS0OSgv0hhC0ZQC5+S7j6CVBx5Npnwt9dwVsSCUkqEpcHkl7e3p8h5gPxDD74NiBD2yzAyv6Bdc59ZM3tkdGhOGiIek6+a7LeaVevmSqnVQTQ2jVCAZOcLPuyzzwK+w7GNa6p3baNWOCwOgSxCwE0Zb3AeXOkK45uAKJ9HP2c7/oopyongnhedgquFIqb9df7+S6AAgT+IxUIguqZyWnVRhIP1j3uLGYTfZsPyotlSIVoHaEOzAFJQKgnjfm8vSWWOFsDUai7KeIKCzYq3L2Up22dhgeGYbyB28dD6ry2BqgSWPs/40+iupAduaqkweT3GeDvVXJjBvPiNSJerkOWiMgMTeGD6UMH3cPei7JhZ+qTYyDfL/5xrdt1q3DeBtn448Gf8p0Hplli8rY2P0/+4b+BywmTE7lHoa1MAweudT6ZMmsngwwDZ8Z2cXJADOP3NEODeKNC8ktqjPKQ1InoC1WTe3VoU+VYkkfcIWqioY6yyPukQOTp2MUOM6+hC/3aN5I4lJqBo4AhLqLv+RcCE9DZkDTX7UlRddw/iJ2IzXm9mD+L3g0vc6VlVhqEwgGcldnB+VNCscETYdHVziCwC6qTZH6mHmgb0L9gqJjbcgZMW8uw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(30052699003)(1800799024)(23010399003)(36860700016)(56012099006)(5023799004)(11063799006)(10067099003)(6133799003)(22082099003)(18002099003);
+ SFS:(13230040)(23010399003)(36860700016)(376014)(1800799024)(82310400026)(6133799003)(56012099006)(5023799004)(11063799006)(18002099003)(22082099003)(10067099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: aJ4ojwgzKaDqpkfklOWPhGs0lavpMZhpfYPK5Ss7K25A60HXihpyEZ6Mwk1HYjmQaXyBTgTz+8dSKk0IdVkabU7IU2cbHkw+VeHHM0elHRHMqH3EadQRukZSajZ4aqIB8NrlcREnWT7PFU2qgHU4D4oEWUJsEaWOW1BZIk2n+d0yZ2t5bFBY8sf281rQU2uKWFrp4iiwK40QJppFkT0dG3MEEGl59cy1R/K1omEUPTMBolo/DSKZTas2MTDn7gsgRr2UfMeO+qVYXeWITUIi8HhvQY64S3MuDRBTKL/2YsMIz/1jZjMPO1r1tdf48C9b5UVyBrXJcx7cASrJVTzlXJwsFV0uVJmPc2gs+oFRzJb2dVgfVoqDNYwrKm9B8kLmsigKjOInyHGwFoPO+mEmrvdiZschQJ+3tAtzo95W98DN1ch7otksyyjx7N/8DruX
+X-MS-Exchange-AntiSpam-MessageData-0: eEOmx2GnfTy1tCNAaV92EbrCSZebGfh8xccekmB5yZKBFOA6GpPA69Sc2vX/weEj/1PJlMnF+H6qCc85gAXhLTi+ZQMI9I3QhvKk7z3QezTYOVlIbwxu0XbMQAtiUA9te3dLFegFTCbzyKg0sBOxa/Lv1k/x0QoSUf9rsGH47aJ2jqSvpjgutnNK3AP3mkimRc++d4Uf8mncID+TW4eRrV9YsGnVX9K8Yh7uIl+xBSlgNVsQV4tp32ki/fQ2fqwI12uSgcT1SrKgsV8VgrUR/7XXQytRFIJaFGEc+dAn6n426YbS4EGAhLxUOc5QcxQ5pr5BKW/z6Lti4LAXx3ixBsuj4zSQzk+Bu7FbsOG2+pN8dF495A3uPftvq0Fv4XWiH802qEdtmxl/5qgPDhKtgTpT1PjyJCdJIfa1VNuf6Jzd9cqMF3lq+pD/L+7y7voC
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:48:26.9710 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8cf3096-e8ab-4152-c4b4-08dee277bf42
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:48:28.1894 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8fd358a2-6aee-4c44-57bf-08dee277bffc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6914
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7576
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,724 +154,795 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EF6D075EF34
+X-Rspamd-Queue-Id: AE8EC75EF3A
 X-Rspamd-Action: no action
 
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [Why]
-The hubbub perfmon peak-bandwidth path used a monolithic function
-combining counter configuration and enable in one call, and wrote results
-into a caller-supplied struct outside the dc_state model. A BLS-driven
-approach builds the measurement from stateless primitives, gates it to OTG
-frame boundaries, and stores results in dc_state.
+The dc_update_state commit interface and the dc_probe object model existed
+but were not connected: there was no path to validate, commit, and program
+a probe through the update pipeline, nor to read the result back. The
+measurement waits on OTG frame edges and must not block fast updates.
 
 [How]
-- Rename the peak-BW vtable members from "unbounded_bandwidth" to
-  "out_of_order_bandwidth" and split them into arm and start operations.
-- Add the full set of perfmon BLS primitives - param structs, union
-  members, enum entries, executors, and hwss_add_* builders - for reset,
-  arm, every start_measuring_* and every get_* operation.
-- Add dc_probe_status (valid, type, result union) plus probe_status[] to
-  dc_state.
-- Replace the measure_memory_qos hook with program_perfmon(dc, context),
-  which writes results into probe_status[].
-- dc_get_qos_info no longer calls the removed hook.
+- Move the per-commit scratch off dc_stream_state onto a dc-owned pool;
+  acquire at init, release on cleanup or prepare failure, serialized by the
+  DM global lock every commit path already holds.
+- dc_update_state drives stream commits, probe-only commits, or both through
+  one staged init/prepare/execute/cleanup loop with a null-arg guard. prepare
+  releases the scratch slot on failure; cleanup releases it on success.
+- Probe prepare installs the absolute probe set in place; execute calls the
+  perfmon programming hook in the unlocked window and latches results.
+- Add resource_validate_probe_set, a context-free achievability check shared
+  by dc_validate_global_state (full update) and probe prepare (probe-only).
+- dc_state_get_status gains a probe status class with a probe filter and a
+  by-type mapping; dc_validation_set gains probes/probe_count. Drop the dead
+  actual_* fields from struct dc_qos_info.
 
 Reviewed-by: Dominik Kaszewski <dominik.kaszewski@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  17 +-
- .../drm/amd/display/dc/core/dc_hw_sequencer.c | 337 ++++++++++++++++++
- .../gpu/drm/amd/display/dc/core/dc_state.c    |   1 +
- .../drm/amd/display/dc/hwss/hw_sequencer.h    | 191 +++++++++-
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  27 ++
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |  12 +-
- 6 files changed, 562 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 314 +++++++++++++-----
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c |   4 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  38 +++
+ .../gpu/drm/amd/display/dc/core/dc_state.c    |  11 +
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  22 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           | 122 ++++++-
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |  27 --
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |   4 +-
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |  56 ++--
+ .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |   6 -
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |   4 +
+ 11 files changed, 428 insertions(+), 180 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 3fa577a02df1..a3665c49a381 100644
+index a3665c49a381..2bd579340b64 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -8125,24 +8125,13 @@ void dc_log_preos_dmcub_info(const struct dc *dc)
- bool dc_get_qos_info(struct dc *dc, struct dc_qos_info *info)
+@@ -898,6 +898,32 @@ void dc_stream_set_static_screen_params(struct dc *dc,
+ 	dc->hwss.set_static_screen_control(pipes_affected, num_pipes_affected, params);
+ }
+ 
++static void dc_destruct_update_scratch_pool(struct dc *dc)
++{
++	unsigned int i;
++
++	for (i = 0; i < ARRAY_SIZE(dc->update_scratch_pool); i++) {
++		kfree(dc->update_scratch_pool[i]);
++		dc->update_scratch_pool[i] = NULL;
++		dc->update_scratch_in_use[i] = false;
++	}
++}
++
++static bool dc_construct_update_scratch_pool(struct dc *dc)
++{
++	unsigned int i;
++
++	for (i = 0; i < ARRAY_SIZE(dc->update_scratch_pool); i++) {
++		dc->update_scratch_pool[i] = kzalloc(
++				sizeof(struct dc_update_scratch_space), GFP_KERNEL);
++		if (!dc->update_scratch_pool[i])
++			return false;
++		dc->update_scratch_in_use[i] = false;
++	}
++
++	return true;
++}
++
+ static void dc_destruct(struct dc *dc)
  {
- 	const struct dc_clocks *clk = &dc->current_state->bw_ctx.bw.dcn.clk;
--	struct dc_measured_memory_qos measured = {};
- 	struct dc_requested_memory_qos requested = {};
+ 	// reset link encoder assignment table on destruct
+@@ -905,6 +931,8 @@ static void dc_destruct(struct dc *dc)
+ 			!dc->config.unify_link_enc_assignment)
+ 		link_enc_cfg_init(dc, dc->current_state);
+ 
++	dc_destruct_update_scratch_pool(dc);
++
+ 	if (dc->current_state) {
+ 		dc_state_release(dc->current_state);
+ 		dc->current_state = NULL;
+@@ -1148,6 +1176,11 @@ static bool dc_construct(struct dc *dc,
+ 		goto fail;
+ 	}
+ 
++	if (!dc_construct_update_scratch_pool(dc)) {
++		dm_error("%s: failed to create update scratch pool\n", __func__);
++		goto fail;
++	}
++
+ 	return true;
+ 
+ fail:
+@@ -3235,11 +3268,6 @@ static struct dc_update_descriptor check_update_surfaces_for_stream(
+ 	return overall_type;
+ }
+ 
+-/*
+- * dc_check_update_surfaces_for_stream() - Determine update type (fast, med, or full)
+- *
+- * See :c:type:`enum dc_update_type <dc_update_type>` for explanation of update types
+- */
+ /**
+  * dc_check_state_update - Classify a dc_state_update by locking / re-entrancy requirements.
+  * @check_config:  ASIC capabilities and display configuration context
+@@ -3247,7 +3275,8 @@ static struct dc_update_descriptor check_update_surfaces_for_stream(
+  *
+  * Determines whether the update requires a fast, medium, or full lock
+  * by inspecting the stream, stream_update, and surface_updates carried on
+- * the root object. Perfmon classification is reserved for a future slice.
++ * the root object. A probe update elevates the result to at least MED with
++ * the PROBE lock, so a probe-carrying commit takes the probe mutex.
+  *
+  * Return: dc_update_descriptor with update_type and lock_descriptor.
+  */
+@@ -3255,13 +3284,20 @@ struct dc_update_descriptor dc_check_state_update(
+ 		const struct dc_check_config *check_config,
+ 		struct dc_state_update *updates)
+ {
++	struct dc_update_descriptor desc = {0};
++
+ 	if (updates->stream_update)
+ 		stream_update_flags_clear(&updates->stream_update->stream->update_flags);
+ 	for (int i = 0; i < updates->surface_count; i++)
+ 		dc_pipe_update_bits_clear(&updates->surface_updates[i].surface->update_bits);
+ 
+-	return check_update_surfaces_for_stream(check_config, updates->surface_updates,
++	desc = check_update_surfaces_for_stream(check_config, updates->surface_updates,
+ 			updates->surface_count, updates->stream_update);
++
++	if (updates->probe_updates && updates->probe_updates->probe_count > 0)
++		elevate_update_type(&desc, UPDATE_TYPE_MED, LOCK_DESCRIPTOR_PROBE);
++
++	return desc;
+ }
+ 
+ /**
+@@ -3283,9 +3319,11 @@ struct dc_update_descriptor dc_check_update_surfaces_for_stream(
+ 		struct dc_stream_update *stream_update)
+ {
+ 	struct dc_state_update root = {
++		.stream          = stream_update ? stream_update->stream : NULL,
++		.stream_update   = stream_update,
+ 		.surface_updates = updates,
+ 		.surface_count   = surface_count,
+-		.stream_update   = stream_update,
++		.probe_updates   = NULL
+ 	};
+ 
+ 	return dc_check_state_update(check_config, &root);
+@@ -3704,13 +3742,6 @@ static bool full_update_required_weak(
+ 		const struct dc_stream_update *stream_update,
+ 		const struct dc_stream_state *stream);
+ 
+-struct pipe_split_policy_backup {
+-	bool dynamic_odm_policy;
+-	bool subvp_policy;
+-	enum pipe_split_policy mpc_policy;
+-	char force_odm[MAX_PIPES];
+-};
+-
+ static void backup_and_set_minimal_pipe_split_policy(struct dc *dc,
+ 		struct dc_state *context,
+ 		struct pipe_split_policy_backup *policy)
+@@ -6197,30 +6228,60 @@ static void clear_update_bits(struct dc_surface_update *srf_updates,
+ 			dc_pipe_update_bits_clear(&srf_updates[i].surface->update_bits);
+ }
+ 
++static struct dc_update_scratch_space *dc_update_scratch_acquire(struct dc *dc)
++{
++	unsigned int i;
++
++	for (i = 0; i < ARRAY_SIZE(dc->update_scratch_pool); i++) {
++		if (dc->update_scratch_in_use[i])
++			continue;
++
++		dc->update_scratch_in_use[i] = true;
++		return dc->update_scratch_pool[i];
++	}
++
++	/* TODO: add recoverable scratch acquisition failure handling. */
++	ASSERT(false);
++	return NULL;
++}
++
++static void dc_update_scratch_release(struct dc *dc,
++		struct dc_update_scratch_space *scratch)
++{
++	unsigned int i;
++
++	for (i = 0; i < ARRAY_SIZE(dc->update_scratch_pool); i++) {
++		if (dc->update_scratch_pool[i] == scratch) {
++			dc->update_scratch_in_use[i] = false;
++			return;
++		}
++	}
++}
++
+ /**
+  * dc_update_state - Commit an absolute dc_state_update.
+  * @dc:      DC structure
+  * @updates: root update object carrying stream, plane, and probe updates
+- *
+- * When stream is non-NULL the stream and its plane updates are committed via
+- * the init/prepare/execute/cleanup pipeline. Probe commit is reserved for a
+- * future slice. dc_update_planes_and_stream() is now a shim over this function.
+- *
+  * Return: true on success, false on failure.
+  */
+ bool dc_update_state(struct dc *dc, struct dc_state_update *updates)
+ {
+-	if (updates->stream != NULL) {
+-		struct dc_update_scratch_space *scratch = dc_update_state_init(dc, updates);
+-		bool more = true;
++	struct dc_update_scratch_space *scratch;
++	bool more = true;
+ 
+-		while (more) {
+-			if (!dc_update_state_prepare(scratch))
+-				return false;
++	if (!dc || !updates)
++		return false;
+ 
+-			dc_update_state_execute(scratch);
+-			more = dc_update_state_cleanup(scratch);
+-		}
++	scratch = dc_update_state_init(dc, updates);
++	if (!scratch)
++		return false;
++
++	while (more) {
++		if (!dc_update_state_prepare(scratch))
++			return false;
++
++		dc_update_state_execute(scratch);
++		more = dc_update_state_cleanup(scratch);
+ 	}
+ 
+ 	return true;
+@@ -8129,8 +8190,6 @@ bool dc_get_qos_info(struct dc *dc, struct dc_qos_info *info)
  
  	memset(info, 0, sizeof(*info));
  
--	// Check if measurement function is available
--	if (!dc->hwss.measure_memory_qos) {
--		return false;
--	}
--
--	dc->hwss.measure_memory_qos(dc, &measured);
--
--	info->actual_peak_bw_in_mbps    = measured.peak_bw_mbps;
--	info->actual_avg_bw_in_mbps     = measured.avg_bw_mbps;
--	info->actual_min_latency_in_ns  = measured.min_latency_ns;
--	info->actual_max_latency_in_ns  = measured.max_latency_ns;
--	info->actual_avg_latency_in_ns  = measured.avg_latency_ns;
--	info->dcn_bandwidth_ub_in_mbps  = (uint32_t)(clk->fclk_khz / 1000 * 64);
-+	/* TODO: remove the actual_* fields from struct dc_qos_info once all callers
-+	 * read measured QoS from dc_state probe_status instead of this struct. */
-+	info->dcn_bandwidth_ub_in_mbps = (uint32_t)(clk->fclk_khz / 1000 * 64);
+-	/* TODO: remove the actual_* fields from struct dc_qos_info once all callers
+-	 * read measured QoS from dc_state probe_status instead of this struct. */
+ 	info->dcn_bandwidth_ub_in_mbps = (uint32_t)(clk->fclk_khz / 1000 * 64);
  
  	if (dc->clk_mgr && dc->clk_mgr->funcs->get_requested_memory_qos) {
- 		dc->clk_mgr->funcs->get_requested_memory_qos(dc->clk_mgr, &requested);
+@@ -8156,38 +8215,6 @@ unsigned int dc_override_memory_bandwidth_request(
+ 			dc->clk_mgr, bw_mbps * 1000) / 1000;
+ }
+ 
+-enum update_v3_flow {
+-	UPDATE_V3_FLOW_INVALID,
+-	UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FAST,
+-	UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FULL,
+-	UPDATE_V3_FLOW_NEW_CONTEXT_SEAMLESS,
+-	UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_NEW,
+-	UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_CURRENT,
+-};
+-
+-struct dc_update_scratch_space {
+-	struct dc *dc;
+-	struct dc_surface_update *surface_updates;
+-	int surface_count;
+-	struct dc_stream_state *stream;
+-	struct dc_stream_update *stream_update;
+-	bool update_v3;
+-	bool do_clear_update_bits;
+-	enum dc_update_type update_type;
+-	struct dc_state *new_context;
+-	enum update_v3_flow flow;
+-	struct dc_state *backup_context;
+-	struct dc_state *intermediate_context;
+-	struct pipe_split_policy_backup intermediate_policy;
+-	struct dc_surface_update intermediate_updates[MAX_SURFACES];
+-	int intermediate_count;
+-};
+-
+-size_t dc_update_scratch_space_size(void)
+-{
+-	return sizeof(struct dc_update_scratch_space);
+-}
+-
+ static bool update_planes_and_stream_prepare_v2(
+ 		struct dc_update_scratch_space *scratch
+ )
+@@ -8354,6 +8381,19 @@ static bool update_planes_and_stream_prepare_v3(
+ 	return false;
+ }
+ 
++/**
++ * should_commit_intermediate_context - Does this flow commit a transient
++ * minimal-transition intermediate context
++ * @flow: the commit flow selected for this iteration
++ *
++ * Return: true if this iteration commits the intermediate context.
++ */
++static bool should_commit_intermediate_context(enum update_v3_flow flow)
++{
++	return flow == UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_NEW
++			|| flow == UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_CURRENT;
++}
++
+ static void update_planes_and_stream_execute_v3_commit(
+ 		const struct dc_update_scratch_space *scratch,
+ 		bool intermediate_update,
+@@ -8377,6 +8417,8 @@ static void update_planes_and_stream_execute_v3(
+ 		const struct dc_update_scratch_space *scratch
+ )
+ {
++	bool intermediate_context = should_commit_intermediate_context(scratch->flow);
++
+ 	switch (scratch->flow) {
+ 	case UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FAST:
+ 		commit_planes_for_stream_fast(
+@@ -8392,16 +8434,16 @@ static void update_planes_and_stream_execute_v3(
+ 
+ 	case UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FULL:
+ 	case UPDATE_V3_FLOW_NEW_CONTEXT_SEAMLESS:
+-		update_planes_and_stream_execute_v3_commit(scratch, false, false, true);
++		update_planes_and_stream_execute_v3_commit(scratch, false, intermediate_context, true);
+ 		break;
+ 
+ 	case UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_NEW:
+-		update_planes_and_stream_execute_v3_commit(scratch, false, true,
++		update_planes_and_stream_execute_v3_commit(scratch, false, intermediate_context,
+ 				scratch->dc->check_config.deferred_transition_state);
+ 		break;
+ 
+ 	case UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_CURRENT:
+-		update_planes_and_stream_execute_v3_commit(scratch, true, true, false);
++		update_planes_and_stream_execute_v3_commit(scratch, true, intermediate_context, false);
+ 		break;
+ 
+ 	case UPDATE_V3_FLOW_INVALID:
+@@ -8482,45 +8524,139 @@ struct dc_update_scratch_space *dc_update_state_init(
+ )
+ {
+ 	const enum dce_version version = dc->ctx->dce_version;
+-	struct dc_update_scratch_space *scratch = updates->stream->update_scratch;
+-
+-	*scratch = (struct dc_update_scratch_space){
+-		.dc = dc,
+-		.surface_updates = updates->surface_updates,
+-		.surface_count = updates->surface_count,
+-		.stream = updates->stream,
+-		.stream_update = updates->stream_update,
+-		.update_v3 = version >= DCN_VERSION_4_01 || version == DCN_VERSION_3_2 || version == DCN_VERSION_3_21,
+-		.do_clear_update_bits = version >= DCN_VERSION_1_0,
+-	};
++	struct dc_update_scratch_space *scratch = dc_update_scratch_acquire(dc);
++	bool has_stream_or_plane = updates->stream || updates->stream_update || updates->surface_updates;
++	bool has_probe = updates->probe_updates;
++	bool surface_without_stream = updates->surface_updates && !updates->stream;
++	bool stream_update_without_stream = updates->stream_update && !updates->stream;
++	bool bad_surface_count = updates->surface_count > 0 && !updates->surface_updates;
++
++	if (!scratch)
++		return NULL;
++
++	if (!has_stream_or_plane && !has_probe) {
++		dc_update_scratch_release(dc, scratch);
++		return NULL;
++	}
++
++	if (surface_without_stream || stream_update_without_stream || bad_surface_count) {
++		dc_update_scratch_release(dc, scratch);
++		return NULL;
++	}
++
++	memset(scratch, 0, sizeof(*scratch));
++
++	scratch->dc = dc;
++	scratch->surface_updates = updates->surface_updates;
++	scratch->surface_count = updates->surface_count;
++	scratch->stream = updates->stream;
++	scratch->stream_update = updates->stream_update;
++	scratch->probe_updates = updates->probe_updates;
++	scratch->update_v3 = version >= DCN_VERSION_4_01
++			|| version == DCN_VERSION_3_2
++			|| version == DCN_VERSION_3_21;
++	scratch->do_clear_update_bits = version >= DCN_VERSION_1_0;
++	scratch->new_context = NULL;
++	scratch->flow = UPDATE_V3_FLOW_INVALID;
+ 
+ 	return scratch;
+ }
+ 
+-bool dc_update_state_prepare(
+-		struct dc_update_scratch_space *scratch
+-)
++/**
++ * dc_update_probes_prepare - Commit the desired probe set into new_context.
++ * @scratch: commit scratch carrying the probe updates
++ *
++ * Return: true on success or when there is nothing to do; false when the
++ * desired set is unachievable.
++ */
++static bool dc_update_probes_prepare(struct dc_update_scratch_space *scratch)
++{
++	struct dc *dc = scratch->dc;
++	const struct dc_probe_updates *probe_updates = scratch->probe_updates;
++	uint8_t i;
++
++	if (!probe_updates)
++		return true;
++
++	if (resource_validate_probe_set(dc, probe_updates->probes,
++			(uint8_t)probe_updates->probe_count) != DC_OK)
++		return false;
++
++	if (!scratch->new_context)
++		scratch->new_context = dc->current_state;
++
++	for (i = 0; i < probe_updates->probe_count && i < MAX_PROBES; i++)
++		scratch->new_context->probes[i] = probe_updates->probes[i];
++	scratch->new_context->probe_count = probe_updates->probe_count;
++
++	return true;
++}
++
++/**
++ * dc_update_probes_execute - Program the committed probes.
++ * @scratch: commit scratch carrying the probe updates
++ *
++ */
++static void dc_update_probes_execute(const struct dc_update_scratch_space *scratch)
++{
++	struct dc *dc = scratch->dc;
++
++	if (should_commit_intermediate_context(scratch->flow))
++		return;
++
++	if (dc->hwss.program_perfmon)
++		dc->hwss.program_perfmon(dc, scratch->new_context);
++}
++
++bool dc_update_state_prepare(struct dc_update_scratch_space *scratch)
+ {
+-	return scratch->update_v3
+-			? update_planes_and_stream_prepare_v3(scratch)
+-			: update_planes_and_stream_prepare_v2(scratch);
++	if (scratch->stream) {
++		bool ok = scratch->update_v3
++				? update_planes_and_stream_prepare_v3(scratch)
++				: update_planes_and_stream_prepare_v2(scratch);
++
++		if (!ok)
++			goto release_scratch;
++	}
++
++	if (!dc_update_probes_prepare(scratch))
++		goto release_scratch;
++
++	return true;
++
++release_scratch:
++	/* execute and cleanup never run on this path, so release here. */
++	dc_update_scratch_release(scratch->dc, scratch);
++	return false;
+ }
+ 
+ void dc_update_state_execute(
+ 		const struct dc_update_scratch_space *scratch
+ )
+ {
+-	scratch->update_v3
+-			? update_planes_and_stream_execute_v3(scratch)
+-			: update_planes_and_stream_execute_v2(scratch);
++	if (scratch->stream)
++		scratch->update_v3
++				? update_planes_and_stream_execute_v3(scratch)
++				: update_planes_and_stream_execute_v2(scratch);
++
++	if (scratch->probe_updates)
++		dc_update_probes_execute(scratch);
+ }
+ 
+ bool dc_update_state_cleanup(
+ 		struct dc_update_scratch_space *scratch
+ )
+ {
+-	return scratch->update_v3
+-			? update_planes_and_stream_cleanup_v3(scratch)
+-			: update_planes_and_stream_cleanup_v2(scratch);
++	bool more = false;
++
++	if (scratch->stream)
++		more = scratch->update_v3
++				? update_planes_and_stream_cleanup_v3(scratch)
++				: update_planes_and_stream_cleanup_v2(scratch);
++
++	if (!more)
++		dc_update_scratch_release(scratch->dc, scratch);
++
++	return more;
+ }
+ 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index 6002175420a0..07ec00e11f2d 100644
+index 07ec00e11f2d..8b54bab98283 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -1495,6 +1495,48 @@ void hwss_execute_sequence(struct dc *dc,
- 		case HUBBUB_SOFT_RESET:
- 			hwss_hubbub_soft_reset(params);
- 			break;
-+		case HUBBUB_PERFMON_RESET:
-+			hwss_hubbub_perfmon_reset(params);
-+			break;
-+		case HUBBUB_PERFMON_ARM_OUT_OF_ORDER_BW:
-+			hwss_hubbub_perfmon_arm_out_of_order_bw(params);
-+			break;
-+		case HUBBUB_PERFMON_START_OUT_OF_ORDER_BW:
-+			hwss_hubbub_perfmon_start_out_of_order_bw(params);
-+			break;
-+		case HUBBUB_PERFMON_START_IN_ORDER_BW:
-+			hwss_hubbub_perfmon_start_in_order_bw(params);
-+			break;
-+		case HUBBUB_PERFMON_START_MEMORY_LATENCIES:
-+			hwss_hubbub_perfmon_start_memory_latencies(params);
-+			break;
-+		case HUBBUB_PERFMON_START_URGENT_ASSERTION_COUNT:
-+			hwss_hubbub_perfmon_start_urgent_assertion_count(params);
-+			break;
-+		case HUBBUB_PERFMON_START_URGENT_RAMP_LATENCY:
-+			hwss_hubbub_perfmon_start_urgent_ramp_latency(params);
-+			break;
-+		case HUBBUB_PERFMON_START_PREFETCH_DATA_SIZE:
-+			hwss_hubbub_perfmon_start_prefetch_data_size(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_OUT_OF_ORDER_BW:
-+			hwss_hubbub_perfmon_get_out_of_order_bw(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_IN_ORDER_BW:
-+			hwss_hubbub_perfmon_get_in_order_bw(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_MEMORY_LATENCIES:
-+			hwss_hubbub_perfmon_get_memory_latencies(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_URGENT_ASSERTION_COUNT:
-+			hwss_hubbub_perfmon_get_urgent_assertion_count(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_PREFETCH_DATA_SIZE:
-+			hwss_hubbub_perfmon_get_prefetch_data_size(params);
-+			break;
-+		case HUBBUB_PERFMON_GET_URGENT_RAMP_LATENCY:
-+			hwss_hubbub_perfmon_get_urgent_ramp_latency(params);
-+			break;
- 		case HUBP_CLK_CNTL:
- 			hwss_hubp_clk_cntl(params);
- 			break;
-@@ -3251,6 +3293,139 @@ void hwss_hubbub_soft_reset(union block_sequence_params *params)
- 		params->hubbub_soft_reset_params.hubbub_soft_reset(hubbub, reset);
- }
- 
-+void hwss_hubbub_perfmon_reset(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_reset_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.reset)
-+		hubbub->funcs->perfmon.reset(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_arm_out_of_order_bw(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_arm_out_of_order_bw_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.arm_measuring_out_of_order_bandwidth)
-+		hubbub->funcs->perfmon.arm_measuring_out_of_order_bandwidth(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_start_out_of_order_bw(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_out_of_order_bw_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_out_of_order_bandwidth)
-+		hubbub->funcs->perfmon.start_measuring_out_of_order_bandwidth(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_start_in_order_bw(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_in_order_bw_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_in_order_bandwidth)
-+		hubbub->funcs->perfmon.start_measuring_in_order_bandwidth(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_start_memory_latencies(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_memory_latencies_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_memory_latencies)
-+		hubbub->funcs->perfmon.start_measuring_memory_latencies(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_start_urgent_assertion_count(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_urgent_assertion_count_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_urgent_assertion_count)
-+		hubbub->funcs->perfmon.start_measuring_urgent_assertion_count(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_start_urgent_ramp_latency(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_urgent_ramp_latency_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_urgent_ramp_latency)
-+		hubbub->funcs->perfmon.start_measuring_urgent_ramp_latency(
-+				hubbub,
-+				&params->hubbub_perfmon_start_urgent_ramp_latency_params.latency_params);
-+}
-+
-+void hwss_hubbub_perfmon_start_prefetch_data_size(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_start_prefetch_data_size_params.hubbub;
-+
-+	if (hubbub && hubbub->funcs->perfmon.start_measuring_prefetch_data_size)
-+		hubbub->funcs->perfmon.start_measuring_prefetch_data_size(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_get_out_of_order_bw(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_get_out_of_order_bw_params.hubbub;
-+	uint32_t refclk_mhz  = params->hubbub_perfmon_get_out_of_order_bw_params.refclk_mhz;
-+	uint32_t *mbps       = params->hubbub_perfmon_get_out_of_order_bw_params.bandwidth_mbps;
-+	uint32_t *duration   = params->hubbub_perfmon_get_out_of_order_bw_params.duration_ns;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_out_of_order_bandwidth_mbps && mbps)
-+		*mbps = hubbub->funcs->perfmon.get_out_of_order_bandwidth_mbps(
-+				hubbub, refclk_mhz, duration);
-+}
-+
-+void hwss_hubbub_perfmon_get_in_order_bw(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub     = params->hubbub_perfmon_get_in_order_bw_params.hubbub;
-+	uint32_t refclk_mhz       = params->hubbub_perfmon_get_in_order_bw_params.refclk_mhz;
-+	uint32_t min_duration_ns  = params->hubbub_perfmon_get_in_order_bw_params.min_duration_ns;
-+	uint32_t *mbps            = params->hubbub_perfmon_get_in_order_bw_params.bandwidth_mbps;
-+	uint32_t *duration        = params->hubbub_perfmon_get_in_order_bw_params.duration_ns;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_in_order_bandwidth_mbps && mbps)
-+		*mbps = hubbub->funcs->perfmon.get_in_order_bandwidth_mbps(
-+				hubbub, refclk_mhz, min_duration_ns, duration);
-+}
-+
-+void hwss_hubbub_perfmon_get_memory_latencies(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_get_memory_latencies_params.hubbub;
-+	uint32_t refclk_mhz  = params->hubbub_perfmon_get_memory_latencies_params.refclk_mhz;
-+	struct hubbub_system_latencies *result = params->hubbub_perfmon_get_memory_latencies_params.result;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_memory_latencies_ns && result)
-+		hubbub->funcs->perfmon.get_memory_latencies_ns(
-+				hubbub, refclk_mhz, &result->min_latency_ns, &result->max_latency_ns, &result->avg_latency_ns);
-+}
-+
-+void hwss_hubbub_perfmon_get_urgent_assertion_count(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub   = params->hubbub_perfmon_get_urgent_assertion_count_params.hubbub;
-+	uint32_t refclk_mhz    = params->hubbub_perfmon_get_urgent_assertion_count_params.refclk_mhz;
-+	uint32_t *count         = params->hubbub_perfmon_get_urgent_assertion_count_params.assertion_count;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_urgent_assertion_count)
-+		hubbub->funcs->perfmon.get_urgent_assertion_count(
-+				hubbub, refclk_mhz, count, NULL, NULL);
-+}
-+
-+void hwss_hubbub_perfmon_get_prefetch_data_size(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub     = params->hubbub_perfmon_get_prefetch_data_size_params.hubbub;
-+	uint32_t *prefetch_size   = params->hubbub_perfmon_get_prefetch_data_size_params.prefetch_data_size;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_prefetch_data_size && prefetch_size)
-+		*prefetch_size = hubbub->funcs->perfmon.get_prefetch_data_size(hubbub);
-+}
-+
-+void hwss_hubbub_perfmon_get_urgent_ramp_latency(union block_sequence_params *params)
-+{
-+	struct hubbub *hubbub = params->hubbub_perfmon_get_urgent_ramp_latency_params.hubbub;
-+	uint32_t refclk_mhz  = params->hubbub_perfmon_get_urgent_ramp_latency_params.refclk_mhz;
-+	uint32_t *latency_ns = params->hubbub_perfmon_get_urgent_ramp_latency_params.latency_ns;
-+
-+	if (hubbub && hubbub->funcs->perfmon.get_urgent_ramp_latency_ns && latency_ns)
-+		*latency_ns = hubbub->funcs->perfmon.get_urgent_ramp_latency_ns(
-+				hubbub, refclk_mhz);
-+}
-+
- void hwss_hubp_clk_cntl(union block_sequence_params *params)
+@@ -3388,7 +3388,7 @@ void hwss_hubbub_perfmon_get_memory_latencies(union block_sequence_params *param
  {
- 	struct hubp *hubp = params->hubp_clk_cntl_params.hubp;
-@@ -4422,6 +4597,168 @@ void hwss_add_hubbub_soft_reset(struct block_sequence_state *seq_state,
- 	}
+ 	struct hubbub *hubbub = params->hubbub_perfmon_get_memory_latencies_params.hubbub;
+ 	uint32_t refclk_mhz  = params->hubbub_perfmon_get_memory_latencies_params.refclk_mhz;
+-	struct hubbub_system_latencies *result = params->hubbub_perfmon_get_memory_latencies_params.result;
++	struct dc_probe_latencies *result = params->hubbub_perfmon_get_memory_latencies_params.result;
+ 
+ 	if (hubbub && hubbub->funcs->perfmon.get_memory_latencies_ns && result)
+ 		hubbub->funcs->perfmon.get_memory_latencies_ns(
+@@ -4711,7 +4711,7 @@ void hwss_add_hubbub_perfmon_get_in_order_bw(struct block_sequence_state *seq_st
+ 
+ void hwss_add_hubbub_perfmon_get_memory_latencies(struct block_sequence_state *seq_state,
+ 		struct hubbub *hubbub, uint32_t refclk_mhz,
+-		struct hubbub_system_latencies *result)
++		struct dc_probe_latencies *result)
+ {
+ 	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
+ 		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_MEMORY_LATENCIES;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index d9492a460c2a..b970f152d67f 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -4383,6 +4383,40 @@ static bool add_all_planes_for_stream(
+ 	return true;
  }
  
-+void hwss_add_hubbub_perfmon_reset(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
++/**
++ * resource_validate_probe_set - Validate a probe descriptor set against the ASIC.
++ * @dc:          DC instance providing the HWSS capability hooks
++ * @probes:      desired probe descriptors
++ * @probe_count: number of valid entries in @probes
++ *
++ * Return: DC_OK if achievable, otherwise a DC error.
++ */
++enum dc_status resource_validate_probe_set(struct dc *dc,
++		const struct dc_probe_state *probes,
++		uint8_t probe_count)
 +{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_RESET;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_reset_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
++	uint8_t i;
++
++	if (probe_count == 0)
++		return DC_OK;
++
++	if (!dc->hwss.program_perfmon)
++		return DC_NOT_SUPPORTED;
++
++	if (probe_count > MAX_PROBES)
++		return DC_NOT_SUPPORTED;
++
++	for (i = 0; i < probe_count; i++) {
++		if (probes[i].target_state == DC_PROBE_MEASURING)
++			return DC_NOT_SUPPORTED;
++
++		if (probes[i].scope.type != DC_PROBE_SCOPE_GLOBAL)
++			return DC_NOT_SUPPORTED;
 +	}
++
++	return DC_OK;
 +}
 +
-+void hwss_add_hubbub_perfmon_arm_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_ARM_OUT_OF_ORDER_BW;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_arm_out_of_order_bw_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
+ /**
+  * dc_validate_with_context - Validate and update the potential new stream in the context object
+  *
+@@ -4754,6 +4788,10 @@ enum dc_status dc_validate_global_state(
+ 	if (result == DC_OK)
+ 		result = dc->res_pool->funcs->validate_bandwidth(dc, new_ctx, validate_mode);
+ 
++	if (result == DC_OK)
++		result = resource_validate_probe_set(dc, new_ctx->probes,
++				(uint8_t)new_ctx->probe_count);
 +
-+void hwss_add_hubbub_perfmon_start_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_OUT_OF_ORDER_BW;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_out_of_order_bw_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_start_in_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_IN_ORDER_BW;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_in_order_bw_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_start_memory_latencies(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_MEMORY_LATENCIES;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_memory_latencies_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_start_urgent_assertion_count(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_URGENT_ASSERTION_COUNT;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_urgent_assertion_count_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_start_urgent_ramp_latency(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub,
-+		const struct hubbub_urgent_latency_params *latency_params)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_URGENT_RAMP_LATENCY;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_urgent_ramp_latency_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_urgent_ramp_latency_params.latency_params =
-+				*latency_params;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_start_prefetch_data_size(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_START_PREFETCH_DATA_SIZE;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_start_prefetch_data_size_params.hubbub = hubbub;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *bandwidth_mbps, uint32_t *duration_ns)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_OUT_OF_ORDER_BW;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_out_of_order_bw_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_out_of_order_bw_params.refclk_mhz = refclk_mhz;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_out_of_order_bw_params.bandwidth_mbps = bandwidth_mbps;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_out_of_order_bw_params.duration_ns = duration_ns;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_in_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz, uint32_t min_duration_ns,
-+		uint32_t *bandwidth_mbps, uint32_t *duration_ns)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_IN_ORDER_BW;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_in_order_bw_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_in_order_bw_params.refclk_mhz = refclk_mhz;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_in_order_bw_params.min_duration_ns = min_duration_ns;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_in_order_bw_params.bandwidth_mbps = bandwidth_mbps;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_in_order_bw_params.duration_ns = duration_ns;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_memory_latencies(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		struct hubbub_system_latencies *result)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_MEMORY_LATENCIES;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_memory_latencies_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_memory_latencies_params.refclk_mhz = refclk_mhz;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_memory_latencies_params.result = result;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_urgent_assertion_count(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *assertion_count)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_URGENT_ASSERTION_COUNT;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_assertion_count_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_assertion_count_params.refclk_mhz = refclk_mhz;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_assertion_count_params.assertion_count = assertion_count;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_prefetch_data_size(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t *prefetch_data_size)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_PREFETCH_DATA_SIZE;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_prefetch_data_size_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_prefetch_data_size_params.prefetch_data_size = prefetch_data_size;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
-+void hwss_add_hubbub_perfmon_get_urgent_ramp_latency(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *latency_ns)
-+{
-+	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
-+		seq_state->steps[*seq_state->num_steps].func = HUBBUB_PERFMON_GET_URGENT_RAMP_LATENCY;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_ramp_latency_params.hubbub = hubbub;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_ramp_latency_params.refclk_mhz = refclk_mhz;
-+		seq_state->steps[*seq_state->num_steps].params.hubbub_perfmon_get_urgent_ramp_latency_params.latency_ns = latency_ns;
-+		(*seq_state->num_steps)++;
-+	}
-+}
-+
- void hwss_add_hubp_clk_cntl(struct block_sequence_state *seq_state,
- 		struct hubp *hubp,
- 		bool enable)
+ 	return result;
+ }
+ 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_state.c b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-index 03cb40e94d58..a62a435054c6 100644
+index a62a435054c6..5c5f38bc04de 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_state.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-@@ -362,6 +362,7 @@ void dc_state_destruct(struct dc_state *state)
- 	state->phantom_plane_count = 0;
+@@ -709,6 +709,17 @@ enum dc_status dc_state_get_status(struct dc_state_status *status,
+ 		}
+ 	}
  
- 	memset(state->probes, 0, sizeof(state->probes));
-+	memset(state->probe_status, 0, sizeof(state->probe_status));
- 	state->probe_count = 0;
++	if (options->types & DC_GET_STATUS_PROBE) {
++		status->probe_count = 0;
++		for (i = 0; i < options->state->probe_count; i++) {
++			if (options->probe &&
++					options->probe->type != options->state->probes[i].type)
++				continue;
++			status->probe_status[status->probe_count++] =
++					&options->state->probe_status[i];
++		}
++	}
++
+ 	return DC_OK;
+ }
  
- 	state->stream_mask = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index e8bf96a7d63a..6754da1e6ee2 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -32,6 +32,7 @@
- #include "inc/hw/link_encoder.h"
- #include "inc/core_status.h"
- #include "inc/hw/hw_shared.h"
-+#include "inc/hw/dchubbub.h"
- #include "dsc/dsc.h"
- #include "link_service_types.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+index a32b6eb796f7..562accfeff79 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
+@@ -194,7 +194,6 @@ static void dc_stream_free(struct kref *kref)
+ 	struct dc_stream_state *stream = container_of(kref, struct dc_stream_state, refcount);
  
-@@ -53,7 +54,6 @@ struct drr_params;
- struct dc_underflow_debug_data;
- struct dsc_optc_config;
- struct vm_system_aperture_param;
--struct dc_measured_memory_qos;
- struct stream_encoder;
- struct hpo_dp_stream_encoder;
- struct hpo_frl_stream_encoder;
-@@ -580,6 +580,77 @@ struct hubbub_soft_reset_params {
- 	bool reset;
+ 	dc_stream_destruct(stream);
+-	kfree(stream->update_scratch);
+ 	kfree(stream);
+ }
+ 
+@@ -219,13 +218,6 @@ struct dc_stream_state *dc_create_stream_for_sink(
+ 	if (stream == NULL)
+ 		goto fail;
+ 
+-	DC_RUN_WITH_PREEMPTION_ENABLED(stream->update_scratch =
+-					kzalloc((int32_t) dc_update_scratch_space_size(),
+-						GFP_ATOMIC));
+-
+-	if (stream->update_scratch == NULL)
+-		goto fail;
+-
+ 	if (dc_stream_construct(stream, sink) == false)
+ 		goto fail;
+ 
+@@ -234,10 +226,8 @@ struct dc_stream_state *dc_create_stream_for_sink(
+ 	return stream;
+ 
+ fail:
+-	if (stream) {
+-		kfree(stream->update_scratch);
++	if (stream)
+ 		kfree(stream);
+-	}
+ 
+ 	return NULL;
+ }
+@@ -250,16 +240,6 @@ struct dc_stream_state *dc_copy_stream(const struct dc_stream_state *stream)
+ 	if (!new_stream)
+ 		return NULL;
+ 
+-	// Scratch is not meant to be reused across copies, as might have self-referential pointers
+-	new_stream->update_scratch = kzalloc(
+-			(int32_t) dc_update_scratch_space_size(),
+-			GFP_KERNEL
+-	);
+-	if (!new_stream->update_scratch) {
+-		kfree(new_stream);
+-		return NULL;
+-	}
+-
+ 	if (new_stream->sink)
+ 		dc_sink_retain(new_stream->sink);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 2da89c7470de..0913fab7504c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -530,6 +530,7 @@ enum dc_lock_descriptor {
+ 	LOCK_DESCRIPTOR_STREAM = 0x1,
+ 	LOCK_DESCRIPTOR_LINK = 0x2,
+ 	LOCK_DESCRIPTOR_GLOBAL = 0x4,
++	LOCK_DESCRIPTOR_PROBE = 0x8,
  };
  
-+struct hubbub_perfmon_reset_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_arm_out_of_order_bw_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_start_out_of_order_bw_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_start_in_order_bw_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_start_memory_latencies_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_start_urgent_assertion_count_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_start_urgent_ramp_latency_params {
-+	struct hubbub *hubbub;
-+	struct hubbub_urgent_latency_params latency_params;
-+};
-+
-+struct hubbub_perfmon_start_prefetch_data_size_params {
-+	struct hubbub *hubbub;
-+};
-+
-+struct hubbub_perfmon_get_out_of_order_bw_params {
-+	struct hubbub *hubbub;
-+	uint32_t       refclk_mhz;
-+	uint32_t      *bandwidth_mbps;
-+	uint32_t      *duration_ns;
-+};
-+
-+struct hubbub_perfmon_get_in_order_bw_params {
-+	struct hubbub *hubbub;
-+	uint32_t       refclk_mhz;
-+	uint32_t       min_duration_ns;
-+	uint32_t      *bandwidth_mbps;
-+	uint32_t      *duration_ns;
-+};
-+
-+struct hubbub_perfmon_get_memory_latencies_params {
-+	struct hubbub                        *hubbub;
-+	uint32_t                              refclk_mhz;
-+	struct hubbub_system_latencies       *result;
-+};
-+
-+struct hubbub_perfmon_get_urgent_assertion_count_params {
-+	struct hubbub *hubbub;
-+	uint32_t       refclk_mhz;
-+	uint32_t      *assertion_count;
-+};
-+
-+struct hubbub_perfmon_get_prefetch_data_size_params {
-+	struct hubbub *hubbub;
-+	uint32_t      *prefetch_data_size;
-+};
-+
-+struct hubbub_perfmon_get_urgent_ramp_latency_params {
-+	struct hubbub *hubbub;
-+	uint32_t       refclk_mhz;
-+	uint32_t      *latency_ns;
-+};
-+
- struct hubp_clk_cntl_params {
- 	struct hubp *hubp;
- 	bool enable;
-@@ -1031,6 +1102,20 @@ union block_sequence_params {
- 	struct hubp_set_blank_en_params hubp_set_blank_en_params;
- 	struct hubp_disable_control_params hubp_disable_control_params;
- 	struct hubbub_soft_reset_params hubbub_soft_reset_params;
-+	struct hubbub_perfmon_reset_params hubbub_perfmon_reset_params;
-+	struct hubbub_perfmon_arm_out_of_order_bw_params hubbub_perfmon_arm_out_of_order_bw_params;
-+	struct hubbub_perfmon_start_out_of_order_bw_params hubbub_perfmon_start_out_of_order_bw_params;
-+	struct hubbub_perfmon_start_in_order_bw_params hubbub_perfmon_start_in_order_bw_params;
-+	struct hubbub_perfmon_start_memory_latencies_params hubbub_perfmon_start_memory_latencies_params;
-+	struct hubbub_perfmon_start_urgent_assertion_count_params hubbub_perfmon_start_urgent_assertion_count_params;
-+	struct hubbub_perfmon_start_urgent_ramp_latency_params hubbub_perfmon_start_urgent_ramp_latency_params;
-+	struct hubbub_perfmon_start_prefetch_data_size_params hubbub_perfmon_start_prefetch_data_size_params;
-+	struct hubbub_perfmon_get_out_of_order_bw_params hubbub_perfmon_get_out_of_order_bw_params;
-+	struct hubbub_perfmon_get_in_order_bw_params hubbub_perfmon_get_in_order_bw_params;
-+	struct hubbub_perfmon_get_memory_latencies_params hubbub_perfmon_get_memory_latencies_params;
-+	struct hubbub_perfmon_get_urgent_assertion_count_params hubbub_perfmon_get_urgent_assertion_count_params;
-+	struct hubbub_perfmon_get_prefetch_data_size_params hubbub_perfmon_get_prefetch_data_size_params;
-+	struct hubbub_perfmon_get_urgent_ramp_latency_params hubbub_perfmon_get_urgent_ramp_latency_params;
- 	struct hubp_clk_cntl_params hubp_clk_cntl_params;
- 	struct hubp_init_params hubp_init_params;
- 	struct hubp_set_vm_system_aperture_settings_params hubp_set_vm_system_aperture_settings_params;
-@@ -1258,6 +1343,20 @@ enum block_sequence_func {
- 	HUBBUB_PROGRAM_WATERMARKS,
- 	HUBBUB_PROGRAM_ARBITER,
- 	HUBBUB_PROGRAM_COMPBUF_SEGMENTS,
-+	HUBBUB_PERFMON_RESET,
-+	HUBBUB_PERFMON_ARM_OUT_OF_ORDER_BW,
-+	HUBBUB_PERFMON_START_OUT_OF_ORDER_BW,
-+	HUBBUB_PERFMON_START_IN_ORDER_BW,
-+	HUBBUB_PERFMON_START_MEMORY_LATENCIES,
-+	HUBBUB_PERFMON_START_URGENT_ASSERTION_COUNT,
-+	HUBBUB_PERFMON_START_URGENT_RAMP_LATENCY,
-+	HUBBUB_PERFMON_START_PREFETCH_DATA_SIZE,
-+	HUBBUB_PERFMON_GET_OUT_OF_ORDER_BW,
-+	HUBBUB_PERFMON_GET_IN_ORDER_BW,
-+	HUBBUB_PERFMON_GET_MEMORY_LATENCIES,
-+	HUBBUB_PERFMON_GET_URGENT_ASSERTION_COUNT,
-+	HUBBUB_PERFMON_GET_PREFETCH_DATA_SIZE,
-+	HUBBUB_PERFMON_GET_URGENT_RAMP_LATENCY,
- 	/* This must be the last value in this enum, add new ones above */
- 	HWSS_BLOCK_SEQUENCE_FUNC_COUNT
- };
-@@ -1591,14 +1690,16 @@ struct hw_sequencer_funcs {
- 			struct dc_underflow_debug_data *out_data);
- 
- 	/**
--	 * measure_memory_qos - Measure memory QoS metrics
--	 * @dc: DC structure
--	 * @qos: Pointer to dc_measured_memory_qos struct to populate with measured values
-+	 * program_perfmon - Program/transition perfmon probes for a commit.
-+	 * @dc:      DC structure
-+	 * @context: target state; probes, probe_count, and probe_status are
-+	 *           read from and written to this object
- 	 *
--	 * Populates the provided dc_measured_memory_qos struct with peak bandwidth, average bandwidth,
--	 * max latency, min latency, and average latency from hardware performance counters.
-+	 * Invoked during the execute phase of dc_update_state. The hook resolves
-+	 * each probe's transition by diffing @context against dc->current_state
-+	 * and latches MEASURED results into @context->probe_status.
- 	 */
--	void (*measure_memory_qos)(struct dc *dc, struct dc_measured_memory_qos *qos);
-+	void (*program_perfmon)(struct dc *dc, struct dc_state *context);
- 
+ struct dc_update_descriptor {
+@@ -1018,14 +1019,9 @@ struct dc_bounding_box_overrides {
  };
  
-@@ -1875,6 +1976,34 @@ void hwss_hubp_disable_control(union block_sequence_params *params);
+ struct dc_qos_info {
+-	uint32_t actual_peak_bw_in_mbps;
+ 	uint32_t qos_bandwidth_lb_in_mbps;
+-	uint32_t actual_avg_bw_in_mbps;
+ 	uint32_t calculated_avg_bw_in_mbps;
+-	uint32_t actual_max_latency_in_ns;
+-	uint32_t actual_min_latency_in_ns;
+ 	uint32_t qos_max_latency_ub_in_ns;
+-	uint32_t actual_avg_latency_in_ns;
+ 	uint32_t qos_avg_latency_ub_in_ns;
+ 	uint32_t dcn_bandwidth_ub_in_mbps;
+ 	uint32_t qos_max_bw_budget_in_mbps;
+@@ -1987,6 +1983,12 @@ struct dc {
+ 	struct dc_state *current_state;
+ 	struct resource_pool *res_pool;
  
- void hwss_hubbub_soft_reset(union block_sequence_params *params);
++	/**
++	 * @update_scratch_pool: Per-commit scratch buffers for dc_update_state.
++	 */
++	struct dc_update_scratch_space *update_scratch_pool[MAX_STREAMS + 1];
++	bool update_scratch_in_use[MAX_STREAMS + 1];
++
+ 	struct clk_mgr *clk_mgr;
  
-+void hwss_hubbub_perfmon_reset(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_arm_out_of_order_bw(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_out_of_order_bw(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_in_order_bw(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_memory_latencies(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_urgent_assertion_count(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_urgent_ramp_latency(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_start_prefetch_data_size(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_out_of_order_bw(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_in_order_bw(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_memory_latencies(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_urgent_assertion_count(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_prefetch_data_size(union block_sequence_params *params);
-+
-+void hwss_hubbub_perfmon_get_urgent_ramp_latency(union block_sequence_params *params);
-+
- void hwss_hubp_clk_cntl(union block_sequence_params *params);
- 
- void hwss_hubp_init(union block_sequence_params *params);
-@@ -2213,6 +2342,54 @@ void hwss_add_hubbub_soft_reset(struct block_sequence_state *seq_state,
- 		void (*hubbub_soft_reset)(struct hubbub *hubbub, bool reset),
- 		bool reset);
- 
-+void hwss_add_hubbub_perfmon_reset(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_arm_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_start_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_start_in_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_start_memory_latencies(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_start_urgent_assertion_count(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_start_urgent_ramp_latency(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub,
-+		const struct hubbub_urgent_latency_params *latency_params);
-+
-+void hwss_add_hubbub_perfmon_start_prefetch_data_size(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub);
-+
-+void hwss_add_hubbub_perfmon_get_out_of_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *bandwidth_mbps, uint32_t *duration_ns);
-+
-+void hwss_add_hubbub_perfmon_get_in_order_bw(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz, uint32_t min_duration_ns,
-+		uint32_t *bandwidth_mbps, uint32_t *duration_ns);
-+
-+void hwss_add_hubbub_perfmon_get_memory_latencies(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		struct hubbub_system_latencies *result);
-+
-+void hwss_add_hubbub_perfmon_get_urgent_assertion_count(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *assertion_count);
-+
-+void hwss_add_hubbub_perfmon_get_prefetch_data_size(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t *prefetch_data_size);
-+
-+void hwss_add_hubbub_perfmon_get_urgent_ramp_latency(struct block_sequence_state *seq_state,
-+		struct hubbub *hubbub, uint32_t refclk_mhz,
-+		uint32_t *latency_ns);
-+
- void hwss_add_hubp_clk_cntl(struct block_sequence_state *seq_state,
- 		struct hubp *hubp,
- 		bool enable);
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index c42626101cd7..ac3e9eaa569c 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -33,6 +33,7 @@
- #include "dc_bios_types.h"
- #include "mem_input.h"
- #include "hubp.h"
-+#include "hw/dchubbub.h"
- #include "mpc.h"
- #include "dwb.h"
- #include "hw/dio.h"
-@@ -609,6 +610,27 @@ struct dc_dmub_cmd {
- 	enum dm_dmub_wait_type wait_type;
+ 	/* Display Engine Clock levels */
+@@ -2114,25 +2116,107 @@ struct dc_state_update {
+ 	const struct dc_probe_updates *probe_updates;
  };
  
 +/**
-+ * struct dc_probe_status - DC-internal latched perfmon results for a probe.
-+ * @valid: true if a measurement was latched this commit.
++ * dc_check_state_update() - Classify an update without committing it.
++ * @check_config: DC check configuration
++ * @updates:      root update object to classify
++ *
++ * Return: descriptor indicating update type and required lock scope.
++ */
++struct dc_update_descriptor dc_check_state_update(
++		const struct dc_check_config *check_config,
++		struct dc_state_update *updates);
++
+ /**
+  * dc_update_state - Commit an absolute dc_state_update.
+  * @dc:      DC structure
+  * @updates: root update object carrying stream, plane, and probe updates
+  *
+- * When stream is non-NULL the stream and its plane updates are committed via
+- * the init/prepare/execute/cleanup pipeline. Probe commit is reserved for a
+- * future slice. dc_update_planes_and_stream() is now a shim over this function.
+- *
+  * Return: true on success, false on failure.
+  */
+ bool dc_update_state(struct dc *dc, struct dc_state_update *updates);
+ 
++struct dc_update_scratch_space;
++
++/**
++ * dc_update_state_init - Acquire and initialise a commit scratch buffer.
++ * @dc:      DC structure
++ * @updates: update descriptor; validated before the slot is acquired
++ *
++ * Return: a scratch slot on success, NULL if validation fails or the pool
++ * is exhausted. The slot must be released via dc_update_state_cleanup() on
++ * success, or automatically by dc_update_state_prepare() on failure.
++ */
++struct dc_update_scratch_space *dc_update_state_init(
++		struct dc *dc,
++		const struct dc_state_update *updates
++);
++
++/**
++ * dc_update_state_prepare - Prepare the commit under the global lock.
++ * @scratch: commit scratch from dc_update_state_init()
++ *
++ * On failure the scratch slot is released and false is returned; the caller
++ * must not call execute or cleanup.
++ */
++bool dc_update_state_prepare(struct dc_update_scratch_space *scratch);
++
++/**
++ * dc_update_state_execute - Program hardware; called without the global lock.
++ * @scratch: commit scratch from dc_update_state_init()
++ */
++void dc_update_state_execute(const struct dc_update_scratch_space *scratch);
++
++/**
++ * dc_update_state_cleanup - Finalise the commit and release the scratch slot.
++ * @scratch: commit scratch from dc_update_state_init()
++ *
++ * Must be called with the global lock held. Returns true if the caller must
++ * loop back to prepare (SEAMLESS continuation).
++ */
++bool dc_update_state_cleanup(struct dc_update_scratch_space *scratch);
++
++/**
++ * struct dc_probe_latencies - min/max/avg memory latency in ns.
++ * @max_latency_ns: maximum latency in nanoseconds
++ * @avg_latency_ns: average latency in nanoseconds
++ * @min_latency_ns: minimum latency in nanoseconds
++ */
++struct dc_probe_latencies {
++	uint32_t max_latency_ns;
++	uint32_t avg_latency_ns;
++	uint32_t min_latency_ns;
++};
++
++/**
++ * struct dc_probe_status - results for a probe.
++ * @valid: true if a measurement was latched.
 + * @type: type of the probe that produced this result.
 + * @u.bandwidth_mbps:         peak BW in Mbps (DC_PROBE_PEAK_MEM_BW).
 + * @u.latency:                min/max/avg memory latency in ns (DC_PROBE_MEM_LATENCY),
-+ *                            stored as struct hubbub_system_latencies.
++ *                            stored as struct dc_probe_latencies.
 + * @u.urgent_assertion_count: number of urgent assertion events (DC_PROBE_URGENT_ASSERTION_COUNT).
 + * @u.prefetch_data_size:     total prefetch data in bytes (DC_PROBE_PREFETCH_DATA_SIZE).
 + */
@@ -880,58 +951,259 @@ index c42626101cd7..ac3e9eaa569c 100644
 +	enum dc_probe_type         type;
 +	union {
 +		uint32_t bandwidth_mbps;
-+		struct hubbub_system_latencies latency;
++		struct dc_probe_latencies latency;
 +		uint32_t urgent_assertion_count;
 +		uint32_t prefetch_data_size;
 +	} u;
 +};
 +
  /**
-  * struct dc_state - The full description of a state requested by users
+  * enum dc_get_status_type - Bitmask selecting which status classes to populate.
+  * @DC_GET_STATUS_STREAM: populate stream_status fields in dc_state_status
++ * @DC_GET_STATUS_PROBE:  populate probe_status fields in dc_state_status
   */
-@@ -652,6 +674,11 @@ struct dc_state {
- 	 */
- 	struct dc_probe_state probes[MAX_PROBES];
- 
-+	/**
-+	 * @probe_status: Committed absolute set of probe results.
-+	 */
-+	struct dc_probe_status probe_status[MAX_PROBES];
-+
- 	/**
- 	 * @probe_count: Number of valid entries in @probes.
- 	 */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-index 4307362749f0..fd742b320128 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
-@@ -158,6 +158,12 @@ struct hubbub_urgent_latency_params {
- 	uint32_t bw_factor_x1000;
+ enum dc_get_status_type {
+ 	DC_GET_STATUS_STREAM = (1u << 0),
++	DC_GET_STATUS_PROBE  = (1u << 1),
  };
  
-+struct hubbub;
-+struct dchub_init_data;
-+struct dc_dcc_surface_param;
-+struct dc_surface_dcc_cap;
-+union dcn_watermark_set;
-+struct dml2_display_arb_regs;
- struct hubbub_funcs {
- 	void (*update_dchub)(
- 			struct hubbub *hubbub,
-@@ -274,9 +280,11 @@ struct hubbub_funcs {
- 				const struct hubbub_urgent_latency_params *params);
- 		uint32_t (*get_urgent_ramp_latency_ns)(struct hubbub *hubbub,
- 				uint32_t refclk_mhz);
--		void (*start_measuring_unbounded_bandwidth)(
-+		void (*arm_measuring_out_of_order_bandwidth)(
- 				struct hubbub *hubbub);
--		uint32_t (*get_unbounded_bandwidth_mbps)(struct hubbub *hubbub,
-+		void (*start_measuring_out_of_order_bandwidth)(
-+				struct hubbub *hubbub);
-+		uint32_t (*get_out_of_order_bandwidth_mbps)(struct hubbub *hubbub,
- 				uint32_t refclk_mhz, uint32_t *duration_ns);
- 		void (*start_measuring_in_order_bandwidth)(
- 				struct hubbub *hubbub);
+ /**
+@@ -2141,21 +2225,28 @@ enum dc_get_status_type {
+  * @types:  OR of dc_get_status_type values selecting classes to populate
+  * @stream: optional stream filter for DC_GET_STATUS_STREAM. NULL means
+  *          populate status for all streams in the state
++ * @probe:  optional probe filter for DC_GET_STATUS_PROBE. NULL means
++ *          populate status for all probes in the state
+  */
+ struct dc_get_status_options {
+ 	struct dc_state              *state;
+ 	uint32_t                      types;
+ 	const struct dc_stream_state *stream;
++	const struct dc_probe_state  *probe;
+ };
+ 
+ /**
+  * struct dc_state_status - Output-only status object from dc_state_get_status.
+  * @stream_count: number of valid entries in stream_status (DC_GET_STATUS_STREAM)
+  * @stream_status: pointers to live per-stream status entries
++ * @probe_count: number of valid entries in probe_status (DC_GET_STATUS_PROBE)
++ * @probe_status: pointers to live per-probe status entries
+  */
+ struct dc_state_status {
+ 	int                     stream_count;
+ 	struct dc_stream_status *stream_status[MAX_STREAMS];
++	int                     probe_count;
++	struct dc_probe_status *probe_status[MAX_PROBES];
+ };
+ 
+ /**
+@@ -2163,9 +2254,6 @@ struct dc_state_status {
+  * @status:  output object populated according to options->types
+  * @options: selects the source state, status classes to fill, and filters
+  *
+- * dc_state_get_stream_status() is a thin shim over this function with
+- * types = DC_GET_STATUS_STREAM and a stream filter.
+- *
+  * Return: DC_OK on success, DC_ERROR_UNEXPECTED if state is NULL.
+  */
+ enum dc_status dc_state_get_status(struct dc_state_status *status,
+@@ -2258,6 +2346,16 @@ struct dc_validation_set {
+ 	 * @stream_count: Number of active entries in @streams
+ 	 */
+ 	uint8_t stream_count;
++
++	/**
++	 * @probes: Global probe descriptors to validate alongside the streams
++	 */
++	struct dc_probe_state probes[MAX_PROBES];
++
++	/**
++	 * @probe_count: Number of active entries in @probes
++	 */
++	uint8_t probe_count;
+ };
+ 
+ bool dc_validate_boot_timing(const struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index a866688ad9db..4530f294f1c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -329,7 +329,6 @@ struct dc_stream_state {
+ 
+ 	enum dc_drr_trigger_mode drr_trigger_mode;
+ 
+-	struct dc_update_scratch_space *update_scratch;
+ 	bool firmware_controlled_hdr_info_packet;
+ };
+ 
+@@ -408,30 +407,8 @@ bool dc_update_planes_and_stream(struct dc *dc,
+ 		struct dc_stream_state *dc_stream,
+ 		struct dc_stream_update *stream_update);
+ 
+-struct dc_update_scratch_space;
+ struct dc_state_update;
+ 
+-size_t dc_update_scratch_space_size(void);
+-
+-struct dc_update_scratch_space *dc_update_state_init(
+-		struct dc *dc,
+-		const struct dc_state_update *updates
+-);
+-
+-// Locked, false is failed
+-bool dc_update_state_prepare(
+-		struct dc_update_scratch_space *scratch
+-);
+-
+-// Unlocked
+-void dc_update_state_execute(
+-		const struct dc_update_scratch_space *scratch
+-);
+-
+-// Locked, true if call again
+-bool dc_update_state_cleanup(
+-		struct dc_update_scratch_space *scratch
+-);
+ 
+ /*
+  * Set up surface attributes and associate to a stream
+@@ -516,10 +493,6 @@ void dc_enable_stereo(
+ /* Triggers multi-stream synchronization. */
+ void dc_trigger_sync(struct dc *dc, struct dc_state *context);
+ 
+-struct dc_update_descriptor dc_check_state_update(
+-		const struct dc_check_config *check_config,
+-		struct dc_state_update *updates);
+-
+ /* Shim: packs args into dc_state_update and calls dc_check_state_update(). */
+ struct dc_update_descriptor dc_check_update_surfaces_for_stream(
+ 		const struct dc_check_config *check_config,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+index 6754da1e6ee2..4549c435501a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
+@@ -631,7 +631,7 @@ struct hubbub_perfmon_get_in_order_bw_params {
+ struct hubbub_perfmon_get_memory_latencies_params {
+ 	struct hubbub                        *hubbub;
+ 	uint32_t                              refclk_mhz;
+-	struct hubbub_system_latencies       *result;
++	struct dc_probe_latencies            *result;
+ };
+ 
+ struct hubbub_perfmon_get_urgent_assertion_count_params {
+@@ -2377,7 +2377,7 @@ void hwss_add_hubbub_perfmon_get_in_order_bw(struct block_sequence_state *seq_st
+ 
+ void hwss_add_hubbub_perfmon_get_memory_latencies(struct block_sequence_state *seq_state,
+ 		struct hubbub *hubbub, uint32_t refclk_mhz,
+-		struct hubbub_system_latencies *result);
++		struct dc_probe_latencies *result);
+ 
+ void hwss_add_hubbub_perfmon_get_urgent_assertion_count(struct block_sequence_state *seq_state,
+ 		struct hubbub *hubbub, uint32_t refclk_mhz,
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+index ac3e9eaa569c..e87f9fd60bcb 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
+@@ -610,27 +610,6 @@ struct dc_dmub_cmd {
+ 	enum dm_dmub_wait_type wait_type;
+ };
+ 
+-/**
+- * struct dc_probe_status - DC-internal latched perfmon results for a probe.
+- * @valid: true if a measurement was latched this commit.
+- * @type: type of the probe that produced this result.
+- * @u.bandwidth_mbps:         peak BW in Mbps (DC_PROBE_PEAK_MEM_BW).
+- * @u.latency:                min/max/avg memory latency in ns (DC_PROBE_MEM_LATENCY),
+- *                            stored as struct hubbub_system_latencies.
+- * @u.urgent_assertion_count: number of urgent assertion events (DC_PROBE_URGENT_ASSERTION_COUNT).
+- * @u.prefetch_data_size:     total prefetch data in bytes (DC_PROBE_PREFETCH_DATA_SIZE).
+- */
+-struct dc_probe_status {
+-	bool                       valid;
+-	enum dc_probe_type         type;
+-	union {
+-		uint32_t bandwidth_mbps;
+-		struct hubbub_system_latencies latency;
+-		uint32_t urgent_assertion_count;
+-		uint32_t prefetch_data_size;
+-	} u;
+-};
+-
+ /**
+  * struct dc_state - The full description of a state requested by users
+  */
+@@ -774,4 +753,39 @@ struct dc_requested_memory_qos {
+ 	uint32_t max_bw_budget_in_mbps;
+ };
+ 
++enum update_v3_flow {
++	UPDATE_V3_FLOW_INVALID,
++	UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FAST,
++	UPDATE_V3_FLOW_NO_NEW_CONTEXT_CONTEXT_FULL,
++	UPDATE_V3_FLOW_NEW_CONTEXT_SEAMLESS,
++	UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_NEW,
++	UPDATE_V3_FLOW_NEW_CONTEXT_MINIMAL_CURRENT,
++};
++
++struct pipe_split_policy_backup {
++	bool dynamic_odm_policy;
++	bool subvp_policy;
++	enum pipe_split_policy mpc_policy;
++	char force_odm[MAX_PIPES];
++};
++
++struct dc_update_scratch_space {
++	struct dc *dc;
++	struct dc_surface_update *surface_updates;
++	int surface_count;
++	struct dc_stream_state *stream;
++	struct dc_stream_update *stream_update;
++	const struct dc_probe_updates *probe_updates;
++	bool update_v3;
++	bool do_clear_update_bits;
++	enum dc_update_type update_type;
++	struct dc_state *new_context;
++	enum update_v3_flow flow;
++	struct dc_state *backup_context;
++	struct dc_state *intermediate_context;
++	struct pipe_split_policy_backup intermediate_policy;
++	struct dc_surface_update intermediate_updates[MAX_SURFACES];
++	int intermediate_count;
++};
++
+ #endif /* _CORE_TYPES_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
+index fd742b320128..02bc0010e565 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dchubbub.h
+@@ -145,12 +145,6 @@ struct dcn_hubbub_reg_state {
+ 	uint32_t compbuf_ctrl;
+ };
+ 
+-struct hubbub_system_latencies {
+-	uint32_t max_latency_ns;
+-	uint32_t avg_latency_ns;
+-	uint32_t min_latency_ns;
+-};
+-
+ struct hubbub_urgent_latency_params {
+ 	uint32_t refclk_mhz;
+ 	uint32_t t_win_ns;
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+index b64ba8c0adb1..d3171e70e07c 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
+@@ -582,6 +582,10 @@ bool resource_validate_attach_surfaces(
+ 		struct dc_state *context,
+ 		const struct resource_pool *pool);
+ 
++enum dc_status resource_validate_probe_set(struct dc *dc,
++		const struct dc_probe_state *probes,
++		uint8_t probe_count);
++
+ enum dc_status resource_map_clock_resources(
+ 		const struct dc *dc,
+ 		struct dc_state *context,
 -- 
 2.43.0
 
