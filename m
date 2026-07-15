@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iAgEFCWZV2rfXgAAu9opvQ
+	id rwSGFSqZV2rhXgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 16:28:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 16:28:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA01F75F656
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 16:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D80A475F65E
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 16:28:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="nHbtbp/Y";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=MptPTAZr;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F4E10F0E7;
-	Wed, 15 Jul 2026 14:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3592010F0E9;
+	Wed, 15 Jul 2026 14:28:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012023.outbound.protection.outlook.com
- [40.107.200.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DE3F10F0E7
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 14:28:49 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010048.outbound.protection.outlook.com [52.101.46.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF6DE10F0EC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 14:28:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g9pqNv76y49kE6pTDcSbx4ZWdDlCf/9cybVj3jAsDCTZedKh6h9vvtUmJZi27YOAM/JLn/gNOw2faHkejT78ao20tf12YxE86BY3oT6SnPFxmzpXNckbktLOTO9SS31KL51FkXvYSe3fmbdTR/uJjIKk/XiPB8D7TZqq5wA660LhEjN7sBjYrhwVBHiIYL9NLuwxnj7brndmH0NCfWOVwMitAUou/iCbb6oynMzz/h9sxx7yw90cQkmBp7E56yZ6ziwsGMUo8uQMZHqNB267KM0OTuYheV/D3j/9IV/jnyOElt3ZEDpjxZpV0kIkOmQzdOud3U8H47lEq17CcLPdaA==
+ b=JcACpumFIjmByRguMlCRMJuqqM4H5SNRdXNIgjw7qhrTRCV9Us3yCR43YGZ7PaqPw0Fjyun+PZO1/Oo/Nt6kA2dRRsbZQoEqNvhabDDGsrpWI9qps2Ctt5BMh7kIi97xOWXl6QSzghkEPIM5xUCttYGfk4xVQHdVz54B3pqxq0JCkJaY7934Lt0u3V1IS8+tZkyFZjJV+XbpDQWpnqdLwuDU9rCRX1Pk0gRZy/Hpz9Nv9Uc4X85KKo9dDHxXJvkqKghM2hM/rDuN35iKuzbfFE9xbcrr6Yc/9Er6Cs7vFgFAxl6mHDiAV5+F2/UoiDjr4W4Zvnsc+Od65LZtR+Sx0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NbJWK6hqbXIWDn+CI+b1HtO1OgUcrbc8HMOpsOFqvuY=;
- b=Zj0wXP5Nqhscqvf9Gx1DyYjg+ALtpxpFzKmXGDKM/5ehNXLSO/sG6OSI9P5sbG9lKShOk81LsvDW7Ww9XMu+dkBd5xEo9BG6SSjciH2R/ZXwidikZX0aODFZbyfYux4AEVIg5CiqnKtUpSq/X7uld4W5QkRxONuUG11ZlR3/pDge5xNvyFVcw85Y0hTHImlzsNmr0CESqoqYkRgaYfMqvGfXh7GvBk1OxsYMLPHnPgNlptWdxqCroe6aZwKUsJtPhxQlP6LE/CzknIwJtxrYqBkOtXK1mwv1N3WcV+0FjN70R5+XHBBsoWvHR+UlBj85EAH9Nvl2x6oG4UxofxXjuQ==
+ bh=rZFRTumygpK5Hokk/JVlug6sw9eIjNskXw30PItwRR0=;
+ b=rQNbjO68XF2WcbO7E4NP2XGAz7RMBJXeykTNdSyBA5pGVkk5jylfzqSyXtcTfmYBjE4WcnIMd2pkXyuSHBENAH0aArJAjb08f2NkBihrFkE0P8CNNSBOS8mjt081VEJSHQK1zmkVG6YhshxhlHrNEIT8rMLrlzRGEBYLnA/jmQLJmuXqGnEozybG19Oyq4LukZAxF6swnHEpTla4Bzi1wbqx5mHiHfXdXdosyXWNCgleesWCWgGblcYzaNEsttDcqqnDPa6/g+2dmJxP1Bg8FnOfXQvynI2Sx11fCOlvrSjPBYkcBPXbHp8HVLqM70LpJlH506D4ZWCNwPC+r/Wpow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NbJWK6hqbXIWDn+CI+b1HtO1OgUcrbc8HMOpsOFqvuY=;
- b=nHbtbp/Y4DtulXLJSQ+bGDnVv4//95V+YJ2xv6oSipgnayA9LSKn9ePJGb9hkDqqpKoD2555bnxl5y8unLTCdTfDeUFzoL7x9ERNXGFmzxgTJ1OuECDRZuu7R/xnaItbQIcczxAUna4DAT+jqqzhhHe1HnPWTCERpmDY7mmhdvo=
-Received: from SJ0PR03CA0334.namprd03.prod.outlook.com (2603:10b6:a03:39c::9)
- by SN7PR12MB7132.namprd12.prod.outlook.com (2603:10b6:806:2a4::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.11; Wed, 15 Jul
- 2026 14:28:44 +0000
-Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
- (2603:10b6:a03:39c:cafe::ae) by SJ0PR03CA0334.outlook.office365.com
- (2603:10b6:a03:39c::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 14:28:44 +0000
+ bh=rZFRTumygpK5Hokk/JVlug6sw9eIjNskXw30PItwRR0=;
+ b=MptPTAZrhiLO0lKGRKIPc47sSLEGSFPMlurq+1eptco735SIefBTyeQtQj5VPDaWlTE862cHE+wlMFmhmPTSux0246szv1l9QU9hAsGQ1HvXjwa4dlzqEmw/eoiYMgoRm8YBJ49wdtTdAQPk8AsdZ7n6osfjbhv28USfSHE1HQs=
+Received: from SJ0PR05CA0031.namprd05.prod.outlook.com (2603:10b6:a03:33f::6)
+ by DS7PR12MB8346.namprd12.prod.outlook.com (2603:10b6:8:e5::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Wed, 15 Jul
+ 2026 14:28:45 +0000
+Received: from SJ5PEPF000001CC.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f:cafe::6) by SJ0PR05CA0031.outlook.office365.com
+ (2603:10b6:a03:33f::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.5 via Frontend Transport; Wed, 15
+ Jul 2026 14:28:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,57 +55,55 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SJ5PEPF000001CC.mail.protection.outlook.com (10.167.242.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 14:28:43 +0000
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 14:28:45 +0000
 Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
  satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Wed, 15 Jul 2026 09:28:40 -0500
+ 15.2.2562.41; Wed, 15 Jul 2026 09:28:43 -0500
 From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
  Deucher" <alexander.deucher@amd.com>
 CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>, Prike Liang <Prike.Liang@amd.com>, "Sunil
- Khatri" <sunil.khatri@amd.com>, Lazar Lijo <lijo.lazar@amd.com>
-Subject: [PATCH v5 2/4] drm/amdgpu: properly account for resets with user
- queues
-Date: Wed, 15 Jul 2026 19:58:22 +0530
-Message-ID: <20260715142824.3475418-3-srinivasan.shanmugam@amd.com>
+ <srinivasan.shanmugam@amd.com>
+Subject: [PATCH v5 3/4] drm/amdgpu: Signal QUEUE_RESET EVENTFD notifications
+Date: Wed, 15 Jul 2026 19:58:23 +0530
+Message-ID: <20260715142824.3475418-4-srinivasan.shanmugam@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260715142824.3475418-1-srinivasan.shanmugam@amd.com>
 References: <20260715142824.3475418-1-srinivasan.shanmugam@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|SN7PR12MB7132:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3a1dc6a-d765-4d49-f275-08dee27d5fc9
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CC:EE_|DS7PR12MB8346:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5999458d-414f-4d43-5177-08dee27d60d7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700016|1800799024|23010399003|82310400026|56012099006|11063799006|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: cHHf5fnuARtUkGMcAz+LikDaC9/xVLWkdHMKl4DmgUhs/c57BlqH6p3FMgPkTj2+owDj++ZLxHufY8HCw8T036uNGJjpk5gYHyl8nqujsDuul6BDDkPZBuqT0AC4D0tkYZ8dTfHoSbQUUV41LB48gHjmbh5yMRYNC0kh2UbXUBU+fnr5ex86Kjql50bE26oxM6k8sP8xrYY0XxgApgmbmZJCpmTq+bMLjqC/lbZzWTPPyGqff10wpGAXg8yXCcW43YO/YUlg/qgF9mbbobEgSQ+as5J9/7mOyJFtRsXpuz5/winVmLc2zbjTvEStHvpGCqM+lOF89qkzcZT5O3vyWMdrjydI/5nzCnnc8BJmiW7rwlZ8cqL7YQDxT6Um4H8eW8x8DyEUxeCbA7ZVJ+R6UyNy54EAj/oZHPIRLWlSRrtCHSzeE7keeeyhyK4MkGSCdkQcKBsHqm6E22svnzeeASqYoYTsm1Xh2sO/onnqWH0+tfRTEt0G2/cBpOVH+k1I7iVoTrhKaJ87QfLtwcKz5mEYxfJSAP5xA3bRHnNWJIS+wXFO3x6x/ZrqhjQcBL8hXU52NoBnQ3Imt4lgws6/g92mi/BRQRaaNojFjh6FqCPoiAw/b516rrZcrnNe1a34WF/1SPqBRTmh5CoCMGP7SICXyIM+37YTjkeWmdBX7ICU+blZQmN+pYSVSB2LBam8RgrLbE68BjibPveLeBXgXA==
+ ARA:13230040|82310400026|1800799024|36860700016|23010399003|376014|10067099003|56012099006|11063799006|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: HXLCvkbIwv2FI3fGrAEibubEQdU9tPG9cCnqJB4sHZuq5ubIE01Om0J9JEDbAm6UpUfJKOoTg3NsSrgO1B8q6ouDEkbjhNJe3pJB0D4YcnrGBjAprwOFEKASXLe5Kdq44KyH+nVL+0w2buGytYaOxCwPVgCW1wACxivtfHvQhmbOU857T+QBL+pemw8pgIXW7l/yaopZalZdz/+3DZlERXifFqqbTrUVpAb3Nu1wDuG8VgJBBjDjSp6MWB2QE8krP8KhdoPnUEhec4BqHmJo5wLDNCwMfTZvoiZCyu0v7HjPE8dVsFOz3Gu1o50bZgFU3WbmQzXcmnc7atJiol/62eLRNTrxnmti5xAwdVd5yQzOLulNJFiJWrZDknrqKbUouHSn0pkP9uRZwO3vgScRdXtXjehMyFEMPT4RSwP1RG2yS24lvKdu65NtFc2LN1+4uzw4rEv37tjnUf523gYLTGTBG/9mPrUkOo1fe494Et2dIMkxLlsTs2dcE0rjnNOGVBpeHrmIKJk2u7nA0BqJyL2Rh/h9V/HLLfMGZp0JLQHdt1CNKpbufOj8bRgCbBEHHJ9hDPX80QSegJHKtiNM2wrzTeY5bWQcRF+uyAFHwMsrefuNjw0N6myoiHVTvbzES+LIJsVnEt9cSapzzz+3h+Wplpmk337uh9oKemo5BsaJmu5T3ctXkKHcHysa6qSXw6Sd8B1NaDSSxwElasAT2g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700016)(1800799024)(23010399003)(82310400026)(56012099006)(11063799006)(10067099003)(18002099003)(22082099003);
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(23010399003)(376014)(10067099003)(56012099006)(11063799006)(6133799003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: N0+edDRy8Nyt1IueJlO6gWNXl/1/Cins/t+W6LUEwTShxF0pB4hwvTV4RUWv/Q56Oe2K6uS8X4bbTEJbz5ox15DeNz6X+Lc2Pb9F0jgBR77+bFkUUhMU2fkLf1C97qapDjk2U3ztGQ0ZYUf1Eo4qjk4YYrh8f7cE4gtVbJ0i1DH75mY6skx1rkodlth6iHRaa2aoZGYiCsw++yDfFNa/pNusPHYq0e0+VsliMigXVbfuOumjHZHt027sjOY7qGxwiQQw7XBRorVeaRLEL1jHkoRSaz343FDVZNHrTSN3PPcRiXawmNsMcMw3eIdHIQ+S6Kg2YhSL/a3+VZUc7uBS7U0PdBMOCmsC1Tz7MAg9DvCzLVl5XoB3q184CsrhyBv8pQzS7oc3lrrp1Pj9vDaPOgt52Z0zdLnonJIBVPyW7cno1nhcyefZX09B3xz3Wfno
+X-MS-Exchange-AntiSpam-MessageData-0: 6mE68zW7S1jN1WdUQZxmgGEvd4EdU49YiiMn7U0WFQn/OhHg2lXjhH/wsM64aFSnHdOpc35gwXRRM9Q0JlDpnSSarKA22nqFgU7TS42Ge+rB09+WXEpd8d8S8Rbfe/nfwVfVAauh0r7z6g8UKvsI6P0QXTQysZoVj2TnxaC2337IFJLW2bovIq+SfQ3VyK3QatfIQyZsub8iXt1Mn/dGyofi1kfd/qha6yeXi82Bq+3n4E4MgDKhgCLQDsEaRTCJQ7zkbfABlj23CNPgVlXP5E2689nmQpd8597+lpzZ7cH4UJO9Fa5wdX5E/Ze90j9Fee+UrWEfPWUJMQCEMVfN2MWro+wccBh8jZkwmYKX3KZE7eDPuVZI3mLskIPTEKcQjB8NkQLEuHBI5QOjTs2BVMiWHPOOWM1A6fVHUjM83LBwdj8TyR9bpND4Tn8IPPbp
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 14:28:43.7785 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3a1dc6a-d765-4d49-f275-08dee27d5fc9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 14:28:45.5440 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5999458d-414f-4d43-5177-08dee27d60d7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CC.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7132
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8346
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,172 +117,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,m:Prike.Liang@amd.com,m:sunil.khatri@amd.com,m:lijo.lazar@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA01F75F656
+X-Rspamd-Queue-Id: D80A475F65E
 X-Rspamd-Action: no action
 
-From: Alex Deucher <alexander.deucher@amd.com>
+Signal QUEUE_RESET EVENTFD subscriptions when hung user queues are
+detected.
 
-We need to increment the reset counter, force fence completion,
-and set the wedged event when a user queue is reset, but only
-for the guilty queue.  We don't want additional events for
-collateral damage.
+MES reports the doorbell indices of hung queues. Use the existing
+doorbell-to-queue mapping to resolve the affected queue without scanning
+all user queues.
 
-Only increment the reset counter and set the wedged event
-in the top level userq reset callers (both KGD and KFD).
-This aligns with how this is managed for kernel queue resets.
+Consolidate the queue state update, reset accounting, EVENTFD signaling,
+fence completion, and wedged event notification in a common helper. Use
+the helper for both the original guilty queue and additional affected
+queues.
 
-v2: fix task info refcount handling, align with
-    kfd error reporting.
+EVENTFD remains notification-only.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Cc: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Cc: Prike Liang <Prike.Liang@amd.com>
-Cc: Sunil Khatri <sunil.khatri@amd.com>
-Cc: Lazar Lijo <lijo.lazar@amd.com>
-Reviewed-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+v2: (per Christian)
+ - Use the doorbell xarray to look up affected queues instead of scanning
+   all queues.
+ - Move queue reset handling into amdgpu_userq.c.
+ - Consolidate queue state updates, EVENTFD signaling, and fence
+   completion in a single helper.
+
+v3: Rebase only.
+
+v4: (per Alex)
+ - Rebase on Alex's "drm/amdgpu/userq: properly account for resets".
+ - Preserve the reset counter update in the common hung queue helper.
+ - Use amdgpu_userq_handle_hung_queue() for both successful queue reset
+   paths.
+
+v5: (per Alex)
+ - Rebase on Alex's v2 "drm/amdgpu: properly account for resets with
+   user queues".
+ - Keep gpu_reset_counter and drm_dev_wedged_event() in the top-level
+   guilty-queue reset path.
+ - Limit the common helper to queue state, fence completion, and
+   QUEUE_RESET EVENTFD signaling.
+ - Continue to notify both the guilty queue and collateral queues.
+
+Suggested-by: Christian König <christian.koenig@amd.com>
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Acked-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c      | 18 +++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c     |  2 --
- .../drm/amd/amdkfd/kfd_device_queue_manager.c  | 17 ++++++++++++++++-
- 3 files changed, 33 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 41 ++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 75 +++++++++++++++-------
+ 3 files changed, 87 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index ab3ef3a9f655..20bc15ad55f4 100644
+index 20bc15ad55f4..cc30e07a4aa4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -144,6 +144,8 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
- 	struct amdgpu_device *adev = uq_mgr->adev;
- 	const struct amdgpu_userq_funcs *userq_funcs =
- 		adev->userq_funcs[queue->queue_type];
-+	struct drm_wedge_task_info *info = NULL;
-+	struct amdgpu_task_info *ti = NULL;
- 	bool gpu_reset = false;
+@@ -135,6 +135,31 @@ static void amdgpu_userq_mgr_reset_work(struct work_struct *work)
+ 	amdgpu_device_gpu_recover(adev, NULL, &reset_context);
+ }
  
- 	if (unlikely(adev->debug_disable_gpu_ring_reset)) {
-@@ -158,6 +160,14 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
++/**
++ * amdgpu_userq_handle_hung_queue - handle a successfully reset hung queue
++ * @queue: affected user queue
++ *
++ * Mark the queue as hung, force-complete its fences, and notify matching
++ * QUEUE_RESET EVENTFD subscribers.
++ *
++ * Device-level reset accounting and wedged-event notification are handled
++ * separately by the top-level guilty-queue reset path.
++ */
++void
++amdgpu_userq_handle_hung_queue(struct amdgpu_usermode_queue *queue)
++{
++	struct amdgpu_eventfd_mgr *eventfd_mgr;
++
++	queue->state = AMDGPU_USERQ_STATE_HUNG;
++
++	amdgpu_userq_fence_driver_force_completion(queue);
++
++	eventfd_mgr = amdgpu_userq_eventfd_mgr(queue->userq_mgr);
++	amdgpu_eventfd_signal(eventfd_mgr,
++			      DRM_AMDGPU_EVENT_TYPE_QUEUE_RESET,
++			      queue);
++}
++
+ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
+ {
+ 	struct amdgpu_usermode_queue *queue =
+@@ -155,7 +180,7 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
+ 
+ 	/*
+ 	 * If GPU recovery feature is disabled system-wide,
+-	 * skip all reset detection logic
++	 * skip all reset detection logic.
+ 	 */
  	if (!amdgpu_gpu_recovery)
  		return;
- 
-+	if (queue->vm && queue->vm->pasid) {
-+		ti = amdgpu_vm_get_task_info_pasid(adev, queue->vm->pasid);
-+		if (ti) {
-+			amdgpu_vm_print_task_info(adev, ti);
-+			info = &ti->task;
-+		}
-+	}
-+
- 	if (amdgpu_userq_is_reset_type_supported(adev, queue->queue_type,
- 						 AMDGPU_RESET_TYPE_PER_QUEUE)) {
- 		int r;
-@@ -167,11 +177,17 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
+@@ -177,21 +202,25 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
  							 queue, NULL, NULL);
  		else
  			r = userq_funcs->reset(queue);
--		if (r)
-+		if (r) {
++
+ 		if (r) {
  			gpu_reset = true;
-+		} else {
-+			atomic_inc(&adev->gpu_reset_counter);
-+			amdgpu_userq_fence_driver_force_completion(queue);
-+			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
-+		}
+ 		} else {
+ 			atomic_inc(&adev->gpu_reset_counter);
+-			amdgpu_userq_fence_driver_force_completion(queue);
+-			drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
++			amdgpu_userq_handle_hung_queue(queue);
++			drm_dev_wedged_event(adev_to_drm(adev),
++					     DRM_WEDGE_RECOVERY_NONE, info);
+ 		}
  	} else {
  		gpu_reset = true;
  	}
-+	amdgpu_vm_put_task_info(ti);
++
+ 	amdgpu_vm_put_task_info(ti);
  
  	/*
- 	 * Don't schedule the work here! Scheduling or queue work from one reset
+-	 * Don't schedule the work here! Scheduling or queue work from one reset
+-	 * handler to another is illegal if you don't take extra precautions!
++	 * Don't schedule the work here! Scheduling or queue work from one
++	 * reset handler to another is illegal if you don't take extra
++	 * precautions.
+ 	 */
+ 	if (gpu_reset)
+ 		amdgpu_userq_mgr_reset_work(&queue->userq_mgr->reset_work);
+@@ -258,8 +287,6 @@ void amdgpu_userq_process_fence_irq(struct amdgpu_device *adev, u32 doorbell)
+ 	xa_unlock_irqrestore(xa, flags);
+ }
+ 
+-
+-
+ int amdgpu_userq_input_va_validate(struct amdgpu_device *adev,
+ 				   struct amdgpu_usermode_queue *queue,
+ 				   u64 addr, u64 expected_size,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+index b69621311b80..fa4df8d135eb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+@@ -180,6 +180,7 @@ void amdgpu_userq_pre_reset(struct amdgpu_device *adev);
+ int amdgpu_userq_post_reset(struct amdgpu_device *adev, bool vram_lost);
+ void amdgpu_userq_start_hang_detect_work(struct amdgpu_usermode_queue *queue);
+ void amdgpu_userq_process_fence_irq(struct amdgpu_device *adev, u32 doorbell);
++void amdgpu_userq_handle_hung_queue(struct amdgpu_usermode_queue *queue);
+ 
+ /*
+  * CP packs the per-process doorbell_id of the queue in
 diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index 3fad95199e0c..3d27d2aa2cd0 100644
+index 3d27d2aa2cd0..4eeac5a664bc 100644
 --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
 +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -258,9 +258,7 @@ int mes_userq_reset_queue(struct amdgpu_device *adev,
- 				r = mes_userq_unmap(uq);
- 				if (r)
- 					return r;
--				atomic_inc(&adev->gpu_reset_counter);
- 				amdgpu_userq_fence_driver_force_completion(uq);
--				drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, NULL);
- 				break;
- 			}
- 		}
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index f6a749fbdd8e..ebab66e1a6c1 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -448,6 +448,9 @@ int kfd_reset_queue_mes(struct device_queue_manager *dqm, int queue_type,
- static int reset_queues_mes(struct device_queue_manager *dqm, struct queue *q)
+@@ -26,6 +26,7 @@
+ #include "amdgpu_gfx.h"
+ #include "mes_userqueue.h"
+ #include "amdgpu_userq_fence.h"
++#include "amdgpu_userq_internal.h"
+ #include "amdgpu_cwsr.h"
+ 
+ #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
+@@ -238,32 +239,60 @@ int mes_userq_reset_queue(struct amdgpu_device *adev,
+ 			  unsigned int queue,
+ 			  unsigned int db)
  {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)dqm->dev->adev;
-+	struct drm_wedge_task_info *info = NULL;
-+	struct amdgpu_task_info *ti = NULL;
-+	struct kfd_process_device *pdd;
- 	unsigned int num_hung = 0;
- 	int r = 0;
- 	struct mes_remove_queue_input queue_input;
-@@ -476,13 +479,25 @@ static int reset_queues_mes(struct device_queue_manager *dqm, struct queue *q)
- 	r = amdgpu_gfx_reset_mes_compute(adev, NULL, NULL, NULL, &num_hung, &queue_input);
- 	if (r)
- 		goto fail;
-+	pdd = kfd_get_process_device_data(q->device, q->process);
-+	if (pdd) {
-+		ti = amdgpu_vm_get_task_info_pasid(adev, pdd->pasid);
-+		if (ti) {
-+			amdgpu_vm_print_task_info(adev, ti);
-+			info = &ti->task;
-+		}
-+	}
++	struct xarray *xa = &adev->userq_doorbell_xa;
+ 	struct amdgpu_usermode_queue *uq;
+ 	bool use_mmio = adev->gfx.mec.use_mmio_for_reset;
+-	unsigned long uq_id;
+-	int r;
++	unsigned long flags;
++	int r = 0;
  
- 	dqm->detect_hang_count = num_hung;
- 	/* When MES doesn't detect any queue hang, no reset happens. Don't signal reset
- 	 * event.
- 	 */
--	if (dqm->detect_hang_count)
-+	if (dqm->detect_hang_count) {
- 		kfd_signal_reset_event(dqm->dev);
-+		atomic_inc(&adev->gpu_reset_counter);
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE, info);
-+	}
-+	amdgpu_vm_put_task_info(ti);
+-	xa_for_each(&adev->userq_doorbell_xa, uq_id, uq) {
+-		if (uq->queue_type == queue_type) {
+-			if (uq == guilty_uq)
+-				continue;
+-			if (uq->doorbell_index == db) {
+-				uq->state = AMDGPU_USERQ_STATE_HUNG;
+-				if (use_mmio)
+-					r = amdgpu_mes_reset_queue_mmio(adev, queue_type, 0, 1, pipe, queue, 0);
+-				else
+-					r = amdgpu_mes_reset_user_queue(adev, queue_type, db, 0);
+-				if (r)
+-					return r;
+-				r = mes_userq_unmap(uq);
+-				if (r)
+-					return r;
+-				amdgpu_userq_fence_driver_force_completion(uq);
+-				break;
+-			}
+-		}
+-	}
+-	return 0;
++	/*
++	 * Resolve the doorbell directly to the affected queue instead of
++	 * scanning all user queues.
++	 */
++	xa_lock_irqsave(xa, flags);
++
++	uq = xa_load(xa, db);
++	if (uq)
++		kref_get(&uq->refcount);
++
++	xa_unlock_irqrestore(xa, flags);
++
++	if (!uq)
++		return 0;
++
++	/*
++	 * The guilty queue is reset and notified separately by the caller.
++	 */
++	if (uq == guilty_uq)
++		goto out_put_queue;
++
++	if (uq->queue_type != queue_type)
++		goto out_put_queue;
++
++	if (use_mmio)
++		r = amdgpu_mes_reset_queue_mmio(adev, queue_type,
++						0, 1, pipe, queue, 0);
++	else
++		r = amdgpu_mes_reset_user_queue(adev, queue_type, db, 0);
++
++	if (r)
++		goto out_put_queue;
++
++	r = mes_userq_unmap(uq);
++	if (r)
++		goto out_put_queue;
++
++	/*
++	 * Handle the collateral queue itself. Device-level reset accounting
++	 * and the wedged event are emitted only by the top-level guilty-queue
++	 * recovery path.
++	 */
++	amdgpu_userq_handle_hung_queue(uq);
++
++out_put_queue:
++	amdgpu_userq_put(uq);
++
++	return r;
+ }
  
- fail:
- 	dqm->detect_hang_count = 0;
+ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
 -- 
 2.34.1
 
