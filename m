@@ -2,69 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g+P7Hq6PV2pSXAAAu9opvQ
+	id 2q4wOraPV2pdXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B1C75EF00
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6064475EF24
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=nWM1yvxf;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=mXRuX89S;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A572C10F0A3;
-	Wed, 15 Jul 2026 13:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E634910F0A6;
+	Wed, 15 Jul 2026 13:48:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012001.outbound.protection.outlook.com [52.101.43.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C04E010F0A2
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:27 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010041.outbound.protection.outlook.com
+ [40.93.198.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5590110F0A6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eKJCVY+NRDPQ75UDhExynB0Fk3Vh/yx5C2O7Dtj6nP+K6mq6xIOj+skV4wtnP3ga8zwnjmBqwXGNzNAG6pSRICgudefWwzQG1884Rwlj603hIEdYJQi4zFaPj5oGLI7GNRNDTZ7XOlT/vKcbdg7oEMfGuYhq0sILJzwxsWcUtDRv6Jd/k+1yWF2gXYGb6h5A3PmSg3CJH7F3mi2AFfA6aC7s3/EUpVwKeQWqEtr5Qjb/6X3mOLT3GAFv1Ge6dTKl0WHYJvao6TP7hf/KO18iRfCIEa5gpC7SwVFt3PUXsp6YbCbgB4+OnhuTg42b+XK+hHFP9+/jPMSUyUlS8osXzg==
+ b=HlBaHt9tL1uUPahL3fcq6ci2OK3Org9de1i75dpcVsT67VM+9ldAOXPYerItE7KKY5Oy+hciaxotNe+Gbfzf0/2924PrVU5fVCb2GQHMDhx8NekGLvglBeArQJbSF0dkaqTrSMlCvOY+fNuaMIS/wfksKGk4PULlWsqhknsEcOpKalGi5V9hlLOrVnfrw5XDDu3scGibNhNurLdYnRUqcjDZvSm7mVcTndCpQFRfOumDy+7WJNeK+EKuKjO2RHfPfzNbIUTCha6+xNIhgXYhw4puquxzbnBVul+5qVqX+PCHmBMT2+hQ1Hzth4LFCYYcIEnrY8pjcikMkI3C/WUUaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=luy8he4KfTaIXtiO4BmthhehfhpztQ2wx8e4GOaJmLQ=;
- b=WtyhP+evfCpRJN9hMecHtf0WwwwqPAX3aCgtIePKwBxy0xh6zhktuKMtKXALYUXUsIeipZSerWQApBkKW8nQ1jOEkwGZ+6a2WD9hlIOV0Yv8g4xqDtjTGLQHRlcK0zNFcpnNqLVfAmWwkfmGsPXB/Fb8WRHcTkw0yXfIO/0e8J/xQCLpubu9uZc8AzXtUsLvqiMfrgclCSaGUgCcgwUBqgtwx4Itn6S639Jqk5LmaizENNk2hGFngTYboNCKDHppdXYop2+YuEtcBanrGFNBmdycfjGZDLYXiS1mNFJ5gJ8m5iVmdy2I5bC2YuBVfDK7rxR8UAwD7qeTkGczV+Bs2Q==
+ bh=Uj4KcpWFjc1vXSwIqy3PZTe803GPqn3bdrq5I2GGidM=;
+ b=D/wGL/UNdcpOuACqGsA4FuI78i69KBOytPEWQqvXefkwHbPalf/K41IFM9X0SbG6+vY1uGCymdOsAoqY6gAlOaw92xjh8viUD1VxZdbYyF2atekV61Dzjj8E/qN6QAS22eY3hwi1LUKhVbzwcrq+DXN11LPtLJbmQNzg2GD/DfHtju3zWGofSFLZW6EhzmT4RC4ktkcx8f+GrnKDu6Rh/wQDmE6eVHqHIL6lLGbdOAAVZz67RWDgpZwlRMYZus4cWKmxiXMqOYsb906ErUt4NuQfWl63tkx4nrOrloXuLhEMTFyf3bfhRwZXs9W0UITkjP10FufkFYc0AJhodh/37A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=luy8he4KfTaIXtiO4BmthhehfhpztQ2wx8e4GOaJmLQ=;
- b=nWM1yvxffIRoVMwIFSIw3b+kdjvpb0sAUp1V1JMU3dzhtmZBfqIorCAOTVQvjbF2RMkVcD9pHa7TZKAdPHfuApO2z42syCxCJK5K3aiPidDX3Kjk2vTp1Nz3hTXrpH3INr2ZV3CvDQpgJVLCB+006fzM+Iamb58eB5QBjkClkaM=
-Received: from SJ0PR03CA0229.namprd03.prod.outlook.com (2603:10b6:a03:39f::24)
- by CYYPR12MB8924.namprd12.prod.outlook.com (2603:10b6:930:bd::5) with
+ bh=Uj4KcpWFjc1vXSwIqy3PZTe803GPqn3bdrq5I2GGidM=;
+ b=mXRuX89StwTXdOj4tIi8JZ+GYQYAQARh5DeZG9K56h0CEpA4UnBLQn7Fc21fQxg1rskfQN6syAGzOf+2NT0WDgwfhuAMpKJU4o3LLpemb85dEPR0+ZxPh/1dOVxWN8EjxGS5UYJdIvaTNS/xmNZ8YnmYwR05Y33fLrtRFGSeGkc=
+Received: from DM6PR02CA0129.namprd02.prod.outlook.com (2603:10b6:5:1b4::31)
+ by SA3PR12MB7781.namprd12.prod.outlook.com (2603:10b6:806:31a::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Wed, 15 Jul
- 2026 13:48:18 +0000
-Received: from SJ5PEPF000001F1.namprd05.prod.outlook.com
- (2603:10b6:a03:39f:cafe::82) by SJ0PR03CA0229.outlook.office365.com
- (2603:10b6:a03:39f::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
- 15 Jul 2026 13:48:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.11; Wed, 15 Jul
+ 2026 13:48:27 +0000
+Received: from CY4PEPF0000FCC0.namprd03.prod.outlook.com
+ (2603:10b6:5:1b4:cafe::6c) by DM6PR02CA0129.outlook.office365.com
+ (2603:10b6:5:1b4::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
+ 15 Jul 2026 13:48:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001F1.mail.protection.outlook.com (10.167.242.69) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CY4PEPF0000FCC0.mail.protection.outlook.com (10.167.242.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:48:18 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:48:25 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:48:05 -0500
+ 2026 08:48:09 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
+ 2026 06:48:09 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:48:01 -0500
+ Transport; Wed, 15 Jul 2026 08:48:05 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -75,40 +80,41 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, Dominik Kaszewski
  <dominik.kaszewski@amd.com>
-Subject: [PATCH 51/70] drm/amd/display: Introduce dc_probe public object model
-Date: Wed, 15 Jul 2026 21:38:01 +0800
-Message-ID: <20260715134432.1975118-52-Wayne.Lin@amd.com>
+Subject: [PATCH 52/70] drm/amd/display: Introduce dc_update_state unified
+ commit interface
+Date: Wed, 15 Jul 2026 21:38:02 +0800
+Message-ID: <20260715134432.1975118-53-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="Y"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F1:EE_|CYYPR12MB8924:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0fe63f0-4e9c-4571-98ab-08dee277b9ed
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC0:EE_|SA3PR12MB7781:EE_
+X-MS-Office365-Filtering-Correlation-Id: b12cce3e-47f3-4c16-240c-08dee277be56
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|36860700016|1800799024|376014|30052699003|82310400026|6133799003|11063799006|56012099006|5023799004|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: lmmmpo3dZqXa4fKsyHg1I4tfYwRm6um6HXxITz8cQLd56s/h5MVoXhItGNQxMk3ugj8M/FHsDjI3IZ0VADkQGjoloiH3vvS9aRZSuyTjp3/ZFuVu4icVurLJOvjp0Tnxmu0QsYXaoNKBInDIbaLd4c2Vf18WgoaZcrWS4HXvjRfzDKHwAS1jjj6fKg9nYYKRoLZV0XJykP/YTpKRaCSUrgAN3+TO4bqp6LxZYHU6nAD1isgMCnPksNeVEnb2IUS7r/QJEjaq2Gl7q5RbDdGgm8NA2E8OZKDo6w0UEaFzLYUZwfO/qwPaEdVbyWlOSQr0RnAAhScxdWZxzW4/+QRYzkDkLlNwkmTGGqBKvi6CJFUNkV1UuJUdKErOP/QWCU9HbAOjNw83vJwEIP9lAhuNHW+l+OAzruhC4GjHjnoXLSuiejMgt3WG4P8x8guE+cw6+X8dnbxl9C/Kboc8qNtc4thZzIeBduLaZU0J4tp41zlFiVd4UMl99SNXp7KRPqQb0bmEgnStxDxzbx7k9jRdLkPLkn345212CRTtjJ0HDS9GXdiN50MNlmAj4BaWiFOiY3j/MDiQazLeVH33kPZsM2noEOXLxo6jW4aJ3uNQHL3UpG09to7+BiNj9EYV7x297JyVU6NQoorHEl6BmdvHd+b5WxuZJud1k7sFGNI2dYjecIMon/XpkuZCHuc32G+gg8DKZNYZEgb1vhQ35UGjJg==
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|6133799003|10067099003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: ZcaMNJ11dJfMY6lOE/w54UNqYNeadrgwUIb9lHquaPHdk7x8Hx+kkEXAHlM6leIpMtHuDlwCoyRYzy+YwvHCxcfQOLnU/0FcuWJANYTu6nTxZHNHjegySq36xSV6+TxtH4gwvZb4wXIPURnHIKNIFWy81dPpUgEkFStKgTr8qFTX9pRFs8dohSqbbqqyxZJFdrJJzjbqwB6Q7UfjWgxPtkb/5wGXrwIzX9vK70AtCCXtZ1JMNxUWZPW5qcY1pDWAdhar54t1SA7Kn/W7BjOGCCWgkrTiZ+UrgpByCXQ2u4x+NgQbu7TiV7D7xFnDJeVCE1dOiNoFG9iDylnrNYIVCygJwX1227uPKoccar+YFLWAEv6hTvfLjn18zAo9BSEis99qIqqDy2RPJIQrrV9n612dplKjcrm5lRylyIY3QVYfn+Ys4FbTOtQEVWBbeJrXtzqGzmJAGeWrOKbLCqTgV7YZO+EXckatqIiuYzeNG4YewzQMbcTi8OY7BYMu27J2kgWAyKK7MLALVXCRUjmNCUnHYXHaq0M0lQSI54r5oVXpY0mmHQwKF5wxu4DZISMXvqt7ldnEE9YLZ6HTrXnD50S+H0EF/hQDHE0jB260a6XhId157xAhoZ/ft9/sJdvNjX49J4cnxa6ttsxJzenp0fKtMwrT1bad9RZpTAUqdZqyEMLT1jf00qTuvNxTrDC/HwktI4FkIi8JIT80faj9hg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(36860700016)(1800799024)(376014)(30052699003)(82310400026)(6133799003)(11063799006)(56012099006)(5023799004)(10067099003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: mNE3WT8yrP6N5INsTMlozuuS4HfmPXzY0gdO3a6eVmlwO8Yo14tMdNvB/T1bU7D1VZcjVLhyJp85CtvBGe5L+y848IsIZ08N7rz7H8ih9Adq7pkoE5Lw/KW6EqXrK7Dv6KnPF27DjuriK16rRzhWzQRqPOHDW9R0JUl83xma7rpJOekJxsB0av41lr0DbywL60wGfnBE/Z4HNY0I5aoBIpcA6I0389tsjaiSOepoJxfSlZSmoOX09P2utS6OUq9rSimB3WKTtWmZ8rTkud3qiU7xy/qroSmJ5d8p8UpPbaRUSDNlzXF2lL5YrP64NdytIu0ErM2xVbnkN1wjrdhptv7ry34xAm3s7oCJ9+dg38q1n5sWobfB/+GVUzIQGJdlIx2ENM+UUnjI0JZdlh+ISMzPDSKgg9zvE0w/KjLpy/PUSl4lnL6JhYIwOMcxKzZp
+X-MS-Exchange-AntiSpam-MessageData-0: 0lS0JHnGi1ptonOrrNl7e3t+Wyn4cGWdLmPcOrTLbVfyR9QwSivWxBuUM6uZ7szisR7/Ibj/Z1UrfrY1yOTA39inVhIwT25XdQC3YmoVkV277zhF8oyS2hwktMd1jQOu3f8Lf8z8GdCKNi6yxJuAn8+sMGWUETUeqkSUXplmoLx5CkSmAqudOoQVwY4FYK06Iws6xzseg7/r/gCSBjsCQaQ6VCeYZWqUt2uEVKuOvnHQe3Kof1GOxnaRg+e4UwhLR2CeBfXXd0zPOPusXsBheEpRWAa0shJ9sHsUQ4kHqRWhCQanauZ8sfOW102fhr4q03W7TacO/AByFiB996O30Fos08FPEO4AsRBZyRGDEj3imT89lXrpbL1/b0QRnw4zzMWxXXo2hkxNWlmbKag0GZwTdrfOxJpSBDQDeDVfATrBbkPmzsozMp4QBuWBqhLK
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:48:18.0257 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0fe63f0-4e9c-4571-98ab-08dee277b9ed
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:48:25.4615 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b12cce3e-47f3-4c16-240c-08dee277be56
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F1.namprd05.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC0.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8924
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7781
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,236 +128,563 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[Wayne.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp];
+	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 21B1C75EF00
+X-Rspamd-Queue-Id: 6064475EF24
 X-Rspamd-Action: no action
 
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [Why]
-Performance measurement needs to commit through the same update entry
-point as planes and streams, with DM working against an abstraction of
-what to measure rather than the hardware block that performs it.
+dc_update_planes_and_stream() is typed against surface/stream arrays only,
+leaving no extensible slot for future object classes. The public entry
+point names and signatures need to stay stable as new object classes are
+added.
 
 [How]
-Add dc_probe.h defining dc_probe_type (the measurable quantity),
-dc_probe_target_state (not measuring / measuring / measured),
-dc_probe_scope (global only, per-stream/plane deferred), and
-dc_probe_state (an inline descriptor with copy semantics, no refcount).
-dc_state carries the committed set as probes[MAX_PROBES] plus
-probe_count. dc_state_update carries dc_probe_updates as the desired
-absolute set that DC diffs against the committed set.
+Introduce dc_update_state() and dc_check_state_update(), both taking a
+dc_state_update root object. dc_update_state() routes stream and plane
+updates through the existing pipeline. Keep dc_update_planes_and_stream()
+and dc_check_update_surfaces_for_stream() as shims that delegate.
+
+Change dc_update_state_init() to take a const dc_state_update* and rename
+dc_update_planes_and_stream_{init,prepare,execute,cleanup} ->
+dc_update_state_{init,prepare,execute,cleanup}.
+
+Rename surface_update_type -> dc_update_type and
+surface_update_descriptor -> dc_update_descriptor.
 
 Reviewed-by: Dominik Kaszewski <dominik.kaszewski@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_state.c    |  3 +
- drivers/gpu/drm/amd/display/dc/dc.h           |  9 ++
- drivers/gpu/drm/amd/display/dc/dc_probe.h     | 97 +++++++++++++++++++
- .../gpu/drm/amd/display/dc/inc/core_types.h   | 12 +++
- 4 files changed, 121 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dc_probe.h
+ drivers/gpu/drm/amd/display/dc/core/dc.c   | 188 ++++++++++++++-------
+ drivers/gpu/drm/amd/display/dc/dc.h        |  19 ++-
+ drivers/gpu/drm/amd/display/dc/dc_stream.h |  21 ++-
+ 3 files changed, 155 insertions(+), 73 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_state.c b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-index 1f183ae85a3f..a5df0101b504 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_state.c
-@@ -360,6 +360,9 @@ void dc_state_destruct(struct dc_state *state)
- 	}
- 	state->phantom_plane_count = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 188615873791..f1805b03f0db 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -151,8 +151,8 @@ static const char DC_BUILD_ID[] = "production-build";
+ /* Private functions */
  
-+	memset(state->probes, 0, sizeof(state->probes));
-+	state->probe_count = 0;
+ static inline void elevate_update_type(
+-		struct surface_update_descriptor *descriptor,
+-		enum surface_update_type new_type,
++		struct dc_update_descriptor *descriptor,
++		enum dc_update_type new_type,
+ 		enum dc_lock_descriptor new_locks
+ )
+ {
+@@ -2793,10 +2793,10 @@ static bool is_surface_in_context(
+ 	return false;
+ }
+ 
+-static struct surface_update_descriptor get_plane_info_update_type(const struct dc_surface_update *u)
++static struct dc_update_descriptor get_plane_info_update_type(const struct dc_surface_update *u)
+ {
+ 	struct pipe_update_bits *update_bits = &u->surface->update_bits;
+-	struct surface_update_descriptor update_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
++	struct dc_update_descriptor update_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
+ 
+ 	if (!u->plane_info)
+ 		return update_type;
+@@ -2883,12 +2883,12 @@ static struct surface_update_descriptor get_plane_info_update_type(const struct
+ 	return update_type;
+ }
+ 
+-static struct surface_update_descriptor get_scaling_info_update_type(
++static struct dc_update_descriptor get_scaling_info_update_type(
+ 	const struct dc_check_config *check_config,
+ 	const struct dc_surface_update *u)
+ {
+ 	struct pipe_update_bits *update_bits = &u->surface->update_bits;
+-	struct surface_update_descriptor update_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
++	struct dc_update_descriptor update_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
+ 
+ 	if (!u->scaling_info)
+ 		return update_type;
+@@ -2939,11 +2939,11 @@ static struct surface_update_descriptor get_scaling_info_update_type(
+ 	return update_type;
+ }
+ 
+-static struct surface_update_descriptor det_surface_update(
++static struct dc_update_descriptor det_surface_update(
+ 		const struct dc_check_config *check_config,
+ 		struct dc_surface_update *u)
+ {
+-	struct surface_update_descriptor overall_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
++	struct dc_update_descriptor overall_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
+ 	struct pipe_update_bits *update_bits = &u->surface->update_bits;
+ 
+ 	if (u->surface->force_full_update) {
+@@ -2954,8 +2954,7 @@ static struct surface_update_descriptor det_surface_update(
+ 
+ 	dc_pipe_update_bits_clear(update_bits);
+ 
+-	struct surface_update_descriptor inner_type = get_plane_info_update_type(u);
+-
++	struct dc_update_descriptor inner_type = get_plane_info_update_type(u);
+ 	elevate_update_type(&overall_type, inner_type.update_type, inner_type.lock_descriptor);
+ 
+ 	inner_type = get_scaling_info_update_type(check_config, u);
+@@ -3097,13 +3096,13 @@ static void force_immediate_gsl_plane_flip(struct dc *dc, struct dc_surface_upda
+ 	}
+ }
+ 
+-static struct surface_update_descriptor check_update_surfaces_for_stream(
++static struct dc_update_descriptor check_update_surfaces_for_stream(
+ 		const struct dc_check_config *check_config,
+ 		struct dc_surface_update *updates,
+ 		int surface_count,
+ 		struct dc_stream_update *stream_update)
+ {
+-	struct surface_update_descriptor overall_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
++	struct dc_update_descriptor overall_type = { UPDATE_TYPE_FAST, LOCK_DESCRIPTOR_NONE };
+ 
+ 	/* When countdown finishes, promote this flip to full to trigger deferred final transition */
+ 	if (check_config->deferred_transition_state && !check_config->transition_countdown_to_steady_state) {
+@@ -3226,7 +3225,7 @@ static struct surface_update_descriptor check_update_surfaces_for_stream(
+ 	}
+ 
+ 	for (int i = 0 ; i < surface_count; i++) {
+-		struct surface_update_descriptor inner_type =
++		struct dc_update_descriptor inner_type =
+ 				det_surface_update(check_config, &updates[i]);
+ 
+ 		elevate_update_type(&overall_type, inner_type.update_type, inner_type.lock_descriptor);
+@@ -3238,20 +3237,57 @@ static struct surface_update_descriptor check_update_surfaces_for_stream(
+ /*
+  * dc_check_update_surfaces_for_stream() - Determine update type (fast, med, or full)
+  *
+- * See :c:type:`enum surface_update_type <surface_update_type>` for explanation of update types
++ * See :c:type:`enum dc_update_type <dc_update_type>` for explanation of update types
++ */
++/**
++ * dc_check_state_update - Classify a dc_state_update by locking / re-entrancy requirements.
++ * @check_config:  ASIC capabilities and display configuration context
++ * @updates:       root update object describing the full desired commit
++ *
++ * Determines whether the update requires a fast, medium, or full lock
++ * by inspecting the stream, stream_update, and surface_updates carried on
++ * the root object. Perfmon classification is reserved for a future slice.
++ *
++ * Return: dc_update_descriptor with update_type and lock_descriptor.
+  */
+-struct surface_update_descriptor dc_check_update_surfaces_for_stream(
++struct dc_update_descriptor dc_check_state_update(
++		const struct dc_check_config *check_config,
++		struct dc_state_update *updates)
++{
++	if (updates->stream_update)
++		stream_update_flags_clear(&updates->stream_update->stream->update_flags);
++	for (int i = 0; i < updates->surface_count; i++)
++		dc_pipe_update_bits_clear(&updates->surface_updates[i].surface->update_bits);
 +
- 	state->stream_mask = 0;
- 	memset(&state->res_ctx, 0, sizeof(state->res_ctx));
- 	memset(&state->pp_display_cfg, 0, sizeof(state->pp_display_cfg));
++	return check_update_surfaces_for_stream(check_config, updates->surface_updates,
++			updates->surface_count, updates->stream_update);
++}
++
++/**
++ * dc_check_update_surfaces_for_stream - Shim for dc_check_state_update.
++ * @check_config:   ASIC capabilities and display configuration context
++ * @updates:        array of surface update descriptors
++ * @surface_count:  number of entries in @updates
++ * @stream_update:  optional stream update
++ *
++ * Packs the individual arguments into a dc_state_update and forwards to
++ * dc_check_state_update(). Preserved for out-of-tree and incremental callers.
++ *
++ * Return: dc_update_descriptor with update_type and lock_descriptor.
++ */
++struct dc_update_descriptor dc_check_update_surfaces_for_stream(
+ 		const struct dc_check_config *check_config,
+ 		struct dc_surface_update *updates,
+ 		int surface_count,
+ 		struct dc_stream_update *stream_update)
+ {
+-	if (stream_update)
+-		stream_update_flags_clear(&stream_update->stream->update_flags);
+-	for (int i = 0; i < surface_count; i++)
+-		dc_pipe_update_bits_clear(&updates[i].surface->update_bits);
++	struct dc_state_update root = {
++		.surface_updates = updates,
++		.surface_count   = surface_count,
++		.stream_update   = stream_update,
++	};
+ 
+-	return check_update_surfaces_for_stream(check_config, updates, surface_count, stream_update);
++	return dc_check_state_update(check_config, &root);
+ }
+ 
+ static struct dc_stream_status *stream_get_status(
+@@ -3269,7 +3305,7 @@ static struct dc_stream_status *stream_get_status(
+ 	return NULL;
+ }
+ 
+-static const enum surface_update_type update_surface_trace_level = UPDATE_TYPE_FULL;
++static const enum dc_update_type update_surface_trace_level = UPDATE_TYPE_FULL;
+ 
+ static void copy_surface_update_to_plane(
+ 		struct dc_plane_state *surface,
+@@ -3737,13 +3773,13 @@ static bool update_planes_and_stream_state(struct dc *dc,
+ 		struct dc_surface_update *srf_updates, int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type *new_update_type,
++		enum dc_update_type *new_update_type,
+ 		struct dc_state **new_context)
+ {
+ 	struct dc_state *context;
+ 	int i;
+ 	unsigned int j;
+-	enum surface_update_type update_type;
++	enum dc_update_type update_type;
+ 	const struct dc_stream_status *stream_status;
+ 	struct dc_context *dc_ctx = dc->ctx;
+ 
+@@ -4152,7 +4188,7 @@ static void add_link_update_dsc_config_sequence(
+ static void commit_planes_do_stream_update_sequence(struct dc *dc,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type,
++		enum dc_update_type update_type,
+ 		struct dc_state *context,
+ 		struct block_sequence block_sequence[MAX_HWSS_BLOCK_SEQUENCE_SIZE],
+ 		unsigned int *num_steps)
+@@ -4323,7 +4359,7 @@ static void commit_planes_do_stream_update_sequence(struct dc *dc,
+ static void commit_planes_do_stream_update(struct dc *dc,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type,
++		enum dc_update_type update_type,
+ 		struct dc_state *context)
+ {
+ 	unsigned int j;
+@@ -4726,7 +4762,7 @@ static void commit_planes_for_stream_fast(struct dc *dc,
+ 		int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type,
++		enum dc_update_type update_type,
+ 		struct dc_state *context)
+ {
+ 	int i;
+@@ -4846,7 +4882,7 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type,
++		enum dc_update_type update_type,
+ 		struct dc_state *context)
+ {
+ 	int i;
+@@ -5929,7 +5965,7 @@ static bool update_planes_and_stream_v2(struct dc *dc,
+ 		struct dc_stream_update *stream_update)
+ {
+ 	struct dc_state *context;
+-	enum surface_update_type update_type;
++	enum dc_update_type update_type;
+ 	struct dc_fast_update fast_update[MAX_SURFACES] = {0};
+ 
+ 	/* In cases where MPO and split or ODM are used transitions can
+@@ -6014,7 +6050,7 @@ static void commit_planes_and_stream_update_on_current_context(struct dc *dc,
+ 		struct dc_surface_update *srf_updates, int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type)
++		enum dc_update_type update_type)
+ {
+ 	struct dc_fast_update fast_update[MAX_SURFACES] = {0};
+ 
+@@ -6046,7 +6082,7 @@ static void commit_planes_and_stream_update_with_new_context(struct dc *dc,
+ 		struct dc_surface_update *srf_updates, int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update,
+-		enum surface_update_type update_type,
++		enum dc_update_type update_type,
+ 		struct dc_state *new_context)
+ {
+ 	bool skip_new_context = false;
+@@ -6114,7 +6150,7 @@ static bool update_planes_and_stream_v3(struct dc *dc,
+ 		struct dc_stream_update *stream_update)
+ {
+ 	struct dc_state *new_context;
+-	enum surface_update_type update_type;
++	enum dc_update_type update_type;
+ 
+ 	/*
+ 	 * When this function returns true and new_context is not equal to
+@@ -6160,28 +6196,61 @@ static void clear_update_bits(struct dc_surface_update *srf_updates,
+ 			dc_pipe_update_bits_clear(&srf_updates[i].surface->update_bits);
+ }
+ 
++/**
++ * dc_update_state - Commit an absolute dc_state_update.
++ * @dc:      DC structure
++ * @updates: root update object carrying stream, plane, and probe updates
++ *
++ * When stream is non-NULL the stream and its plane updates are committed via
++ * the init/prepare/execute/cleanup pipeline. Probe commit is reserved for a
++ * future slice. dc_update_planes_and_stream() is now a shim over this function.
++ *
++ * Return: true on success, false on failure.
++ */
++bool dc_update_state(struct dc *dc, struct dc_state_update *updates)
++{
++	if (updates->stream != NULL) {
++		struct dc_update_scratch_space *scratch = dc_update_state_init(dc, updates);
++		bool more = true;
++
++		while (more) {
++			if (!dc_update_state_prepare(scratch))
++				return false;
++
++			dc_update_state_execute(scratch);
++			more = dc_update_state_cleanup(scratch);
++		}
++	}
++
++	return true;
++}
++
++/**
++ * dc_update_planes_and_stream - Shim for dc_update_state.
++ * @dc:             DC structure
++ * @srf_updates:    array of surface update descriptors
++ * @surface_count:  number of entries in @srf_updates
++ * @stream:         target stream
++ * @stream_update:  optional stream update
++ *
++ * Packs the individual arguments into a dc_state_update and forwards to
++ * dc_update_state(). Preserved for out-of-tree and incremental callers.
++ *
++ * Return: true on success; false on failure.
++ */
+ bool dc_update_planes_and_stream(struct dc *dc,
+ 		struct dc_surface_update *srf_updates, int surface_count,
+ 		struct dc_stream_state *stream,
+ 		struct dc_stream_update *stream_update)
+ {
+-	struct dc_update_scratch_space *scratch = dc_update_planes_and_stream_init(
+-			dc,
+-			srf_updates,
+-			surface_count,
+-			stream,
+-			stream_update
+-	);
+-	bool more = true;
+-
+-	while (more) {
+-		if (!dc_update_planes_and_stream_prepare(scratch))
+-			return false;
++	struct dc_state_update updates = {
++		.stream          = stream,
++		.stream_update   = stream_update,
++		.surface_updates = srf_updates,
++		.surface_count   = surface_count,
++	};
+ 
+-		dc_update_planes_and_stream_execute(scratch);
+-		more = dc_update_planes_and_stream_cleanup(scratch);
+-	}
+-	return true;
++	return dc_update_state(dc, &updates);
+ }
+ 
+ void dc_commit_updates_for_stream(struct dc *dc,
+@@ -8114,7 +8183,7 @@ struct dc_update_scratch_space {
+ 	struct dc_stream_update *stream_update;
+ 	bool update_v3;
+ 	bool do_clear_update_bits;
+-	enum surface_update_type update_type;
++	enum dc_update_type update_type;
+ 	struct dc_state *new_context;
+ 	enum update_v3_flow flow;
+ 	struct dc_state *backup_context;
+@@ -8417,23 +8486,20 @@ static bool update_planes_and_stream_cleanup_v3(
+ 	return false;
+ }
+ 
+-struct dc_update_scratch_space *dc_update_planes_and_stream_init(
++struct dc_update_scratch_space *dc_update_state_init(
+ 		struct dc *dc,
+-		struct dc_surface_update *surface_updates,
+-		int surface_count,
+-		struct dc_stream_state *stream,
+-		struct dc_stream_update *stream_update
++		const struct dc_state_update *updates
+ )
+ {
+ 	const enum dce_version version = dc->ctx->dce_version;
+-	struct dc_update_scratch_space *scratch = stream->update_scratch;
++	struct dc_update_scratch_space *scratch = updates->stream->update_scratch;
+ 
+ 	*scratch = (struct dc_update_scratch_space){
+ 		.dc = dc,
+-		.surface_updates = surface_updates,
+-		.surface_count = surface_count,
+-		.stream = stream,
+-		.stream_update = stream_update,
++		.surface_updates = updates->surface_updates,
++		.surface_count = updates->surface_count,
++		.stream = updates->stream,
++		.stream_update = updates->stream_update,
+ 		.update_v3 = version >= DCN_VERSION_4_01 || version == DCN_VERSION_3_2 || version == DCN_VERSION_3_21,
+ 		.do_clear_update_bits = version >= DCN_VERSION_1_0,
+ 	};
+@@ -8441,7 +8507,7 @@ struct dc_update_scratch_space *dc_update_planes_and_stream_init(
+ 	return scratch;
+ }
+ 
+-bool dc_update_planes_and_stream_prepare(
++bool dc_update_state_prepare(
+ 		struct dc_update_scratch_space *scratch
+ )
+ {
+@@ -8450,7 +8516,7 @@ bool dc_update_planes_and_stream_prepare(
+ 			: update_planes_and_stream_prepare_v2(scratch);
+ }
+ 
+-void dc_update_planes_and_stream_execute(
++void dc_update_state_execute(
+ 		const struct dc_update_scratch_space *scratch
+ )
+ {
+@@ -8459,7 +8525,7 @@ void dc_update_planes_and_stream_execute(
+ 			: update_planes_and_stream_execute_v2(scratch);
+ }
+ 
+-bool dc_update_planes_and_stream_cleanup(
++bool dc_update_state_cleanup(
+ 		struct dc_update_scratch_space *scratch
+ )
+ {
 diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 436277acd034..3e22c1f8d4db 100644
+index 3e22c1f8d4db..f06539df7f0a 100644
 --- a/drivers/gpu/drm/amd/display/dc/dc.h
 +++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -29,6 +29,7 @@
- #include "dc_types.h"
- #include "dc_state.h"
- #include "dc_plane.h"
-+#include "dc_probe.h"
- #include "grph_object_defs.h"
- #include "logger_types.h"
- #include "hdcp_msg_types.h"
-@@ -2105,6 +2106,14 @@ struct dc_surface_update {
- 	struct cm_hist_control *cm_hist_control;
+@@ -519,7 +519,7 @@ struct dc_static_screen_params {
+  * underscan we don't expect to see this call at all.
+  */
+ 
+-enum surface_update_type {
++enum dc_update_type {
+ 	UPDATE_TYPE_FAST, /* super fast, safe to execute in isr */
+ 	UPDATE_TYPE_MED,  /* ISR safe, most of programming needed, no bw/clk change*/
+ 	UPDATE_TYPE_FULL, /* may need to shuffle resources */
+@@ -532,8 +532,8 @@ enum dc_lock_descriptor {
+ 	LOCK_DESCRIPTOR_GLOBAL = 0x4,
  };
  
-+struct dc_state_update {
-+	struct dc_stream_state   *stream;
-+	struct dc_stream_update  *stream_update;
-+	struct dc_surface_update *surface_updates;
-+	int                       surface_count;
-+	const struct dc_probe_updates *probe_updates;
-+};
+-struct surface_update_descriptor {
+-	enum surface_update_type update_type;
++struct dc_update_descriptor {
++	enum dc_update_type update_type;
+ 	enum dc_lock_descriptor lock_descriptor;
+ };
+ 
+@@ -2114,6 +2114,19 @@ struct dc_state_update {
+ 	const struct dc_probe_updates *probe_updates;
+ };
+ 
++/**
++ * dc_update_state - Commit an absolute dc_state_update.
++ * @dc:      DC structure
++ * @updates: root update object carrying stream, plane, and probe updates
++ *
++ * When stream is non-NULL the stream and its plane updates are committed via
++ * the init/prepare/execute/cleanup pipeline. Probe commit is reserved for a
++ * future slice. dc_update_planes_and_stream() is now a shim over this function.
++ *
++ * Return: true on success, false on failure.
++ */
++bool dc_update_state(struct dc *dc, struct dc_state_update *updates);
 +
  struct dc_underflow_debug_data {
  	struct dcn_hubbub_reg_state *hubbub_reg_state;
  	struct dcn_hubp_reg_state *hubp_reg_state[MAX_PIPES];
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_probe.h b/drivers/gpu/drm/amd/display/dc/dc_probe.h
-new file mode 100644
-index 000000000000..ebf33b162b63
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dc_probe.h
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: MIT
-+//
-+// Copyright 2025 Advanced Micro Devices, Inc.
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index 8b164edc9c51..a866688ad9db 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -409,29 +409,27 @@ bool dc_update_planes_and_stream(struct dc *dc,
+ 		struct dc_stream_update *stream_update);
+ 
+ struct dc_update_scratch_space;
++struct dc_state_update;
+ 
+ size_t dc_update_scratch_space_size(void);
+ 
+-struct dc_update_scratch_space *dc_update_planes_and_stream_init(
++struct dc_update_scratch_space *dc_update_state_init(
+ 		struct dc *dc,
+-		struct dc_surface_update *surface_updates,
+-		int surface_count,
+-		struct dc_stream_state *dc_stream,
+-		struct dc_stream_update *stream_update
++		const struct dc_state_update *updates
+ );
+ 
+ // Locked, false is failed
+-bool dc_update_planes_and_stream_prepare(
++bool dc_update_state_prepare(
+ 		struct dc_update_scratch_space *scratch
+ );
+ 
+ // Unlocked
+-void dc_update_planes_and_stream_execute(
++void dc_update_state_execute(
+ 		const struct dc_update_scratch_space *scratch
+ );
+ 
+ // Locked, true if call again
+-bool dc_update_planes_and_stream_cleanup(
++bool dc_update_state_cleanup(
+ 		struct dc_update_scratch_space *scratch
+ );
+ 
+@@ -518,7 +516,12 @@ void dc_enable_stereo(
+ /* Triggers multi-stream synchronization. */
+ void dc_trigger_sync(struct dc *dc, struct dc_state *context);
+ 
+-struct surface_update_descriptor dc_check_update_surfaces_for_stream(
++struct dc_update_descriptor dc_check_state_update(
++		const struct dc_check_config *check_config,
++		struct dc_state_update *updates);
 +
-+#ifndef _DC_PROBE_H_
-+#define _DC_PROBE_H_
-+
-+#include "os_types.h"
-+
-+/**
-+ * enum dc_probe_type - What DM wants to probe.
-+ *
-+ * Each value names a measurable quantity as an abstraction. DC resolves it to
-+ * whatever HW measurement block fulfills it. DM never selects the HW block.
-+ */
-+enum dc_probe_type {
-+	DC_PROBE_PEAK_MEM_BW = 0,
-+	DC_PROBE_AVG_MEM_BW,
-+	DC_PROBE_MEM_LATENCY,
-+	DC_PROBE_URGENT_RAMP_LATENCY,
-+	DC_PROBE_URGENT_ASSERTION_COUNT,
-+	DC_PROBE_PREFETCH_DATA_SIZE,
-+};
-+
-+/**
-+ * enum dc_probe_target_state - Target lifecycle state DM wants DC to reach.
-+ *
-+ * DM sets this to describe the final state DC must reach by the end of the
-+ * commit. DC performs whatever HW transition sequence is needed.
-+ *
-+ * @DC_PROBE_NOT_MEASURING: probe inactive, no valid data available.
-+ * @DC_PROBE_MEASURING:     probe runs continuously. The latest value can be
-+ *   read back at any time and may differ on each read.
-+ * @DC_PROBE_MEASURED:      probe performed one shot. The result is latched and
-+ *   stays valid until DM transitions back to DC_PROBE_NOT_MEASURING.
-+ */
-+enum dc_probe_target_state {
-+	DC_PROBE_NOT_MEASURING = 0,
-+	DC_PROBE_MEASURING,
-+	DC_PROBE_MEASURED,
-+};
-+
-+/**
-+ * enum dc_probe_scope_type - What the probe is scoped to.
-+ * @DC_PROBE_SCOPE_GLOBAL: whole memory subsystem, no stream/plane selector.
-+ *
-+ * Only GLOBAL is implemented. Per-stream/plane scoping must select targets by
-+ * stable id, not object pointer — dc_state copy semantics would dangle a raw
-+ * pointer when the absolute-set commit removes or replaces the target.
-+ */
-+enum dc_probe_scope_type {
-+	DC_PROBE_SCOPE_GLOBAL = 0,
-+};
-+
-+/**
-+ * struct dc_probe_scope - Selects what a probe measures against.
-+ * @type: scope kind, only DC_PROBE_SCOPE_GLOBAL is implemented.
-+ */
-+struct dc_probe_scope {
-+	enum dc_probe_scope_type type;
-+};
-+
-+/**
-+ * struct dc_probe_state - DM-authored descriptor of a single probe.
-+ *
-+ * A plain inline value with copy semantics: no allocation, no refcount. DC
-+ * resolves each descriptor to a HW measurement instance and diffs the desired
-+ * set against the committed set to plan the transition.
-+ *
-+ * @type:         what to measure.
-+ * @target_state: desired lifecycle state for this probe.
-+ * @scope:        what the probe is scoped to (GLOBAL only for now).
-+ */
-+struct dc_probe_state {
-+	enum dc_probe_type         type;
-+	enum dc_probe_target_state target_state;
-+	struct dc_probe_scope      scope;
-+};
-+
-+#define MAX_PROBES 1
-+
-+/**
-+ * struct dc_probe_updates - Absolute set of probes DM wants active.
-+ *
-+ * Mirrors the plane/stream absolute-set model: the array is the complete
-+ * desired set. DC compares it against the committed set to add, remove, or
-+ * transition probes.
-+ *
-+ * @probes:      desired probe descriptors.
-+ * @probe_count: number of valid entries in @probes.
-+ */
-+struct dc_probe_updates {
-+	struct dc_probe_state probes[MAX_PROBES];
-+	int                   probe_count;
-+};
-+
-+#endif /* _DC_PROBE_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index cbbc1fb4b3dd..c42626101cd7 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -622,6 +622,7 @@ struct dc_state {
- 	 * @stream_status: Planes status on a given stream
- 	 */
- 	struct dc_stream_status stream_status[MAX_PIPES];
-+
- 	/**
- 	 * @phantom_streams: Stream state properties for phantoms
- 	 */
-@@ -645,6 +646,17 @@ struct dc_state {
- 	 * @stream_count: Total phantom planes in use
- 	 */
- 	uint8_t phantom_plane_count;
-+
-+	/**
-+	 * @probes: Committed absolute set of probe descriptors.
-+	 */
-+	struct dc_probe_state probes[MAX_PROBES];
-+
-+	/**
-+	 * @probe_count: Number of valid entries in @probes.
-+	 */
-+	int probe_count;
-+
- 	/**
- 	 * @res_ctx: Persistent state of resources
- 	 */
++/* Shim: packs args into dc_state_update and calls dc_check_state_update(). */
++struct dc_update_descriptor dc_check_update_surfaces_for_stream(
+ 		const struct dc_check_config *check_config,
+ 		struct dc_surface_update *updates,
+ 		int surface_count,
 -- 
 2.43.0
 
