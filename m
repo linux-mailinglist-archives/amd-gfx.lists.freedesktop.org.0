@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0ZP/JZqPV2pCXAAAu9opvQ
+	id tVCiH6SPV2pHXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42A3275EECF
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B1975EEE4
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:48:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=QOoumfVN;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=CAm7wkNZ;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D525C10F09D;
-	Wed, 15 Jul 2026 13:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A559E10F0A0;
+	Wed, 15 Jul 2026 13:48:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012011.outbound.protection.outlook.com
- [40.107.200.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3697810F09D
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:08 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010070.outbound.protection.outlook.com [52.101.56.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4708610F09F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:48:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xp5jlSpeGAbc8obzPTonAenDcx7/VZ4RXPAZvsFgHcj5he8r5YMAJ2wRYiDNrJRHavSC6J79Tnn31JQfA7iJaNiwsX35slDjnUQQ87mGKPY+lh8ui/3LH8Z4q0rfD6DFR8pS7+w5Nf5gw6VLWeXxjOB8apPpAJPKuxmedT6qjxLzXXQrCKJ1IBq1bXW1ovYI6UV+xmGSkmHTyhfEImaLSLbHJJJ+SXKiaAQeCzFETePe2QWL2vsKvj+60AVkMkHhgOXJ2v95LcMO2jTb8x3rgIvErJYVL0xu7NxVlp3jmEJJostd/X8ZEMMBxU2j8smdecMppHngUnONdBv9TudWag==
+ b=QG+qjZHpV2E7wM8mWq/Co+5vfxFv+6Llyqf5xye6bMjff4/mw/tfEZzT1tAriWyzWwOfWY6PN66YURQlfd3ymmHEfXSGZTqiERgjtwUVDffjg3Sub8ZkxbP0U0AGUraNoqgiwmyh4ynapkdx/J94cU4cxoP3wVb3uvSDG7YddNRzgiWxy3hV3TNL1TpaIuRceKzWP91kY1kyB740tYvpcw8/UEqV9QMt/StZuntDmW5J8IlhGOjec4Xilp+0tpLDnljIfKmhPORv/taBqjgnwSUg5wWGS06jBLfIzxqmHQnC/N3Hz3ARil3w1LdWGpvVZ/aq9RqXpmHjPhHg3gIqGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OryV5lFsU7ZeRzGR63nsFbIeP1zg3mqviOJpVN8f7VA=;
- b=yqNwyjvz+AaDD813s89l4m2sdysaL1h+OasqlFOihxz+5d5EAJLz6tX2ZbjOGxY8R7Ny2sDKwesrEInH3AmBvjGPSK55ArqSBFvbnXhljQF/TldYbvDcm1J0efSMlIKSaly1Ofn74W//1k/sltAQYhlM1C41zTyKyO6XXpOa+BkjnUgowROVQLV8458G/x/iJRyX2y/E6EIBj8gphxjMZD5FaKWDUR/7CMBoBNr9PV3/U6uUkiobc1amBSOEeDlDreqDdkW5bFCcSEVXrcM41fomQDQB68Dx30w4EdRvVmpdsDi6ldUT9QCbNthruSZgLLeHX/OyCi3VVvrZ7vVHmg==
+ bh=68vQUrDEqYzYKNtVetC+zRSCkuB1JU6wGua9THMzm/Y=;
+ b=ww1O9jRUWLA6351muNadgb91ecsACqSqgA+g5cafEl7TEEps2lm22xG7amznkVI+FbG38/ZdeRwKu3B/Io1OcOZAl6B4eN1LZv8h0S4tAWfSnxpKdq8DSKf4T6gOzAMna3BzSLflOMZHG09JRAwic7uk1dDSwIDJt4kSFjmks2gAINdXLK6TvLZ5iCzY8H9/d65VGAO07Ms8BmqDDp0psB9PG5iL3bwqWPyaeOANECBnqPPtHYrYGaufCpr1aW4WEmtWgo99KoBNzhEnmWm9Smi6IwWUFocNJdOV41FNA3RBDkcdD2ehrNSZEdpIwjXynPrarGU2Xx7mpenJoF0Bkg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OryV5lFsU7ZeRzGR63nsFbIeP1zg3mqviOJpVN8f7VA=;
- b=QOoumfVNKqjxiQLzHxDSi6NoLjNefvYxCSCSE03CyZ2Oxk2Y8UQ9b1XckM7bls5xevZ6t5wAUVzN3Y/8DV7HZBhR6TyWOcQ5X1TaU/d0rHed1WsJjzEDUPmdvR27bC0d5tWleZfIkXOlwQmrhvzifDXPaU/2giKn0erV8hayJAo=
-Received: from SJ0PR03CA0213.namprd03.prod.outlook.com (2603:10b6:a03:39f::8)
- by DM6PR12MB4217.namprd12.prod.outlook.com (2603:10b6:5:219::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
- 2026 13:47:55 +0000
+ bh=68vQUrDEqYzYKNtVetC+zRSCkuB1JU6wGua9THMzm/Y=;
+ b=CAm7wkNZpjWb4nkxg9tXw64WpHiK8I0GfZCI4GPlwXAxY7o5ouPq0q8N2e/IK1y6p8B1S4teLy4k1m7sSmWQ1rowTBp/9Pc3jLWVK8vWiE9xg31AzxftllxBKM8iVXztutTzZ/yWT0IeUEwCkHSuclVQxy/S+/scqkUZtDn+YDQ=
+Received: from SJ0PR03CA0235.namprd03.prod.outlook.com (2603:10b6:a03:39f::30)
+ by CY5PR12MB6381.namprd12.prod.outlook.com (2603:10b6:930:3f::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
+ 2026 13:48:14 +0000
 Received: from SJ5PEPF000001F1.namprd05.prod.outlook.com
- (2603:10b6:a03:39f:cafe::29) by SJ0PR03CA0213.outlook.office365.com
- (2603:10b6:a03:39f::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 13:47:55 +0000
+ (2603:10b6:a03:39f:cafe::8) by SJ0PR03CA0235.outlook.office365.com
+ (2603:10b6:a03:39f::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
+ 15 Jul 2026 13:48:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -58,14 +57,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001F1.mail.protection.outlook.com (10.167.242.69) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:47:55 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:48:14 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:47:46 -0500
+ 2026 08:47:50 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
+ 2026 06:47:49 -0700
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:47:42 -0500
+ Transport; Wed, 15 Jul 2026 08:47:46 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -75,10 +78,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 46/70] drm/amd/display: Add i2c and EDID parsing tests for
+Subject: [PATCH 47/70] drm/amd/display: Add mode validation and CEC tests for
  connector
-Date: Wed, 15 Jul 2026 21:37:56 +0800
-Message-ID: <20260715134432.1975118-47-Wayne.Lin@amd.com>
+Date: Wed, 15 Jul 2026 21:37:57 +0800
+Message-ID: <20260715134432.1975118-48-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -87,29 +90,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F1:EE_|DM6PR12MB4217:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f111c6f-cbdf-4ceb-db00-08dee277ac69
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F1:EE_|CY5PR12MB6381:EE_
+X-MS-Office365-Filtering-Correlation-Id: 385e746d-ca50-41a3-da7f-08dee277b78c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700016|376014|23010399003|10067099003|6133799003|22082099003|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: vg/SAamnm0//Zb9WxH/4mTfyZPWMEMdmCQMBRHuatGJao8j98FvD2E5Q3NJvvoRQMgqfg7q5HLpSZ0sUL9sm5ZUzStXY52+/uo0KqdMKpXXX+QKmSBLJ6vna4hWLg0KXufZZ8/ObdQsI1yY0MYILLv0N0qBbZhwpCYrLnc/4mwEOKiLf4yTJWvp2uVz1LuuejmKQMETy9G9ol3IIiF72b+Bv910YTSfCFO7OiIeh5IhcyY0hitgVWtumvRcZdU2n/qFJJiuznO/VMhSjUR204/J7idiso6OFNt05lNWYj9WwMukF6M7nbr4kKe8GZOcmjqUoOV6gxCoG03NZdI/WtmfblmLz25hdbnyPf71ua2p0EBuN0/XrGdUIuTVrHJ9932EAcN50p2XgHoxshB4G/s6l7Pf9T+F1oV6yVpLriTi5VuVA9sXMmpz5pYstH9gSm42HhXkIR1jgSpUYvQmOPigb/POg7De//HC9ugUN1hdkLOFtJm61e3UrRdWkP48pFeXfw8k2p5ZiNH6DIz3vD0PaB3cRb4am+4FqI52L8p/gJNYPpuE4MHXKennk96sjEynyNV8PBSTzz0y3B6+m3Ic9pPyfPMGL2PFs7VZa1dAmlGyZFyNdDmYlP1VPBhz1DZFTmVboZhHoPBJ3RXgWg34q3isGkfsdor0ynMact7aVUo1higo7R6czLLEqS0U8jWtHpIOQeVq/sBAKuQHhbw==
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|6133799003|10067099003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 6KPHbTd2pHEtlwEAzIubNVAA3SrxhqGqPOhnh6y6okTcKhbWewLq3WhuGEVHPl7d8uDaQpp4cqBE4GeyDoBK3WiAU8i7JWB/rXU255RnJZdt4mD0Jr9XPYV6CcVG4ad5KVf2BaVXkSuoGacwle7rdLbd97EQ+lLx9j90p602aqjGUFA4PrX+3aDAEDJsCcl0/+ExoIJsby0bl+Uzrqq1huvQOY6fAq6QwkXoEj5HMYXOC5uZHLR//nq1L8eNJUVoa5C75ao+yZht1td7oh5/S01zVNMeqeR5EwevJrvWGpY0q6g40nehz6XLDKBHtexXCT1LNM/IqtKMXYTV4i7jf9Grju5IrQEv/05cnZOTHnlgGNqT7sbftR6OrkEpFoFi9mHgbGhaXDckXtJCVGb7Ep0m7BVxtY5OEn6JI9zA794NG+8qhffDtLtF+Z88aXDv4slxMeydakehhu+S/486AAoCTjQHZb46qPj2Za7+bSUjg4+NVAtSf4khJEWGwTFg5p90XBlXNvMbZK4aOt4k27mklXFObB+RUiIXqTbf0oR2gKqbK1eb4NnVzphr+gvnLwIN1jdj63QD+Lq8NSd8vv2QE9qrMId6vpf8uRWWSsQIV0V2PuY0amKSdx5nuOr6bAAW5pPOT3v47cATTvj6GSDV2zJCN5KL+r1IT2vIwiKh/Io47cmbJ2PT+hO9o5tOX5zcgfii9iqmwsWw5J8IbA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(23010399003)(10067099003)(6133799003)(22082099003)(56012099006)(11063799006)(18002099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: L3UwkdX/rdcvXJxRvwmOYnTPixphk76goJDfOhNB6WutYCS7Sw+GxQJYKEogDoHCBHqM+jbic/3sxExgVrgAVOD9uheuU4UkqCqXfm/sq2SIgG2UhhXrT+6cdwvSP/0WFusgijGcHVQGQKuFdmJ++TtjTfXiU05e4Zu1UWdSCVruJhzyuCvaL3Q78bmq0sLxJ3FgnPKqi+g/DR0gN/JIR9N5js4ffOVrFSh44xAy6EBdeXlimJaf4ZWYGszRdIpcHnEM0i9AuB40HRMkZMRxx/7Ec7tV25sv+B3w+kxK83XroSYT2R6uiBg4Lm1MFEkbSZSjGbsj77gfX2tusR1HrW3LONY4ZV3HkguBVtAwxZUOKIcpG63vyd6DAyJF1MbEm8HmnlcWCOtWPezpoz6MCu5caBUxBJ/hn3s+RKV1GcaqggBXQZIq+l1EvJctM0I/
+X-MS-Exchange-AntiSpam-MessageData-0: 05AgGKbgo5K+qIo+gJqfnd3tI9mO5ENkLYNr35sPbZ810EesTRhvz1wFsQiGmcJbTGk0ZCd2iTjFqzuc7c7WmTCmT4qASO7nRVG5Sr6IJ++h1txnz7imsqObcAR7oNi10xRgXHnSNc83lZVNfKT0qqyM9yW4b6V2ziUYFMhDJp3JXwpPrfCNlwOYX4P7zZIMHDvTqbuuiF4G4Tsh8nBD28WXrsT4AwXHBqGFXHe9D1mpLj9E4u1odbabT8dwQ1A+f42j6IELfebsy5+fqejLTm6enidC+Eg6px4/svaTgf3h0TcVdgtOE5I0HUbG1v2b05o8H+Jvdtmilx3+TUnpASn6nvuEjWkGyH8jgjGJBLV7prbu5phUYML1ErntBy4O0zBMkf7XOTjn5IkfoNxgScRMu01m8wbzHPDxkK1qJuqzkcIvmVasCFuNvE60Iht8
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:47:55.3534 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f111c6f-cbdf-4ceb-db00-08dee277ac69
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:48:14.0365 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 385e746d-ca50-41a3-da7f-08dee277b78c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F1.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4217
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6381
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,386 +151,174 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 42A3275EECF
+X-Rspamd-Queue-Id: 29B1975EEE4
 X-Rspamd-Action: no action
 
 From: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 
-Add KUnit coverage for the i2c and EDID parsing helpers:
-amdgpu_dm_i2c_func(), amdgpu_dm_i2c_xfer(), get_amd_vsdb(),
-parse_hdmi_amd_vsdb() and parse_edid_displayid_vrr().
+Add KUnit coverage for connector mode validation and HDMI CEC:
+mode_valid rejects interlaced and doublescan modes, set_edid with no
+notifier, and the S3 suspend/resume CEC handlers.
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- .../display/amdgpu_dm/amdgpu_dm_connector.c   |  15 +-
- .../display/amdgpu_dm/amdgpu_dm_connector.h   |  10 +
- .../tests/amdgpu_dm_connector_test.c          | 249 ++++++++++++++++++
- 3 files changed, 269 insertions(+), 5 deletions(-)
+ .../display/amdgpu_dm/amdgpu_dm_connector.c   |   3 +
+ .../tests/amdgpu_dm_connector_test.c          | 105 ++++++++++++++++++
+ 2 files changed, 108 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-index 557cc6492529..72c12484d218 100644
+index 72c12484d218..3fa2392549eb 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-@@ -2999,7 +2999,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
- 	}
+@@ -356,6 +356,7 @@ void amdgpu_dm_hdmi_cec_set_edid(struct amdgpu_dm_connector *aconnector)
+ 	cec_notifier_set_phys_addr(n,
+ 				   connector->display_info.source_physical_address);
  }
++EXPORT_IF_KUNIT(amdgpu_dm_hdmi_cec_set_edid);
  
--static int amdgpu_dm_i2c_xfer(struct i2c_adapter *i2c_adap,
-+STATIC_IFN_KUNIT int amdgpu_dm_i2c_xfer(struct i2c_adapter *i2c_adap,
- 			      struct i2c_msg *msgs, int num)
+ void amdgpu_dm_s3_handle_hdmi_cec(struct drm_device *ddev, bool suspend)
  {
- 	struct amdgpu_i2c_adapter *i2c = i2c_get_adapdata(i2c_adap);
-@@ -3043,11 +3043,13 @@ static int amdgpu_dm_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	kfree(cmd.payloads);
+@@ -376,6 +377,7 @@ void amdgpu_dm_s3_handle_hdmi_cec(struct drm_device *ddev, bool suspend)
+ 	}
+ 	drm_connector_list_iter_end(&conn_iter);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_s3_handle_hdmi_cec);
+ 
+ 
+ struct drm_connector *
+@@ -2254,6 +2256,7 @@ enum drm_mode_status amdgpu_dm_connector_mode_valid(struct drm_connector *connec
+ 	/* TODO: error handling*/
  	return result;
  }
-+EXPORT_IF_KUNIT(amdgpu_dm_i2c_xfer);
++EXPORT_IF_KUNIT(amdgpu_dm_connector_mode_valid);
  
--static u32 amdgpu_dm_i2c_func(struct i2c_adapter *adap)
-+STATIC_IFN_KUNIT u32 amdgpu_dm_i2c_func(struct i2c_adapter *adap)
- {
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_i2c_func);
- 
- static const struct i2c_algorithm amdgpu_dm_i2c_algo = {
- 	.master_xfer = amdgpu_dm_i2c_xfer,
-@@ -3409,7 +3411,7 @@ static bool parse_edid_cea(struct amdgpu_dm_connector *aconnector,
- 	return ret;
- }
- 
--static void parse_edid_displayid_vrr(struct drm_connector *connector,
-+STATIC_IFN_KUNIT void parse_edid_displayid_vrr(struct drm_connector *connector,
- 				     const struct edid *edid)
- {
- 	u8 *edid_ext = NULL;
-@@ -3451,8 +3453,9 @@ static void parse_edid_displayid_vrr(struct drm_connector *connector,
- 		j++;
- 	}
- }
-+EXPORT_IF_KUNIT(parse_edid_displayid_vrr);
- 
--static int get_amd_vsdb(struct amdgpu_dm_connector *aconnector,
-+STATIC_IFN_KUNIT int get_amd_vsdb(struct amdgpu_dm_connector *aconnector,
- 			struct amdgpu_hdmi_vsdb_info *vsdb_info)
- {
- 	struct drm_connector *connector = &aconnector->base;
-@@ -3462,8 +3465,9 @@ static int get_amd_vsdb(struct amdgpu_dm_connector *aconnector,
- 
- 	return connector->display_info.amd_vsdb.version != 0;
- }
-+EXPORT_IF_KUNIT(get_amd_vsdb);
- 
--static int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
-+STATIC_IFN_KUNIT int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
- 			       const struct edid *edid,
- 			       struct amdgpu_hdmi_vsdb_info *vsdb_info)
- {
-@@ -3494,6 +3498,7 @@ static int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
- 
- 	return valid_vsdb_found ? i : -ENODEV;
- }
-+EXPORT_IF_KUNIT(parse_hdmi_amd_vsdb);
- 
- /**
-  * amdgpu_dm_update_freesync_caps - Update Freesync capabilities
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
-index b237e8f864db..b64c81477a60 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
-@@ -146,6 +146,16 @@ int amdgpu_dm_encoder_init(struct drm_device *dev,
- 			   uint32_t link_index);
- 
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
-+int amdgpu_dm_i2c_xfer(struct i2c_adapter *i2c_adap,
-+		       struct i2c_msg *msgs, int num);
-+u32 amdgpu_dm_i2c_func(struct i2c_adapter *adap);
-+void parse_edid_displayid_vrr(struct drm_connector *connector,
-+			      const struct edid *edid);
-+int get_amd_vsdb(struct amdgpu_dm_connector *aconnector,
-+		 struct amdgpu_hdmi_vsdb_info *vsdb_info);
-+int parse_hdmi_amd_vsdb(struct amdgpu_dm_connector *aconnector,
-+			const struct edid *edid,
-+			struct amdgpu_hdmi_vsdb_info *vsdb_info);
- void amdgpu_dm_connector_funcs_force(struct drm_connector *connector);
- enum dc_status dm_validate_stream_and_context(struct dc *dc,
- 					      struct dc_stream_state *stream);
+ int amdgpu_dm_fill_hdr_info_packet(const struct drm_connector_state *state,
+ 				struct dc_info_packet *out)
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
-index 459f0eda9a69..f60ce381683e 100644
+index f60ce381683e..cfb114d5b879 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
-@@ -17,6 +17,7 @@
- #include <drm/drm_modes.h>
- #include <drm/drm_property.h>
- #include <linux/hdmi.h>
-+#include <linux/i2c.h>
- 
- #include "dc.h"
- #include "amdgpu.h"
-@@ -4666,6 +4667,239 @@ static void dm_test_add_freesync_modes_null_edid_noop(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, aconnector->num_modes, 7);
+@@ -4900,6 +4900,103 @@ static void dm_test_parse_displayid_vrr_sets_range(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.max_vfreq, 144);
  }
  
-+/* EDID extension block tag values (avoids pulling in private drm headers). */
-+#define DM_TEST_CEA_EXT		0x02
-+#define DM_TEST_DISPLAYID_EXT	0x70
-+
 +/**
-+ * dm_test_i2c_func_returns_flags - Test the i2c functionality flags
++ * dm_test_mode_valid_interlace_rejected - Test interlaced modes are rejected
 + * @test: The KUnit test context
 + *
-+ * The algorithm advertises plain I2C plus emulated SMBUS regardless of the
-+ * adapter argument, which it never dereferences.
++ * Interlaced modes are rejected up front with MODE_ERROR before any sink or
++ * stream validation is attempted.
 + */
-+static void dm_test_i2c_func_returns_flags(struct kunit *test)
-+{
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_i2c_func(NULL),
-+			I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL);
-+}
-+
-+/**
-+ * dm_test_i2c_xfer_no_ddc_pin - Test transfers without a DDC pin are rejected
-+ * @test: The KUnit test context
-+ *
-+ * When the backing ddc_service has no ddc_pin the transfer bails out early
-+ * with -EIO before touching the message buffers or the dc handle.
-+ */
-+static void dm_test_i2c_xfer_no_ddc_pin(struct kunit *test)
-+{
-+	struct amdgpu_i2c_adapter *i2c;
-+	struct ddc_service *ddc;
-+
-+	i2c = kunit_kzalloc(test, sizeof(*i2c), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, i2c);
-+	ddc = kunit_kzalloc(test, sizeof(*ddc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, ddc);
-+
-+	i2c->ddc_service = ddc;
-+	i2c_set_adapdata(&i2c->base, i2c);
-+
-+	/* ddc->ddc_pin is NULL -> transfer is rejected with -EIO. */
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_i2c_xfer(&i2c->base, NULL, 0), -EIO);
-+}
-+
-+/**
-+ * dm_test_get_amd_vsdb_unsupported - Test a zero VSDB version reports no support
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_get_amd_vsdb_unsupported(struct kunit *test)
++static void dm_test_mode_valid_interlace_rejected(struct kunit *test)
 +{
 +	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
++	struct drm_display_mode *mode;
 +
 +	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, aconnector);
++	mode = kunit_kzalloc(test, sizeof(*mode), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, mode);
 +
-+	aconnector->base.display_info.amd_vsdb.version = 0;
-+	aconnector->base.display_info.amd_vsdb.replay_mode = false;
-+
-+	KUNIT_EXPECT_EQ(test, get_amd_vsdb(aconnector, &vsdb_info), 0);
-+	KUNIT_EXPECT_EQ(test, vsdb_info.amd_vsdb_version, 0);
-+}
-+
-+/**
-+ * dm_test_get_amd_vsdb_supported - Test a non-zero VSDB version is reported
-+ * @test: The KUnit test context
-+ *
-+ * The display info's VSDB version and replay mode are copied out and a
-+ * non-zero version reports support.
-+ */
-+static void dm_test_get_amd_vsdb_supported(struct kunit *test)
-+{
-+	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
-+
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+
-+	aconnector->base.display_info.amd_vsdb.version = 2;
-+	aconnector->base.display_info.amd_vsdb.replay_mode = true;
-+
-+	KUNIT_EXPECT_EQ(test, get_amd_vsdb(aconnector, &vsdb_info), 1);
-+	KUNIT_EXPECT_EQ(test, vsdb_info.amd_vsdb_version, 2);
-+	KUNIT_EXPECT_TRUE(test, vsdb_info.replay_mode);
-+}
-+
-+/**
-+ * dm_test_parse_hdmi_amd_vsdb_null_edid - Test NULL EDID returns -ENODEV
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_parse_hdmi_amd_vsdb_null_edid(struct kunit *test)
-+{
-+	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
-+
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
++	mode->flags = DRM_MODE_FLAG_INTERLACE;
 +
 +	KUNIT_EXPECT_EQ(test,
-+			parse_hdmi_amd_vsdb(aconnector, NULL, &vsdb_info),
-+			-ENODEV);
++			amdgpu_dm_connector_mode_valid(&aconnector->base, mode),
++			MODE_ERROR);
 +}
 +
 +/**
-+ * dm_test_parse_hdmi_amd_vsdb_no_extensions - Test EDID without extensions
++ * dm_test_mode_valid_dblscan_rejected - Test doublescan modes are rejected
 + * @test: The KUnit test context
 + *
-+ * An EDID that declares no extension blocks has no CEA block to parse.
++ * Doublescan modes are rejected up front with MODE_ERROR.
 + */
-+static void dm_test_parse_hdmi_amd_vsdb_no_extensions(struct kunit *test)
++static void dm_test_mode_valid_dblscan_rejected(struct kunit *test)
 +{
 +	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
-+	struct edid *edid;
++	struct drm_display_mode *mode;
 +
 +	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+	edid = kunit_kzalloc(test, sizeof(*edid), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, edid);
++	mode = kunit_kzalloc(test, sizeof(*mode), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, mode);
 +
-+	edid->extensions = 0;
++	mode->flags = DRM_MODE_FLAG_DBLSCAN;
 +
 +	KUNIT_EXPECT_EQ(test,
-+			parse_hdmi_amd_vsdb(aconnector, edid, &vsdb_info),
-+			-ENODEV);
++			amdgpu_dm_connector_mode_valid(&aconnector->base, mode),
++			MODE_ERROR);
 +}
 +
 +/**
-+ * dm_test_parse_hdmi_amd_vsdb_no_cea_ext - Test EDID with no CEA extension
++ * dm_test_hdmi_cec_set_edid_no_notifier - Test the no-notifier no-op path
 + * @test: The KUnit test context
 + *
-+ * An extension block that is not a CEA block leaves no VSDB to parse.
++ * With aconnector->notifier NULL the function returns early and must not crash.
 + */
-+static void dm_test_parse_hdmi_amd_vsdb_no_cea_ext(struct kunit *test)
++static void dm_test_hdmi_cec_set_edid_no_notifier(struct kunit *test)
 +{
 +	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_hdmi_vsdb_info vsdb_info = {0};
-+	struct edid *edid;
-+	u8 *raw;
 +
 +	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, aconnector);
 +
-+	/* Base block + one extension block that is NOT a CEA extension. */
-+	raw = kunit_kzalloc(test, 2 * EDID_LENGTH, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, raw);
-+	edid = (struct edid *)raw;
-+	edid->extensions = 1;
-+	raw[EDID_LENGTH] = DM_TEST_DISPLAYID_EXT;
-+
-+	KUNIT_EXPECT_EQ(test,
-+			parse_hdmi_amd_vsdb(aconnector, edid, &vsdb_info),
-+			-ENODEV);
++	amdgpu_dm_hdmi_cec_set_edid(aconnector);
 +}
 +
 +/**
-+ * dm_test_parse_displayid_vrr_null_edid - Test NULL EDID leaves range untouched
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_parse_displayid_vrr_null_edid(struct kunit *test)
-+{
-+	struct drm_connector *connector;
-+
-+	connector = kunit_kzalloc(test, sizeof(*connector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, connector);
-+
-+	parse_edid_displayid_vrr(connector, NULL);
-+
-+	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.max_vfreq, 0);
-+	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.min_vfreq, 0);
-+}
-+
-+/**
-+ * dm_test_parse_displayid_vrr_no_displayid - Test EDID without a DisplayID ext
++ * dm_test_s3_handle_hdmi_cec_suspend - Test the suspend pass over connectors
 + * @test: The KUnit test context
 + *
-+ * Without a DisplayID extension block there is no dynamic range to extract.
++ * Suspend iterates all connectors, skipping writeback ones and calling the
++ * unset path on the rest; with NULL notifiers this is a crash-free no-op.
 + */
-+static void dm_test_parse_displayid_vrr_no_displayid(struct kunit *test)
++static void dm_test_s3_handle_hdmi_cec_suspend(struct kunit *test)
 +{
-+	struct drm_connector *connector;
-+	struct edid *edid;
-+	u8 *raw;
++	struct drm_device *drm = dm_test_alloc_drm(test);
 +
-+	connector = kunit_kzalloc(test, sizeof(*connector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, connector);
-+	raw = kunit_kzalloc(test, 2 * EDID_LENGTH, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, raw);
-+	edid = (struct edid *)raw;
-+	edid->extensions = 1;
-+	raw[EDID_LENGTH] = DM_TEST_CEA_EXT;
++	dm_test_add_connector(test, drm, DRM_MODE_CONNECTOR_WRITEBACK);
++	dm_test_add_connector(test, drm, DRM_MODE_CONNECTOR_HDMIA);
 +
-+	parse_edid_displayid_vrr(connector, edid);
-+
-+	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.max_vfreq, 0);
++	amdgpu_dm_s3_handle_hdmi_cec(drm, true);
 +}
 +
 +/**
-+ * dm_test_parse_displayid_vrr_sets_range - Test a DisplayID VRR block is parsed
++ * dm_test_s3_handle_hdmi_cec_resume - Test the resume pass over connectors
 + * @test: The KUnit test context
 + *
-+ * A DisplayID dynamic video timing range descriptor populates the connector's
-+ * monitor refresh range.
++ * Resume iterates all connectors, skipping writeback ones and calling the set
++ * path on the rest; with NULL notifiers this is a crash-free no-op.
 + */
-+static void dm_test_parse_displayid_vrr_sets_range(struct kunit *test)
++static void dm_test_s3_handle_hdmi_cec_resume(struct kunit *test)
 +{
-+	struct drm_connector *connector;
-+	struct edid *edid;
-+	u8 *raw, *ext;
++	struct drm_device *drm = dm_test_alloc_drm(test);
 +
-+	connector = kunit_kzalloc(test, sizeof(*connector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, connector);
-+	raw = kunit_kzalloc(test, 2 * EDID_LENGTH, GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, raw);
-+	edid = (struct edid *)raw;
-+	edid->extensions = 1;
++	dm_test_add_connector(test, drm, DRM_MODE_CONNECTOR_WRITEBACK);
++	dm_test_add_connector(test, drm, DRM_MODE_CONNECTOR_HDMIA);
 +
-+	ext = raw + EDID_LENGTH;
-+	ext[0] = DM_TEST_DISPLAYID_EXT;
-+	/*
-+	 * DisplayID dynamic video timing range descriptor, parsed from offset
-+	 * 1: tag 0x25, flags 0 (single-byte max), payload length 9, then the
-+	 * min/max vfreq bytes.
-+	 */
-+	ext[1] = 0x25;
-+	ext[2] = 0x00;
-+	ext[3] = 9;
-+	ext[10] = 40;
-+	ext[11] = 144;
-+
-+	parse_edid_displayid_vrr(connector, edid);
-+
-+	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.min_vfreq, 40);
-+	KUNIT_EXPECT_EQ(test, connector->display_info.monitor_range.max_vfreq, 144);
++	amdgpu_dm_s3_handle_hdmi_cec(drm, false);
 +}
 +
  static struct kunit_case amdgpu_dm_connector_tests[] = {
  	/* get_subconnector_type */
  	KUNIT_CASE(dm_test_subconnector_type_none),
-@@ -4917,6 +5151,21 @@ static struct kunit_case amdgpu_dm_connector_tests[] = {
- 	KUNIT_CASE(dm_test_add_fs_modes_no_preferred_mode),
- 	/* amdgpu_dm_connector_add_freesync_modes */
- 	KUNIT_CASE(dm_test_add_freesync_modes_null_edid_noop),
-+	/* amdgpu_dm_i2c_func */
-+	KUNIT_CASE(dm_test_i2c_func_returns_flags),
-+	/* amdgpu_dm_i2c_xfer */
-+	KUNIT_CASE(dm_test_i2c_xfer_no_ddc_pin),
-+	/* get_amd_vsdb */
-+	KUNIT_CASE(dm_test_get_amd_vsdb_unsupported),
-+	KUNIT_CASE(dm_test_get_amd_vsdb_supported),
-+	/* parse_hdmi_amd_vsdb */
-+	KUNIT_CASE(dm_test_parse_hdmi_amd_vsdb_null_edid),
-+	KUNIT_CASE(dm_test_parse_hdmi_amd_vsdb_no_extensions),
-+	KUNIT_CASE(dm_test_parse_hdmi_amd_vsdb_no_cea_ext),
-+	/* parse_edid_displayid_vrr */
-+	KUNIT_CASE(dm_test_parse_displayid_vrr_null_edid),
-+	KUNIT_CASE(dm_test_parse_displayid_vrr_no_displayid),
-+	KUNIT_CASE(dm_test_parse_displayid_vrr_sets_range),
+@@ -5166,6 +5263,14 @@ static struct kunit_case amdgpu_dm_connector_tests[] = {
+ 	KUNIT_CASE(dm_test_parse_displayid_vrr_null_edid),
+ 	KUNIT_CASE(dm_test_parse_displayid_vrr_no_displayid),
+ 	KUNIT_CASE(dm_test_parse_displayid_vrr_sets_range),
++	/* amdgpu_dm_connector_mode_valid */
++	KUNIT_CASE(dm_test_mode_valid_interlace_rejected),
++	KUNIT_CASE(dm_test_mode_valid_dblscan_rejected),
++	/* amdgpu_dm_hdmi_cec_set_edid */
++	KUNIT_CASE(dm_test_hdmi_cec_set_edid_no_notifier),
++	/* amdgpu_dm_s3_handle_hdmi_cec */
++	KUNIT_CASE(dm_test_s3_handle_hdmi_cec_suspend),
++	KUNIT_CASE(dm_test_s3_handle_hdmi_cec_resume),
  	{}
  };
  
