@@ -2,110 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qsg3B+uOV2rIWwAAu9opvQ
+	id 1MQMGWaRV2rYXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:15 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:55:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA4175ED69
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA15075F09E
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:55:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="L9V6/uqv";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=isehLsRh;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5E210F066;
-	Wed, 15 Jul 2026 13:45:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E7F510E198;
+	Wed, 15 Jul 2026 13:55:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67C4610F066
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:45:11 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-2ccae46de39so10719645ad.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 06:45:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1784123111; cv=none;
- d=google.com; s=arc-20260327;
- b=dHcYHE+bdWU3H1IAq/qWi9/gLN8wotgyzbi78duMk2uGQOVyVD6ngKEibf9/0U8oUC
- QWrt7HoSzvES2j2qBPXS9eHOD4hUAIh1TSqSdnirh8jHIinKuP1RKqpmh5a3B7SLLk3+
- JY/ZFrhaKLPVkz6fEL+e2Z66STjb6hbMzG8h95DsII36QdQQPZCmoyaT2R6a64F8tKm7
- eR7a/e+O5OtX54ZS3ioFMDX2VAn1r15RkbLL8xuzKuPqxSQd2FQId5v7m5sJTziFgo4C
- B3sieFkV3CY2jQGb7L2ZKVv+jTgnu0lUd9KvmdFsaFWqjVFjpz8AVBj+Egm4FGUbWbu9
- dvxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
- fh=kN554ZXdjNLFYlsoSN+4k+ab7ffU5SVaCgbW6KOXSBE=;
- b=KAEZRVVTUfwQdt/CLkgu8p2+S4CtXQtHAyF1YFngz4T+E0om2TvRnSUOuGbfbVkv2K
- 2yVbYyCrXVzweMaHsaBEwKO15lACVLTI1k4OT87EAPADHIUfUg4nns/NOcL3fnS478ID
- RUg8ZAlKil5CsAyJtGp3uUXtJTqxJfLDyF7sTEr0FVrY0sv1Wm6wL4a6EO6eJOxtkRdm
- s54JE8QsiR+FD7ygQ4N1W8RRvaDFAOxrHc3B/rNaE7uTtIf997KAF9eIDMVnCUSYbB9L
- qTPebIftSavHQ7ilLFIVUyl+yL5kpi5uJK51q9SDksQcP0GVV/DuGo1FXon3Ds27KmFG
- qpdA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784123111; x=1784727911; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
- b=L9V6/uqvbwX2cSxoSWvX0CrVOp5tW2mKsZwPKA6qXgWZiYFc2jWgF0ZjBxlYtpfQOy
- nwhSli+QUrKguC+CfKhbwbuHq3MchLMPKXXZrE6hLBA1I9NIQ3b6W6HkHO0vvDtl0+hh
- gbxZfJ7mfsy/os3nwOfQMMCeSx9nUJW7HoTxXpFOEhKukUgeH4OViYc6jrEN/v3NmCGG
- 9y6Eg+AQb0RM9pEqokQln9rQ4sqSFbXEDpyuCnAplsfiKBAXMi3a7jRrHo7V15wRhvDl
- +6tjKklteFJsGYDRYZ/0fCw+Y1mUiNy9OsMIlc+lJaD5CZ/aO5Edqi23O6k7+yHSY78g
- xRmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784123111; x=1784727911;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
- b=LS9N8LhLjYKCCEO5BCKlj2OawQP7k5LRkF8oXt+QH4CSbb5ZQ2PHgWKnyfAkUzpNhl
- A8Fh0pz5Htymrl7fGvXMe9bwcO+iI3hZUxbmIkwpkIAmd+vqVWbjh5dUPOxlxpwmCtDh
- G6wEG/N89ngqsL+dsl7IjMOPft4M1T2sluE2alnmJSPlDGKatBGnH70QACFonw0kNkqZ
- oY8CM69wldHCDtYUiW3dyxF8Uj5az5w63XFj3Do8zLJkqgN7G/Z+UrSOquWJOu/7CNpO
- 5aCPHzQX4hlM3gGpKXZmt6wMZvjDTcF5nb0Wr2lpvdJq/dH/NjbKR429EzFf0L+W8biQ
- sByg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrNrJHjKO7s+G+szWF9iDmwAcZJPK52mZtPVGo8725EGRHboWkkRzPaPCx3pBm7uG0phje7hzDT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwqEJed60QcgkC9tCh71QoIrGLlSJKt0cS38JGlO236Y+QUswJk
- SdWO86lwCEYOeolAE06CX60aeV/2EVNTz8QDyTQsptAMaSzjEwPN8PN5U6vZAcsYwpmwwr09jVO
- DDcQWL3W4XOrSKo8d/fZQ3YX9yDfIo613Ld17
-X-Gm-Gg: AfdE7clokfptN/kTEhRt7NTMkgqp9ieX1pL6Xv0fMqaVce2LXLOd8zvpzUgGgW1TyZI
- 0sMlYMS3ibmRhwPp3dnQfKNR2X7sXw2NnNxd1DdFUXIO68PXIVh20zRVr56EkeKpRu6PvOygN7U
- EqfNqkmroRrN+vhQ/hbCfAiGBZ/HC2a7fN2xlzpl9/+zuhpJ3KYbfnpyzimO/eLk/MT1GE75A+g
- Xw13cdb19elZMl1ZClJOT/1K0gOvleo1rNKVreSdcK/2EfhbWGFSjd/fYK6qk9RBqjzxiy1u5En
- sz7evBiTr7xunPBEFRcyb7bXYF5KrGglu7Hyol5QHPiam92vUyPTuVWPRx4=
-X-Received: by 2002:a17:902:ea0f:b0:2ca:6885:8a06 with SMTP id
- d9443c01a7336-2ce9f04c866mr141309635ad.5.1784123110806; Wed, 15 Jul 2026
- 06:45:10 -0700 (PDT)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012023.outbound.protection.outlook.com
+ [40.107.200.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEE0410E198
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:55:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=O/ykycR4RiE/XXdk8xp0HbkENtWyPnypFWSV5mmXSbL/MyCc1XABBFD3QwIjsb8fpp7+THUYwJjCvZgarKpdRudYn3YdzTtYUtYQyhMxTegMfc+kva51zoxVlt2QrS304ST0MDvmJeojha/ojZpQ+uHfOLQM71Lgnnqg1e9lEVO5af1Tjxlb0ulmteA/hP13BmZJFeC7M7GpYYlAgxKoDNft4iryuhRvGfa0z/7yDw8LHZ7K6Iawf5S9g6u6aMx2OOrcFCliioZ/TOfc0iOrN0uqJY8QOrZVWWe21lBTTTionKSd76yUByqIQpt2KJtOUuIaC6hqYUl7AGIrQM6Ayw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NRtGeJCeBSfAwro2cPjS9mudVw0pbVa8pTbzNsvD1zA=;
+ b=Ra0EvuZJ7bpVz3E6e3mVZIfNfVwNsKeRk/+YNFjdSSCfkuZo0VgsBqYqGjr85Tfm9bz7dF7yclPnl01utBkxCWSYcVGkRYsaz2Zoc2T0MySEMG7aZpjAMp23XrMMYh2iygJXhrfvoi8xfkBupln8wyXGoQMy6t8X3uK+HLJGf07Ht+fU3n7qPaxqmNLXdKvA5+K4SAA4iExW62hwMbmknsgBVvDH1rqGu+SvE86NnwBhvnQj3iYx6ovF7znKLfmezwP39sF8BBPn4STO3ye0F8mT3nJN6HWZujtT/jaeZYfBtuADKmzefdymEQe+T40ieVeqrIDEuZT7NzSix2mEdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NRtGeJCeBSfAwro2cPjS9mudVw0pbVa8pTbzNsvD1zA=;
+ b=isehLsRhvOWHJoLeYx/WEVDK/lXZ/vUbU3mBb8lOa144HJ/VTuJzdRarmfP0iX7piYoHuWyH10+fS84vLI+w7fpuUYlNl/AY0AtSkyAQ2Orxj0Ark5boQOqDaHaYrmI5QbzVyyGhetmyfwcP5jQrKY42N666XBMsfuIJXxybFXo=
+Received: from BN9P220CA0004.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:13e::9)
+ by PH0PR12MB8175.namprd12.prod.outlook.com (2603:10b6:510:291::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Wed, 15 Jul
+ 2026 13:55:38 +0000
+Received: from BL6PEPF0001AB73.namprd02.prod.outlook.com
+ (2603:10b6:408:13e:cafe::49) by BN9P220CA0004.outlook.office365.com
+ (2603:10b6:408:13e::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
+ 15 Jul 2026 13:55:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF0001AB73.mail.protection.outlook.com (10.167.242.166) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:55:37 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
+ 2026 08:55:33 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <Feifei.Xu@amd.com>
+Subject: [PATCH] drm/amdgpu: Prefer default discovery offset
+Date: Wed, 15 Jul 2026 19:25:18 +0530
+Message-ID: <20260715135518.3947786-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-References: <20260713182732.630947-1-alexander.deucher@amd.com>
- <20260713182732.630947-5-alexander.deucher@amd.com>
- <e8926046-2e03-4224-98ba-8601de0421db@amd.com>
- <CADnq5_OGJBx5xkSDfU4cyt0bjZRot18F-PE29RJFSkC=YPz6oQ@mail.gmail.com>
- <1e4cead4-73b7-461f-b4d4-a66e293d0d96@amd.com>
- <CADnq5_OnTfvMf+Bx3V36p0W_M4ARksHZ+emGSNb07Us9xPr2uw@mail.gmail.com>
- <c9e1526e-c2b6-465c-9f82-24299d8a0e23@amd.com>
- <CADnq5_P8dPWAJCd_=u13KKDPmJQecC9MqHJ6K9g4+4iQxYvi_Q@mail.gmail.com>
- <70f3e844-002a-46b2-9341-47428abfd829@amd.com>
-In-Reply-To: <70f3e844-002a-46b2-9341-47428abfd829@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 15 Jul 2026 09:44:58 -0400
-X-Gm-Features: AUfX_mzgN6MoTs_NV5FIB_gbU3jNPGEHhmJRsRsRItNCsOSB_GTI-Lv6_cFQVRo
-Message-ID: <CADnq5_OzP69GXe4TgotojQd7U8DUbyY-QK_HP6JR-h8+0PoTPA@mail.gmail.com>
-Subject: Re: [PATCH 05/14] drm/amdgpu: add an buffer funcs callback for TLB
- invalidation
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB73:EE_|PH0PR12MB8175:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57fea709-67cf-4577-3529-08dee278c013
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|376014|23010399003|36860700016|18002099003|13003099007|10067099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 6OnNDzqCzKHpFcViOVrDIUFwzaUfRuk6iqK3omfv7b7mhJOf9f4C0N8vF3v58plafztxtVesZAbGF8ydRJU+2hxrIv9/bHbvQaC6kOt2lBuWkk4IaZSFyTawrDwCBLj9VclKCzucCOlol2eAidmzv/hz3+wzyb+Ju/afQc8YEc9ns4UBLNrzJO8FLUy0n6f/xyaYl3y7VYU8Lhigt5thLstzYYSfgN00YLu+MMHK+5qW7KPn0wQsjY8e4xowSTSbG5LUjUf25EzBFiPbfUCBLO+kh0Z4GlGQem/V2CjuwVFUDag6RG9ZSPP1S8Wtqk2j1qLbA1I21Y39NXaglhokgLShGrlntFQwqhcrhr3vLy3qmmMQO0kiZx8jlNwdkpgUOh+7hL/H6x8tY2zMCR9BphJRvqPZY/5kkH+4/ZJanVJUkgL96jq0VrlWTUL6FmaeS3FoCNeu1CUHjf6Vn3z+r0DrILx64PiEIs+TmHTfB8dwEaFQtH0KR7yOIc+a0x2Ta12fREahXhZaR39TdykyeOzP8RoG3VuGKdEaSIqAApaCvXopsY3FqlrAmDSVLW0ZQcDPbuO3qrBdSr5DIteZi3anetJB71GJNLwQzLyuJ2R7MoGzOMs43Cy50f2LPwArMqpkBGX8Q7MpHGYUtELIOQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(376014)(23010399003)(36860700016)(18002099003)(13003099007)(10067099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: a85MBnK/I7Sf4DtMkU+pQQcGAsW7Bi0wEpcTy57Fhq59l8l5Mzwbl7M9eHl1xD1JxU77XXwVtQT1rLQinjnQNBXZFI23FroZ5UAETmaEw2d4y5MQ+BpYlUHa7r7MxCZik/5dClXSezA7zfqmJxBHNe3nLW9N4sI0Q2kkj5lCB4HtwClpmXOW9HDRuZwWvLTwGoTNaw2CHT4EDKjzUIoiYjb3re5ABW2hBrCDFJAzqzbCIjAoBsd/0i/eIWonX6fYH71QcA//KP2mZ5zp0OYQvLzzx9am/XUYzcoWN+Gw/D11RpUuxm2DnLCmB51R7pOHuDeeakDZAG0L6CIpdEJkojubNWcJ51Kfjvk9jrJYvsXr3/iZPjJtjLOEBoudXgLSYmAHziphdmqtQiHV7IEezIKxkhcdG1yrJKoCWZrT2uY76jGHvq4GQmKrj0osqOqK
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:55:37.9191 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57fea709-67cf-4577-3529-08dee278c013
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB73.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8175
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,93 +114,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:email,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9AA4175ED69
+X-Rspamd-Queue-Id: BA15075F09E
 X-Rspamd-Action: no action
 
-On Wed, Jul 15, 2026 at 5:00=E2=80=AFAM Christian K=C3=B6nig
-<christian.koenig@amd.com> wrote:
->
-> On 7/14/26 17:19, Alex Deucher wrote:
-> >> Why are we using the MES for per VMID invalidation?
-> >
-> > gfxoff.  We can't access the registers directly unless we disallow gfxo=
-ff.
->
-> Well there is a remark that VM_INVALIDATE_ENG*_ACK is always save to read=
-, even when gfxoff is active.
->
-> And we explicitly acquire the semaphore to avoid that GFXOFF kicks in.
+If a valid signature is seen at the default offset, use the default
+size/offset for discovery.
 
-I'm pretty sure the semaphore just keeps it active if it's already
-active, but the registers are in the gfx tile so they are gfxoff
-controlled.  I think the semaphore is just meant to be used as a lock
-to keep gfxoff from kicking in in the middle of an invalidation.
+Fixes: 01bdc7e219c4 ("drm/amdgpu: New interface to get IP discovery binary v3")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5447
 
->
-> I also don't see how we use the MES here?
->
-> What we do is to use the KIQ on gfx9, but that is actually only as a work=
-around for some SRIOV problems.
->
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-We do it for everything gfx9 and newer.  For example gmc_v11_0_flush_gpu_tl=
-b():
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 44e7d2e3e6df..186661c94d8c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -334,6 +334,19 @@ static int amdgpu_discovery_get_tmr_info(struct amdgpu_device *adev,
+ 			goto out;
+ 		}
+ 	} else {
++		if (adev->discovery.offset) {
++			u32 signature;
++
++			/* If VRAM holds a valid discovery signature at the default
++			 * discovery offset, use it as-is.
++			 */
++			amdgpu_device_vram_access(adev, adev->discovery.offset,
++						  &signature, sizeof(signature),
++						  false);
++			if (le32_to_cpu(signature) == BINARY_SIGNATURE)
++				goto out;
++		}
++
+ 		tmr_size = RREG32(mmDRIVER_SCRATCH_2);
+ 		if (tmr_size) {
+ 			/* It's preferred to transition to PSP mailbox reg interface
+-- 
+2.49.0
 
-        /* This is necessary for SRIOV as well as for GFXOFF to
-function
-         * properly under bare metal
-         */
-        if ((adev->gfx.kiq[0].ring.sched.ready ||
-adev->mes.ring[0].sched.ready) &&
-            (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
-        amdgpu_gmc_fw_reg_write_reg_wait(adev, req, ack, inv_req,
-                                                 1 << vmid, GET_INST(GC, 0)=
-);
-                return;
-        }
-
-The only time we use the MMIO path is if KIQ or MES is not ready yet.
-The goal of this patch set was to switch to using SDMA rather than MES
-and to clean up the gmc code since most of the logic is the same for
-gfx9 and above.
-
-Alex
-
-
-> Christian.
->
-> >
-> > Alex
