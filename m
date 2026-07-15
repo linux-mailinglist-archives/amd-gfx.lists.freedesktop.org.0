@@ -2,89 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iH6XAsNnV2p/MAEAu9opvQ
+	id 7Z+5KwtqV2rQMwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 12:58:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 13:07:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A238175D28C
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 12:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E881B75D4D2
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 13:07:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=dePPj3nS;
+	dkim=pass header.d=ursulin.net header.s=google header.b="U7FP5t/Q";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31C2010EFCA;
-	Wed, 15 Jul 2026 10:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCC010E19B;
+	Wed, 15 Jul 2026 11:07:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24A1610EFC5
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 10:58:08 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-47d70879764so3574187f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 03:58:08 -0700 (PDT)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
+ [209.85.218.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D49110E19B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 11:07:52 +0000 (UTC)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-c1600d040e4so308044166b.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 04:07:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1784113086; x=1784717886; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=NBdJYZF0LxhZafRoTdm1Af0bajENGQ1sRQ7yFEfXmu8=;
- b=dePPj3nSA2ocetQKHGmVWX+juboGwHtJVLEBPYTF8qy7agUD4UlwxGo7DdY+2gDMWY
- UWFEDUx+7lomwk8bg4CFhvSoVqJU0DWH4yXz6MDS0V6aWKgqdgmdO6CbKmkdVFc+34p5
- KM+EcZz7GOFtz1noB6DUKHnbP/tK52fbqfvOBcLf41VG3MuYb2bVt9XTM7UWdLiwDwX8
- f4Z8XLOok+sfHqBTag2mY+RRDXahQHZStTlt1XJQ7X+kqyVS67VxXUXPTNNFGj0LPLJJ
- EEyWDSFEy38QkX058vGHAxUn+uTIMm7ATQsu0BRyR9IH9afbEmF8iC0hF4lPAkeVMUe8
- JTXw==
+ d=ursulin.net; s=google; t=1784113670; x=1784718470; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:to:subject:user-agent:mime-version:date
+ :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=BqvNWS7ynothILQGOIFzn3zEwNSgdylTQT+Ovugrxi0=;
+ b=U7FP5t/QkJ2Kf+kiZzw/AYqn/Kfed5RbABtCAQkwkVtRxrF6Hnu6uwqSDG5CXLDRbn
+ 3/N+/5RXeN8QPQC6SWcQgBMapGB2wceZnaVeZpMJxkhdkdEU1r7eVAK2G8bIzlfBhkWY
+ RlEfsyfdhxV1ApC90DbGnDMWQ8d8tP90PXH7BGblQ3QHvko14fmp0Rfa9qNIOhusJq1A
+ ooqWb8dhKTAYhNW2XhJwrwy9dnps22ig6tvbDCuq0ljkBj+anp/uBr9h/ZKWg3PgM3KD
+ oypetxotp28AUs7RdaoDqNEAyG6Iyp1BYQIj81Sy1v/ulGakKH6vwgEB/woi0/V1+1Ns
+ nICg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1784113086; x=1784717886;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=NBdJYZF0LxhZafRoTdm1Af0bajENGQ1sRQ7yFEfXmu8=;
- b=gA0C0KqwO6Gb8P44RbrmSix89qE4+HXRm7IRHnl1ugXdySZjEtxOjDl0arRWhMbhoJ
- XxKR+X1xvuA7UaMwtq2Fz9wZ/6c+dUCZ1i7/HQBWaqsZNt7IIKC29boNy6HPQLLWkWXK
- uV7tDf/TZoiPkYn6I5YWi0jb4+Z70rTeSKzI8avmKh9Z6LvAsoSH2tuYtKoyXriV5cra
- BpXjUWwgkd28zluMv3qtvXTLlyxIO1Ll7z67gftWYGcr0s98nhqCwkS9+f0rfsCVS3XD
- +ILJFtW8HWrR8yxbURxcbgdTRXIBRnjMhuaf+cEPNg0VkQ2mfQYvZSi4tG7YB6ogqYgT
- n/wA==
-X-Gm-Message-State: AOJu0YzEexVR7flu4UHUlCTF3ORnAqf3d28a/tjTOTbglZIjBeR7lQff
- MZ3O01e+yUP/LfWgHOaXLYxQO9N6Jgo9UFqsyMYhs1P9SgB1b4Fdau6lwBTIrWna
-X-Gm-Gg: AfdE7clpUH+AygnnMH3qr7fFC+9hYpV7jNdBk+dnQD098i3/46SYiQgW5zhRH8hwbKg
- fC93grZC3v+8pQ5tUwc5SI1EO3r/yxe4klxzIK6hfbEZoOGjcFP/CP71HhLjAsN4sPQEqW04sPk
- W+lx3PZGiRoTGfGSicu0DeS4WnG7dYVGpv4nAUgMinipGkd+BD2JSVY02IRsnSRFWf/2vsCLFQ/
- nIS9SQHf3uAXU0dzI9zjp/A01czUDDdb41hX1Jt/BzqZLUkJ88IFi9yQTvUXh88q6MQccdf7czv
- gfsvpxHUf21RiCXdtT3MdX4OrYJTiRSjmEO3QxXY5ZKWOi+dY/3PBBTM8lTWFKm6TRxy94LRSj8
- 9SX+9g7iShiei9NmdsOdA3lxRR7xlD84rGfQaFVeUcN6i+v+VcsAc8L8ivH278+WglcBYfesRH+
- gmzXRnhlmhEXJkLLpx2yKXBJpn/AArvPVeAlOnbs4+Zwpe0IMlLsQixQ==
-X-Received: by 2002:a05:6000:4282:b0:47f:2bc3:8cf7 with SMTP id
- ffacd0b85a97d-47f4fcb69e3mr2673154f8f.19.1784113086329; 
- Wed, 15 Jul 2026 03:58:06 -0700 (PDT)
-Received: from Timur-Hyperion.home (5401D94C.dsl.pool.telekom.hu.
- [84.1.217.76]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-47f464c4320sm15091094f8f.32.2026.07.15.03.58.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Jul 2026 03:58:05 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com,
- Tvrtko Ursulin <tursulin@ursulin.net>, pierre-eric.pelloux-prayer@amd.com,
- Natalie Vock <natalie.vock@gmx.de>, Dieter@nuetzel-hh.de
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Link Mauve <linkmauve@linkmauve.fr>,
- =?UTF-8?q?Nikola=20Medi=C4=87?= <nmedic89@gmail.com>,
- =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <maraeo@gmail.com>,
- Daniel Stone <daniels@collabora.com>
-Subject: [PATCH 4/4] drm/amd/display: Don't use tiling flags anymore
-Date: Wed, 15 Jul 2026 12:57:57 +0200
-Message-ID: <20260715105757.13125-5-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260715105757.13125-1-timur.kristof@gmail.com>
-References: <20260715105757.13125-1-timur.kristof@gmail.com>
+ d=1e100.net; s=20251104; t=1784113670; x=1784718470;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:to:subject:user-agent:mime-version:date
+ :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=BqvNWS7ynothILQGOIFzn3zEwNSgdylTQT+Ovugrxi0=;
+ b=G+CeRsjTm7YdIbkfdXcluXH84kvlJ98X/Vo9nP3QwXnnJ1tVY8ZPluNySsrcswUp1Y
+ G68C15pRHYYIYOHkFPQmjzOiRHvL3bqKCXO39+saz+mpak5B9s2ayZYx9i5iWBuo888r
+ R8xpT69NIDqzHMdGwSi11HNRhFca5tA6PSIT9kT7FXtTd2JbwCRQ/iFMmAhXZR76nsWC
+ JMiyrrvjaJXfqRjT2vgLTffFi6hkP7O4mJTYEhJiwtg9P8hlXDn9ebBhNpxuwqMvLq8q
+ HDOVEFgZt8Bbw8fp1cdmCHX4R0kq5aY+pjl01VfD1E8qbHqZhGzZ9U1kFVRCxeosu3FO
+ 76kg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RqZ+mFCWGsnMOO7QNxSZ2iZQWY02C8W0KluHZfHqgFfprFTiP6l4j9mX0qWXJDytTp6lZY6vueu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxi5o7VwzuAMfM9kBV2KXFx4IlFNfY5ZciqrrhtqgZoYT0/Vxkn
+ TwS28RYCyDMd/sz8m1IHIEPCPNvJ1A16nWOAxKck1TNaMBqnspfkPu9Rx4W3KGqsTkE=
+X-Gm-Gg: AfdE7cmz8cc1ASYSQty1+HGBlait2j+eJrX5k28dFxSIy2Gl8v6iZ/sL7tD73KmcE3/
+ fDwVs4HMAEmzdAjQAIfpSpcCS3j5SVf97suZJnVhamEnQqgdjVEZfJa4qNppicVlwUH73yq+TMK
+ GJbJoFxUIvQSHMG5bZjvr+qgjMqoFztyYdgNLFbneRf2T3qPsIkgB5QbfwkCM2LNk+ELnEw75h2
+ bA98cYl1CddDGzpMbnCa+IMziE3wiTXLJGjeuHJpWFEarI/IHy4DTPE8VQEaTBgQXGcUOU/DH2c
+ b0TebpmF0kNwD6Meviz2BLoAcGbxqI4L2jcdYnE1iHSPjg2si+i9VKm5g77DfnZgRIhQ5vwTtZY
+ Xt6l6gFzemLc5Ind4l7/s2KLS09xGw5IBbZZmWrbcAjr49VLQ9De978qtBRYILhvOw/5vjhPmO+
+ jkZM1cyWT1BJxNso4WotO3IwYoChSvIQMEtA==
+X-Received: by 2002:a17:907:7247:b0:c15:a7b9:2ae1 with SMTP id
+ a640c23a62f3a-c161e844fc3mr1071625566b.6.1784113670174; 
+ Wed, 15 Jul 2026 04:07:50 -0700 (PDT)
+Received: from [192.168.0.116] ([90.240.106.137])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-c16873187absm4086666b.38.2026.07.15.04.07.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 15 Jul 2026 04:07:49 -0700 (PDT)
+Message-ID: <c4989cf2-9826-4c8f-9a7f-d3155fde8738@ursulin.net>
+Date: Wed, 15 Jul 2026 12:07:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] drm/amdgpu/gfx7: Clean up gfx ring during reset
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ christian.koenig@amd.com, pierre-eric.pelloux-prayer@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>
+References: <20260713125838.30607-1-timur.kristof@gmail.com>
+ <20260713125838.30607-7-timur.kristof@gmail.com>
+ <d6e5a13d-bb65-4633-8c0e-8b89f292bc3f@ursulin.net>
+ <20288812.fSG56mABFh@timur-max>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20288812.fSG56mABFh@timur-max>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,334 +101,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[ursulin.net];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,ursulin.net,gmx.de,nuetzel-hh.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:pierre-eric.pelloux-prayer@amd.com,m:natalie.vock@gmx.de,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de];
 	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[gmail.com,linkmauve.fr,collabora.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ursulin.net:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,ursulin.net:from_mime,ursulin.net:dkim,ursulin.net:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A238175D28C
+X-Rspamd-Queue-Id: E881B75D4D2
 
-All supported GPU generations now support DRM format modifiers.
-Remove all code from amdgpu_dm that dealt with tiling flags.
 
-Note that the legacy non-DC display code still relies on
-tiling flags, so we can't remove them outside of DC
-until we also remove the legacy display code.
+On 15/07/2026 11:16, Timur Kristóf wrote:
+> On 2026. július 15., szerda 11:18:19 közép-európai nyári idő Tvrtko Ursulin
+> wrote:
+>> On 13/07/2026 13:58, Timur Kristóf wrote:
+>>> Clear the WPTR and RPTR at ring initialization.
+>>> Additionally clear the ring contents during reset.
+>>
+>> Please add the why part to your commit messages. ;)
+> 
+> After a reset, the ring contents could be "dirty" and thus need to be cleared
+> to prevent the command processor from executing packets left over in the ring
+> from before the reset. I think this is obvious, but I'm happy to add some text
+> to the commit message to explain it more.
 
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-Tested-by: Link Mauve <linkmauve@linkmauve.fr>
-Tested-by: Nikola Medić <nmedic89@gmail.com>
-Reviewed-by: Marek Olšák <maraeo@gmail.com>
-Reviewed-by: Daniel Stone <daniels@collabora.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 29 +------
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 37 --------
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.h   |  3 -
- .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 84 -------------------
- 4 files changed, 2 insertions(+), 151 deletions(-)
+Yes please, it's easier to review if commit messages always explain the 
+what, how and why. It does not have to be long when it is simple like in 
+this patch.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c643cc542857..2f7388c47d02 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3057,7 +3057,6 @@ EXPORT_IF_KUNIT(fill_plane_color_attributes);
- static int
- fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
- 			    const struct drm_plane_state *plane_state,
--			    const u64 tiling_flags,
- 			    struct dc_plane_info *plane_info,
- 			    struct dc_plane_address *address,
- 			    bool tmz_surface)
-@@ -3155,7 +3154,7 @@ fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
- 		return ret;
- 
- 	ret = amdgpu_dm_plane_fill_plane_buffer_attributes(adev, afb, plane_info->format,
--					   plane_info->rotation, tiling_flags,
-+					   plane_info->rotation,
- 					   &plane_info->tiling_info,
- 					   &plane_info->plane_size,
- 					   &plane_info->dcc, address,
-@@ -3191,7 +3190,6 @@ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
- 	dc_plane_state->scaling_quality = scaling_info.scaling_quality;
- 
- 	ret = fill_dc_plane_info_and_addr(adev, plane_state,
--					  afb->tiling_flags,
- 					  &plane_info,
- 					  &dc_plane_state->address,
- 					  afb->tmz_surface);
-@@ -4279,7 +4277,6 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 
- 		fill_dc_plane_info_and_addr(
- 			dm->adev, new_plane_state,
--			afb->tiling_flags,
- 			&bundle->plane_infos[planes_count],
- 			&bundle->flip_addrs[planes_count].address,
- 			afb->tmz_surface);
-@@ -6248,8 +6245,7 @@ static bool should_reset_plane(struct drm_atomic_state *state,
- 		new_afb = (struct amdgpu_framebuffer *)new_other_state->fb;
- 
- 		/* Tiling and DCC changes also require bandwidth updates. */
--		if (old_afb->tiling_flags != new_afb->tiling_flags ||
--		    old_afb->base.modifier != new_afb->base.modifier)
-+		if (old_afb->base.modifier != new_afb->base.modifier)
- 			return true;
- 	}
- 
-@@ -6261,9 +6257,7 @@ static int dm_check_cursor_fb(struct amdgpu_crtc *new_acrtc,
- 			      struct drm_framebuffer *fb)
- {
- 	struct amdgpu_device *adev = drm_to_adev(new_acrtc->base.dev);
--	struct amdgpu_framebuffer *afb = to_amdgpu_framebuffer(fb);
- 	unsigned int pitch;
--	bool linear;
- 
- 	if (fb->width > new_acrtc->max_cursor_width ||
- 	    fb->height > new_acrtc->max_cursor_height) {
-@@ -6298,25 +6292,6 @@ static int dm_check_cursor_fb(struct amdgpu_crtc *new_acrtc,
- 		return -EINVAL;
- 	}
- 
--	/* Core DRM takes care of checking FB modifiers, so we only need to
--	 * check tiling flags when the FB doesn't have a modifier.
--	 */
--	if (!(fb->flags & DRM_MODE_FB_MODIFIERS)) {
--		if (adev->family == AMDGPU_FAMILY_GC_12_0_0) {
--			linear = AMDGPU_TILING_GET(afb->tiling_flags, GFX12_SWIZZLE_MODE) == 0;
--		} else if (adev->family >= AMDGPU_FAMILY_AI) {
--			linear = AMDGPU_TILING_GET(afb->tiling_flags, SWIZZLE_MODE) == 0;
--		} else {
--			linear = AMDGPU_TILING_GET(afb->tiling_flags, ARRAY_MODE) != DC_ARRAY_2D_TILED_THIN1 &&
--				 AMDGPU_TILING_GET(afb->tiling_flags, ARRAY_MODE) != DC_ARRAY_1D_TILED_THIN1 &&
--				 AMDGPU_TILING_GET(afb->tiling_flags, MICRO_TILE_MODE) == 0;
--		}
--		if (!linear) {
--			drm_dbg_atomic(adev_to_drm(adev), "Cursor FB not linear");
--			return -EINVAL;
--		}
--	}
--
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 9d56ce635cbd..d066947f59e1 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -208,39 +208,6 @@ STATIC_IFN_KUNIT unsigned int amdgpu_dm_plane_modifier_gfx9_swizzle_mode(uint64_
- }
- EXPORT_IF_KUNIT(amdgpu_dm_plane_modifier_gfx9_swizzle_mode);
- 
--STATIC_IFN_KUNIT void amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(struct dc_tiling_info *tiling_info,
--								       uint64_t tiling_flags)
--{
--	/* Fill GFX8 params */
--	if (AMDGPU_TILING_GET(tiling_flags, ARRAY_MODE) == DC_ARRAY_2D_TILED_THIN1) {
--		unsigned int bankw, bankh, mtaspect, tile_split, num_banks;
--		bankw = AMDGPU_TILING_GET(tiling_flags, BANK_WIDTH);
--		bankh = AMDGPU_TILING_GET(tiling_flags, BANK_HEIGHT);
--		mtaspect = AMDGPU_TILING_GET(tiling_flags, MACRO_TILE_ASPECT);
--		tile_split = AMDGPU_TILING_GET(tiling_flags, TILE_SPLIT);
--		num_banks = AMDGPU_TILING_GET(tiling_flags, NUM_BANKS);
--
--		tiling_info->gfxversion = DcGfxVersion8;
--		/* XXX fix me for VI */
--		tiling_info->gfx8.num_banks = num_banks;
--		tiling_info->gfx8.array_mode =
--				DC_ARRAY_2D_TILED_THIN1;
--		tiling_info->gfx8.tile_split = tile_split;
--		tiling_info->gfx8.bank_width = bankw;
--		tiling_info->gfx8.bank_height = bankh;
--		tiling_info->gfx8.tile_aspect = mtaspect;
--		tiling_info->gfx8.tile_mode =
--				DC_ADDR_SURF_MICRO_TILING_DISPLAY;
--	} else if (AMDGPU_TILING_GET(tiling_flags, ARRAY_MODE)
--			== DC_ARRAY_1D_TILED_THIN1) {
--		tiling_info->gfx8.array_mode = DC_ARRAY_1D_TILED_THIN1;
--	}
--
--	tiling_info->gfx8.pipe_config =
--			AMDGPU_TILING_GET(tiling_flags, PIPE_CONFIG);
--}
--EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags);
--
- STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx6_tiling_info_from_modifier(
- 						struct dc_tiling_info *tiling_info,
- 						uint64_t modifier)
-@@ -1154,7 +1121,6 @@ int amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 			     const struct amdgpu_framebuffer *afb,
- 			     const enum surface_pixel_format format,
- 			     const enum dc_rotation_angle rotation,
--			     const uint64_t tiling_flags,
- 			     struct dc_tiling_info *tiling_info,
- 			     struct plane_size *plane_size,
- 			     struct dc_plane_dcc_param *dcc,
-@@ -1229,8 +1195,6 @@ int amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 										address);
- 		if (ret)
- 			return ret;
--	} else if (afb->base.modifier == DRM_FORMAT_MOD_INVALID) {
--		amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(tiling_info, tiling_flags);
- 	} else {
- 		ret = amdgpu_dm_plane_fill_gfx6_tiling_info_from_modifier(tiling_info,
- 									  afb->base.modifier);
-@@ -1326,7 +1290,6 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
- 
- 		amdgpu_dm_plane_fill_plane_buffer_attributes(
- 			adev, afb, plane_state->format, plane_state->rotation,
--			afb->tiling_flags,
- 			&plane_state->tiling_info, &plane_state->plane_size,
- 			&plane_state->dcc, &plane_state->address,
- 			afb->tmz_surface);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-index 45230df1947e..c20ed57dbe63 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-@@ -48,7 +48,6 @@ int amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 				 const struct amdgpu_framebuffer *afb,
- 				 const enum surface_pixel_format format,
- 				 const enum dc_rotation_angle rotation,
--				 const uint64_t tiling_flags,
- 				 struct dc_tiling_info *tiling_info,
- 				 struct plane_size *plane_size,
- 				 struct dc_plane_dcc_param *dcc,
-@@ -71,8 +70,6 @@ bool amdgpu_dm_plane_is_video_format(uint32_t format);
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
- void amdgpu_dm_plane_add_modifier(uint64_t **mods, uint64_t *size,
- 				  uint64_t *cap, uint64_t mod);
--void amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(struct dc_tiling_info *tiling_info,
--						      uint64_t tiling_flags);
- void amdgpu_dm_plane_fill_gfx9_tiling_info_from_device(const struct amdgpu_device *adev,
- 						       struct dc_tiling_info *tiling_info);
- void amdgpu_dm_plane_fill_gfx9_tiling_info_from_modifier(const struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-index b89e1224b266..068bf94a6b25 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-@@ -998,86 +998,6 @@ static void dm_test_add_modifier_noop_when_mods_null(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, cap, 7ULL);
- }
- 
--/**
-- * dm_test_fill_gfx8_tiling_info_2d_tiled() - Verify GFX8 2D tiled flag parsing.
-- * @test: KUnit test context.
-- *
-- * Verify if 2D tiled GFX8 flags populate expected tiling fields.
-- */
--static void dm_test_fill_gfx8_tiling_info_2d_tiled(struct kunit *test)
--{
--	struct dc_tiling_info tiling_info = {0};
--	uint64_t tiling_flags = 0;
--
--	tiling_flags |= AMDGPU_TILING_SET(ARRAY_MODE, DC_ARRAY_2D_TILED_THIN1);
--	tiling_flags |= AMDGPU_TILING_SET(BANK_WIDTH, 2);
--	tiling_flags |= AMDGPU_TILING_SET(BANK_HEIGHT, 1);
--	tiling_flags |= AMDGPU_TILING_SET(MACRO_TILE_ASPECT, 3);
--	tiling_flags |= AMDGPU_TILING_SET(TILE_SPLIT, 4);
--	tiling_flags |= AMDGPU_TILING_SET(NUM_BANKS, 2);
--	tiling_flags |= AMDGPU_TILING_SET(PIPE_CONFIG, 7);
--
--	amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(&tiling_info, tiling_flags);
--
--	KUNIT_EXPECT_EQ(test, (int)tiling_info.gfxversion, (int)DcGfxVersion8);
--	KUNIT_EXPECT_EQ(test, (int)tiling_info.gfx8.array_mode, (int)DC_ARRAY_2D_TILED_THIN1);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.bank_width, 2U);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.bank_height, 1U);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.tile_aspect, 3U);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.tile_split, 4U);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.num_banks, 2U);
--	KUNIT_EXPECT_EQ(test, (int)tiling_info.gfx8.tile_mode,
--			(int)DC_ADDR_SURF_MICRO_TILING_DISPLAY);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.pipe_config, 7U);
--}
--
--/**
-- * dm_test_fill_gfx8_tiling_info_1d_tiled() - Verify GFX8 1D tiled flag parsing.
-- * @test: KUnit test context.
-- *
-- * Verify if 1D tiled GFX8 flags populate array mode and pipe config.
-- */
--static void dm_test_fill_gfx8_tiling_info_1d_tiled(struct kunit *test)
--{
--	struct dc_tiling_info tiling_info = {0};
--	uint64_t tiling_flags = 0;
--
--	tiling_flags |= AMDGPU_TILING_SET(ARRAY_MODE, DC_ARRAY_1D_TILED_THIN1);
--	tiling_flags |= AMDGPU_TILING_SET(PIPE_CONFIG, 5);
--
--	amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(&tiling_info, tiling_flags);
--
--	KUNIT_EXPECT_EQ(test, (int)tiling_info.gfx8.array_mode, (int)DC_ARRAY_1D_TILED_THIN1);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.pipe_config, 5U);
--}
--
--/**
-- * dm_test_fill_gfx8_tiling_info_other_mode() - Verify non-1D/non-2D mode handling.
-- * @test: KUnit test context.
-- *
-- * Verify if unsupported array mode keeps preset fields and updates pipe config.
-- */
--static void dm_test_fill_gfx8_tiling_info_other_mode(struct kunit *test)
--{
--	struct dc_tiling_info tiling_info = {0};
--	uint64_t tiling_flags = 0;
--
--	tiling_info.gfxversion = 0x7f;
--	tiling_info.gfx8.array_mode = 0x7f;
--	tiling_info.gfx8.tile_mode = 0x7f;
--	tiling_info.gfx8.num_banks = 0x7f;
--
--	tiling_flags |= AMDGPU_TILING_SET(PIPE_CONFIG, 6);
--
--	amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(&tiling_info, tiling_flags);
--
--	KUNIT_EXPECT_EQ(test, tiling_info.gfxversion, 0x7f);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.array_mode, 0x7f);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.tile_mode, 0x7f);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.num_banks, 0x7f);
--	KUNIT_EXPECT_EQ(test, tiling_info.gfx8.pipe_config, 6U);
--}
--
- /**
-  * dm_test_fill_gfx9_tiling_info_from_device_pre_10_3() - Verify GFX9 field copy before 10.3.
-  * @test: KUnit test context.
-@@ -3251,10 +3171,6 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
- 	KUNIT_CASE(dm_test_add_modifier_appends_value),
- 	KUNIT_CASE(dm_test_add_modifier_grows_capacity),
- 	KUNIT_CASE(dm_test_add_modifier_noop_when_mods_null),
--	/* amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags() */
--	KUNIT_CASE(dm_test_fill_gfx8_tiling_info_2d_tiled),
--	KUNIT_CASE(dm_test_fill_gfx8_tiling_info_1d_tiled),
--	KUNIT_CASE(dm_test_fill_gfx8_tiling_info_other_mode),
- 	/* amdgpu_dm_plane_fill_gfx9_tiling_info_from_device() */
- 	KUNIT_CASE(dm_test_fill_gfx9_tiling_info_from_device_pre_10_3),
- 	KUNIT_CASE(dm_test_fill_gfx9_tiling_info_from_device_10_3_plus),
--- 
-2.55.0
+>> Cover letter mentions the series is reworking to match gfx7 to gfx8 but
+>> I looked in drm-tip and amd-staging-drm-next and
+>> gfx_v8_0_cp_gfx_resume() does not yet have these changes.
+> 
+> The GFX8 code does have this:
+> 
+> For graphics queues:
+> In gfx_v8_0_cp_gfx_resume() it also sets wptr = 0; and calls
+> amdgpu_ring_clear_ring() unconditionally. This is actually not needed during
+> first initialization because the amdgpu_ring_init() called from
+> gfx_v8_0_sw_init() already clears the ring, which is why I call the clear
+> conditionally on GFX6-7. I could of course change the GFX6-7 code to also call
+> it unconditionally though for the sake of simplicity and consistency.
+> (It is missing the atomic things though. I think it should have that too.)
+
+Ack. Then just improve the commit message please - instead "Additionally 
+clear the ring contents during reset", have something like "Move the 
+existing clearing of ring content to happen only during reset because it 
+is otherwise already done during ring init".
+
+Presumably this is also true during resume?
+
+> For compute queues:
+> In gfx_v8_0_kcq_init_queue() it clears the wptr, also the wptr_cpu_addr and
+> also calls amdgpu_ring_clear_ring().
+
+Specifically about wptr_cpu_addr and rptr_cpu_addr.
+
+1)
+Does gfx7 have 64-bit support or normal write would do? Ie. I don't see 
+gfx7 code using the atomic64. 64-bit support seems to start in gfx9.
+
+2)
+Does rptr_cpu_addr need touching at all? Out of all other files only MES 
+does it. At least if my quick grep is to be trusted.
+
+>>
+>>> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+>>> ---
+>>>
+>>>    drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 9 ++++++++-
+>>>    1 file changed, 8 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+>>> b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c index a93cc02c3400..915612628f9a
+>>> 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+>>> @@ -2546,8 +2546,14 @@ static int gfx_v7_0_cp_gfx_resume(struct
+>>> amdgpu_device *adev)>
+>>>    	WREG32(mmSCRATCH_ADDR, 0);
+>>>    	
+>>>    	/* ring 0 - compute and gfx */
+>>>
+>>> -	/* Set ring buffer size */
+>>>
+>>>    	ring = &adev->gfx.gfx_ring[0];
+>>>
+>>> +	atomic64_set((atomic64_t *)ring->wptr_cpu_addr, 0);
+>>> +	atomic64_set((atomic64_t *)ring->rptr_cpu_addr, 0);
+>>
+>> One day we need to fix this whole atomic64 situation.
+> 
+> What is the situation that needs to be fixed?
+
+It is defined as normal u32 * and then, AFAIU, different ip version use 
+32- or 64-bit access depending on whether the respective ip version has 
+support for 64-bit ring pointers. The ugly casting should be hidden in 
+wrappers as minimum. Another task for a rainy day.
+
+Regards,
+
+Tvrtko
+
+>>
+>>> +
+>>> +	if (amdgpu_in_reset(adev))
+>>> +		amdgpu_ring_clear_ring(ring);
+>>> +
+>>> +	/* Set ring buffer size */
+>>>
+>>>    	rb_bufsz = order_base_2(ring->ring_size / 8);
+>>>    	tmp = (order_base_2(AMDGPU_GPU_PAGE_SIZE/8) << 8) | rb_bufsz;
+>>>    
+>>>    #ifdef __BIG_ENDIAN
+>>>
+>>> @@ -2559,6 +2565,7 @@ static int gfx_v7_0_cp_gfx_resume(struct
+>>> amdgpu_device *adev)>
+>>>    	WREG32(mmCP_RB0_CNTL, tmp | CP_RB0_CNTL__RB_RPTR_WR_ENA_MASK);
+>>>    	ring->wptr = 0;
+>>>    	WREG32(mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
+>>>
+>>> +	WREG32(mmCP_RB0_RPTR, lower_32_bits(ring->wptr));
+>>>
+>>>    	/* set the wb address whether it's enabled or not */
+>>>    	rptr_addr = ring->rptr_gpu_addr;
+> 
+> 
+> 
+> 
 
