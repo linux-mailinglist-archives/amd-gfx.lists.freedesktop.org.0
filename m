@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id chCELxiPV2rqWwAAu9opvQ
+	id yqwqLB6PV2rvWwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612C375EDC7
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5704375EDCD
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:46:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=mw39FD+A;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=sLWawEH0;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC74310F070;
-	Wed, 15 Jul 2026 13:45:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF88210F076;
+	Wed, 15 Jul 2026 13:46:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010061.outbound.protection.outlook.com
- [40.93.198.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4ECA10F07A
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:45:57 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011004.outbound.protection.outlook.com [52.101.57.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC6B910F076
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:46:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X1H3k4nOzexiV5K258sS34kK6S3xTAb7E0+cD31oJEFer7OhW/jfIjzCUaA1Lchy0SGKzn8iO7STmqWfCxtldG/SmRWyCLE222SKcDR5OwjoPcNvuOtLoGltjNXWIFsIrF7/aaRm4CX5d+gv/uHrj7JfOLDvD+3vhkL3dq+iH0BI7LAOQuIBmf4eo4Ko6eDT+TRjp4dWXOc1b29bJBs/PJCBfFfI7ILvHS4KhXaiaYBqam4hztWVT6qivnJcYZqGDYYzhcHoDzYVlzgXnDht18EFiUQAP0vG7z3XnIGRURrfudwQUqEGMhDoFlv15KvARIUjl90UmA0XXifrNUqN+g==
+ b=PaIrvyJFc9tw0e3eQG//ZdrbGfG2Uk9Pqtf8aO36SRosqPzNJITjaGtdsb9dts0EHlVQEPcUoo6oFC2ntvUlVki46FjAc847gjUedzRf6LTkyf/jh9oodozXlWpFsq5XKWyjCVGPMw2C1JhAlzQOy5M/w4tirNGaQA5WCRJUi9FtoDgS47ySWbVv3WPtjazk/31viY4+VydmLZvzCt/Gh9IElA2Aayk0OF9vDyFGj5Q1mJvDRi3oZ/YGwG3PPWDGwDsyy27R7uB5RQtk3tWH8rKanp3k59s3c77XL4mRgUP3jBC3zmuYiDu7KIbewFqcBIGfichfz5nuPtyyy59ZeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=REoQj8vCWMKTNbnyhfBIhKqLgME4NNFyt2miTjC3A/Y=;
- b=EZi/uEmnjhx2P9f4Cw8hHHQ7YMujiaPPY4cb7GdsN9oViJ2jCJzSyUoCdjfJRCtLaVsN9QehODzMAisc+GsbC7UGXDoFOHbsc+etS0O+vsd0xbPI7sUpkCg/4UdGQzKuTFLHGgPZfElUdNgMokyIpQDvyrOLR2y/0mMPeglvZQ6epKTEL39MhjCSJqZgUrA05BRuJCcIPcxmJKpeaXZvHYjBp3clGr7BSlssONykZGaDZgfPYWoMIdvYuVUOi/F7560kw5q03ujftJcbB+X+sLU1XRNqf239TS/u/NEWRiQDQyIkQVEUtJEnLCZuUTpw0f4dLy4tRp80AmkpN/lmow==
+ bh=mj9h4ArDQ95c5y/J/zjGu9l7ZsOZw0+iNXFuXA438es=;
+ b=XQXjazhryg9wqTiG1W9kYZwszO+D6znx8ma7yEOtT7k5tdGrmfPZGmwx2zXqYqlmDzgKohTJavqAPD2j6AQCLF+DQmnDf74Q11cIck3d0xnMKMV68XaKNWNBknYE1XhVRilAaTDT4vHXFAyhxWa4rhs15cUouWprFM8q9kzWvdEP3CzBiNOgmo5UFQaUvVBU94wsqnSZ+/JOXD4E994K3zyJ62H3LLfyQKM0HJ88C6rYFj1dtf7fRayRySvFLvXD8lo7W/4q5F62Q72vUnpMve5zmpBpfU1+00gb3BYDNyhRv9V7InzVO5gcqClUksdiClDWRIjMqCtGWnLQuPk8kA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=REoQj8vCWMKTNbnyhfBIhKqLgME4NNFyt2miTjC3A/Y=;
- b=mw39FD+AeXlUP5+iv6g8bPQ00QZusvaboZMz218un/d11AKl3YlufBtJlfwmLz2d51Ej0sn9XxSlmfVTFOPFwHlHE2LrVL5h9gRmcSqOyWM1vPlssLiTbvDUMeFI8rmPsPQIGCvzi64UivLjP/la9/yUSMkh/PqM8uByOklmAjI=
-Received: from SJ0PR03CA0289.namprd03.prod.outlook.com (2603:10b6:a03:39e::24)
- by CH1PR12MB9693.namprd12.prod.outlook.com (2603:10b6:610:2b0::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Wed, 15 Jul
- 2026 13:45:52 +0000
-Received: from SJ5PEPF000001F4.namprd05.prod.outlook.com
- (2603:10b6:a03:39e:cafe::77) by SJ0PR03CA0289.outlook.office365.com
- (2603:10b6:a03:39e::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 13:45:52 +0000
+ bh=mj9h4ArDQ95c5y/J/zjGu9l7ZsOZw0+iNXFuXA438es=;
+ b=sLWawEH0ibtp5KXvswa1fR0ic+4bLqMeqAfkx4TL7LrVaiPYhKQTuggN5Xep2rrzpsPfv8podMLbGE9OZ6XWEWquuAwLqirmfJXd0VdzNGlAUebwRqk0GEMYx3sDbA4rNWro82oHVh+qKp+ZU/Pi5VAGUIAdrKI1roRT16ZBOMM=
+Received: from SJ0PR13CA0115.namprd13.prod.outlook.com (2603:10b6:a03:2c5::30)
+ by DS0PR12MB6439.namprd12.prod.outlook.com (2603:10b6:8:c9::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.202.19; Wed, 15 Jul 2026 13:45:55 +0000
+Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c5:cafe::73) by SJ0PR13CA0115.outlook.office365.com
+ (2603:10b6:a03:2c5::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.245.4 via Frontend Transport; Wed, 15
+ Jul 2026 13:45:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,16 +55,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001F4.mail.protection.outlook.com (10.167.242.72) with Microsoft
+ SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:45:51 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:45:55 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:45:34 -0500
+ 2026 08:45:39 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
+ 2026 08:45:38 -0500
 Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:45:31 -0500
+ Transport; Wed, 15 Jul 2026 08:45:35 -0500
 From: Wayne Lin <Wayne.Lin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -76,10 +79,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Tomasz Siemek <tomasz.siemek@amd.com>, Alvin Lee
  <alvin.lee2@amd.com>
-Subject: [PATCH 11/70] drm/amd/display: Refactor DPP_PROGRAM_GAMUT_REMAP to
- drop pipe_ctx param
-Date: Wed, 15 Jul 2026 21:37:21 +0800
-Message-ID: <20260715134432.1975118-12-Wayne.Lin@amd.com>
+Subject: [PATCH 12/70] drm/amd/display: Refactor DPP_SET_OUTPUT_TRANSFER_FUNC
+ to drop pipe_ctx
+Date: Wed, 15 Jul 2026 21:37:22 +0800
+Message-ID: <20260715134432.1975118-13-Wayne.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
 References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
@@ -88,29 +91,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F4:EE_|CH1PR12MB9693:EE_
-X-MS-Office365-Filtering-Correlation-Id: c253ca27-7fab-440d-57d7-08dee27762de
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|DS0PR12MB6439:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3872a21-eff7-417e-1957-08dee27764e8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|23010399003|36860700016|376014|11063799006|6133799003|56012099006|10067099003|3023799007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: PqohLiC+fxZFX7Zyq82ngwoiesihCJqeTy6lNeQTDicq/DOpATE6eYoA21uHq4xixFXQ+8ll+0Syq3XvPXvL1+fAE+cEBgsEN6emfBaEfee9dcbZuzq9Y5XPoisPSr1ELM/Q4adDGAq6SKvJZuEizSzDmCcTiYuBCMHEtOEVPDw9GwayhPmGGUMXpbcCRw4ij0dFRiruFv/8AlORMPlVHhWckrioHs+w3/i6oWutp2uDWatdae9dPJzikZB2c5YLQYbZrNdB84QAhpUiMtvLPPC345ihJFpnb3T2SWBwAA5PnNP2lyeyabRITfw8EWlOBOf0EQAfo9OPxKV27Z7KPKOHeClezjQU/O81WxTiuYzQ9/pvxkz+T6dlcBe2CGz+R8tDMlp1csVQkDBk+ynVEl7cHBhszAkiB6Lq4fX4+GGKoxZNgxOseiSBb/JlEP6ilAjkzcewYKJlYB56HUiyJa2Djb0noIJ91KJaB9s8w6JlL8X4vAYSMnFRAMzaqTJPfbzqPe313QPPB64XUEoNwJ5bLg/oTO/3/5iRLYjOBF1lywtNTyPykaVGozwHyTEHZgRXIM4r2lMHcji3zIQR+nEOmYN2YaqGgCL07H8/JYyyKQDmw3WvDYOc1XZTXfu97E3yi4VvZ0YDbyYKpV0m8TiWwT6eY0nCvcHun1WDJUthw9N4mveQe8y2VRlAKCcbR7uE5ioPXQBWOQVnsqQaxA==
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|3023799007|18002099003|22082099003|56012099006|6133799003|11063799006|10067099003;
+X-Microsoft-Antispam-Message-Info: /08NoPTOWginOx/EgngUc32BguiKUvaxsi6TMOePLaMA8bceIHxajqPsITlqtyZxrgWxNyEI+hABCrOtXiuzEjdFusfv8SyySguFesvshjumyCQYiX/9FKKlAEzPUd9x7Us8la3QA+lrFSuTlgVOl6310E4CXhTD7KhhCZff9BRvZBRZoT8FMQlOS83bdtlrFJzB7F9GSpFAbL+JpCnlJkeThpAolUYiVeOtv2rQfbG2HZpvbvyND4RWUCcKHFyN80NU4/klvLnjLtUAoMJyeJey+5493+tk9Yg05qrQQWLb076uI2/xikGbdbh62BQ6W6tl2d5Lu6FeVDHqkURyuIxa8TNEhFMsQPYE0U7M6izkft4mMBCJBZ83noIBo5OVTwtOFRxvvpiWsuAMODfOZDZk5HUEjgkuuk3UgzqvfflKlC+PiH9AaMKx0d/LyQHjzjn+E2Zk7TcLisJQBbrclWtOiSd376tnLUeR8ykM+jEJOgOc6VNjWgPFRUD7Xe+B6TQiqPKkNKufRVgzmaWiJ22+Okwk2GNZONWPtAgNgtUypyGm44s8/AoWFv9FNam3xEnRlF9F2aoeO0AVOZ0G2bQkIWo0XNeB4GfxQVn64iUupiByYw+JmZsZPGDupAnIBldN82Zgc7K5zdVOXkDo4+CqoT4HAOx8JevQG3uwbkaf5OEK+G3/v54SFU6Cs+piTim1jsAMZKEeRel8YWrpmw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(23010399003)(36860700016)(376014)(11063799006)(6133799003)(56012099006)(10067099003)(3023799007)(22082099003)(18002099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(3023799007)(18002099003)(22082099003)(56012099006)(6133799003)(11063799006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: NrAHWxtapguJ0K0/wC7U0f2yll5supLO3lEfiV1jbrYrdu89zhj0o4tG25Yz/SCmB40iZPsaXzb7dtIIN9ifdlXDaG4trUbl+IzhzYxftZixp3jnjuiTbbodH2Aq6xf5JS5VYhxTGyGMCRx7dd3sO73ymiz5vBmr7P3EI2ViyQj/19XkfPlHdwMPW4DwNr4gzlN/8m/hTwEMw/I2sj6pW1F+bXJp1oazjPh8ZOE7DVwEdbZqFdjhMIQoikj+3T9cDBC4OBh0t3KOmZOmgtkR8G2HlRGG6oIvhNh7JyRHQOdzGs/3F9LYRqy+dp1iTEYOWHiiZSSAysTzit23iHQiOXpz3lhQ85MElrM4grNVSXWvJo+WoESIL24zS5BcaCSnauqBbHRaRdGt/78qza2MwFgIygY2PpwouMe+HXKh8M1F+b64hEaxKmMlDg4Il0lP
+X-MS-Exchange-AntiSpam-MessageData-0: LhmF8rr3m76dKUgtMU4adg3kiFHzEauNxQxkI4aZOMV2McrYFNa1jQSfaK1vfFzO8Vo2r3OsqLypatm/QsIi4J/mq8wtIgf1gGdYkfEaZ2DZ3e6r25BucZLKWx55ekQaA8lWbNEIRbgTazluml+s9jvp7puNXhk60NnGhvZI7KioruYf+Va9IHFkq/Cbf/ZZlLuKAmcS3V2Nb5TViXzdxh4N+39j37YV5+qdgMIPZJ8jqNzAI0vlyFd8wEKQNz5I5vRh5RVVSkl95TCS1LaqInC1gouLNGGkNy8h07w7sTRpDN+ZeUe9pd2r1aw+c/VA0pgBlmzM8I1oP7wgQoWFBFlAG+hqlbUjFyODDXTssu9aBHIT5v8VFEQM9qNoGUgcDsBVRzCbapXXurn7gHgTIremw7mjsnZLupYNMREY9pFomlumS3EEDRiTlVN4U+cu
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:45:51.9645 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c253ca27-7fab-440d-57d7-08dee27762de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:45:55.3845 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3872a21-eff7-417e-1957-08dee27764e8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F4.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9693
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6439
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,9 +152,9 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 612C375EDC7
+X-Rspamd-Queue-Id: 5704375EDCD
 X-Rspamd-Action: no action
 
 From: Tomasz Siemek <tomasz.siemek@amd.com>
@@ -160,412 +163,559 @@ From: Tomasz Siemek <tomasz.siemek@amd.com>
 Pipe_ctx shouldn't be passed as block sequence block parameter.
 
 [how]
-- Adjust program_gamut_remap_params struct.
-- Adjust program_gamut_remap interface and implementations.
-- Adjust program_gamut_remap callsites to match new signature.
+Adjust arguments for set_output_transfer_func and implementations.
 
 Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
 Signed-off-by: Tomasz Siemek <tomasz.siemek@amd.com>
 Signed-off-by: Wayne Lin <wayne.lin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 10 ++++-
- .../drm/amd/display/dc/core/dc_hw_sequencer.c | 37 +++++++++++++++----
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 11 ++++--
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   | 20 ++++++----
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.h   |  2 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  2 +-
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   | 24 +++++++-----
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.h   |  2 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 25 +++++++------
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |  2 +-
- .../drm/amd/display/dc/hwss/hw_sequencer.h    | 12 ++++--
- 11 files changed, 99 insertions(+), 48 deletions(-)
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c | 50 ++++++++++++++-----
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  9 ++--
+ .../amd/display/dc/hwss/dce60/dce60_hwseq.c   |  2 +-
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   | 11 ++--
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.h   |  3 +-
+ .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   | 20 +++++---
+ .../amd/display/dc/hwss/dcn20/dcn20_hwseq.h   |  3 +-
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   | 31 ++++++------
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.h   |  4 +-
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 31 ++++++------
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.h   |  8 ++-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 22 ++++----
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |  4 +-
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    | 11 ++--
+ .../display/dc/hwss/hw_sequencer_private.h    |  6 +--
+ 15 files changed, 119 insertions(+), 96 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 7b3a83ba7459..188615873791 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -831,7 +831,15 @@ bool dc_stream_set_gamut_remap(struct dc *dc, const struct dc_stream_state *stre
- 	for (i = 0; i < MAX_PIPES; i++) {
- 		if (dc->current_state->res_ctx.pipe_ctx[i].stream == stream) {
- 			pipes = &dc->current_state->res_ctx.pipe_ctx[i];
--			dc->hwss.program_gamut_remap(pipes);
-+			dc->hwss.program_gamut_remap(&(struct program_gamut_remap_params) {
-+				.xfm = pipes->plane_res.xfm,
-+				.dpp = pipes->plane_res.dpp,
-+				.mpc = dc->res_pool->mpc,
-+				.mpcc_id = pipes->plane_res.mpcc_inst,
-+				.stream = pipes->stream,
-+				.plane = pipes->plane_state,
-+				.is_top_pipe = pipes->top_pipe == NULL,
-+			});
- 			ret = true;
- 		}
- 	}
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-index e47c8cf5d036..4f30d9ac4a0d 100644
+index 4f30d9ac4a0d..6002175420a0 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
-@@ -1069,7 +1069,14 @@ void hwss_build_fast_sequence(struct dc *dc,
- 				if (dc->hwss.program_gamut_remap &&
- 						(current_mpc_pipe->plane_state->update_bits.gamut_remap_change ||
- 						 current_mpc_pipe->stream->update_flags.bits.gamut_remap)) {
--					block_sequence[*num_steps].params.program_gamut_remap_params.pipe_ctx = current_mpc_pipe;
-+					struct program_gamut_remap_params *params = &block_sequence[*num_steps].params.program_gamut_remap_params;
-+					params->dpp = current_mpc_pipe->plane_res.dpp;
-+					params->mpc = dc->res_pool->mpc;
-+					params->xfm = current_mpc_pipe->plane_res.xfm;
-+					params->mpcc_id = current_mpc_pipe->plane_res.hubp->inst;
-+					params->plane = current_mpc_pipe->plane_state;
-+					params->stream = current_mpc_pipe->stream;
-+					params->is_top_pipe = current_mpc_pipe->top_pipe == NULL;
- 					block_sequence[*num_steps].func = DPP_PROGRAM_GAMUT_REMAP;
+@@ -1111,10 +1111,16 @@ void hwss_build_fast_sequence(struct dc *dc,
  					(*num_steps)++;
  				}
-@@ -1236,7 +1243,8 @@ void hwss_execute_sequence(struct dc *dc,
- 					params->set_input_transfer_func_params.plane_state);
+ 			}
+-			if (hws->funcs.set_output_transfer_func && current_mpc_pipe->stream->update_flags.bits.out_tf) {
+-				block_sequence[*num_steps].params.set_output_transfer_func_params.dc = dc;
+-				block_sequence[*num_steps].params.set_output_transfer_func_params.pipe_ctx = current_mpc_pipe;
+-				block_sequence[*num_steps].params.set_output_transfer_func_params.stream = current_mpc_pipe->stream;
++			if (current_mpc_pipe->stream->update_flags.bits.out_tf) {
++				struct set_output_transfer_func_params *otf_params =
++					&block_sequence[*num_steps].params.set_output_transfer_func_params;
++
++				otf_params->dpp = current_mpc_pipe->plane_res.dpp;
++				otf_params->xfm = current_mpc_pipe->plane_res.xfm;
++				otf_params->mpc = dc->res_pool->mpc;
++				otf_params->mpcc_id = current_mpc_pipe->plane_res.hubp->inst;
++				otf_params->is_top_pipe = resource_is_pipe_type(pipe_ctx, OPP_HEAD);
++				otf_params->stream = current_mpc_pipe->stream;
+ 				block_sequence[*num_steps].func = DPP_SET_OUTPUT_TRANSFER_FUNC;
+ 				(*num_steps)++;
+ 			}
+@@ -1271,9 +1277,7 @@ void hwss_execute_sequence(struct dc *dc,
+ 			hwss_program_manual_trigger(params);
  			break;
- 		case DPP_PROGRAM_GAMUT_REMAP:
--			hwss_program_gamut_remap(params);
-+			if (dc->hwss.program_gamut_remap)
-+				dc->hwss.program_gamut_remap(&params->program_gamut_remap_params);
+ 		case DPP_SET_OUTPUT_TRANSFER_FUNC:
+-			hws->funcs.set_output_transfer_func(params->set_output_transfer_func_params.dc,
+-					params->set_output_transfer_func_params.pipe_ctx,
+-					params->set_output_transfer_func_params.stream);
++			hws->funcs.set_output_transfer_func(&params->set_output_transfer_func_params);
  			break;
- 		case HUBP_ENABLE_3DLUT_FL:
- 			hwss_hubp_enable_3dlut_fl(params);
-@@ -1779,7 +1787,14 @@ void hwss_add_dpp_program_gamut_remap(struct block_sequence_state *seq_state,
- 		struct pipe_ctx *pipe_ctx)
+ 		case MPC_UPDATE_VISUAL_CONFIRM:
+ 			dc->hwss.update_visual_confirm_color(params->update_visual_confirm_params.dc,
+@@ -1829,19 +1833,39 @@ void hwss_add_optc_program_manual_trigger(struct block_sequence_state *seq_state
+  * Helper function to add DPP set output transfer function to block sequence
+  */
+ void hwss_add_dpp_set_output_transfer_func(struct block_sequence_state *seq_state,
+-		struct dc *dc,
+-		struct pipe_ctx *pipe_ctx,
+-		struct dc_stream_state *stream)
++		struct dc *dc, struct pipe_ctx *pipe_ctx)
  {
  	if (*seq_state->num_steps < MAX_HWSS_BLOCK_SEQUENCE_SIZE) {
--		seq_state->steps[*seq_state->num_steps].params.program_gamut_remap_params.pipe_ctx = pipe_ctx;
-+		struct program_gamut_remap_params *params = &seq_state->steps[*seq_state->num_steps].params.program_gamut_remap_params;
-+		params->xfm = pipe_ctx->plane_res.xfm;
-+		params->dpp = pipe_ctx->plane_res.dpp;
-+		params->mpc = pipe_ctx->stream->ctx->dc->res_pool->mpc;
-+		params->mpcc_id = pipe_ctx->plane_res.hubp->inst;
-+		params->plane = pipe_ctx->plane_state;
-+		params->stream = pipe_ctx->stream;
-+		params->is_top_pipe = pipe_ctx->top_pipe == NULL;
- 		seq_state->steps[*seq_state->num_steps].func = DPP_PROGRAM_GAMUT_REMAP;
- 		(*seq_state->num_steps)++;
- 	}
-@@ -3617,12 +3632,20 @@ void hwss_set_cursor_sdr_white_level(union block_sequence_params *params)
- 		dc->hwss.set_cursor_sdr_white_level(pipe_ctx);
- }
- 
--void hwss_program_gamut_remap(union block_sequence_params *params)
-+void hwss_program_gamut_remap(struct pipe_ctx *pipe_ctx)
- {
--	struct dc *dc = params->program_gamut_remap_params.pipe_ctx->stream->ctx->dc;
-+	struct dc *dc = pipe_ctx->stream->ctx->dc;
- 
--	if (dc && dc->hwss.program_gamut_remap)
--		dc->hwss.program_gamut_remap(params->program_gamut_remap_params.pipe_ctx);
-+	if (dc->hwss.program_gamut_remap)
-+		dc->hwss.program_gamut_remap(&(struct program_gamut_remap_params) {
+-		seq_state->steps[*seq_state->num_steps].params.set_output_transfer_func_params.dc = dc;
+-		seq_state->steps[*seq_state->num_steps].params.set_output_transfer_func_params.pipe_ctx = pipe_ctx;
+-		seq_state->steps[*seq_state->num_steps].params.set_output_transfer_func_params.stream = stream;
++		seq_state->steps[*seq_state->num_steps].params.set_output_transfer_func_params =
++		(struct set_output_transfer_func_params) {
 +			.xfm = pipe_ctx->plane_res.xfm,
 +			.dpp = pipe_ctx->plane_res.dpp,
 +			.mpc = dc->res_pool->mpc,
 +			.mpcc_id = pipe_ctx->plane_res.hubp->inst,
++			.is_top_pipe = resource_is_pipe_type(pipe_ctx, OPP_HEAD),
 +			.stream = pipe_ctx->stream,
-+			.plane = pipe_ctx->plane_state,
-+			.is_top_pipe = pipe_ctx->top_pipe == NULL,
-+		});
++		};
+ 		seq_state->steps[*seq_state->num_steps].func = DPP_SET_OUTPUT_TRANSFER_FUNC;
+ 		(*seq_state->num_steps)++;
+ 	}
  }
  
- void hwss_program_output_csc(union block_sequence_params *params)
++void hwss_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx)
++{
++	if (dc->hwseq->funcs.set_output_transfer_func) {
++		dc->hwseq->funcs.set_output_transfer_func(
++			&(struct set_output_transfer_func_params) {
++				.xfm = pipe_ctx->plane_res.xfm,
++				.dpp = pipe_ctx->plane_res.dpp,
++				.mpc = dc->res_pool->mpc,
++				.mpcc_id = pipe_ctx->plane_res.hubp->inst,
++				.is_top_pipe = resource_is_pipe_type(pipe_ctx, OPP_HEAD),
++				.stream = pipe_ctx->stream,
++			}
++		);
++	}
++}
++
+ /*
+  * Helper function to add MPC update visual confirm to block sequence
+  */
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index cce4f3065575..74b046ab3bc3 100644
+index 74b046ab3bc3..4830a0d94177 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -2810,23 +2810,26 @@ static void program_surface_visibility(const struct dc *dc,
- 
+@@ -607,11 +607,10 @@ dce110_translate_regamma_to_hw_format(const struct dc_transfer_func *output_tf,
  }
  
--static void program_gamut_remap(struct pipe_ctx *pipe_ctx)
-+static void program_gamut_remap(struct program_gamut_remap_params *params)
+ static bool
+-dce110_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++dce110_set_output_transfer_func(struct set_output_transfer_func_params *params)
  {
+-	(void)dc;
+-	struct transform *xfm = pipe_ctx->plane_res.xfm;
 +	struct transform *xfm = params->xfm;
 +	const struct dc_stream_state *stream = params->stream;
- 	int i = 0;
- 	struct xfm_grph_csc_adjustment adjust;
-+
- 	memset(&adjust, 0, sizeof(adjust));
- 	adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
  
+ 	xfm->funcs->opp_power_on_regamma_lut(xfm, true);
+ 	xfm->regamma_params.hw_points_num = GAMMA_HW_POINTS_NUM;
+@@ -3181,7 +3180,7 @@ static void dce110_program_front_end_for_pipe(
+ 		hws->funcs.set_input_transfer_func(dc, pipe_ctx, pipe_ctx->plane_state);
  
--	if (pipe_ctx->stream->gamut_remap_matrix.enable_remap == true) {
-+	if (stream->gamut_remap_matrix.enable_remap == true) {
- 		adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
+ 	if (pipe_ctx->plane_state->update_bits.full_update)
+-		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++		hwss_set_output_transfer_func(dc, pipe_ctx);
  
- 		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 			adjust.temperature_matrix[i] =
--				pipe_ctx->stream->gamut_remap_matrix.matrix[i];
-+				stream->gamut_remap_matrix.matrix[i];
- 	}
+ 	DC_LOG_SURFACE(
+ 			"Pipe:%d %p: addr hi:0x%x, "
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce60/dce60_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce60/dce60_hwseq.c
+index 26aa303b8237..221996b348ab 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce60/dce60_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce60/dce60_hwseq.c
+@@ -338,7 +338,7 @@ dce60_program_front_end_for_pipe(
+ 		hws->funcs.set_input_transfer_func(dc, pipe_ctx, pipe_ctx->plane_state);
  
--	pipe_ctx->plane_res.xfm->funcs->transform_set_gamut_remap(pipe_ctx->plane_res.xfm, &adjust);
-+	xfm->funcs->transform_set_gamut_remap(xfm, &adjust);
- }
- static void update_plane_addr(const struct dc *dc,
- 		struct pipe_ctx *pipe_ctx)
+ 	if (pipe_ctx->plane_state->update_bits.full_update)
+-		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++		hwss_set_output_transfer_func(dc, pipe_ctx);
+ 
+ 	DC_LOG_SURFACE(
+ 			"Pipe:%d %p: addr hi:0x%x, "
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index f75a1794ae2a..8c636698d6d4 100644
+index 8c636698d6d4..3be0bde5aea1 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -2814,28 +2814,32 @@ static void dcn10_enable_plane(
- 
+@@ -2154,10 +2154,11 @@ static void log_tf(struct dc_context *ctx,
+ 	}
  }
  
--void dcn10_program_gamut_remap(struct pipe_ctx *pipe_ctx)
-+void dcn10_program_gamut_remap(struct program_gamut_remap_params *params)
+-bool dcn10_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++bool dcn10_set_output_transfer_func(struct set_output_transfer_func_params *params)
  {
+-	struct dpp *dpp = pipe_ctx->plane_res.dpp;
 +	struct dpp *dpp = params->dpp;
 +	const struct dc_stream_state *stream = params->stream;
-+	const struct dc_plane_state *plane = params->plane;
- 	int i = 0;
- 	struct dpp_grph_csc_adjustment adjust;
++	struct dc *dc;
+ 
+ 	if (!stream)
+ 		return false;
+@@ -2165,6 +2166,8 @@ bool dcn10_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+ 	if (dpp == NULL)
+ 		return false;
+ 
++	dc = dpp->ctx->dc;
 +
- 	memset(&adjust, 0, sizeof(adjust));
- 	adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
+ 	dpp->regamma_params.hw_points_num = GAMMA_HW_POINTS_NUM;
  
- 
--	if (pipe_ctx->stream->gamut_remap_matrix.enable_remap == true) {
-+	if (stream->gamut_remap_matrix.enable_remap == true) {
- 		adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 			adjust.temperature_matrix[i] =
--				pipe_ctx->stream->gamut_remap_matrix.matrix[i];
--	} else if (pipe_ctx->plane_state &&
--		   pipe_ctx->plane_state->gamut_remap_matrix.enable_remap == true) {
-+				stream->gamut_remap_matrix.matrix[i];
-+	} else if (plane &&
-+		   plane->gamut_remap_matrix.enable_remap == true) {
- 		adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 			adjust.temperature_matrix[i] =
--				pipe_ctx->plane_state->gamut_remap_matrix.matrix[i];
-+				plane->gamut_remap_matrix.matrix[i];
- 	}
- 
--	pipe_ctx->plane_res.dpp->funcs->dpp_set_gamut_remap(pipe_ctx->plane_res.dpp, &adjust);
-+	dpp->funcs->dpp_set_gamut_remap(dpp, &adjust);
+ 	if (stream->out_transfer_func.type == TF_TYPE_PREDEFINED &&
+@@ -3301,7 +3304,7 @@ void dcn10_program_pipe(
+ 	 * doing heavy calculation and programming
+ 	 */
+ 	if (pipe_ctx->plane_state->update_bits.full_update)
+-		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++		hwss_set_output_transfer_func(dc, pipe_ctx);
  }
  
- 
-@@ -3152,7 +3156,7 @@ static void dcn10_update_dchubp_dpp(
- 
- 	if (plane_state->update_bits.full_update) {
- 		/*gamut remap*/
--		dc->hwss.program_gamut_remap(pipe_ctx);
-+		hwss_program_gamut_remap(pipe_ctx);
- 
- 		dc->hwss.program_output_csc(dc,
- 				pipe_ctx,
+ void dcn10_wait_for_pending_cleared(struct dc *dc,
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.h
-index 476095c5dd0c..162972dfdbe8 100644
+index 162972dfdbe8..2cb674ba54e1 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.h
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.h
-@@ -108,7 +108,7 @@ void dcn10_program_pipe(
- 		struct dc *dc,
- 		struct pipe_ctx *pipe_ctx,
- 		struct dc_state *context);
--void dcn10_program_gamut_remap(struct pipe_ctx *pipe_ctx);
-+void dcn10_program_gamut_remap(struct program_gamut_remap_params *params);
- void dcn10_init_hw(struct dc *dc);
- void dcn10_init_pipes(struct dc *dc, struct dc_state *context);
- void dcn10_power_down_on_boot(struct dc *dc);
+@@ -73,8 +73,7 @@ void dcn10_program_output_csc(struct dc *dc,
+ 		enum dc_color_space colorspace,
+ 		uint16_t *matrix,
+ 		int opp_id);
+-bool dcn10_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream);
++bool dcn10_set_output_transfer_func(struct set_output_transfer_func_params *params);
+ bool dcn10_set_input_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+ 			const struct dc_plane_state *plane_state);
+ void dcn10_update_plane_addr(const struct dc *dc, struct pipe_ctx *pipe_ctx);
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-index 95e5b6a6ba0f..83794d5b838c 100644
+index 83794d5b838c..98778d5e114e 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.c
-@@ -1815,7 +1815,7 @@ void dcn20_update_dchubp_dpp(
- 			|| plane_state->update_bits.gamut_remap_change
- 			|| pipe_ctx->stream->update_flags.bits.out_csc) {
- 		/* dpp/cm gamut remap*/
--		dc->hwss.program_gamut_remap(pipe_ctx);
-+		hwss_program_gamut_remap(pipe_ctx);
+@@ -1019,26 +1019,30 @@ void dcn20_program_output_csc(struct dc *dc,
+ 	}
+ }
  
- 		/*call the dcn2 method which uses mpc csc*/
- 		dc->hwss.program_output_csc(dc,
+-bool dcn20_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++bool dcn20_set_output_transfer_func(struct set_output_transfer_func_params *otf_params)
+ {
+-	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+-	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
++	struct dpp *dpp = otf_params->dpp;
++	struct mpc *mpc = otf_params->mpc;
++	int mpcc_id = otf_params->mpcc_id;
++	bool is_top_pipe = otf_params->is_top_pipe;
++	const struct dc_stream_state *stream = otf_params->stream;
++	struct dc *dc = dpp->ctx->dc;
+ 	const struct pwl_params *params = NULL;
++
+ 	/*
+ 	 * program OGAM only for the top pipe
+ 	 * if there is a pipe split then fix diagnostic is required:
+ 	 * how to pass OGAM parameter for stream.
+ 	 * if programming for all pipes is required then remove condition
+-	 * pipe_ctx->top_pipe == NULL ,but then fix the diagnostic.
++	 * is_top_pipe ,but then fix the diagnostic.
+ 	 */
+ 	if (mpc->funcs->power_on_mpc_mem_pwr)
+ 		mpc->funcs->power_on_mpc_mem_pwr(mpc, mpcc_id, true);
+-	if (pipe_ctx->top_pipe == NULL
++	if (is_top_pipe
+ 			&& mpc->funcs->set_output_gamma) {
+ 		if (stream->out_transfer_func.type == TF_TYPE_HWPWL)
+ 			params = &stream->out_transfer_func.pwl;
+-		else if (pipe_ctx->stream->out_transfer_func.type ==
++		else if (stream->out_transfer_func.type ==
+ 			TF_TYPE_DISTRIBUTED_POINTS &&
+ 			cm_helper_translate_curve_to_hw_format(dc->ctx,
+ 			&stream->out_transfer_func,
+@@ -1991,7 +1995,7 @@ static void dcn20_program_pipe(
+ 	if (pipe_ctx->update_flags.bits.enable ||
+ 	    pipe_ctx->update_flags.bits.plane_changed ||
+ 	    pipe_ctx->stream->update_flags.bits.out_tf)
+-		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++		hwss_set_output_transfer_func(dc, pipe_ctx);
+ 
+ 	/* If the pipe has been enabled or has a different opp, we
+ 	 * should reprogram the fmt. This deals with cases where
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
+index 9d1ad3b29ca5..749348d3c793 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_hwseq.h
+@@ -44,8 +44,7 @@ void dcn20_update_plane_addr(const struct dc *dc, struct pipe_ctx *pipe_ctx);
+ void dcn20_update_mpcc(struct dc *dc, struct pipe_ctx *pipe_ctx);
+ bool dcn20_set_input_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+ 			const struct dc_plane_state *plane_state);
+-bool dcn20_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx,
+-			const struct dc_stream_state *stream);
++bool dcn20_set_output_transfer_func(struct set_output_transfer_func_params *params);
+ void dcn20_program_output_csc(struct dc *dc,
+ 		struct pipe_ctx *pipe_ctx,
+ 		enum dc_color_space colorspace,
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-index aa7707b2b25b..82a662efa49f 100644
+index 82a662efa49f..59184e146fc9 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.c
-@@ -357,37 +357,41 @@ bool dcn30_set_input_transfer_func(struct dc *dc,
+@@ -256,13 +256,10 @@ bool dcn30_set_blend_lut(
  	return result;
  }
  
--void dcn30_program_gamut_remap(struct pipe_ctx *pipe_ctx)
-+void dcn30_program_gamut_remap(struct program_gamut_remap_params *params)
+-static bool dcn30_set_mpc_shaper_3dlut(struct pipe_ctx *pipe_ctx,
+-				       const struct dc_stream_state *stream)
++static bool dcn30_set_mpc_shaper_3dlut(struct dpp *dpp, struct mpc *mpc,
++				       int mpcc_id, const struct dc_stream_state *stream)
  {
-+	struct dpp *dpp = params->dpp;
-+	struct mpc *mpc = params->mpc;
-+	int mpcc_id = params->mpcc_id;
-+	const struct dc_stream_state *stream = params->stream;
-+	const struct dc_plane_state *plane = params->plane;
-+	bool is_top_pipe = params->is_top_pipe;
- 	int i = 0;
- 	struct dpp_grph_csc_adjustment dpp_adjust;
- 	struct mpc_grph_gamut_adjustment mpc_adjust;
+-	struct dpp *dpp_base = pipe_ctx->plane_res.dpp;
 -	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+-	struct dc *dc = pipe_ctx->stream->ctx->dc;
 -	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
- 
- 	memset(&dpp_adjust, 0, sizeof(dpp_adjust));
- 	dpp_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
- 
--	if (pipe_ctx->plane_state &&
--	    pipe_ctx->plane_state->gamut_remap_matrix.enable_remap == true) {
-+	if (plane &&
-+	    plane->gamut_remap_matrix.enable_remap == true) {
- 		dpp_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 			dpp_adjust.temperature_matrix[i] =
--				pipe_ctx->plane_state->gamut_remap_matrix.matrix[i];
-+				plane->gamut_remap_matrix.matrix[i];
- 	}
- 
--	pipe_ctx->plane_res.dpp->funcs->dpp_set_gamut_remap(pipe_ctx->plane_res.dpp,
-+	dpp->funcs->dpp_set_gamut_remap(dpp,
- 							    &dpp_adjust);
- 
- 	memset(&mpc_adjust, 0, sizeof(mpc_adjust));
- 	mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
- 
--	if (pipe_ctx->top_pipe == NULL) {
--		if (pipe_ctx->stream->gamut_remap_matrix.enable_remap == true) {
-+	if (is_top_pipe) {
-+		if (stream->gamut_remap_matrix.enable_remap == true) {
- 			mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 			for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 				mpc_adjust.temperature_matrix[i] =
--					pipe_ctx->stream->gamut_remap_matrix.matrix[i];
-+					stream->gamut_remap_matrix.matrix[i];
++	struct dc *dc = dpp->ctx->dc;
+ 	bool result = false;
+ 	uint32_t acquired_rmu = 0;
+ 	int mpcc_id_projected = 0;
+@@ -274,8 +271,8 @@ static bool dcn30_set_mpc_shaper_3dlut(struct pipe_ctx *pipe_ctx,
+ 			shaper_lut = &stream->func_shaper->pwl;
+ 		} else if (stream->func_shaper->type == TF_TYPE_DISTRIBUTED_POINTS) {
+ 			cm_helper_translate_curve_to_hw_format(stream->ctx, stream->func_shaper,
+-							       &dpp_base->shaper_params, true);
+-			shaper_lut = &dpp_base->shaper_params;
++							       &dpp->shaper_params, true);
++			shaper_lut = &dpp->shaper_params;
  		}
  	}
  
+@@ -398,23 +395,25 @@ void dcn30_program_gamut_remap(struct program_gamut_remap_params *params)
+ 	mpc->funcs->set_gamut_remap(mpc, mpcc_id, &mpc_adjust);
+ }
+ 
+-bool dcn30_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++bool dcn30_set_output_transfer_func(struct set_output_transfer_func_params *otf_params)
+ {
+-	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+-	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
++	struct dpp *dpp = otf_params->dpp;
++	struct mpc *mpc = otf_params->mpc;
++	int mpcc_id = otf_params->mpcc_id;
++	bool is_top_pipe = otf_params->is_top_pipe;
++	const struct dc_stream_state *stream = otf_params->stream;
++	struct dc *dc = dpp->ctx->dc;
+ 	const struct pwl_params *params = NULL;
+ 	bool ret = false;
+ 
+ 	/* program OGAM or 3DLUT only for the top pipe*/
+-	if (pipe_ctx->top_pipe == NULL) {
++	if (is_top_pipe) {
+ 		/*program rmu shaper and 3dlut in MPC*/
+-		ret = dcn30_set_mpc_shaper_3dlut(pipe_ctx, stream);
++		ret = dcn30_set_mpc_shaper_3dlut(dpp, mpc, mpcc_id, stream);
+ 		if (ret == false && mpc->funcs->set_output_gamma) {
+ 			if (stream->out_transfer_func.type == TF_TYPE_HWPWL)
+ 				params = &stream->out_transfer_func.pwl;
+-			else if (pipe_ctx->stream->out_transfer_func.type ==
++			else if (stream->out_transfer_func.type ==
+ 					TF_TYPE_DISTRIBUTED_POINTS &&
+ 					cm3_helper_translate_curve_to_hw_format(stream->ctx,
+ 					&stream->out_transfer_func,
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
-index a963d360a368..4182cf399424 100644
+index 4182cf399424..0399642076eb 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_hwseq.h
-@@ -63,7 +63,7 @@ bool dcn30_set_input_transfer_func(struct dc *dc,
+@@ -65,9 +65,7 @@ bool dcn30_set_input_transfer_func(struct dc *dc,
+ 
+ void dcn30_program_gamut_remap(struct program_gamut_remap_params *params);
+ 
+-bool dcn30_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream);
++bool dcn30_set_output_transfer_func(struct set_output_transfer_func_params *params);
+ void dcn30_set_avmute(struct pipe_ctx *pipe_ctx, bool enable);
+ void dcn30_update_info_frame(struct pipe_ctx *pipe_ctx);
+ void dcn30_program_dmdata_engine(struct pipe_ctx *pipe_ctx);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+index c2ea25927765..c5f6eb482f07 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+@@ -443,13 +443,10 @@ void dcn32_subvp_pipe_control_lock_fast(union block_sequence_params *params)
+ 	}
+ }
+ 
+-bool dcn32_set_mpc_shaper_3dlut(
+-	struct pipe_ctx *pipe_ctx, const struct dc_stream_state *stream)
++bool dcn32_set_mpc_shaper_3dlut(struct dpp *dpp, struct mpc *mpc,
++	int mpcc_id, const struct dc_stream_state *stream)
+ {
+-	struct dpp *dpp_base = pipe_ctx->plane_res.dpp;
+-	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+-	struct dc *dc = pipe_ctx->stream->ctx->dc;
+-	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
++	struct dc *dc = dpp->ctx->dc;
+ 	bool result = false;
+ 
+ 	const struct pwl_params *shaper_lut = NULL;
+@@ -460,8 +457,8 @@ bool dcn32_set_mpc_shaper_3dlut(
+ 		else if (stream->func_shaper->type == TF_TYPE_DISTRIBUTED_POINTS) {
+ 			cm_helper_translate_curve_to_hw_format(stream->ctx,
+ 					stream->func_shaper,
+-					&dpp_base->shaper_params, true);
+-			shaper_lut = &dpp_base->shaper_params;
++					&dpp->shaper_params, true);
++			shaper_lut = &dpp->shaper_params;
+ 		}
+ 	}
+ 
+@@ -566,24 +563,24 @@ bool dcn32_set_input_transfer_func(struct dc *dc,
+ 	return result;
+ }
+ 
+-bool dcn32_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++bool dcn32_set_output_transfer_func(struct set_output_transfer_func_params *otf_params)
+ {
+-	(void)dc;
+-	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
+-	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
++	struct dpp *dpp = otf_params->dpp;
++	struct mpc *mpc = otf_params->mpc;
++	int mpcc_id = otf_params->mpcc_id;
++	bool is_top_pipe = otf_params->is_top_pipe;
++	const struct dc_stream_state *stream = otf_params->stream;
+ 	const struct pwl_params *params = NULL;
+ 	bool ret = false;
+ 
+ 	/* program OGAM or 3DLUT only for the top pipe*/
+-	if (resource_is_pipe_type(pipe_ctx, OPP_HEAD)) {
++	if (is_top_pipe) {
+ 		/*program shaper and 3dlut in MPC*/
+-		ret = dcn32_set_mpc_shaper_3dlut(pipe_ctx, stream);
++		ret = dcn32_set_mpc_shaper_3dlut(dpp, mpc, mpcc_id, stream);
+ 		if (ret == false && mpc->funcs->set_output_gamma) {
+ 			if (stream->out_transfer_func.type == TF_TYPE_HWPWL)
+ 				params = &stream->out_transfer_func.pwl;
+-			else if (pipe_ctx->stream->out_transfer_func.type ==
++			else if (stream->out_transfer_func.type ==
+ 					TF_TYPE_DISTRIBUTED_POINTS &&
+ 					cm3_helper_translate_curve_to_hw_format(stream->ctx,
+ 					&stream->out_transfer_func,
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
+index 0303a5953673..090d94d38343 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.h
+@@ -54,12 +54,10 @@ bool dcn32_set_input_transfer_func(struct dc *dc,
  				struct pipe_ctx *pipe_ctx,
  				const struct dc_plane_state *plane_state);
  
--void dcn30_program_gamut_remap(struct pipe_ctx *pipe_ctx);
-+void dcn30_program_gamut_remap(struct program_gamut_remap_params *params);
+-bool dcn32_set_mpc_shaper_3dlut(
+-	struct pipe_ctx *pipe_ctx, const struct dc_stream_state *stream);
++bool dcn32_set_mpc_shaper_3dlut(struct dpp *dpp_base, struct mpc *mpc,
++	int mpcc_id, const struct dc_stream_state *stream);
  
- bool dcn30_set_output_transfer_func(struct dc *dc,
- 				struct pipe_ctx *pipe_ctx,
+-bool dcn32_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream);
++bool dcn32_set_output_transfer_func(struct set_output_transfer_func_params *params);
+ 
+ void dcn32_init_hw(struct dc *dc);
+ 
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index 308085d24775..5c1ba5d88c7a 100644
+index 5c1ba5d88c7a..161ef57ebce1 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -89,28 +89,31 @@ void dcn401_initialize_min_clocks(struct dc *dc)
- 			true);
+@@ -696,24 +696,24 @@ bool dcn401_set_mcm_luts(struct pipe_ctx *pipe_ctx,
+ 	return result;
  }
  
--void dcn401_program_gamut_remap(struct pipe_ctx *pipe_ctx)
-+void dcn401_program_gamut_remap(struct program_gamut_remap_params *params)
+-bool dcn401_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream)
++bool dcn401_set_output_transfer_func(struct set_output_transfer_func_params *otf_params)
  {
-+	struct mpc *mpc = params->mpc;
-+	int mpcc_id = params->mpcc_id;
-+	const struct dc_stream_state *stream = params->stream;
-+	const struct dc_plane_state *plane = params->plane;
-+	bool is_top_pipe = params->is_top_pipe;
- 	unsigned int i = 0;
- 	struct mpc_grph_gamut_adjustment mpc_adjust;
--	unsigned int mpcc_id = pipe_ctx->plane_res.mpcc_inst;
+-	(void)dc;
+-	int mpcc_id = pipe_ctx->plane_res.hubp->inst;
 -	struct mpc *mpc = pipe_ctx->stream_res.opp->ctx->dc->res_pool->mpc;
++	struct dpp *dpp = otf_params->dpp;
++	struct mpc *mpc = otf_params->mpc;
++	int mpcc_id = otf_params->mpcc_id;
++	bool is_top_pipe = otf_params->is_top_pipe;
++	const struct dc_stream_state *stream = otf_params->stream;
+ 	const struct pwl_params *params = NULL;
+ 	bool ret = false;
  
- 	//For now assert if location is not pre-blend
--	if (pipe_ctx->plane_state)
--		ASSERT(pipe_ctx->plane_state->mcm_location == MPCC_MOVABLE_CM_LOCATION_BEFORE);
-+	if (plane)
-+		ASSERT(plane->mcm_location == MPCC_MOVABLE_CM_LOCATION_BEFORE);
- 
- 	// program MPCC_MCM_FIRST_GAMUT_REMAP
- 	memset(&mpc_adjust, 0, sizeof(mpc_adjust));
- 	mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
- 	mpc_adjust.mpcc_gamut_remap_block_id = MPCC_MCM_FIRST_GAMUT_REMAP;
- 
--	if (pipe_ctx->plane_state &&
--		pipe_ctx->plane_state->gamut_remap_matrix.enable_remap == true) {
-+	if (plane &&
-+		plane->gamut_remap_matrix.enable_remap == true) {
- 		mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 		for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 			mpc_adjust.temperature_matrix[i] =
--			pipe_ctx->plane_state->gamut_remap_matrix.matrix[i];
-+			plane->gamut_remap_matrix.matrix[i];
- 	}
- 
- 	mpc->funcs->set_gamut_remap(mpc, mpcc_id, &mpc_adjust);
-@@ -126,12 +129,12 @@ void dcn401_program_gamut_remap(struct pipe_ctx *pipe_ctx)
- 	mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_BYPASS;
- 	mpc_adjust.mpcc_gamut_remap_block_id = MPCC_OGAM_GAMUT_REMAP;
- 
--	if (pipe_ctx->top_pipe == NULL) {
--		if (pipe_ctx->stream->gamut_remap_matrix.enable_remap == true) {
+ 	/* program OGAM or 3DLUT only for the top pipe*/
+-	if (resource_is_pipe_type(pipe_ctx, OPP_HEAD)) {
 +	if (is_top_pipe) {
-+		if (stream->gamut_remap_matrix.enable_remap == true) {
- 			mpc_adjust.gamut_adjust_type = GRAPHICS_GAMUT_ADJUST_TYPE_SW;
- 			for (i = 0; i < CSC_TEMPERATURE_MATRIX_SIZE; i++)
- 				mpc_adjust.temperature_matrix[i] =
--				pipe_ctx->stream->gamut_remap_matrix.matrix[i];
-+				stream->gamut_remap_matrix.matrix[i];
- 		}
+ 		/*program shaper and 3dlut in MPC*/
+-		ret = dcn32_set_mpc_shaper_3dlut(pipe_ctx, stream);
++		ret = dcn32_set_mpc_shaper_3dlut(dpp, mpc, mpcc_id, stream);
+ 		if (ret == false && mpc->funcs->set_output_gamma) {
+ 			if (stream->out_transfer_func.type == TF_TYPE_HWPWL)
+ 				params = &stream->out_transfer_func.pwl;
+-			else if (pipe_ctx->stream->out_transfer_func.type ==
++			else if (stream->out_transfer_func.type ==
+ 					TF_TYPE_DISTRIBUTED_POINTS &&
+ 					cm3_helper_translate_curve_to_hw_format(stream->ctx,
+ 					&stream->out_transfer_func,
+@@ -2397,7 +2397,7 @@ void dcn401_program_pipe(
+ 	if (pipe_ctx->update_flags.bits.enable ||
+ 	    pipe_ctx->update_flags.bits.plane_changed ||
+ 	    pipe_ctx->stream->update_flags.bits.out_tf)
+-		hws->funcs.set_output_transfer_func(dc, pipe_ctx, pipe_ctx->stream);
++		hwss_set_output_transfer_func(dc, pipe_ctx);
+ 
+ 	/* If the pipe has been enabled or has a different opp, we
+ 	 * should reprogram the fmt. This deals with cases where
+@@ -2555,7 +2555,7 @@ void dcn401_program_pipe_sequence(
+ 	if (pipe_ctx->update_flags.bits.enable ||
+ 			pipe_ctx->update_flags.bits.plane_changed ||
+ 			pipe_ctx->stream->update_flags.bits.out_tf) {
+-		hwss_add_dpp_set_output_transfer_func(seq_state, dc, pipe_ctx, pipe_ctx->stream);
++		hwss_add_dpp_set_output_transfer_func(seq_state, dc, pipe_ctx);
  	}
  
+ 	/* If the pipe has been enabled or has a different opp, we
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
-index a760050eea8c..6d2e93149811 100644
+index 6d2e93149811..f90e25243ead 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.h
-@@ -32,7 +32,7 @@ struct ips_ono_region_state {
- 	uint32_t current_pwr_state;
- };
+@@ -38,9 +38,7 @@ void dcn401_init_hw(struct dc *dc);
  
--void dcn401_program_gamut_remap(struct pipe_ctx *pipe_ctx);
-+void dcn401_program_gamut_remap(struct program_gamut_remap_params *params);
- 
- void dcn401_init_hw(struct dc *dc);
- 
+ bool dcn401_set_mcm_luts(struct pipe_ctx *pipe_ctx,
+ 				const struct dc_plane_state *plane_state);
+-bool dcn401_set_output_transfer_func(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream);
++bool dcn401_set_output_transfer_func(struct set_output_transfer_func_params *params);
+ void dcn401_trigger_3dlut_dma_load(struct dc *dc,
+ 				struct pipe_ctx *pipe_ctx);
+ void dcn401_calculate_dccg_tmds_div_value(struct pipe_ctx *pipe_ctx,
 diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-index 65df8002d3d7..d8398b39a119 100644
+index d8398b39a119..e8bf96a7d63a 100644
 --- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
 +++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer.h
-@@ -95,7 +95,13 @@ struct set_input_transfer_func_params {
+@@ -138,8 +138,11 @@ struct program_bias_and_scale_params {
  };
  
- struct program_gamut_remap_params {
+ struct set_output_transfer_func_params {
+-	struct dc *dc;
 -	struct pipe_ctx *pipe_ctx;
 +	struct transform *xfm;
 +	struct dpp *dpp;
 +	struct mpc *mpc;
 +	int mpcc_id;
-+	const struct dc_stream_state *stream;
-+	const struct dc_plane_state *plane;
 +	bool is_top_pipe;
+ 	const struct dc_stream_state *stream;
  };
  
- struct hubp_enable_3dlut_fl_params {
-@@ -1389,7 +1395,7 @@ struct hw_sequencer_funcs {
- 	void (*program_cursor_offload_now)(struct dc *dc, const struct pipe_ctx *pipe);
+@@ -1993,7 +1996,9 @@ void hwss_add_optc_program_manual_trigger(struct block_sequence_state *seq_state
+ 		struct pipe_ctx *pipe_ctx);
  
- 	/* Colour Related */
--	void (*program_gamut_remap)(struct pipe_ctx *pipe_ctx);
-+	void (*program_gamut_remap)(struct program_gamut_remap_params *params);
- 	void (*program_output_csc)(struct dc *dc, struct pipe_ctx *pipe_ctx,
- 			enum dc_color_space colorspace,
- 			uint16_t *matrix, int opp_id);
-@@ -1940,7 +1946,7 @@ void hwss_set_cursor_position(union block_sequence_params *params);
+ void hwss_add_dpp_set_output_transfer_func(struct block_sequence_state *seq_state,
+-		struct dc *dc, struct pipe_ctx *pipe_ctx, struct dc_stream_state *stream);
++		struct dc *dc, struct pipe_ctx *pipe_ctx);
++
++void hwss_set_output_transfer_func(struct dc *dc, struct pipe_ctx *pipe_ctx);
  
- void hwss_set_cursor_sdr_white_level(union block_sequence_params *params);
- 
--void hwss_program_gamut_remap(union block_sequence_params *params);
-+void hwss_program_gamut_remap(struct pipe_ctx *pipe_ctx);
- 
- void hwss_program_output_csc(union block_sequence_params *params);
- 
+ void hwss_add_mpc_update_visual_confirm(struct block_sequence_state *seq_state,
+ 		struct dc *dc, struct pipe_ctx *pipe_ctx, int mpcc_id);
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
+index b4956893ae9a..31ace62a37d9 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
++++ b/drivers/gpu/drm/amd/display/dc/hwss/hw_sequencer_private.h
+@@ -67,6 +67,8 @@ struct dc_phy_addr_space_config;
+ struct dc_virtual_addr_space_config;
+ struct hubp;
+ struct dpp;
++struct transform;
++struct mpc;
+ struct dce_hwseq;
+ struct timing_generator;
+ struct tg_color;
+@@ -92,9 +94,7 @@ struct hwseq_private_funcs {
+ 	bool (*set_input_transfer_func)(struct dc *dc,
+ 				struct pipe_ctx *pipe_ctx,
+ 				const struct dc_plane_state *plane_state);
+-	bool (*set_output_transfer_func)(struct dc *dc,
+-				struct pipe_ctx *pipe_ctx,
+-				const struct dc_stream_state *stream);
++	bool (*set_output_transfer_func)(struct set_output_transfer_func_params *params);
+ 	void (*power_down)(struct dc *dc);
+ 	void (*enable_display_pipe_clock_gating)(struct dc_context *ctx,
+ 					bool clock_gating);
 -- 
 2.43.0
 
