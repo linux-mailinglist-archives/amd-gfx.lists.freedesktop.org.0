@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PCjoGu6PV2p+XAAAu9opvQ
+	id A2i6I06OV2qmWwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:42:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1510F75EF90
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE27575ED21
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:42:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="H/izhMbr";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=rrJ55tgb;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9915910F0B8;
-	Wed, 15 Jul 2026 13:49:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 770D410F05F;
+	Wed, 15 Jul 2026 13:42:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013000.outbound.protection.outlook.com
- [40.93.201.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16EEC10F0B9
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:49:32 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013038.outbound.protection.outlook.com
+ [40.93.196.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22C8510F04D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:42:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AWmpOBwBqcWrtYsYGAg/XXYAxpjG6ScAjMiGPjZGfvUIFFNShtsxdvboerQLrxIeCy5Y/ICzyo1+Xm32CIxGJZwSuVjCpUov4b5NvBwgOYQCy7YXkDoeWct9Q3XlblCq2hHYYhIt2jbHpuRjfS+WoN0jWVGNL4KCzSZp9PuBFnPvQmc6s3i7anUvzt/J72xy6DIcg3hKJVzNgsNeAAJeesZLwjyT0xmECMyTIfqCEJOKRh7VfXOv29FSaikZgyBKk91ybUZJHqS7i0u3EFijWPHyQDPBNemZYiakNaW/QvyipLwSyIFs6tROTKwVVfbS0U0XZ6OrhEM8ZUQZD3tkBA==
+ b=Rf5c2lFgVMIbqdxcgxWUUEgKKXq7iC1uQtW66hvBUVbx87DZCWm/C3s7loQR1QNBchhFQcPT6HSHVH/QAO+1EIPV9mm4v1qUX/+ImFpmpYaFWb759di+tJU60T71hl5PgzSXi1G3eSkHuqDQc7aGP23VfFbHYJEZIqpY4wpPSHLI7NHV+ZJeTGGyfHMFbW9rT2GQ72PPcDtYr0sWJ0mSmcTGA8pInRe6HJ3STcdWcrc5EwldOfxLcnvNV7caYiuyqgC2sL+g46DCsOHSQgBtcEjheFDB3tcsb9PhqHt3wYoBw7imBCpFS/jKyJZ/CBIERPG5Scn/dokWW+L5EPNEEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nls9xqG58reuQqL/ww3FzyFYBZeaDDLz9CwwDRsvx20=;
- b=ZWr8qfd127jJAETUli65tlkixC1N3StdfSJD9KlVrSdWTXlzorHAPNY8GyTH2Wz+z9oLZLEbUhWkSSXbXnfrb/Nj+s48TDoJ7OFtGnP0IHQ0YIaXIxK31ebJq+Nr/r/lLkyx6XneFqp08+ErHuSMJMD/HyOJZ0N3dYwibJXTndlsIrV0+JrGCFzYlKHjdIMzQG7iB2SKX7z44d6CtrpegfRtAgkmYvywnluIIkJf6eaqOpkFob2+c+WbasVSCzgBkiPE12U8R6a7ImQLsuJmgACEM8sWSc6a9T+4dNpTspQCWNhifw9Dp4IyUvQ7Epft3lTwsGYFoUvTnD06givPuQ==
+ bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
+ b=iLZRfzkrTJDRU2/57u/JJ6r5jjs9XyPHamnUbdGL5HqtBpH8qgnlsLAiwkwPI5qjHD/ccYAY5QIoZcdAkmXITDbysFHUHSIE2tvelApt9QOWxSTbqlPgRB8VC+GRPS6qrvBuLX13ueaCuwW1mrswlzlVHwg5NnSDm10Iuw/mhsh29gnpknuolGKdXr2xk3DgdAumxJhmL/DkABMcBKt7bzFGK/InwcBMl2YkQP35JRScLdrjsdcj74K1jzmMwypEAeJoEdGKcxWaik+8Qw6g+dGH76VYcTvMmhTWQIJD0XpWrqMpedBNAjU9aQofKK8cLU+clQY7AP0TjJJinzyufg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nls9xqG58reuQqL/ww3FzyFYBZeaDDLz9CwwDRsvx20=;
- b=H/izhMbrN5s5ZBQYqykCFP1TiE0X9JFr4NYRRqnytUlID7iB2kEQBd+pg3xYEfhvXeXekb5fQ/QBCrVh4E3RvF5A+SHhg74lepfn2jH49wAYl2tAvHkIYJU3Ti85Npy3l00F+/FxmZhr6E4kbsp6h/vgREVkcLBV6nZE932sq3U=
-Received: from SJ0PR03CA0253.namprd03.prod.outlook.com (2603:10b6:a03:3a0::18)
- by CH2PR12MB4325.namprd12.prod.outlook.com (2603:10b6:610:a9::14)
+ bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
+ b=rrJ55tgbZFy+y8deM6Y6brOU8Wh6tJLjuNvM9BJ9mybLPFc7nnoyjxEd/6h57DtdX+RF1rZrWfC/2cBoW08xmIc1fiPBR8Vh40NCVUDK133Gir3UHSBHLkLyzYsqilckXbv+Is88smJZ09XVtPQQny5MgiN72MGF3okDKieoBbM=
+Received: from CH5PR02CA0020.namprd02.prod.outlook.com (2603:10b6:610:1ed::25)
+ by IA4PR12MB9833.namprd12.prod.outlook.com (2603:10b6:208:55b::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.10; Wed, 15 Jul
- 2026 13:49:26 +0000
-Received: from SJ5PEPF00000206.namprd05.prod.outlook.com
- (2603:10b6:a03:3a0:cafe::b) by SJ0PR03CA0253.outlook.office365.com
- (2603:10b6:a03:3a0::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.11 via Frontend Transport; Wed,
- 15 Jul 2026 13:49:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.11; Wed, 15 Jul
+ 2026 13:42:30 +0000
+Received: from CH2PEPF0000009A.namprd02.prod.outlook.com
+ (2603:10b6:610:1ed:cafe::19) by CH5PR02CA0020.outlook.office365.com
+ (2603:10b6:610:1ed::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
+ 15 Jul 2026 13:42:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,59 +56,52 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000206.mail.protection.outlook.com (10.167.244.39) with Microsoft
+ CH2PEPF0000009A.mail.protection.outlook.com (10.167.244.22) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:49:25 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:42:29 +0000
+Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:49:24 -0500
-Received: from wayne-dev-lnx.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 15 Jul 2026 08:49:21 -0500
-From: Wayne Lin <Wayne.Lin@amd.com>
+ 2026 08:42:29 -0500
+From: William Palacek <William.Palacek@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Taimur Hassan <Syed.Hassan@amd.com>
-Subject: [PATCH 70/70] drm/amd/display: Promote DC to 3.2.390
-Date: Wed, 15 Jul 2026 21:38:20 +0800
-Message-ID: <20260715134432.1975118-71-Wayne.Lin@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260715134432.1975118-1-Wayne.Lin@amd.com>
-References: <20260715134432.1975118-1-Wayne.Lin@amd.com>
+CC: <Harish.Kasiviswanathan@amd.com>, <Alysa.Liu@amd.com>, William Palacek
+ <William.Palacek@amd.com>
+Subject: [PATCH] drm/amdkfd: Add bounds check for CRAT subtype length
+Date: Wed, 15 Jul 2026 09:40:04 -0400
+Message-ID: <20260715134004.163459-1-William.Palacek@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000206:EE_|CH2PR12MB4325:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3377415-e106-4c87-38a3-08dee277e231
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000009A:EE_|IA4PR12MB9833:EE_
+X-MS-Office365-Filtering-Correlation-Id: 735f6d0e-8d34-4e4c-91cc-08dee276ea4f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|36860700016|82310400026|11063799006|56012099006|18002099003|22082099003|10067099003;
-X-Microsoft-Antispam-Message-Info: H8uyqqLJ/oSp0d8C4kAKPwHoZX5A7wuotJlqEFmhZx4h7Xr7Xa3w6WpmkIMA8fR5kuneMl6V4Ala9nTLC2gcaNfeRNzMAeCDUTegRlqlh+iJEZmzAXff8uFoSvdv3XiFdmdf/+e/xrwijTHKW3MoK+xETwfOM3mRhgAXoo3N17J3WNvjO7jR3Q9vp9uKQe91ZOJwuKyPkAPFAPcrsmqhX8K0pi075LtNLlqiq5bA+UlyFf+oKV0CxQzaqPKRlLywcmxz+KpG9HIDXob+AL/yQdfrTUbAN3SncvScMNhXM9SjcZ/YsAoBlEzWiVJ+ZqHtcSavzLr6+mKAuaA+l5mxI0DD0+WXwwd4Wcrf8ezPSAZrVGgALpIeG/g86ahO7byzBhiUtp0eL67hodaRRJ7dK55bvX4PW6i0oRuw4CR1uDcutIQCk3vfW11M045yFQrJNvVXEllr2pqgrO34oVFOTf1kvcjyFKKV8hMZNaS6G+BI2d4ZVwVfbZIWPOSHxOEoN0c3EdyxR9o2daMzjzKMH/GEBiySoKkhcRKupPSyfX2nFcd+s2K5jubA92Pv4GhAz0zsJS6OUeydnOHTlDUYmThuh2FKjndj6mB9SmyAqCumOVSKn4RAOmRdKr/u5YYMFvlbGOamOO7eqIouQJT6mIklkpHWY2lC5SSO7DL3UysD8rETDn0+UYeESIXX8S7zOS02ST6YHRGX8S7P5NMHiQ==
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|6133799003|10067099003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: t2ZEJYfLs0eXcv8YL/H0Dp63vsV9GeCrBgXDdp4faf7JHq6mcmfa2BPjSbEFsD2q+fHRLkLTEfhUW+7jTZfISnQUqJuCw8+XmBRUIGPRMp6LZDhRUHhDddqBt2tlcQaB5au29clER0jBKe9JuFDeHGUHZktVVj/uO+XqqOQDcPjnSrlf/2iKT82U8CzP4PYchTJaa5gsgOh+RBOTYPqegrP45QmytF6Qcy0Z1EV2ThclgXWnTxJRs6Jx/h8fspvdsnx0SuJ/Z0ngI9uHCJN7q7K6/FF4ahczJ4IoCUj9sRF35ne+X9XSmbDM7ZTFicZwgVC2dPXqOm3UqLbtx19uqAap62oEK6ekDEzNMwHh+EDEA/I6UIOFG8lRNU+/Od3XXLVP/DFDuAk7zFwvVfwDUrTzlobkTL4mB4HhH9b1Rs6r/HrtM0QquCiATzXi37PZhZdNbp/EAsAvqDwe+Piau6nnO0m+15uTp2PQuF/uIBsxL2gG5Mi41CT2JQwqIk6YEH1SSvyY073LQSHdV+aVPPL/voo8uNNN5vq0dlOb5D43gIZx+h/33k3mW3GFjEpJDH7xJybXMCy0meCxkneGSS+l65z7pk4LmgaIuoe8Ad7F1yOA9R4fWAi7nMJzOqlfNstx2NJrIarx69urFBhrt62OQliKyxRWbtkHb0S2TTSy9oFWSE6ld8HjzdNyoUoRObQ1uy/4ksQZNSU3fTXb2Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(11063799006)(56012099006)(18002099003)(22082099003)(10067099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3UYZ8NfFGVUnGi1XNdxYPtyT29qG7tyZOWnTJkn7Bn8E8juqXOh9z6+PYCiivKE++Y4midigQkiwgxvRushwXk+S5P7PzjxSBDqBewU4CQglURCZ/Q5ZZ2ZV8w8c2KDpR1mAOLcMDETm5uzydlolVbl5DdSaNe2uaOAeJ2rAss8B3Xsj+fSwehbM6WacLW3sjX5Qvvc5YRZJeGYsBIqUMl85AmxLVQeEfVSRf/6o2oTVKI5KfX0orw42x+WCqHA/sQyczpKgYcn313t2WJ3+owZ1VIdIRMBHC/r2iOoX0YBHJ0h3iSxIFxgHteZ94sR5uIaCoUoWA85d5cMEJR5WMH+KQFrxcLdnSDq9Ke2vCg0gEPMT46m3an0TNjU3BbT3o430XLM015UlZQIipwh9BXF+5TwtfNwUjhFtAIXe8ka6Zbksgdnq9iFOnJnCy0hG
+X-MS-Exchange-AntiSpam-MessageData-0: PDUuir5J2lItlyYj4Mj2vO/SEvz0bGaQ7VzYfibupowCPApNLHGyq8abtbYDbLoU+ZbdYkjpNWG0lvkRdGDzck6KbAltSiRT3js4rt6L+DtlP3s365Aj3EgS0Ud2RB5JwnfvUyo2ZaNS7IvNjIVUE/GTEueRp03bswQazlr+8G4b1HVgY3ogbGuaty1YS/4cYoSCUKTvX0rTGk7MYTKxqRCD+99iHT7nzdE+l4ZzgkqH6TXI7vWt+vaC3Ce0XpplxchdSl1imPGKXt3xJX2So6dPnEAWMeSuTYoQUChUqoyjFzzf/MA++UUL8fUuzKJcesh7aUiJx4n/mhfOYtpXhlMvGUdbXvk4c1DyUItHRiPspPiPzfGqFGOgP311AvFPKHcRwOJPQUGPGOZQ5FlTr+jITo1KcJ+1zCYMAMgkGL2eEk8vBneDn9K7P5QSIPN5
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:49:25.6409 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3377415-e106-4c87-38a3-08dee277e231
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:42:29.7745 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 735f6d0e-8d34-4e4c-91cc-08dee276ea4f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000206.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009A.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4325
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9833
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,71 +118,68 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Wayne.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[William.Palacek@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1510F75EF90
+X-Rspamd-Queue-Id: DE27575ED21
 X-Rspamd-Action: no action
 
-From: Taimur Hassan <Syed.Hassan@amd.com>
+The CRAT parser validates that the subtype header fits within the image,
+but does not verify that the advertised subtype length fits. A malformed
+CRAT table with an oversized length field causes out-of-bounds reads when
+kfd_parse_subtype() casts the header to specific subtype structures.
 
-This DC patchset brings improvements in multiple areas. In summary, we have:
+Add validation that sub_type_hdr + length does not exceed the image
+boundary before parsing the subtype contents.
 
-* Unified dc_update_state commit interface with dc_probe model,
-  dc_state_get_status, and perfmon BLS sequence
-* DCN42 enhancements including mcache programming, PMFW DF C-state client,
-  and DCCG clocking fix
-* DML2.1 writeback validation plus MCIF ARB and watermark/latency updates
-* Color management refactor to dc_plane_cm with plane/CRTC colorop test coverage
-* Greatly enhanced KUnit coverage across amdgpu_dm, connector, CRC, DMUB, and
-  color management
-* HDMI AV mute timing, DP link training logging, and Apple Studio Display fixes
-* Code cleanup including DCE trim from DCN-only builds and HWSS refactors
-* SPL UPSP upsampling and YUV422/YUV444 scaling support
-* Fix missing dc_3dlut forward declaration in color management KUnit headers
-* Fix DM IRQ schedule-work KUnit tests after cancel_work_sync teardown change
-
-Acked-by: Tom Chung <chiahsuan.chung@amd.com>
-Signed-off-by: Taimur Hassan <Syed.Hassan@amd.com>
-Signed-off-by: Wayne Lin <wayne.lin@amd.com>
+Signed-off-by: William Palacek <William.Palacek@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index fcaa17b9ab1a..75c06a1752b5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -66,7 +66,7 @@ struct dcn_dsc_reg_state;
- struct dcn_optc_reg_state;
- struct dcn_dccg_reg_state;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 2a239f45fc24..6e0df685503d 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1412,6 +1412,15 @@ int kfd_parse_crat_table(void *crat_image, struct list_head *device_list,
+ 			break;
+ 		}
  
--#define DC_VER "3.2.389"
-+#define DC_VER "3.2.390"
- 
- /**
-  * MAX_SURFACES - representative of the upper bound of surfaces that can be piped to a single CRTC
++		/* Validate subtype fits within remaining image */
++		if ((char *)sub_type_hdr + sub_type_hdr->length >
++		    (char *)crat_image + image_len) {
++			pr_warn("CRAT subtype length %u exceeds image bounds\n",
++				sub_type_hdr->length);
++			ret = -EINVAL;
++			break;
++		}
++
+ 		if (sub_type_hdr->flags & CRAT_SUBTYPE_FLAGS_ENABLED) {
+ 			ret = kfd_parse_subtype(sub_type_hdr, device_list);
+ 			if (ret)
 -- 
-2.43.0
+2.34.1
 
