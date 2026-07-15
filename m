@@ -2,106 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id A2i6I06OV2qmWwAAu9opvQ
+	id Qsg3B+uOV2rIWwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:42:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE27575ED21
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA4175ED69
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Jul 2026 15:45:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=rrJ55tgb;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="L9V6/uqv";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 770D410F05F;
-	Wed, 15 Jul 2026 13:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5E210F066;
+	Wed, 15 Jul 2026 13:45:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013038.outbound.protection.outlook.com
- [40.93.196.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22C8510F04D
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:42:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Rf5c2lFgVMIbqdxcgxWUUEgKKXq7iC1uQtW66hvBUVbx87DZCWm/C3s7loQR1QNBchhFQcPT6HSHVH/QAO+1EIPV9mm4v1qUX/+ImFpmpYaFWb759di+tJU60T71hl5PgzSXi1G3eSkHuqDQc7aGP23VfFbHYJEZIqpY4wpPSHLI7NHV+ZJeTGGyfHMFbW9rT2GQ72PPcDtYr0sWJ0mSmcTGA8pInRe6HJ3STcdWcrc5EwldOfxLcnvNV7caYiuyqgC2sL+g46DCsOHSQgBtcEjheFDB3tcsb9PhqHt3wYoBw7imBCpFS/jKyJZ/CBIERPG5Scn/dokWW+L5EPNEEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
- b=iLZRfzkrTJDRU2/57u/JJ6r5jjs9XyPHamnUbdGL5HqtBpH8qgnlsLAiwkwPI5qjHD/ccYAY5QIoZcdAkmXITDbysFHUHSIE2tvelApt9QOWxSTbqlPgRB8VC+GRPS6qrvBuLX13ueaCuwW1mrswlzlVHwg5NnSDm10Iuw/mhsh29gnpknuolGKdXr2xk3DgdAumxJhmL/DkABMcBKt7bzFGK/InwcBMl2YkQP35JRScLdrjsdcj74K1jzmMwypEAeJoEdGKcxWaik+8Qw6g+dGH76VYcTvMmhTWQIJD0XpWrqMpedBNAjU9aQofKK8cLU+clQY7AP0TjJJinzyufg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
- b=rrJ55tgbZFy+y8deM6Y6brOU8Wh6tJLjuNvM9BJ9mybLPFc7nnoyjxEd/6h57DtdX+RF1rZrWfC/2cBoW08xmIc1fiPBR8Vh40NCVUDK133Gir3UHSBHLkLyzYsqilckXbv+Is88smJZ09XVtPQQny5MgiN72MGF3okDKieoBbM=
-Received: from CH5PR02CA0020.namprd02.prod.outlook.com (2603:10b6:610:1ed::25)
- by IA4PR12MB9833.namprd12.prod.outlook.com (2603:10b6:208:55b::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.223.11; Wed, 15 Jul
- 2026 13:42:30 +0000
-Received: from CH2PEPF0000009A.namprd02.prod.outlook.com
- (2603:10b6:610:1ed:cafe::19) by CH5PR02CA0020.outlook.office365.com
- (2603:10b6:610:1ed::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.12 via Frontend Transport; Wed,
- 15 Jul 2026 13:42:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF0000009A.mail.protection.outlook.com (10.167.244.22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Wed, 15 Jul 2026 13:42:29 +0000
-Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 15 Jul
- 2026 08:42:29 -0500
-From: William Palacek <William.Palacek@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Harish.Kasiviswanathan@amd.com>, <Alysa.Liu@amd.com>, William Palacek
- <William.Palacek@amd.com>
-Subject: [PATCH] drm/amdkfd: Add bounds check for CRAT subtype length
-Date: Wed, 15 Jul 2026 09:40:04 -0400
-Message-ID: <20260715134004.163459-1-William.Palacek@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67C4610F066
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 13:45:11 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2ccae46de39so10719645ad.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Jul 2026 06:45:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1784123111; cv=none;
+ d=google.com; s=arc-20260327;
+ b=dHcYHE+bdWU3H1IAq/qWi9/gLN8wotgyzbi78duMk2uGQOVyVD6ngKEibf9/0U8oUC
+ QWrt7HoSzvES2j2qBPXS9eHOD4hUAIh1TSqSdnirh8jHIinKuP1RKqpmh5a3B7SLLk3+
+ JY/ZFrhaKLPVkz6fEL+e2Z66STjb6hbMzG8h95DsII36QdQQPZCmoyaT2R6a64F8tKm7
+ eR7a/e+O5OtX54ZS3ioFMDX2VAn1r15RkbLL8xuzKuPqxSQd2FQId5v7m5sJTziFgo4C
+ B3sieFkV3CY2jQGb7L2ZKVv+jTgnu0lUd9KvmdFsaFWqjVFjpz8AVBj+Egm4FGUbWbu9
+ dvxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
+ fh=kN554ZXdjNLFYlsoSN+4k+ab7ffU5SVaCgbW6KOXSBE=;
+ b=KAEZRVVTUfwQdt/CLkgu8p2+S4CtXQtHAyF1YFngz4T+E0om2TvRnSUOuGbfbVkv2K
+ 2yVbYyCrXVzweMaHsaBEwKO15lACVLTI1k4OT87EAPADHIUfUg4nns/NOcL3fnS478ID
+ RUg8ZAlKil5CsAyJtGp3uUXtJTqxJfLDyF7sTEr0FVrY0sv1Wm6wL4a6EO6eJOxtkRdm
+ s54JE8QsiR+FD7ygQ4N1W8RRvaDFAOxrHc3B/rNaE7uTtIf997KAF9eIDMVnCUSYbB9L
+ qTPebIftSavHQ7ilLFIVUyl+yL5kpi5uJK51q9SDksQcP0GVV/DuGo1FXon3Ds27KmFG
+ qpdA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1784123111; x=1784727911; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
+ b=L9V6/uqvbwX2cSxoSWvX0CrVOp5tW2mKsZwPKA6qXgWZiYFc2jWgF0ZjBxlYtpfQOy
+ nwhSli+QUrKguC+CfKhbwbuHq3MchLMPKXXZrE6hLBA1I9NIQ3b6W6HkHO0vvDtl0+hh
+ gbxZfJ7mfsy/os3nwOfQMMCeSx9nUJW7HoTxXpFOEhKukUgeH4OViYc6jrEN/v3NmCGG
+ 9y6Eg+AQb0RM9pEqokQln9rQ4sqSFbXEDpyuCnAplsfiKBAXMi3a7jRrHo7V15wRhvDl
+ +6tjKklteFJsGYDRYZ/0fCw+Y1mUiNy9OsMIlc+lJaD5CZ/aO5Edqi23O6k7+yHSY78g
+ xRmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1784123111; x=1784727911;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=Vy3sTjOkVDiLdu6EZkwlmHhnIXIucJfDO7aoHh3lPpU=;
+ b=LS9N8LhLjYKCCEO5BCKlj2OawQP7k5LRkF8oXt+QH4CSbb5ZQ2PHgWKnyfAkUzpNhl
+ A8Fh0pz5Htymrl7fGvXMe9bwcO+iI3hZUxbmIkwpkIAmd+vqVWbjh5dUPOxlxpwmCtDh
+ G6wEG/N89ngqsL+dsl7IjMOPft4M1T2sluE2alnmJSPlDGKatBGnH70QACFonw0kNkqZ
+ oY8CM69wldHCDtYUiW3dyxF8Uj5az5w63XFj3Do8zLJkqgN7G/Z+UrSOquWJOu/7CNpO
+ 5aCPHzQX4hlM3gGpKXZmt6wMZvjDTcF5nb0Wr2lpvdJq/dH/NjbKR429EzFf0L+W8biQ
+ sByg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RrNrJHjKO7s+G+szWF9iDmwAcZJPK52mZtPVGo8725EGRHboWkkRzPaPCx3pBm7uG0phje7hzDT@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwqEJed60QcgkC9tCh71QoIrGLlSJKt0cS38JGlO236Y+QUswJk
+ SdWO86lwCEYOeolAE06CX60aeV/2EVNTz8QDyTQsptAMaSzjEwPN8PN5U6vZAcsYwpmwwr09jVO
+ DDcQWL3W4XOrSKo8d/fZQ3YX9yDfIo613Ld17
+X-Gm-Gg: AfdE7clokfptN/kTEhRt7NTMkgqp9ieX1pL6Xv0fMqaVce2LXLOd8zvpzUgGgW1TyZI
+ 0sMlYMS3ibmRhwPp3dnQfKNR2X7sXw2NnNxd1DdFUXIO68PXIVh20zRVr56EkeKpRu6PvOygN7U
+ EqfNqkmroRrN+vhQ/hbCfAiGBZ/HC2a7fN2xlzpl9/+zuhpJ3KYbfnpyzimO/eLk/MT1GE75A+g
+ Xw13cdb19elZMl1ZClJOT/1K0gOvleo1rNKVreSdcK/2EfhbWGFSjd/fYK6qk9RBqjzxiy1u5En
+ sz7evBiTr7xunPBEFRcyb7bXYF5KrGglu7Hyol5QHPiam92vUyPTuVWPRx4=
+X-Received: by 2002:a17:902:ea0f:b0:2ca:6885:8a06 with SMTP id
+ d9443c01a7336-2ce9f04c866mr141309635ad.5.1784123110806; Wed, 15 Jul 2026
+ 06:45:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000009A:EE_|IA4PR12MB9833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 735f6d0e-8d34-4e4c-91cc-08dee276ea4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|6133799003|10067099003|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: t2ZEJYfLs0eXcv8YL/H0Dp63vsV9GeCrBgXDdp4faf7JHq6mcmfa2BPjSbEFsD2q+fHRLkLTEfhUW+7jTZfISnQUqJuCw8+XmBRUIGPRMp6LZDhRUHhDddqBt2tlcQaB5au29clER0jBKe9JuFDeHGUHZktVVj/uO+XqqOQDcPjnSrlf/2iKT82U8CzP4PYchTJaa5gsgOh+RBOTYPqegrP45QmytF6Qcy0Z1EV2ThclgXWnTxJRs6Jx/h8fspvdsnx0SuJ/Z0ngI9uHCJN7q7K6/FF4ahczJ4IoCUj9sRF35ne+X9XSmbDM7ZTFicZwgVC2dPXqOm3UqLbtx19uqAap62oEK6ekDEzNMwHh+EDEA/I6UIOFG8lRNU+/Od3XXLVP/DFDuAk7zFwvVfwDUrTzlobkTL4mB4HhH9b1Rs6r/HrtM0QquCiATzXi37PZhZdNbp/EAsAvqDwe+Piau6nnO0m+15uTp2PQuF/uIBsxL2gG5Mi41CT2JQwqIk6YEH1SSvyY073LQSHdV+aVPPL/voo8uNNN5vq0dlOb5D43gIZx+h/33k3mW3GFjEpJDH7xJybXMCy0meCxkneGSS+l65z7pk4LmgaIuoe8Ad7F1yOA9R4fWAi7nMJzOqlfNstx2NJrIarx69urFBhrt62OQliKyxRWbtkHb0S2TTSy9oFWSE6ld8HjzdNyoUoRObQ1uy/4ksQZNSU3fTXb2Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PDUuir5J2lItlyYj4Mj2vO/SEvz0bGaQ7VzYfibupowCPApNLHGyq8abtbYDbLoU+ZbdYkjpNWG0lvkRdGDzck6KbAltSiRT3js4rt6L+DtlP3s365Aj3EgS0Ud2RB5JwnfvUyo2ZaNS7IvNjIVUE/GTEueRp03bswQazlr+8G4b1HVgY3ogbGuaty1YS/4cYoSCUKTvX0rTGk7MYTKxqRCD+99iHT7nzdE+l4ZzgkqH6TXI7vWt+vaC3Ce0XpplxchdSl1imPGKXt3xJX2So6dPnEAWMeSuTYoQUChUqoyjFzzf/MA++UUL8fUuzKJcesh7aUiJx4n/mhfOYtpXhlMvGUdbXvk4c1DyUItHRiPspPiPzfGqFGOgP311AvFPKHcRwOJPQUGPGOZQ5FlTr+jITo1KcJ+1zCYMAMgkGL2eEk8vBneDn9K7P5QSIPN5
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jul 2026 13:42:29.7745 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 735f6d0e-8d34-4e4c-91cc-08dee276ea4f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009A.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9833
+References: <20260713182732.630947-1-alexander.deucher@amd.com>
+ <20260713182732.630947-5-alexander.deucher@amd.com>
+ <e8926046-2e03-4224-98ba-8601de0421db@amd.com>
+ <CADnq5_OGJBx5xkSDfU4cyt0bjZRot18F-PE29RJFSkC=YPz6oQ@mail.gmail.com>
+ <1e4cead4-73b7-461f-b4d4-a66e293d0d96@amd.com>
+ <CADnq5_OnTfvMf+Bx3V36p0W_M4ARksHZ+emGSNb07Us9xPr2uw@mail.gmail.com>
+ <c9e1526e-c2b6-465c-9f82-24299d8a0e23@amd.com>
+ <CADnq5_P8dPWAJCd_=u13KKDPmJQecC9MqHJ6K9g4+4iQxYvi_Q@mail.gmail.com>
+ <70f3e844-002a-46b2-9341-47428abfd829@amd.com>
+In-Reply-To: <70f3e844-002a-46b2-9341-47428abfd829@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 15 Jul 2026 09:44:58 -0400
+X-Gm-Features: AUfX_mzgN6MoTs_NV5FIB_gbU3jNPGEHhmJRsRsRItNCsOSB_GTI-Lv6_cFQVRo
+Message-ID: <CADnq5_OzP69GXe4TgotojQd7U8DUbyY-QK_HP6JR-h8+0PoTPA@mail.gmail.com>
+Subject: Re: [PATCH 05/14] drm/amdgpu: add an buffer funcs callback for TLB
+ invalidation
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,71 +119,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[William.Palacek@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DE27575ED21
+X-Rspamd-Queue-Id: 9AA4175ED69
 X-Rspamd-Action: no action
 
-The CRAT parser validates that the subtype header fits within the image,
-but does not verify that the advertised subtype length fits. A malformed
-CRAT table with an oversized length field causes out-of-bounds reads when
-kfd_parse_subtype() casts the header to specific subtype structures.
+On Wed, Jul 15, 2026 at 5:00=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> On 7/14/26 17:19, Alex Deucher wrote:
+> >> Why are we using the MES for per VMID invalidation?
+> >
+> > gfxoff.  We can't access the registers directly unless we disallow gfxo=
+ff.
+>
+> Well there is a remark that VM_INVALIDATE_ENG*_ACK is always save to read=
+, even when gfxoff is active.
+>
+> And we explicitly acquire the semaphore to avoid that GFXOFF kicks in.
 
-Add validation that sub_type_hdr + length does not exceed the image
-boundary before parsing the subtype contents.
+I'm pretty sure the semaphore just keeps it active if it's already
+active, but the registers are in the gfx tile so they are gfxoff
+controlled.  I think the semaphore is just meant to be used as a lock
+to keep gfxoff from kicking in in the middle of an invalidation.
 
-Signed-off-by: William Palacek <William.Palacek@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+>
+> I also don't see how we use the MES here?
+>
+> What we do is to use the KIQ on gfx9, but that is actually only as a work=
+around for some SRIOV problems.
+>
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-index 2a239f45fc24..6e0df685503d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1412,6 +1412,15 @@ int kfd_parse_crat_table(void *crat_image, struct list_head *device_list,
- 			break;
- 		}
- 
-+		/* Validate subtype fits within remaining image */
-+		if ((char *)sub_type_hdr + sub_type_hdr->length >
-+		    (char *)crat_image + image_len) {
-+			pr_warn("CRAT subtype length %u exceeds image bounds\n",
-+				sub_type_hdr->length);
-+			ret = -EINVAL;
-+			break;
-+		}
-+
- 		if (sub_type_hdr->flags & CRAT_SUBTYPE_FLAGS_ENABLED) {
- 			ret = kfd_parse_subtype(sub_type_hdr, device_list);
- 			if (ret)
--- 
-2.34.1
+We do it for everything gfx9 and newer.  For example gmc_v11_0_flush_gpu_tl=
+b():
 
+        /* This is necessary for SRIOV as well as for GFXOFF to
+function
+         * properly under bare metal
+         */
+        if ((adev->gfx.kiq[0].ring.sched.ready ||
+adev->mes.ring[0].sched.ready) &&
+            (amdgpu_sriov_runtime(adev) || !amdgpu_sriov_vf(adev))) {
+        amdgpu_gmc_fw_reg_write_reg_wait(adev, req, ack, inv_req,
+                                                 1 << vmid, GET_INST(GC, 0)=
+);
+                return;
+        }
+
+The only time we use the MMIO path is if KIQ or MES is not ready yet.
+The goal of this patch set was to switch to using SDMA rather than MES
+and to clean up the gmc code since most of the logic is the same for
+gfx9 and above.
+
+Alex
+
+
+> Christian.
+>
+> >
+> > Alex
